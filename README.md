@@ -40,3 +40,10 @@ df_2015 <- read_flights(date=2015)
 
 
 
+
+## Acknowledgement <a href="https://www.ipea.gov.br"><img align="right" src="man/figures/ipea_logo.png" alt="IPEA" width="300" /></a>
+
+Original data is collected by [Brazil’s Civil Aviation Agency (ANAC)](https://www.gov.br/anac/pt-br). The **flightsbr** package is developed by a team at the Institute for Applied Economic Research (Ipea), Brazil. If you want to cite this package, you can cite it as:
+
+* Pereira, R.H.M. (2022) **flightsbr: Download Flight Data from Brazil**. GitHub repository - https://github.com/ipeaGIT/flightsbr.
+
