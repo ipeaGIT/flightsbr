@@ -21,30 +21,40 @@ A description of all variables included in the data is available at \url{https:/
 
 # Basic usage
 
-Before using **flightsbr** please make sure that you have it installed on your computer. You can download either the most stable version from CRAN...
+Before using **flightsbr** please make sure that you have it installed on your computer. You can download the most stable version from CRAN.
 
 ```{r, eval = FALSE}
 install.packages("flightsbr")
 ```
 
-...or the development version from GitHub.
-
-```{r, eval = FALSE}
-# install.packages("remotes")
-remotes::install_github("ipeaGIT/flightsbr")
-```
-
-Then attach it to the current R session:
+Now we can load some libraries we'll use in this vignette:
 
 ```{r, message = FALSE}
 library(flightsbr)
 library(dplyr)
 ```
 
-Download data
+Download data of all flights:
+
+```{r, eval=FALSE}
+# in a given **month* of a given **year** (yyyymm)
+df_201506 <- read_flights(date=201506, showProgress = FALSE)
+
+# in a given year (yyyy)
+df_2015 <- read_flights(date=2015, showProgress = FALSE)
+
+```
+
+
+If you know already what data columns you need, you can pass a vector with their names to `select` parameter and `read_flights()` will only load those columns. This will make the function a bit faster. 
 
 ```{r}
-df201506 <- read_flights(date=201506, showProgress = FALSE)
+df_201506 <- read_flights(date=201506, 
+                          showProgress = FALSE,
+                          select = c('id_empresa', 'nr_voo', 'dt_partida_real',
+                                     'sg_iata_origem' , 'sg_iata_destino'))
 
-dplyr::glimpse(df201506)
+dplyr::glimpse(df_201506, width =2)
 ```
+
+
