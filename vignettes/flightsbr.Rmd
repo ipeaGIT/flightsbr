@@ -38,12 +38,13 @@ Then attach it to the current R session:
 
 ```{r, message = FALSE}
 library(flightsbr)
+library(dplyr)
 ```
 
 Download data
 
 ```{r}
-df201506 <- read_flights(year=2015, month=6)
+df201506 <- read_flights(year=2015, month=6, showProgress = FALSE)
 
-head(df201506)
+dplyr::glimpse(df201506)
 ```
