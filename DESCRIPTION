@@ -9,9 +9,10 @@ Authors@R:
              comment = c(ORCID = "0000-0003-2125-7465")),
       person(given = "Ipea - Institute for Applied Economic Research",
              role = c("cph", "fnd")))
-Description: Download flight data from Brazil’s Civil Aviation Agency (ANAC). 
-             The data includes detailed information on every international flight
-             to and from Brazil, as well as domestic flights within the country.
+Description: Download flight data from Brazil’s Civil Aviation Agency (ANAC)
+             <https://www.gov.br/anac/pt-br>. The data includes detailed 
+             information on every international flight to and from Brazil, 
+             as well as domestic flights within the country.
 License: MIT + file LICENSE
 URL: https://github.com/ipeaGIT/flightsbr
 BugReports: https://github.com/ipeaGIT/flightsbr/issues
