@@ -1,7 +1,7 @@
 Type: Package
 Package: flightsbr
 Title: Download Flight Data from Brazil
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: 
     c(person(given="Rafael H. M.", family="Pereira", 
              email="rafa.pereira.br@gmail.com", 
@@ -25,7 +25,8 @@ Suggests:
     dplyr,
     ggplot2 (>= 3.3.1),
     rmarkdown (>= 2.6),
-    knitr
+    knitr,
+    testthat
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

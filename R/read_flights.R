@@ -8,53 +8,69 @@
 #' type, payload, and the number of passengers, and several other variables. A
 #' description of all variables included in the data is available at \url{https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis}.
 #'
-#' @param year Numeric. Year of the data. Defaults to `2010`
-#' @param month Numeric. Year of the data. Defaults to `1` (January)
+#' @param date Numeric. Date of the data in the format `yyyymm`. Defaults to
+#'             `202001`. To download the data for all months in a year, the user
+#'             can pass a 4-digit year input `yyyy` .
 #' @param type String. Whether the data set should be of the type `basica`
-#' (flight stage, the default) or `combinada` (On flight origin and destination
-#' - OFOD).
+#'             (flight stage, the default) or `combinada` (On flight origin and
+#'             destination - OFOD).
 #' @param showProgress Logical. Defaults to `TRUE` display progress bar
+#' @param select A vector of column names or numbers to keep, drop the rest. The
+#'               order that the columns are specified determines the order of the
+#'               columns in the result.
 #'
 #' @return A `"data.table" "data.frame"` object
 #' @export
 #' @family download flight data
-
 #' @examples \dontrun{ if (interactive()) {
 #' # Read flights data
 #' a201506 <- read_flights(year=2015, month=6)
 #'}}
-read_flights <- function(year=2020, month=1, type='basica', showProgress=TRUE){
+read_flights <- function(date = 202001, type = 'basica', showProgress = TRUE, select = NULL){
 
 ### check inputs
-  # type
   if( ! type %in% c('basica', 'combinada') ){ stop(paste0("Argument 'type' must be either 'basica' or 'combinada'")) }
-
-  # year and months perhaps use yyyymm ?
-
-  # progress bar
-  if( !(showProgress %in% c(T, F)) ){ stop("Value to argument 'showProgress' has to be either TRUE or FALSE") }
+  if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
+  check_date(date=date)
 
 
-### prepare address of online data
-  if( nchar(month) ==1 ) { month <- paste0('0', month)}
-  url_root <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
-  file_name <- paste0(type, year, '-', month, '.zip')
-  file_url <- paste0(url_root, file_name)
+if (nchar(date)==6) {
+#### Download one month---------------------------------------------------------
 
-### download data
-  temp_local_file <- tempfile( file_name )
-  # utils::download.file(url = file_url, destfile = temp_local_file)
+# prepare address of online data
+  split_date(date)
+  file_url <- get_url(type=type, year=year, month=month)
 
-  try(
-    httr::GET(url=file_url,
-             if(showProgress==T){ httr::progress()},
-              httr::write_disk(temp_local_file, overwrite = T),
-              config = httr::config(ssl_verifypeer = FALSE)
-    ), silent = F)
-
-### read zipped file stored locally
-  temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
-  dt <- data.table::fread( cmd =  temp_local_file_zip)
+# download and read data
+  dt <- download_flights_data(file_url, showProgress = showProgress, select = select)
   return(dt)
-}
+
+
+
+
+} else if (nchar(date)==4) {
+#### Download whole year---------------------------------------------------------
+
+# prepare address of online data
+all_months <- generate_all_months(date)
+
+# manually ignore dates after Nov 2021
+if (date==2021) { all_months <- all_months[all_months < 202112] }
+
+dt_list <- lapply( X=all_months,
+                   FUN= function(i, type.=type, showProgress.=showProgress, select.=select) { # i = all_months[3]
+
+                      # prepare address of online data
+                      split_date(i)
+                      file_url <- get_url(type, year, month)
+
+                      # download and read data
+                      temp_dt <- download_flights_data(file_url, showProgress = showProgress, select = select)
+                      return(temp_dt)
+                      }
+                   )
+dt <- data.table::rbindlist(dt_list)
+return(dt)
+
+}}
 

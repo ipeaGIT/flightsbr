@@ -1,0 +1,132 @@
+# nocov start
+
+#' Split a date from yyyymmm to year yyyy and month mm
+#'
+#' @param date Numeric. Date of the data in the format `yyyymm`.
+#'
+#' @return An two string objects, `year` and `month`.
+#'
+#' @keywords internal
+split_date <- function(date) {
+
+  y <- substring(date, 1,4)
+  m <- substring(date, 5,6)
+
+  newList <- list("year" = y,
+                  "month" = m)
+  list2env(newList ,.GlobalEnv)
+}
+
+#' Check whether date input is acceptable
+#' @param date Numeric. Either a 6-digit date in the format `yyyymm` or a 4-digit
+#'             date input `yyyy` .
+#'
+#' @return Check messages.
+#'
+#' @keywords internal
+check_date <- function(date) {
+
+  # all dates between 2000 and 2021
+  all_dates <- lapply(X=2000:2021, FUN=generate_all_months)
+  all_dates <- unlist(all_dates)
+
+  # no data after 202111
+  all_dates <- all_dates[all_dates < 202111]
+
+
+  if (nchar(date)==6) {
+    if (!(date %in% all_dates)) {stop("Data only available for dates between Jan 2000 and Nov 2021.")}
+    }
+
+
+
+  if (nchar(date)==4) {
+    if (!(date %in% 2000:2021)) {stop("Data only available for dates between Jan 2000 and Nov 2021.")}
+    }
+
+}
+
+
+
+
+
+
+
+#' Generate all months with `yyyymm` format in a year
+#'
+#' @param date Numeric. 4-digit date in the format `yyyy`.
+#' @return Vector or strings.
+#' @keywords internal
+generate_all_months <- function(date) {
+
+  # check
+  if( nchar(date)!=4 ){ stop(paste0("Argument 'date' must be 4-digit in the format `yyyy`.")) }
+
+  jan <- as.numeric(paste0(date, '01'))
+  dec <- as.numeric(paste0(date, '12'))
+  all_months <- jan:dec
+  return(all_months)
+}
+
+
+
+#' Put together the data file url
+#'
+#' @param year Numeric. Year of the data in `yyyy` format.
+#' @param month Numeric. Month of the data in `mm` format.
+#' @param type String. Whether the data set should be of the type `basica`
+#'             (flight stage, the default) or `combinada` (On flight origin and
+#'             destination - OFOD).
+#'
+#' @return A url string.
+#'
+#' @keywords internal
+get_url <- function(type, year, month) {
+
+  if( nchar(month) ==1 ) { month <- paste0('0', month)}
+
+  url_root <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
+  file_name <- paste0(type, year, '-', month, '.zip')
+  file_url <- paste0(url_root, file_name)
+  return(file_url)
+}
+
+
+
+
+
+
+#' Download and read ANAC flight data
+#'
+#' @param file_url String. A url passed from get_url.
+#' @param showProgress Logical, passed from \code{\link{read_flights}}
+#' @param select A vector of column names or numbers to keep, passed from \code{\link{read_flights}}
+#'
+#' @return A `"data.table" "data.frame"` object
+#'
+#' @keywords internal
+download_flights_data <- function(file_url, showProgress=showProgress, select=select){
+
+  # create temp local file
+  file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
+  temp_local_file <- tempfile( file_name )
+
+  # download data
+  try(
+    httr::GET(url=file_url,
+              if(showProgress==T){ httr::progress()},
+              httr::write_disk(temp_local_file, overwrite = T),
+              config = httr::config(ssl_verifypeer = FALSE)
+    ), silent = F)
+
+  # read zipped file stored locally
+  temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
+  dt <- data.table::fread( cmd =  temp_local_file_zip, select=select)
+  return(dt)
+  }
+
+## quiets concerns of R CMD check re: the .'s that appear in pipelines
+if(getRversion() >= "2.15.1") utils::globalVariables(
+  c('month', 'year'))
+
+# nocov end
