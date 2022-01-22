@@ -10,16 +10,16 @@
 #'
 #' @param date Numeric. Date of the data in the format `yyyymm`. Defaults to
 #'             `202001`. To download the data for all months in a year, the user
-#'             can pass a 4-digit year input `yyyy` .
+#'             can pass a 4-digit year input `yyyy`.
 #' @param type String. Whether the data set should be of the type `basica`
 #'             (flight stage, the default) or `combinada` (On flight origin and
 #'             destination - OFOD).
-#' @param showProgress Logical. Defaults to `TRUE` display progress bar
+#' @param showProgress Logical. Defaults to `TRUE` display progress.
 #' @param select A vector of column names or numbers to keep, drop the rest. The
 #'               order that the columns are specified determines the order of the
 #'               columns in the result.
 #'
-#' @return A `"data.table" "data.frame"` object
+#' @return A `"data.table" "data.frame"` object.
 #' @export
 #' @family download flight data
 #' @examples \dontrun{ if (interactive()) {
