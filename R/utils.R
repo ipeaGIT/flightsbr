@@ -1,3 +1,18 @@
+## quiets concerns of R CMD check re: the .'s that appear in pipelines
+utils::globalVariables( c('month', 'year', '%like%') )
+
+.onLoad <- function(lib, pkg) {
+  # Use GForce Optimisations in data.table operations
+  # details > https://jangorecki.gitlab.io/data.cube/library/data.table/html/datatable-optimize.html
+  options(datatable.optimize = Inf) # nocov
+
+  # set number of threads used in data.table to 100%
+  # library(data.table)
+  data.table::setDTthreads(percent = 100) # nocov
+}
+
+#' @importFrom data.table := %like% fifelse
+
 # nocov start
 
 #' Split a date from yyyymmm to year yyyy and month mm
@@ -131,7 +146,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 latlon_to_numeric <- function(df, colname){
 
   # create column identifying whether coordinates in the South or West
-  df$south_west <- fifelse( df[[colname]] %like% 'S|W', -1, 1)
+  df$south_west <- data.table::fifelse( df[[colname]] %like% 'S|W', -1, 1)
 
   # get vector
   vec <- df[[colname]]
@@ -143,15 +158,12 @@ latlon_to_numeric <- function(df, colname){
 
   # convert to numeric
   df[[colname]] <- as.numeric(vec) * df$south_west
-  df[, south_west := NULL]
+  df$south_west <- NULL
 
   return(df)
 }
 
 
 
-## quiets concerns of R CMD check re: the .'s that appear in pipelines
-if(getRversion() >= "2.15.1") utils::globalVariables(
-  c('month', 'year'))
 
 # nocov end
