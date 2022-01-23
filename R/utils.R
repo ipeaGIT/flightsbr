@@ -49,9 +49,6 @@ check_date <- function(date) {
 
 
 
-
-
-
 #' Generate all months with `yyyymm` format in a year
 #'
 #' @param date Numeric. 4-digit date in the format `yyyy`.
@@ -93,9 +90,6 @@ get_url <- function(type, year, month) {
 
 
 
-
-
-
 #' Download and read ANAC flight data
 #'
 #' @param file_url String. A url passed from get_url.
@@ -124,6 +118,37 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   dt <- data.table::fread( cmd =  temp_local_file_zip, select=select)
   return(dt)
   }
+
+
+#' Convert latitude and longitude columns to numeric
+#'
+#' @param df A data.frame internal to the `read_airport()` function.
+#' @param colname String. Either `LATITUTE` or `LONGITUDE`.
+#'
+#' @return A `"data.table" "data.frame"` object
+#'
+#' @keywords internal
+latlon_to_numeric <- function(df, colname){
+
+  # create column identifying whether coordinates in the South or West
+  df$south_west <- fifelse( df[[colname]] %like% 'S|W', -1, 1)
+
+  # get vector
+  vec <- df[[colname]]
+
+  # fix string
+  vec <- gsub("[.]", "", vec) # replace any decimal markers
+  vec <- gsub("[°]", ".", vec) # add decimal marker
+  vec <- gsub("[^0-9.-]", "", vec) # keep only numeric
+
+  # convert to numeric
+  df[[colname]] <- as.numeric(vec) * df$south_west
+  df[, south_west := NULL]
+
+  return(df)
+}
+
+
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 if(getRversion() >= "2.15.1") utils::globalVariables(

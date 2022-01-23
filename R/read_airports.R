@@ -35,6 +35,11 @@ if (type=='public'){
   # fix column names
   data.table::setnames(dt_public, unlist(c(dt_public[1,])) )
   dt_public <- dt_public[-1,]
+
+  # fix geographical coordinates
+  dt_public <- latlon_to_numeric(df=dt_public, colname = 'LATITUDE')
+  dt_public <- latlon_to_numeric(df=dt_public, colname = 'LONGITUDE')
+
   return(dt_public)
   }
 
@@ -42,6 +47,10 @@ if (type=='public'){
 else if (type=='private'){
 
   dt_private <- data.table::fread(url_private, skip = 1, showProgress=showProgress)
+
+  # fix geographical coordinates
+  dt_private <- latlon_to_numeric(df=dt_private, colname = 'Latitude')
+  dt_private <- latlon_to_numeric(df=dt_private, colname = 'Longitude')
 
   ## last time the data was updated
   # last_update_private <- data.table::fread(url_private, nrows = 1)
