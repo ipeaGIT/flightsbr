@@ -3,7 +3,7 @@
 
 [![CRAN
    status](https://www.r-pkg.org/badges/version/flightsbr)](https://CRAN.R-project.org/package=flightsbr)
-[![R-CMD-check](https://github.com/ipeaGIT/gtfs2gps/workflows/R-CMD-check/badge.svg)](https://github.com/ipeaGIT/gtfs2gps/actions)
+[![R-CMD-check](https://github.com/ipeaGIT/flightsbr/workflows/R-CMD-check/badge.svg)](https://github.com/ipeaGIT/flightsbr/actions)
 [![Lifecycle:
      experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![CRAN/METACRAN Total
