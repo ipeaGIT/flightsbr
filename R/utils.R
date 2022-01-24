@@ -172,15 +172,13 @@ latlon_to_numeric <- function(df, colname){
   # create column identifying whether coordinates in the South or West
   df$south_west <- data.table::fifelse( data.table::like(df[[colname]], 'S|W' ), -1, 1)
 
-
   # get vector
   vec <- df[[colname]]
 
   # fix string
   vec <- gsub("[.]", "", vec) # replace any decimal markers
-  vec <- gsub("[°]", ".", vec) # add decimal marker °
+  vec <- gsub("[\xB0]", ".", vec) # replace the degree symbol ° with a point '.'
   vec <- gsub("[^0-9.-]", "", vec) # keep only numeric
-
 
   # convert to numeric
   df[[colname]] <- as.numeric(vec) * df$south_west
