@@ -16,4 +16,10 @@ Check messages.
 \description{
 Check whether date input is acceptable
 }
+\examples{
+\dontrun{ if (interactive()) {
+# check dates
+a <- check_date(200011)
+}}
+}
 \keyword{internal}

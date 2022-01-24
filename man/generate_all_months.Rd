@@ -15,4 +15,10 @@ Vector or strings.
 \description{
 Generate all months with \code{yyyymm} format in a year
 }
+\examples{
+\dontrun{ if (interactive()) {
+# Generate all months in 2000
+a <- check_date(2000)
+}}
+}
 \keyword{internal}

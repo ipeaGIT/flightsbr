@@ -19,4 +19,13 @@ A \verb{"data.table" "data.frame"} object
 \description{
 Download and read ANAC flight data
 }
+\examples{
+\dontrun{ if (interactive()) {
+# Generate url
+file_url <- get_url(type='basica', year=2000, month=11)
+
+# download data
+a <- download_flights_data(file_url=file_url, showProgress=TRUE, select=NULL)
+}}
+}
 \keyword{internal}

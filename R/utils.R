@@ -14,7 +14,7 @@ utils::globalVariables( c('month', 'year', '%like%') )
   data.table::setDTthreads(percent = 100) # nocov
 }
 
-#' @importFrom(data.table, ':=', '%like%', fifelse, fread)
+#' @importFrom(data.table,':=','%like%','fifelse','fread')
 NULL
 
 

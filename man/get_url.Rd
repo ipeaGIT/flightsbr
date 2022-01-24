@@ -21,4 +21,10 @@ A url string.
 \description{
 Put together the data file url
 }
+\examples{
+\dontrun{ if (interactive()) {
+# Generate url
+a <- get_url(type='basica', year=2000, month=11)
+}}
+}
 \keyword{internal}
