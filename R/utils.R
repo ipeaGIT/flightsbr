@@ -15,6 +15,7 @@ utils::globalVariables( c('month', 'year', '%like%') )
 }
 
 #' @importFrom(data.table, ':=', '%like%', fifelse, fread)
+NULL
 
 
 
@@ -26,6 +27,10 @@ utils::globalVariables( c('month', 'year', '%like%') )
 #'
 #' @return An two string objects, `year` and `month`.
 #' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Read flights data
+#' a <- split_date(200011)
+#'}}
 split_date <- function(date) {
 
   y <- m <- NULL
@@ -43,6 +48,10 @@ split_date <- function(date) {
 #'
 #' @return Check messages.
 #' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # check dates
+#' a <- check_date(200011)
+#'}}
 check_date <- function(date) {
 
   # all dates between 2000 and 2021
@@ -69,6 +78,10 @@ check_date <- function(date) {
 #' @param date Numeric. 4-digit date in the format `yyyy`.
 #' @return Vector or strings.
 #' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Generate all months in 2000
+#' a <- check_date(2000)
+#'}}
 generate_all_months <- function(date) {
 
   # check
@@ -93,6 +106,10 @@ generate_all_months <- function(date) {
 #' @return A url string.
 #'
 #' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Generate url
+#' a <- get_url(type='basica', year=2000, month=11)
+#'}}
 get_url <- function(type, year, month) {
 
   if( nchar(month) ==1 ) { month <- paste0('0', month)}
@@ -114,6 +131,13 @@ get_url <- function(type, year, month) {
 #' @return A `"data.table" "data.frame"` object
 #'
 #' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Generate url
+#' file_url <- get_url(type='basica', year=2000, month=11)
+#'
+#' # download data
+#' a <- download_flights_data(file_url=file_url, showProgress=TRUE, select=NULL)
+#'}}
 download_flights_data <- function(file_url, showProgress=showProgress, select=select){
 
   # create temp local file
