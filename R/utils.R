@@ -177,7 +177,7 @@ latlon_to_numeric <- function(df, colname){
 
   # fix string
   vec <- gsub("[.]", "", vec) # replace any decimal markers
-  vec <- gsub("[\xB0]", ".", vec) # replace the degree symbol ° with a point '.'
+  vec <- gsub("[\ub0]", ".", vec) # replace the degree symbol ° with a point '.'
   vec <- gsub("[^0-9.-]", "", vec) # keep only numeric
 
   # convert to numeric
