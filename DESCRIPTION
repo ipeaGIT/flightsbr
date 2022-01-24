@@ -19,7 +19,7 @@ BugReports: https://github.com/ipeaGIT/flightsbr/issues
 Depends: 
     R (>= 2.10)
 Imports:
-      data.table,
+      data.table (>= 1.9.8),
       httr (>= 1.4.1)
 Suggests: 
     dplyr,
