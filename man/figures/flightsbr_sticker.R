@@ -21,7 +21,7 @@ img <- "./man/figures/flat.png"
 sticker(img,
         package="flightsbr", p_family='Montserrat', p_color = 'white',  p_fontface='italic',
         p_size=7, p_y = 1.5, # package name size and position
-        s_x=1.05, s_y=.8, s_width=0.6,  # image size and position
+        s_x=1.05, s_y=.8, s_width=.55,  # image size and position
         h_fill="#006890", h_color="#006890", h_size = 2, # hexagon
         dpi=400, # resolution
         url = 'https://github.com/ipeaGIT/flightsbr',
