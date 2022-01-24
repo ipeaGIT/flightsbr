@@ -12,6 +12,7 @@
 #' @return A `"data.table" "data.frame"` object.
 #' @export
 #' @family download airport data
+#' @importFrom data.table %like%
 #' @examples \dontrun{ if (interactive()) {
 #' # Read airports data
 #' public_airports <- read_airports(type = 'public')

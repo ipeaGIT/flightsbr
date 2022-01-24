@@ -1,3 +1,6 @@
+# nocov start
+
+
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 utils::globalVariables( c('month', 'year', '%like%') )
 
@@ -11,19 +14,21 @@ utils::globalVariables( c('month', 'year', '%like%') )
   data.table::setDTthreads(percent = 100) # nocov
 }
 
-#' @importFrom data.table := %like% fifelse
+#' @importFrom(data.table, ':=', '%like%', fifelse, fread)
 
-# nocov start
+
 
 #' Split a date from yyyymmm to year yyyy and month mm
 #'
-#' @param date Numeric. Date of the data in the format `yyyymm`.
+#' @description Split a date from yyyymmm to year yyyy and month mm.
+#'
+#' @param date Numeric. Date of the data in `yyyymm` format.
 #'
 #' @return An two string objects, `year` and `month`.
-#'
 #' @keywords internal
 split_date <- function(date) {
 
+  y <- m <- NULL
   y <- substring(date, 1,4)
   m <- substring(date, 5,6)
 
@@ -37,7 +42,6 @@ split_date <- function(date) {
 #'             date input `yyyy` .
 #'
 #' @return Check messages.
-#'
 #' @keywords internal
 check_date <- function(date) {
 
@@ -48,17 +52,13 @@ check_date <- function(date) {
   # no data after 202111
   all_dates <- all_dates[all_dates < 202111]
 
-
   if (nchar(date)==6) {
     if (!(date %in% all_dates)) {stop("Data only available for dates between Jan 2000 and Nov 2021.")}
     }
 
-
-
   if (nchar(date)==4) {
     if (!(date %in% 2000:2021)) {stop("Data only available for dates between Jan 2000 and Nov 2021.")}
     }
-
 }
 
 
@@ -153,8 +153,9 @@ latlon_to_numeric <- function(df, colname){
 
   # fix string
   vec <- gsub("[.]", "", vec) # replace any decimal markers
-  vec <- gsub("[°]", ".", vec) # add decimal marker
+  vec <- gsub("[°]", ".", vec) # add decimal marker °
   vec <- gsub("[^0-9.-]", "", vec) # keep only numeric
+
 
   # convert to numeric
   df[[colname]] <- as.numeric(vec) * df$south_west

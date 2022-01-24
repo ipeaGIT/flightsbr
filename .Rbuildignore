@@ -1,4 +1,4 @@
-^flightsbr\.Rproj$
 ^\.Rproj\.user$
+^.*\.Rproj$
 ^tests_rafa
 ^.github
