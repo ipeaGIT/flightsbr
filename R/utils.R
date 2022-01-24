@@ -14,7 +14,7 @@ utils::globalVariables( c('month', 'year', '%like%') )
   data.table::setDTthreads(percent = 100) # nocov
 }
 
-#' @importFrom(data.table,':=','%like%','fifelse','fread')
+#' @importFrom(data.table, ':=', '%like%', fifelse, fread)
 NULL
 
 
@@ -170,7 +170,8 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 latlon_to_numeric <- function(df, colname){
 
   # create column identifying whether coordinates in the South or West
-  df$south_west <- data.table::fifelse( df[[colname]] %like% 'S|W', -1, 1)
+  df$south_west <- data.table::fifelse( data.table::like(df[[colname]], 'S|W' ), -1, 1)
+
 
   # get vector
   vec <- df[[colname]]
