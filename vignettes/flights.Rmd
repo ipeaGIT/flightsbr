@@ -2,7 +2,7 @@
 title: "Flights data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to flightsbr}
+  %\VignetteIndexEntry{Flights data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
