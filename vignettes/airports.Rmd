@@ -34,7 +34,7 @@ Download data of all airports:
 ```{r, eval=TRUE, message=FALSE}
 # download data
 airports_priv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
-airports_publ <- flightsbr::read_airports(type = 'public', showProgress = FALSE))
+airports_publ <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
 
 # change col names to lower case
 names(airports_priv) <- tolower(names(airports_priv))

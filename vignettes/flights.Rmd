@@ -41,7 +41,7 @@ df_2015 <- read_flights(date=2015, showProgress = FALSE)
 
 If you know already what data columns you need, you can pass a vector with their names to `select` parameter and `read_flights()` will only load those columns. This will make the function a bit faster. 
 
-```{r}
+```{r, eval=TRUE}
 df_201506 <- read_flights(date=201506, 
                           showProgress = FALSE,
                           select = c('id_empresa', 'nr_voo', 'dt_partida_real',
