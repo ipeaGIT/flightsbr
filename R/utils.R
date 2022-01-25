@@ -150,10 +150,17 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
               if(showProgress==T){ httr::progress()},
               httr::write_disk(temp_local_file, overwrite = T),
               config = httr::config(ssl_verifypeer = FALSE)
-    ), silent = F)
+    ), silent = TRUE)
+
+  # address of zipped file stored locally
+  temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
+
+  # check if file has been downloaded
+  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+    message('Internet connection not working.')
+    return(invisible(NULL)) }
 
   # read zipped file stored locally
-  temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
   dt <- data.table::fread( cmd =  temp_local_file_zip, select=select)
   return(dt)
   }

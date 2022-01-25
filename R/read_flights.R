@@ -24,7 +24,7 @@
 #' @family download flight data
 #' @examples \dontrun{ if (interactive()) {
 #' # Read flights data
-#' a201506 <- read_flights(year=2015, month=6)
+#' a201506 <- read_flights(date = 201506)
 #'}}
 read_flights <- function(date = 202001, type = 'basica', showProgress = TRUE, select = NULL){
 
@@ -43,9 +43,11 @@ if (nchar(date)==6) {
 
 # download and read data
   dt <- download_flights_data(file_url, showProgress = showProgress, select = select)
+
+  # check if download failed
+  if (is.null(dt)) { return(invisible(NULL)) }
+
   return(dt)
-
-
 
 
 } else if (nchar(date)==4) {
@@ -66,6 +68,9 @@ dt_list <- lapply( X=all_months,
 
                       # download and read data
                       temp_dt <- download_flights_data(file_url, showProgress = showProgress, select = select)
+
+                      # check if download failed
+                      if (is.null(temp_dt)) { return(invisible(NULL)) }
                       return(temp_dt)
                       }
                    )

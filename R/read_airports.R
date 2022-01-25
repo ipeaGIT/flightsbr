@@ -32,10 +32,15 @@ read_airports <- function(type = 'public', showProgress = TRUE){
 ### download public airports
 if (type=='public'){
 
-      dt_public <- data.table::fread(url_public,
+  dt_public <- try(silent=T,
+                   data.table::fread(url_public,
                                      skip = 2,
                                      encoding = 'UTF-8',
-                                     showProgress=showProgress)
+                                     showProgress=showProgress))
+  # check if download succeeded
+  if (class(dt_public)=="try-error") {
+                          message('Internet connection not working.')
+                          return(invisible(NULL)) }
 
   # fix column names
   data.table::setnames(dt_public, unlist(c(dt_public[1,])) )
@@ -51,9 +56,14 @@ if (type=='public'){
 ### download private airports
 else if (type=='private'){
 
-  dt_private <- data.table::fread(url_private,
-                                  skip = 1,
-                                  showProgress=showProgress)
+  dt_private <- try(silent=T,
+                    data.table::fread(url_private,
+                                      skip = 1,
+                                      showProgress=showProgress))
+  # check if download succeeded
+  if (class(dt_private)=="try-error") {
+    message('Internet connection not working.')
+    return(invisible(NULL)) }
 
   # fix geographical coordinates
   dt_private <- latlon_to_numeric(df=dt_private, colname = 'Latitude')
