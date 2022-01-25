@@ -1,0 +1,61 @@
+---
+title: "Airport data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to flightsbr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The airport data in the **flightsbr** package is downloaded from Brazil’s Civil Aviation Agency (ANAC).
+
+...
+
+Now we can load some libraries we'll use in this vignette:
+
+```{r, message = FALSE}
+library(flightsbr)
+library(dplyr)
+library(data.table)
+library(ggplot2)
+library(geobr)
+
+```
+
+Download data of all airports:
+
+```{r, eval=TRUE, message=FALSE}
+# download data
+airports_priv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
+airports_publ <- flightsbr::read_airports(type = 'public', showProgress = FALSE))
+
+# change col names to lower case
+names(airports_priv) <- tolower(names(airports_priv))
+names(airports_publ) <- tolower(names(airports_publ))
+
+# select columns
+cols_to_keep <- c('ciad','nome', 'longitude', 'latitude')
+airports_publ <- select(airports_publ, cols_to_keep)
+airports_priv <- select(airports_priv, cols_to_keep)
+
+# rbind all public and private airports
+airports <- data.table::rbindlist(list(airports_priv,airports_publ), fill = T)
+
+
+# plot
+brazil <- geobr::read_country()
+
+ggplot() +
+  geom_sf(data=brazil, color='gray') +
+  geom_point(data=airports, aes(x=longitude, y=latitude), size=.5 , alpha=.4) +
+  theme_void()
+```
+
+

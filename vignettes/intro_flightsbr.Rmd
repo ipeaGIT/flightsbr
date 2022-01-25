@@ -1,0 +1,65 @@
+---
+title: "Introduction to flightsbr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to flightsbr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+**flightsbr** is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes two main functions:
+
+### `read_flights()`:
+- Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
+
+Data dictionary: a description of all variables included in the data is available at \url{https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis}.
+
+### `read_airports()`
+- Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It covers detailed information on....[mention a few key variables].
+
+Data dictionary: the data dictionary for public airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2}. The data dictionary for private airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2}.
+
+
+## Basic usage
+
+Before using **flightsbr** please make sure that you have it installed on your computer. You can download the most stable version from CRAN.
+
+```{r, eval = FALSE}
+install.packages("flightsbr")
+```
+
+Now we can load some libraries we'll use in this vignette:
+
+```{r, message = FALSE}
+library(flightsbr)
+library(dplyr)
+```
+
+#### Download data of flights:
+
+```{r, eval=FALSE}
+# in a given **month* of a given **year** (yyyymm)
+df_201506 <- read_flights(date=201506, showProgress = FALSE)
+
+# in a given year (yyyy)
+df_2015 <- read_flights(date=2015, showProgress = FALSE)
+
+```
+
+#### Download data of airports:
+
+```{r, eval=FALSE}
+airports_priv <- flightsbr::read_airports(type = 'private', showProgress = FALSE))
+airports_publ <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
+
+dplyr::glimpse(airports_publ, width =2)
+```
+
+

@@ -1,5 +1,5 @@
 ---
-title: "Introduction to flightsbr"
+title: "Flights data"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to flightsbr}
@@ -14,18 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-**flightsbr** is an R package to download flight data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
+The flight data in the **flightsbr** package is downloaded from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
 
 A description of all variables included in the data is available at \url{https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis}.
 
 
-# Basic usage
-
-Before using **flightsbr** please make sure that you have it installed on your computer. You can download the most stable version from CRAN.
-
-```{r, eval = FALSE}
-install.packages("flightsbr")
-```
 
 Now we can load some libraries we'll use in this vignette:
 
