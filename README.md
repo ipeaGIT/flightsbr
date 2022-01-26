@@ -1,6 +1,5 @@
 # flightsbr: Download Flight Data from Brazil <img align="right" src="man/figures/logo.png?raw=true" alt="logo" width="180">
 
-
 [![CRAN
    status](https://www.r-pkg.org/badges/version/flightsbr)](https://CRAN.R-project.org/package=flightsbr)
 [![R-CMD-check](https://github.com/ipeaGIT/flightsbr/workflows/R-CMD-check/badge.svg)](https://github.com/ipeaGIT/flightsbr/actions)
@@ -9,7 +8,7 @@
 [![CRAN/METACRAN Total
    downloads](http://cranlogs.r-pkg.org/badges/grand-total/flightsbr?color=yellow)](https://CRAN.R-project.org/package=flightsbr)
 
-**flightsbr** is a computational package to download flight data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information on every international flight to and from Brazil, as well as domestic flights within the country.
+**flightsbr** is a R package to download flight data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information all airports and aerodromes registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.
 
 
 ## Installation
@@ -24,20 +23,26 @@
 ```
 
 
-## Usage
-The package is still under development. We currently recommend using the development version.
+## Basic usage
+The package currently includes two main functions:
 
-```R
-library(flightsbr)
-
-# read data on all flights in the month of June 2015.
+### `read_flights()` to download national and international flights.
+```
+# flights in a given **month* of a given **year** (yyyymm)
 df_201506 <- read_flights(date=201506, showProgress = FALSE)
 
-# read data on all flights in the year 2015.
-df_2015 <- read_flights(date=2015)
+# flights in a given year (yyyy)
+df_2015 <- read_flights(date=2015, showProgress = FALSE)
 
 ```
 
+### `read_airports()` to download private and public airports.
+```
+airports_priv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
+
+airports_publ <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
+
+```
 
 
 
