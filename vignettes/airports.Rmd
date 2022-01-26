@@ -25,7 +25,7 @@ library(flightsbr)
 library(dplyr)
 library(data.table)
 library(ggplot2)
-library(geobr)
+# library(geobr)
 
 ```
 
@@ -50,10 +50,10 @@ airports <- data.table::rbindlist(list(airports_priv,airports_publ), fill = T)
 
 
 # plot
-brazil <- geobr::read_country()
+# brazil <- geobr::read_country()
 
 ggplot() +
-  geom_sf(data=brazil, color='gray') +
+  # geom_sf(data=brazil, color='gray') +
   geom_point(data=airports, aes(x=longitude, y=latitude), size=.5 , alpha=.4) +
   theme_void()
 ```
