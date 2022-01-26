@@ -20,7 +20,7 @@ The airport data in the **flightsbr** package is downloaded from Brazil’s Civi
 
 Now we can load some libraries we'll use in this vignette:
 
-```{r, message = FALSE}
+```{r, eval=FALSE, message=FALSE}
 library(flightsbr)
 library(dplyr)
 library(data.table)
@@ -31,7 +31,7 @@ library(ggplot2)
 
 Download data of all airports:
 
-```{r, eval=TRUE, message=FALSE}
+```{r, eval=FALSE, message=FALSE}
 # download data
 airports_priv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
 airports_publ <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
