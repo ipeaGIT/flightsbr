@@ -157,8 +157,8 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 
   # check if file has been downloaded
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
-    message('Internet connection not working.')
-    return(invisible(NULL)) }
+        message('Internet connection not working.')
+        return(invisible(NULL)) }
 
   # read zipped file stored locally
   dt <- data.table::fread( cmd =  temp_local_file_zip, select=select)

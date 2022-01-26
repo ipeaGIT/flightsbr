@@ -38,7 +38,7 @@ if (type=='public'){
                                      encoding = 'UTF-8',
                                      showProgress=showProgress))
   # check if download succeeded
-  if (class(dt_public)=="try-error") {
+  if (class(dt_public)[1]=="try-error") {
                           message('Internet connection not working.')
                           return(invisible(NULL)) }
 
@@ -61,9 +61,9 @@ else if (type=='private'){
                                       skip = 1,
                                       showProgress=showProgress))
   # check if download succeeded
-  if (class(dt_private)=="try-error") {
-    message('Internet connection not working.')
-    return(invisible(NULL)) }
+  if (class(dt_private)[1]=="try-error") {
+                          message('Internet connection not working.')
+                          return(invisible(NULL)) }
 
   # fix geographical coordinates
   dt_private <- latlon_to_numeric(df=dt_private, colname = 'Latitude')
