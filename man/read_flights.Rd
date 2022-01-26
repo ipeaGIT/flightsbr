@@ -40,7 +40,7 @@ description of all variables included in the data is available at \url{https://w
 \examples{
 \dontrun{ if (interactive()) {
 # Read flights data
-a201506 <- read_flights(year=2015, month=6)
+a201506 <- read_flights(date = 201506)
 }}
 }
 \concept{download flight data}

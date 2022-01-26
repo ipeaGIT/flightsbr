@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 The airport data in the **flightsbr** package is downloaded from Brazil’s Civil Aviation Agency (ANAC).
 
-...
+[...]
 
 Now we can load some libraries we'll use in this vignette:
 

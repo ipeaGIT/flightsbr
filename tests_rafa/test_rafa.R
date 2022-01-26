@@ -32,12 +32,14 @@ This also works with non-ASCII characters embedded in longer sentences:
 
 
 ##### Coverage ------------------------
-
- Sys.setenv(NOT_CRAN = "true")
+library(testthat)
+library(covr)
+Sys.setenv(NOT_CRAN = "true")
 
 
 # each function separately
-covr::function_coverage(fun=r5r::download_r5, test_file("tests/testthat/test-download_r5.R"))
+covr::function_coverage(fun=read_airports, test_file("tests/testthat/test_read_airports.R"))
+covr::function_coverage(fun=read_flights, test_file("tests/testthat/test_read_flights.R"))
 
 
 # nocov start

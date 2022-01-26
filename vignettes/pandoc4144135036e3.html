@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Airport data</title>
+
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Airport data</h1>
+
+
+
+<p>The airport data in the <strong>flightsbr</strong> package is downloaded from Brazil’s Civil Aviation Agency (ANAC).</p>
+<p>[…]</p>
+<p>Now we can load some libraries we’ll use in this vignette:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flightsbr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: package &#39;data.table&#39; was built under R version 4.1.2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># library(geobr)</span></span></code></pre></div>
+<p>Download data of all airports:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>airports_priv <span class="ot">&lt;-</span> flightsbr<span class="sc">::</span><span class="fu">read_airports</span>(<span class="at">type =</span> <span class="st">&#39;private&#39;</span>, <span class="at">showProgress =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in if (class(dt_private) == &quot;try-error&quot;) {: the condition has length &gt; 1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; and only the first element will be used</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>airports_publ <span class="ot">&lt;-</span> flightsbr<span class="sc">::</span><span class="fu">read_airports</span>(<span class="at">type =</span> <span class="st">&#39;public&#39;</span>, <span class="at">showProgress =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in if (class(dt_public) == &quot;try-error&quot;) {: the condition has length &gt; 1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; and only the first element will be used</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># change col names to lower case</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airports_priv) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(airports_priv))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airports_publ) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(airports_publ))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>cols_to_keep <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ciad&#39;</span>,<span class="st">&#39;nome&#39;</span>, <span class="st">&#39;longitude&#39;</span>, <span class="st">&#39;latitude&#39;</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>airports_publ <span class="ot">&lt;-</span> <span class="fu">select</span>(airports_publ, cols_to_keep)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>airports_priv <span class="ot">&lt;-</span> <span class="fu">select</span>(airports_priv, cols_to_keep)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># rbind all public and private airports</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>airports <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">rbindlist</span>(<span class="fu">list</span>(airports_priv,airports_publ), <span class="at">fill =</span> T)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># brazil &lt;- geobr::read_country()</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_sf(data=brazil, color=&#39;gray&#39;) +</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>airports, <span class="fu">aes</span>(<span class="at">x=</span>longitude, <span class="at">y=</span>latitude), <span class="at">size=</span>.<span class="dv">5</span> , <span class="at">alpha=</span>.<span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
