@@ -42,7 +42,7 @@ if (any(type %in% c('public', 'all'))){
   dt_public <- try(silent=T,
                    data.table::fread(url_public,
                                      skip = 2,
-                                     encoding = 'UTF-8',
+                                     encoding = 'Latin-1',
                                      showProgress=showProgress))
   # check if download succeeded
   if (class(dt_public)[1]=="try-error") {
@@ -68,6 +68,7 @@ if (any(type %in% c('private', 'all'))){
   dt_private <- try(silent=T,
                     data.table::fread(url_private,
                                       skip = 1,
+                                      encoding = 'Latin-1',
                                       showProgress=showProgress))
   # check if download succeeded
   if (class(dt_private)[1]=="try-error") {
