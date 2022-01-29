@@ -2,6 +2,7 @@ Type: Package
 Package: flightsbr
 Title: Download Flight And Airport Data from Brazil
 Version: 0.1.0
+Date: 2022-01-29
 Authors@R: 
     c(person(given="Rafael H. M.", family="Pereira", 
              email="rafa.pereira.br@gmail.com", 

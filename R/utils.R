@@ -2,7 +2,7 @@
 
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
-utils::globalVariables( c('month', 'year', '%like%') )
+utils::globalVariables( c('month', 'year') )
 
 .onLoad <- function(lib, pkg) {
   # Use GForce Optimisations in data.table operations
