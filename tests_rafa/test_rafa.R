@@ -32,6 +32,7 @@ This also works with non-ASCII characters embedded in longer sentences:
 
 
 ##### Coverage ------------------------
+library(flightsbr)
 library(testthat)
 library(covr)
 Sys.setenv(NOT_CRAN = "true")
@@ -55,6 +56,31 @@ cov
 x <- as.data.frame(cov)
 covr::codecov( coverage = cov, token ='aaaaa' )
 
+
+##### check ftp dirs and files ------------------------
+
+library(RCurl)
+
+url <- "ftp://geoftp.ibge.gov.br/organizacao_do_territorio/estrutura_territorial/evolucao_da_divisao_territorial_do_brasil/evolucao_da_divisao_territorial_do_brasil_1872_2010/municipios_1872_1991/divisao_territorial_1872_1991/"
+
+url <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/basica2020-01.zip'
+url <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
+
+
+# List Years/folders available
+
+
+filenames = getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
+
+
+dir_list <-
+  read.table(
+    textConnection(
+      getURLContent(url)
+    ),
+    # sep = "",
+    strip.white = TRUE)
+dir_list
 
 
 ##### Profiling function ------------------------
@@ -114,4 +140,12 @@ tictoc::toc()
 system("R CMD build . --resave-data") # build tar.gz
 
 
+
+pu <- names(dt_public) |> tolower()
+pr <- names(dt_private)  |> tolower()
+
+dt_public$OPERAÇÃO
+dt_private$`Operação Noturna`
+
+pu[pu %in% pr]
 

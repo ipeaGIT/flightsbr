@@ -39,7 +39,6 @@ Now we can load some libraries we'll use in this vignette:
 
 ```{r, message = FALSE}
 library(flightsbr)
-library(dplyr)
 ```
 
 #### Download data of flights:
@@ -56,10 +55,11 @@ df_2015 <- read_flights(date=2015, showProgress = FALSE)
 #### Download data of airports:
 
 ```{r, eval=FALSE}
-airports_priv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
-airports_publ <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
+airports_all <- flightsbr::read_airports(type = 'all', showProgress = FALSE)
+airports_prv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
+airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
 
-dplyr::glimpse(airports_publ, width =2)
+head(airports_all, width =2)
 ```
 
 

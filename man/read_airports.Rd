@@ -4,11 +4,14 @@
 \alias{read_airports}
 \title{Download airports data from Brazil}
 \usage{
-read_airports(type = "public", showProgress = TRUE)
+read_airports(type = "all", showProgress = TRUE)
 }
 \arguments{
-\item{type}{String. Whether function should download data  on \code{public} (Default)
-or \code{private} airports.}
+\item{type}{String. Whether the function should download data on \code{all},
+\code{public} or \code{private} airports. Defaults to \code{all}, returning fewer
+columns. Downloading \code{public} and \code{private} airports separately
+will return the full set of columns available for each of those
+data sets.}
 
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
 }
@@ -24,6 +27,8 @@ The data dictionary for private airports can be found at \url{https://www.anac.g
 \examples{
 \dontrun{ if (interactive()) {
 # Read airports data
+all_airports <- read_airports(type = 'all')
+
 public_airports <- read_airports(type = 'public')
 
 private_airports <- read_airports(type = 'private')
