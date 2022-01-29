@@ -58,7 +58,8 @@ if (any(type %in% c('public', 'all'))){
   dt_public <- latlon_to_numeric(df=dt_public, colname = 'LONGITUDE')
 
   # names to to lower case
-  data.table::setnames(dt_public, tolower(names(dt_public)))
+  pbl_names <- iconv(names(dt_public), from = 'ISO-8859-1', to = 'utf8')
+  data.table::setnames(dt_public, tolower(names(pbl_names)))
   }
 
 ### download private airports
@@ -78,7 +79,8 @@ if (any(type %in% c('private', 'all'))){
   dt_private <- latlon_to_numeric(df=dt_private, colname = 'Longitude')
 
   # names to to lower case
-  data.table::setnames(dt_private, tolower(names(dt_private)))
+  prv_names <- iconv(names(dt_private), from = 'ISO-8859-1', to = 'utf8')
+  data.table::setnames(dt_private, tolower(prv_names))
   }
 
 if (type == 'private') { return(dt_private) }
