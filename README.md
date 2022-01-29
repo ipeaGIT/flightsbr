@@ -28,7 +28,7 @@ The package currently includes two main functions:
 
 ### `read_flights()` to download national and international flights.
 ```
-# flights in a given **month* of a given **year** (yyyymm)
+# flights in a given month/year (yyyymm)
 df_201506 <- read_flights(date=201506, showProgress = FALSE)
 
 # flights in a given year (yyyy)
