@@ -8,7 +8,7 @@
 [![CRAN/METACRAN Total
    downloads](http://cranlogs.r-pkg.org/badges/grand-total/flightsbr?color=yellow)](https://CRAN.R-project.org/package=flightsbr)
 
-**flightsbr** is a R package to download flight data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information all airports and aerodromes registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.
+**flightsbr** is a R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information all airports and aerodromes registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.
 
 
 ## Installation
