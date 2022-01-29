@@ -42,24 +42,26 @@ if (any(type %in% c('public', 'all'))){
   dt_public <- try(silent=T,
                    data.table::fread(url_public,
                                      skip = 2,
-                                     encoding = 'Latin-1',
+                                     # encoding = 'Latin-1',
                                      showProgress=showProgress))
   # check if download succeeded
   if (class(dt_public)[1]=="try-error") {
                           message('Internet connection not working.')
                           return(invisible(NULL)) }
 
-  # fix column names
-  data.table::setnames(dt_public, unlist(c(dt_public[1,])) )
+  # fix column names to lower case
+  pbl_names <- unlist(c(dt_public[1,]))
+  pbl_names <- iconv(pbl_names, from = 'utf8', to = 'utf8')
+  data.table::setnames(dt_public, tolower(prv_names) )
   dt_public <- dt_public[-1,]
 
   # fix geographical coordinates
   dt_public <- latlon_to_numeric(df=dt_public, colname = 'LATITUDE')
   dt_public <- latlon_to_numeric(df=dt_public, colname = 'LONGITUDE')
 
-  # names to to lower case
-  pbl_names <- iconv(names(dt_public), from = 'ISO-8859-1', to = 'utf8')
-  data.table::setnames(dt_public, tolower(names(pbl_names)))
+  # # names to lower case
+  # pbl_names <- iconv(names(dt_public), from = 'ISO-8859-1', to = 'utf8')
+  # data.table::setnames(dt_public, tolower(names(pbl_names)))
   }
 
 ### download private airports
@@ -68,20 +70,25 @@ if (any(type %in% c('private', 'all'))){
   dt_private <- try(silent=T,
                     data.table::fread(url_private,
                                       skip = 1,
-                                      encoding = 'Latin-1',
+                                      # encoding = 'Latin-1',
                                       showProgress=showProgress))
   # check if download succeeded
   if (class(dt_private)[1]=="try-error") {
                           message('Internet connection not working.')
                           return(invisible(NULL)) }
 
+  # fix column names to lower case
+  prv_names <- iconv(names(dt_private), from = 'ISO-8859-1', to = 'utf8')
+  data.table::setnames(dt_private, tolower(prv_names))
+
+  # # names to to lower case
+  # prv_names <- iconv(names(dt_private), from = 'ISO-8859-1', to = 'utf8')
+  # data.table::setnames(dt_private, tolower(prv_names))
+
   # fix geographical coordinates
   dt_private <- latlon_to_numeric(df=dt_private, colname = 'Latitude')
   dt_private <- latlon_to_numeric(df=dt_private, colname = 'Longitude')
 
-  # names to to lower case
-  prv_names <- iconv(names(dt_private), from = 'ISO-8859-1', to = 'utf8')
-  data.table::setnames(dt_private, tolower(prv_names))
   }
 
 if (type == 'private') { return(dt_private) }
