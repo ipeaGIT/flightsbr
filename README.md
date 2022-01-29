@@ -38,9 +38,11 @@ df_2015 <- read_flights(date=2015, showProgress = FALSE)
 
 ### `read_airports()` to download private and public airports.
 ```
-airports_priv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
+airports_all <- flightsbr::read_airports(type = 'all', showProgress = FALSE)
 
-airports_publ <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
+airports_prv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
+
+airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
 
 ```
 
