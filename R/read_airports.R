@@ -52,12 +52,12 @@ if (any(type %in% c('public', 'all'))){
   # fix column names to lower case
   pbl_names <- unlist(c(dt_public[1,]))
   pbl_names <- iconv(pbl_names, from = 'utf8', to = 'utf8')
-  data.table::setnames(dt_public, tolower(prv_names) )
+  data.table::setnames(dt_public, tolower(pbl_names) )
   dt_public <- dt_public[-1,]
 
   # fix geographical coordinates
-  dt_public <- latlon_to_numeric(df=dt_public, colname = 'LATITUDE')
-  dt_public <- latlon_to_numeric(df=dt_public, colname = 'LONGITUDE')
+  dt_public <- latlon_to_numeric(df=dt_public, colname = 'latitude')
+  dt_public <- latlon_to_numeric(df=dt_public, colname = 'longitude')
 
   # # names to lower case
   # pbl_names <- iconv(names(dt_public), from = 'ISO-8859-1', to = 'utf8')
@@ -86,8 +86,8 @@ if (any(type %in% c('private', 'all'))){
   # data.table::setnames(dt_private, tolower(prv_names))
 
   # fix geographical coordinates
-  dt_private <- latlon_to_numeric(df=dt_private, colname = 'Latitude')
-  dt_private <- latlon_to_numeric(df=dt_private, colname = 'Longitude')
+  dt_private <- latlon_to_numeric(df=dt_private, colname = 'latitude')
+  dt_private <- latlon_to_numeric(df=dt_private, colname = 'longitude')
 
   }
 
