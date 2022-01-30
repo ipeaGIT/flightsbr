@@ -24,7 +24,9 @@
 #' @family download flight data
 #' @examples \dontrun{ if (interactive()) {
 #' # Read flights data
-#' a201506 <- read_flights(date = 201506)
+#' f201506 <- read_flights(date = 201506)
+#'
+#' f2015 <- read_flights(date = 2015)
 #'}}
 read_flights <- function(date = 202001, type = 'basica', showProgress = TRUE, select = NULL){
 

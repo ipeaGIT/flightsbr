@@ -8,24 +8,24 @@
 
 
 
-I find ?stringi::stri_escape_unicode to be extremely useful for generating \uxxxx escapes, for example:
+# I find ?stringi::stri_escape_unicode to be extremely useful for generating \uxxxx escapes, for example:
 
-stringi::stri_escape_unicode("°") |> cat("\n")
+# stringi::stri_escape_unicode("°") |> cat("\n")
 \u00b0
 
 Which can be reversed (for checking) using:
 
-stringi::stri_unescape_unicode("\u00b0") |> cat("\n")
-°
-stringi::stri_unescape_unicode("\ub0") |> cat("\n")
+# stringi::stri_unescape_unicode("\u00b0") |> cat("\n")
+# °
+# stringi::stri_unescape_unicode("\ub0") |> cat("\n")
 
 
 This also works with non-ASCII characters embedded in longer sentences:
 
-  > stringi::stri_escape_unicode("Åv — mærkelige tegn!") |> cat("\n")
+  # > stringi::stri_escape_unicode("Åv — mærkelige tegn!") |> cat("\n")
 \u00c5v \u2014 m\u00e6rkelige tegn!
 
-  > stringi::stri_unescape_unicode("\u00c5v \u2014 m\u00e6rkelige tegn!") |> cat("\n")
+  # > stringi::stri_unescape_unicode("\u00c5v \u2014 m\u00e6rkelige tegn!") |> cat("\n")
 Åv — mærkelige tegn!
 
   Big thanks to the authors of the stringi package if they are reading this!
