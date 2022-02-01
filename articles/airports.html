@@ -103,17 +103,21 @@
     
 <p>The airport data in the <strong>flightsbr</strong> package is downloaded from Brazil’s Civil Aviation Agency (ANAC). The data covers all airports and aerodromes registered in ANAC. It brings detailed information on….[mention a few key variables].</p>
 <p>Data dictionary: the data dictionary for public airports can be found at . The data dictionary for private airports can be found at .</p>
-<p>Now we can load some libraries we’ll use in this vignette:</p>
+<p>Before downloading the data, let’s firsr load the libraries we’ll use in this vignette:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeaGIT/flightsbr" class="external-link">flightsbr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="co"># library(geobr)</span></code></pre></div>
-<p>Download data of all airports:</p>
+<p>Now, downloading data of all airports in Brazil is as simples as this:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># download data</span>
-<span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># private airports</span>
 <span class="va">airports_prv</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># public airports</span>
+<span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>You will notice that the data sets on private and public airports have different columns. This can make row binding these data.frames a bit tricky. For now, the function <code><a href="../reference/read_airports.html">read_airports()</a></code> can return a data.frame with both types of airports and only a few columns if the user set <code>type = "all"</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="co"># brazil &lt;- geobr::read_country()</span>
