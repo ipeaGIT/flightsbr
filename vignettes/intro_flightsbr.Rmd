@@ -17,14 +17,16 @@ knitr::opts_chunk$set(
 **flightsbr** is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes two main functions:
 
 ### `read_flights()`:
-- Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
+Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
 
 Data dictionary: a description of all variables included in the data is available at \url{https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis}.
 
 ### `read_airports()`
-- Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It covers detailed information on....[mention a few key variables].
+Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It covers detailed information on....[mention a few key variables].
 
-Data dictionary: the data dictionary for public airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2}. The data dictionary for private airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2}.
+Data dictionary: 
+- for public airports: \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2}. 
+- for private airports: \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2}.
 
 
 ## Basic usage
@@ -35,13 +37,13 @@ Before using **flightsbr** please make sure that you have it installed on your c
 install.packages("flightsbr")
 ```
 
-Now we can load some libraries we'll use in this vignette:
+Now we can load the library and start downloading data.
 
 ```{r, message = FALSE}
 library(flightsbr)
 ```
 
-#### Download data of flights:
+#### Download flights data:
 
 ```{r, eval=FALSE}
 # in a given **month* of a given **year** (yyyymm)
@@ -52,14 +54,16 @@ df_2015 <- read_flights(date=2015, showProgress = FALSE)
 
 ```
 
-#### Download data of airports:
+#### Download airports data:
 
 ```{r, eval=FALSE}
 airports_all <- flightsbr::read_airports(type = 'all', showProgress = FALSE)
+
 airports_prv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
+
 airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
 
-head(airports_all, width =2)
+
 ```
 
 
