@@ -29,7 +29,7 @@ library(ggplot2)
 
 ```
 
-Now, downloading data of all airports in Brazil is as simples as this:
+Now, downloading data of all airports in Brazil is as simple as this:
 
 ```{r, eval=FALSE, message=FALSE}
 # private airports
@@ -47,9 +47,13 @@ airports_all <- flightsbr::read_airports(type = 'all', showProgress = FALSE)
 # brazil <- geobr::read_country()
 
 ggplot() +
-  # geom_sf(data=brazil, color='gray') +
+   # geom_sf(data=brazil, color='gray') +
   geom_point(data=airports_all, aes(x=longitude, y=latitude), size=.5 , alpha=.4) +
-  theme_void()
+  coord_equal()
+
 ```
 
+```{r life expectancy states, eval=TRUE, echo=FALSE, message=FALSE, out.width='100%'}
+knitr::include_graphics("https://github.com/ipeaGIT/flightsbr/blob/main/inst/img/vig_output_airports.png?raw=true")
+```
 

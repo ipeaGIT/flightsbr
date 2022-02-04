@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_aircrafts.R
 \name{read_aircrafts}
 \alias{read_aircrafts}
-\title{Download aircraft data from Brazil}
+\title{Download aircrafts data from Brazil}
 \usage{
 read_aircrafts(showProgress = TRUE)
 }
