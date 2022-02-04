@@ -14,14 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-The airport data in the **flightsbr** package is downloaded from Brazil’s Civil Aviation Agency (ANAC).
-
-- Airports data cover all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It covers detailed information on....[mention a few key variables].
+The airport data in the **flightsbr** package is downloaded from Brazil’s Civil Aviation Agency (ANAC). The data covers all airports and aerodromes registered in ANAC. It brings detailed information on....[mention a few key variables].
 
 Data dictionary: the data dictionary for public airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2}. The data dictionary for private airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2}.
 
-Now we can load some libraries we'll use in this vignette:
-
+Before downloading the data, let's firsr load the libraries we'll use in this vignette:
 ```{r, eval=FALSE, message=FALSE}
 library(flightsbr)
 library(ggplot2)
@@ -29,13 +26,19 @@ library(ggplot2)
 
 ```
 
-Download data of all airports:
+Now, downloading data of all airports in Brazil is as simples as this:
 
 ```{r, eval=FALSE, message=FALSE}
-# download data
-airports_all <- flightsbr::read_airports(type = 'all', showProgress = FALSE)
+# private airports
 airports_prv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
+
+# public airports
 airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
+```
+
+You will notice that the data sets on private and public airports have different columns. This can make row binding these data.frames a bit tricky. For now, the function `read_airports()` can return a data.frame with both types of airports and only a few columns if the user set `type = "all"`.
+```{r, eval=FALSE, message=FALSE}
+airports_all <- flightsbr::read_airports(type = 'all', showProgress = FALSE)
 
 # plot
 # brazil <- geobr::read_country()
