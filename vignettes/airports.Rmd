@@ -16,7 +16,10 @@ knitr::opts_chunk$set(
 
 The airport data in the **flightsbr** package is downloaded from Brazil’s Civil Aviation Agency (ANAC). The data covers all airports and aerodromes registered in ANAC. It brings detailed information on....[mention a few key variables].
 
-Data dictionary: the data dictionary for public airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2}. The data dictionary for private airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2}.
+- Data dictionary: 
+  - [Public airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2).
+  - [Private airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2).
+
 
 Before downloading the data, let's firsr load the libraries we'll use in this vignette:
 ```{r, eval=FALSE, message=FALSE}

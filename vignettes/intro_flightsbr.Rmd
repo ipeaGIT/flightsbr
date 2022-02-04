@@ -18,21 +18,19 @@ knitr::opts_chunk$set(
 
 ### `read_flights()`:
 Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
+- [Data dictionary for flights](https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis).
 
-Data dictionary: a description of all variables included in the data is available at \url{https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis}.
 
 ### `read_airports()`
-Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It covers detailed information on....[mention a few key variables].
+Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It covers detailed information on ICAO code, municipality, geographical coordinates, runway dimensions etc.
 
-Data dictionary: 
-- for public airports: \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2}. 
-- for private airports: \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2}.
+- Data dictionary: 
+  - [Public airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2).
+  - [Private airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2).
 
 ### `read_aircrafts()`:
-- All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC).
-
-Data dictionary at \url{https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab}.
-
+All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC).
+- [Data dictionary for aircrafts data](https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab).
 
 ## Basic usage
 
@@ -44,7 +42,7 @@ install.packages("flightsbr")
 
 Now we can load the library and start downloading data.
 
-```{r, message = FALSE}
+```{r, eval=FALSE}
 library(flightsbr)
 ```
 
