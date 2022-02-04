@@ -12,12 +12,6 @@ https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasi
 operacoes
 https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab
 
-# coordinates ---------------------
-
-# parzer::parse_lat("49° 18' 11'' ")
-#
-# a <- "61Â° 10' 52'' "
-# gsub(".*\u00b0 (.+) 52.*", "\\1", a)
 
 
 ##### ASCII characters  ------------------------
@@ -77,7 +71,7 @@ x <- as.data.frame(cov)
 covr::codecov( coverage = cov, token ='aaaaa' )
 
 
-##### check ftp dirs and files ------------------------
+#####  ftp dirs and files ------------------------
 
 library(RCurl)
 
@@ -87,20 +81,20 @@ url <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-d
 url <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
 
 
-# List Years/folders available
+## Retrieve from ANAC website all dates available
+# read html table
+url <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
+h <- rvest::read_html(url)
+elements <- rvest::html_elements(h, "a")
 
+# filter elements of basica data
+basica_urls <- elements[elements %like% '/basica']
+basica_urls <- lapply(X=basica_urls, FUN=function(i){rvest::html_attr(i,"href")})
 
-filenames = getURL(url, ftp.use.epsv = FALSE, dirlistonly = TRUE)
+# get dates
+all_dates <- substr(basica_urls, (nchar(basica_urls) + 1) -11, nchar(basica_urls)-4 )
+all_dates <- gsub("[-]", "", all_dates)
 
-
-dir_list <-
-  read.table(
-    textConnection(
-      getURLContent(url)
-    ),
-    # sep = "",
-    strip.white = TRUE)
-dir_list
 
 
 ##### Profiling function ------------------------

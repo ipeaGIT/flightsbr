@@ -4,11 +4,13 @@
 \alias{check_date}
 \title{Check whether date input is acceptable}
 \usage{
-check_date(date)
+check_date(date, all_dates)
 }
 \arguments{
 \item{date}{Numeric. Either a 6-digit date in the format \code{yyyymm} or a 4-digit
 date input \code{yyyy} .}
+
+\item{all_dates}{Numeric vector created with the get_all_dates_available() function.}
 }
 \value{
 Check messages.
@@ -18,8 +20,12 @@ Check whether date input is acceptable
 }
 \examples{
 \dontrun{ if (interactive()) {
+
+# get all dates available
+all_dates <- get_all_dates_available()
+
 # check dates
-a <- check_date(200011)
+a <- check_date(200011, all_dates)
 }}
 }
 \keyword{internal}

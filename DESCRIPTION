@@ -23,7 +23,8 @@ Depends:
 Imports:
       data.table (>= 1.14.0),
       httr (>= 1.4.1),
-      parzer
+      parzer,
+      rvest
 Suggests: 
     dplyr,
     ggplot2 (>= 3.3.1),

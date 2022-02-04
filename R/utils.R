@@ -42,31 +42,58 @@ split_date <- function(date) {
   list2env(newList ,.GlobalEnv)
 }
 
+
+#' Retrieve from ANAC website all dates available for flights data
+#'
+#' @return Numeric vector.
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # check dates
+#' a <- get_all_dates_available()
+#'}}
+get_all_dates_available <- function() {
+
+  # read html table
+  url = 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
+  h <- rvest::read_html(url)
+  elements <- rvest::html_elements(h, "a")
+
+  # filter elements of basica data
+  # basica_urls <- elements[elements %like% '/basica']
+  basica_urls <- elements[ data.table::like(elements, '/basica') ]
+  basica_urls <- lapply(X=basica_urls, FUN=function(i){rvest::html_attr(i,"href")})
+
+  # get all dates available
+  all_dates <- substr(basica_urls, (nchar(basica_urls) + 1) -11, nchar(basica_urls)-4 )
+  all_dates <- gsub("[-]", "", all_dates)
+  all_dates <- as.numeric(all_dates)
+  return(all_dates)
+}
+
+
 #' Check whether date input is acceptable
 #' @param date Numeric. Either a 6-digit date in the format `yyyymm` or a 4-digit
 #'             date input `yyyy` .
+#' @param all_dates Numeric vector created with the get_all_dates_available() function.
 #'
 #' @return Check messages.
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
+#'
+#' # get all dates available
+#' all_dates <- get_all_dates_available()
+#'
 #' # check dates
-#' a <- check_date(200011)
+#' a <- check_date(200011, all_dates)
 #'}}
-check_date <- function(date) {
-
-  # all dates between 2000 and 2021
-  all_dates <- lapply(X=2000:2021, FUN=generate_all_months)
-  all_dates <- unlist(all_dates)
-
-  # no data after 202111
-  all_dates <- all_dates[all_dates < 202111]
+check_date <- function(date, all_dates) {
 
   if (nchar(date)==6) {
-    if (!(date %in% all_dates)) {stop("Data only available for dates between Jan 2000 and Nov 2021.")}
+    if (!(date %in% all_dates)) {stop(paste0("Data only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
     }
 
-  if (nchar(date)==4) {
-    if (!(date %in% 2000:2021)) {stop("Data only available for dates between Jan 2000 and Nov 2021.")}
+  if (nchar(date)!=6) {
+    if (!(date %in% 2000:2021)) {stop(paste0("Data only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
     }
 }
 
@@ -111,6 +138,8 @@ generate_all_months <- function(date) {
 #' a <- get_url(type='basica', year=2000, month=11)
 #'}}
 get_url <- function(type, year, month) {
+
+  # https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/basica2021-01.zip
 
   if( nchar(month) ==1 ) { month <- paste0('0', month)}
 

@@ -33,7 +33,12 @@ read_flights <- function(date = 202001, type = 'basica', showProgress = TRUE, se
 ### check inputs
   if( ! type %in% c('basica', 'combinada') ){ stop(paste0("Argument 'type' must be either 'basica' or 'combinada'")) }
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
-  check_date(date=date)
+
+
+### check date input
+  # get all dates available
+  all_dates <- get_all_dates_available()
+  check_date(date=date, all_dates)
 
 
 if (nchar(date)==6) {
@@ -58,9 +63,10 @@ if (nchar(date)==6) {
 # prepare address of online data
 all_months <- generate_all_months(date)
 
-# manually ignore dates after Nov 2021
-if (date==2021) { all_months <- all_months[all_months < 202112] }
+# ignore dates after max(all_dates)
+if (date==2021) { all_months <- all_months[all_months <= max(all_dates)] }
 
+            # pbapply::pblapply
 dt_list <- lapply( X=all_months,
                    FUN= function(i, type.=type, showProgress.=showProgress, select.=select) { # i = all_months[3]
 
