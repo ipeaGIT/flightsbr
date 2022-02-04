@@ -176,20 +176,30 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 #' @keywords internal
 latlon_to_numeric <- function(df, colname){
 
-  # create column identifying whether coordinates in the South or West
-  df$south_west <- data.table::fifelse( data.table::like(df[[colname]], 'S|W' ), -1, 1)
+  # https://semba-blog.netlify.app/02/25/2020/geographical-coordinates-conversion-made-easy-with-parzer-package-in-r/
+
+  # # create column identifying whether coordinates in the South or West
+  # df$south_west <- data.table::fifelse( data.table::like(df[[colname]], 'S|W' ), -1, 1)
 
   # get vector
   vec <- df[[colname]]
 
-  # fix string
-  vec <- gsub("[.]", "", vec) # replace any decimal markers
-  vec <- gsub("[\ub0]", ".", vec) # replace the degree symbol ° with a point '.'
-  vec <- gsub("[^0-9.-]", "", vec) # keep only numeric
+  if(colname=='latitude'){
+                  df[[colname]] <- parzer::parse_lat(vec)
+                  }
 
-  # convert to numeric
-  df[[colname]] <- as.numeric(vec) * df$south_west
-  df$south_west <- NULL
+  if(colname=='longitude'){
+    df[[colname]] <- parzer::parse_lon(vec)
+  }
+
+  # # fix string
+  # vec <- gsub("[.]", "", vec) # replace any decimal markers
+  # vec <- gsub("[\ub0]", ".", vec) # replace the degree symbol ° with a point '.'
+  # vec <- gsub("[^0-9.-]", "", vec) # keep only numeric
+  #
+  # # convert to numeric
+  # df[[colname]] <- as.numeric(vec) * df$south_west
+  # df$south_west <- NULL
 
   return(df)
 }

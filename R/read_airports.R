@@ -56,8 +56,10 @@ if (any(type %in% c('public', 'all'))){
   dt_public <- dt_public[-1,]
 
   # fix geographical coordinates
-  dt_public <- latlon_to_numeric(df=dt_public, colname = 'latitude')
-  dt_public <- latlon_to_numeric(df=dt_public, colname = 'longitude')
+  dt_public <- latlon_to_numeric(df = dt_public, colname = 'latitude')
+  dt_public <- latlon_to_numeric(df = dt_public, colname = 'longitude')
+  # dt_public[, latitude := parzer::parse_lat(latitude) ]
+  # dt_public[, longitude := parzer::parse_lat(longitude) ]
 
   # # names to lower case
   # pbl_names <- iconv(names(dt_public), from = 'ISO-8859-1', to = 'utf8')
@@ -86,8 +88,10 @@ if (any(type %in% c('private', 'all'))){
   # data.table::setnames(dt_private, tolower(prv_names))
 
   # fix geographical coordinates
-  dt_private <- latlon_to_numeric(df=dt_private, colname = 'latitude')
-  dt_private <- latlon_to_numeric(df=dt_private, colname = 'longitude')
+  dt_private <- latlon_to_numeric(df = dt_private, colname = 'latitude')
+  dt_private <- latlon_to_numeric(df = dt_private, colname = 'longitude')
+  # dt_private[, latitude := parzer::parse_lat(latitude) ]
+  # dt_private[, longitude := parzer::parse_lat(longitude) ]
 
   }
 
