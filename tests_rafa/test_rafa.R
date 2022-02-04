@@ -12,6 +12,13 @@ https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasi
 operacoes
 https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab
 
+# coordinates ---------------------
+
+# parzer::parse_lat("49° 18' 11'' ")
+#
+# a <- "61Â° 10' 52'' "
+# gsub(".*\u00b0 (.+) 52.*", "\\1", a)
+
 
 ##### ASCII characters  ------------------------
 
@@ -21,6 +28,9 @@ https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasi
 
 # stringi::stri_escape_unicode("°") |> cat("\n")
 \u00b0
+
+# stringi::stri_escape_unicode("Â") |> cat("\n")
+
 
 Which can be reversed (for checking) using:
 

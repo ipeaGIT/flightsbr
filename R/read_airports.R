@@ -59,11 +59,7 @@ if (any(type %in% c('public', 'all'))){
   dt_public <- latlon_to_numeric(df = dt_public, colname = 'latitude')
   dt_public <- latlon_to_numeric(df = dt_public, colname = 'longitude')
   # dt_public[, latitude := parzer::parse_lat(latitude) ]
-  # dt_public[, longitude := parzer::parse_lat(longitude) ]
 
-  # # names to lower case
-  # pbl_names <- iconv(names(dt_public), from = 'ISO-8859-1', to = 'utf8')
-  # data.table::setnames(dt_public, tolower(names(pbl_names)))
   }
 
 ### download private airports
@@ -82,10 +78,6 @@ if (any(type %in% c('private', 'all'))){
   # fix column names to lower case
   prv_names <- iconv(names(dt_private), from = 'ISO-8859-1', to = 'utf8')
   data.table::setnames(dt_private, tolower(prv_names))
-
-  # # names to to lower case
-  # prv_names <- iconv(names(dt_private), from = 'ISO-8859-1', to = 'utf8')
-  # data.table::setnames(dt_private, tolower(prv_names))
 
   # fix geographical coordinates
   dt_private <- latlon_to_numeric(df = dt_private, colname = 'latitude')

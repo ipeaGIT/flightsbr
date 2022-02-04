@@ -184,6 +184,10 @@ latlon_to_numeric <- function(df, colname){
   # get vector
   vec <- df[[colname]]
 
+  # # fix string
+  # vec <- gsub("[W|S]", "", vec) # remove text
+  vec <- gsub("[\u00c2]", "", vec) # remove special characters Â
+
   if(colname=='latitude'){
                   df[[colname]] <- parzer::parse_lat(vec)
                   }
