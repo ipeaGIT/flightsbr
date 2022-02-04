@@ -11,7 +11,7 @@
 coverage](https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ipeaGIT/flightsbr?branch=main)
 
 
-**flightsbr** is a R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information all airports and aerodromes registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.
+**flightsbr** is a R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information all airports, aerodromes and aircrafts registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.
 
 
 ## Installation
@@ -27,26 +27,31 @@ coverage](https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg)](
 
 
 ## Basic usage
-The package currently includes two main functions:
+The package currently includes three main functions:
 
 #### `read_flights()` to download national and international flights.
 ```
 # flights in a given month/year (yyyymm)
-df_201506 <- read_flights(date=201506, showProgress = FALSE)
+df_201506 <- read_flights(date=201506)
 
 # flights in a given year (yyyy)
-df_2015 <- read_flights(date=2015, showProgress = FALSE)
+df_2015 <- read_flights(date=2015)
 
 ```
 
 #### `read_airports()` to download private and public airports.
 ```
-airports_all <- flightsbr::read_airports(type = 'all', showProgress = FALSE)
+airports_all <- flightsbr::read_airports(type = 'all')
 
-airports_prv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
+airports_prv <- flightsbr::read_airports(type = 'private')
 
-airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
+airports_pbl <- flightsbr::read_airports(type = 'public')
 
+```
+
+#### `read_aircrafts()` to download aircrafts data.
+```
+aircrafts <- flightsbr::read_aircrafts()
 ```
 
 
