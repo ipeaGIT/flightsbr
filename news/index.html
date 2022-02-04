@@ -63,6 +63,38 @@
       <small>Source: <a href="https://github.com/ipeaGIT/flightsbr/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.1.0" id="flightsbr-v010">flightsbr v0.1.0<a class="anchor" aria-label="anchor" href="#flightsbr-v010"></a></h2>
+<ul><li>Major changes:
+<ul><li>New function <code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code> to read data on all aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB) <a href="https://github.com/ipeaGIT/flightsbr/issues/14" class="external-link">Closes </a><a href="https://github.com/ipeaGIT/flightsbr/issues/14" class="external-link">#14</a>.</li>
+<li>New function <code><a href="../reference/read_airports.html">read_airports()</a></code> to read data on all public and private airports. <a href="https://github.com/ipeaGIT/flightsbr/issues/4" class="external-link">Closes </a><a href="https://github.com/ipeaGIT/flightsbr/issues/4" class="external-link">#4</a> and <a href="https://github.com/ipeaGIT/flightsbr/issues/9" class="external-link">Closes </a><a href="https://github.com/ipeaGIT/flightsbr/issues/9" class="external-link">#9</a>.</li>
+<li>Function <code>read_flighs()</code> now takes <code>date</code> input in the format <code>yyyymm</code> or <code>yyyy</code>. The the date is a 4-digit number, the function now downloads the data of all months in that year. <a href="https://github.com/ipeaGIT/flightsbr/issues/1" class="external-link">Closes </a><a href="https://github.com/ipeaGIT/flightsbr/issues/2" class="external-link">#2</a>.</li>
+<li>new internal support functions:
+<ul><li>
+<code><a href="../reference/split_date.html">split_date()</a></code>: Split a date from yyyymmm to year yyyy and month mm</li>
+<li>
+<code><a href="../reference/check_date.html">check_date()</a></code>: Check whether date input is acceptable</li>
+<li>
+<code><a href="../reference/generate_all_months.html">generate_all_months()</a></code>: Generate all months with <code>yyyymm</code> format in a year</li>
+<li>
+<code><a href="../reference/get_url.html">get_url()</a></code>: Put together the data file url</li>
+<li>
+<code><a href="../reference/download_flights_data.html">download_flights_data()</a></code>: Download and read ANAC flight data</li>
+</ul></li>
+<li>Three separate vignettes. A general intro to the package, and more detailed vignettes on <code>read_flighs</code> and <code><a href="../reference/read_airports.html">read_airports()</a></code>.</li>
+</ul></li>
+<li>Minor changes:
+<ul><li>new parameter <code>select</code> in <code>read_flighs()</code>, allowing the user to specify the columns that should be read.</li>
+<li>new tests of <code>read_flighs()</code>. Coverage of 95.24%. <a href="https://github.com/ipeaGIT/flightsbr/issues/5" class="external-link">Closes </a><a href="https://github.com/ipeaGIT/flightsbr/issues/5" class="external-link">#5</a>.</li>
+<li>New checks on <code>date</code> input. <a href="https://github.com/ipeaGIT/flightsbr/issues/2" class="external-link">Closes </a><a href="https://github.com/ipeaGIT/flightsbr/issues/2" class="external-link">#2</a>.</li>
+<li>Functions now should fail gracefully in case of problems with internet connection. <a href="https://github.com/ipeaGIT/flightsbr/issues/7" class="external-link">Closes </a><a href="https://github.com/ipeaGIT/flightsbr/issues/7" class="external-link">#7</a>.</li>
+</ul></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.0.1" id="flightsbr-v001">flightsbr v0.0.1<small>2022-01-21</small><a class="anchor" aria-label="anchor" href="#flightsbr-v001"></a></h2>
+<ul><li>Launch of <strong>flightsbr</strong> v0.0.1 on CRAN <a href="https://cran.r-project.org/package=flightsbr" class="external-link uri">https://cran.r-project.org/package=flightsbr</a>
+</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
