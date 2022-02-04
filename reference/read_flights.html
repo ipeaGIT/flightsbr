@@ -108,12 +108,19 @@ columns in the result.</p></dd>
     <h2>Value</h2>
     <p>A <code>"data.table" "data.frame"</code> object.</p>
     </div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p>Other download flight data: 
+<code><a href="read_aircrafts.html">read_aircrafts</a>()</code></p></div>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="co"># Read flights data</span></span>
-<span class="r-in"><span class="va">a201506</span> <span class="op">&lt;-</span> <span class="fu">read_flights</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">201506</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">f201506</span> <span class="op">&lt;-</span> <span class="fu">read_flights</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">201506</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">f2015</span> <span class="op">&lt;-</span> <span class="fu">read_flights</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">2015</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
     </div>

@@ -98,7 +98,7 @@
 <div class="page-header"><h1 id="flightsbr-download-flight-and-airport-data-from-brazil-">flightsbr: Download Flight And Airport Data from Brazil <img align="right" src="reference/figures/logo.png?raw=true" alt="logo" width="180"><a class="anchor" aria-label="anchor" href="#flightsbr-download-flight-and-airport-data-from-brazil-"></a>
 </h1></div>
 
-<p><strong>flightsbr</strong> is a R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information all airports and aerodromes registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.</p>
+<p><strong>flightsbr</strong> is a R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information all airports, aerodromes and aircrafts registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -113,26 +113,32 @@
 <div class="section level2">
 <h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
 </h2>
-<p>The package currently includes two main functions:</p>
+<p>The package currently includes three main functions:</p>
 <div class="section level4">
 <h4 id="read_flights-to-download-national-and-international-flights">
 <code>read_flights()</code> to download national and international flights.<a class="anchor" aria-label="anchor" href="#read_flights-to-download-national-and-international-flights"></a>
 </h4>
 <pre><code><span class="co"># flights in a given month/year (yyyymm)</span>
-<span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201506</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201506</span><span class="op">)</span>
 
 <span class="co"># flights in a given year (yyyy)</span>
-<span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">2015</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre>
+<span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">2015</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="read_airports-to-download-private-and-public-airports">
 <code>read_airports()</code> to download private and public airports.<a class="anchor" aria-label="anchor" href="#read_airports-to-download-private-and-public-airports"></a>
 </h4>
-<pre><code><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<pre><code><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span><span class="op">)</span>
 
-<span class="va">airports_prv</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">airports_prv</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span><span class="op">)</span>
 
-<span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre>
+<span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span><span class="op">)</span></code></pre>
+</div>
+<div class="section level4">
+<h4 id="read_aircrafts-to-download-aircrafts-data">
+<code>read_aircrafts()</code> to download aircrafts data.<a class="anchor" aria-label="anchor" href="#read_aircrafts-to-download-aircrafts-data"></a>
+</h4>
+<pre><code><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span><span class="op">)</span></code></pre>
 </div>
 </div>
 <div class="section level2">

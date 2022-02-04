@@ -101,20 +101,34 @@
 
     
     
-<p><strong>flightsbr</strong> is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes two main functions:</p>
+<p><strong>flightsbr</strong> is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes tree main functions:</p>
 <div class="section level3">
 <h3 id="read_flights">
 <code>read_flights()</code>:<a class="anchor" aria-label="anchor" href="#read_flights"></a>
 </h3>
-<p>Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft type, payload, and the number of passengers, and several other variables.</p>
-<p>Data dictionary: a description of all variables included in the data is available at .</p>
+<p>Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft type, payload, and the number of passengers, and several other variables. - <a href="https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis" class="external-link">Data dictionary for flights</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="read_airports">
 <code>read_airports()</code><a class="anchor" aria-label="anchor" href="#read_airports"></a>
 </h3>
-<p>Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC). It covers detailed information on….[mention a few key variables].</p>
-<p>Data dictionary: - for public airports: . - for private airports: .</p>
+<p>Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC). It covers detailed information on ICAO code, municipality, geographical coordinates, runway dimensions etc.</p>
+<ul>
+<li>Data dictionary:
+<ul>
+<li>
+<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2" class="external-link">Public airports</a>.</li>
+<li>
+<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2" class="external-link">Private airports</a>.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="read_aircrafts">
+<code>read_aircrafts()</code>:<a class="anchor" aria-label="anchor" href="#read_aircrafts"></a>
+</h3>
+<p>All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC). - <a href="https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab" class="external-link">Data dictionary for aircrafts data</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
@@ -144,6 +158,14 @@
 <span class="va">airports_prv</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="download-data-of-aircrafts">Download data of aircrafts:<a class="anchor" aria-label="anchor" href="#download-data-of-aircrafts"></a>
+</h4>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span>showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">aircrafts</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
