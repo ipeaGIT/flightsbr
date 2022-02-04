@@ -34,10 +34,14 @@ read_flights <- function(date = 202001, type = 'basica', showProgress = TRUE, se
   if( ! type %in% c('basica', 'combinada') ){ stop(paste0("Argument 'type' must be either 'basica' or 'combinada'")) }
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
 
-
 ### check date input
   # get all dates available
   all_dates <- get_all_dates_available()
+
+  # check if download failed
+  if (is.null(all_dates)) { return(invisible(NULL)) }
+
+ # check dates
   check_date(date=date, all_dates)
 
 
@@ -66,22 +70,32 @@ all_months <- generate_all_months(date)
 # ignore dates after max(all_dates)
 if (date==2021) { all_months <- all_months[all_months <= max(all_dates)] }
 
-            # pbapply::pblapply
-dt_list <- lapply( X=all_months,
-                   FUN= function(i, type.=type, showProgress.=showProgress, select.=select) { # i = all_months[3]
+# set pbapply options
+original_options <- pbapply::pboptions()
+if( showProgress==FALSE){ pbapply::pboptions(type='none') }
+if( showProgress==TRUE){ pbapply::pboptions(type='txt' ,char='=') }
+
+# download data
+dt_list <- pbapply::pblapply( X=all_months,
+                   FUN= function(i, type.=type, showProgress.=FALSE, select.=select) { # i = all_months[3]
 
                       # prepare address of online data
                       split_date(i)
                       file_url <- get_url(type, year, month)
 
                       # download and read data
-                      temp_dt <- download_flights_data(file_url, showProgress = showProgress, select = select)
+                      temp_dt <- download_flights_data(file_url, showProgress = FALSE, select = select)
 
                       # check if download failed
                       if (is.null(temp_dt)) { return(invisible(NULL)) }
                       return(temp_dt)
                       }
                    )
+
+# return to original pbapply options
+pbapply::pboptions(original_options)
+
+# row bind data tables
 dt <- data.table::rbindlist(dt_list)
 return(dt)
 

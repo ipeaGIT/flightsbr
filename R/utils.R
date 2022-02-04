@@ -55,11 +55,16 @@ get_all_dates_available <- function() {
 
   # read html table
   url = 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
-  h <- rvest::read_html(url)
-  elements <- rvest::html_elements(h, "a")
+  h <- try(rvest::read_html(url), silent = TRUE)
+
+  # check if internet connection worked
+  if (class(h)[1]=='try-error') {
+    message("Problem connecting to ANAC data server")
+    return(invisible(NULL))
+  }
 
   # filter elements of basica data
-  # basica_urls <- elements[elements %like% '/basica']
+  elements <- rvest::html_elements(h, "a")
   basica_urls <- elements[ data.table::like(elements, '/basica') ]
   basica_urls <- lapply(X=basica_urls, FUN=function(i){rvest::html_attr(i,"href")})
 
