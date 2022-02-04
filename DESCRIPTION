@@ -24,6 +24,7 @@ Imports:
       data.table (>= 1.14.0),
       httr (>= 1.4.1),
       parzer,
+      pbapply,
       rvest
 Suggests: 
     dplyr,
