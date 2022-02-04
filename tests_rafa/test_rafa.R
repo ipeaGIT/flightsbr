@@ -2,6 +2,15 @@
 
 
 
+registro aeronautico
+aircrafts
+https://www.gov.br/anac/pt-br/assuntos/regulados/aeronaves
+
+aeronaves
+https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab/resource/19dfbc2d-abb5-4565-b0b8-763cf6437b43
+
+operacoes
+https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab
 
 
 ##### ASCII characters  ------------------------
@@ -39,6 +48,7 @@ Sys.setenv(NOT_CRAN = "true")
 
 
 # each function separately
+covr::function_coverage(fun=read_aircrafts, test_file("tests/testthat/test_read_aircrafts.R"))
 covr::function_coverage(fun=read_airports, test_file("tests/testthat/test_read_airports.R"))
 covr::function_coverage(fun=read_flights, test_file("tests/testthat/test_read_flights.R"))
 

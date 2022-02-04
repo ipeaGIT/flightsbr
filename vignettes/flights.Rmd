@@ -24,7 +24,10 @@ Now we can load some libraries we'll use in this vignette:
 
 ```{r, message = FALSE}
 library(flightsbr)
+library(ggplot2)
 library(dplyr)
+library(data.table)
+
 ```
 
 Download data of all flights:
@@ -47,7 +50,14 @@ df_201506 <- read_flights(date=201506,
                           select = c('id_empresa', 'nr_voo', 'dt_partida_real',
                                      'sg_iata_origem' , 'sg_iata_destino'))
 
-dplyr::glimpse(df_201506, width =2)
+head(df_201506)
 ```
 
+The package makes it easy to compare daily number of passengers across different years.
+
+
+```{r, eval=TRUE}
+df_2019 <- read_flights(date=2019, showProgress = TRUE)
+df_2020 <- read_flights(date=2020, showProgress = TRUE)
+```
 
