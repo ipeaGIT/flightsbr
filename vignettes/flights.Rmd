@@ -51,7 +51,7 @@ df_201506 <- read_flights(date=201506,
 head(df_201506)
 ```
 
-The package makes it easy to compare daily number of passengers across different years. In the example below we compare daily number of airpassengers in Brazil in 2019 and 2020, what gives us a glimpse in the impact of COVID-19 on Brazilian aviation.
+The package makes it easy to compare daily number of passengers across different years. In the example below we compare daily number of air passengers in Brazil in 2019 and 2020. This gives us a glimpse in the impact of COVID-19 on Brazilian aviation, similarly to study of [Bazzo, Braga and Pereira (2022)](https://osf.io/fb3k2/).
 
 
 ```{r, eval=FALSE}
