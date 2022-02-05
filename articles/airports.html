@@ -124,7 +124,7 @@
 
 <span class="co"># public airports</span>
 <span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p>You will notice that the data sets on private and public airports have different columns. This can make row binding these data.frames a bit tricky. For now, the function <code><a href="../reference/read_airports.html">read_airports()</a></code> can return a data.frame with both types of airports and only a few columns if the user set <code>type = "all"</code>.</p>
+<p>You will notice that the data sets on private and public airports have different columns. This can make row binding these data.frames a bit tricky. For now, the function <code><a href="../reference/read_airports.html">read_airports()</a></code> can return a data.frame with both types of airports and only a few columns if the user set <code>type = "all"</code>. The geographical coordinates are provided in <code>EPSG Projection 4326 - WGS 84</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
