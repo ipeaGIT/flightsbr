@@ -31,16 +31,25 @@
     <loc>/reference/check_date.html</loc>
   </url>
   <url>
+    <loc>/reference/download_airport_operation_data.html</loc>
+  </url>
+  <url>
     <loc>/reference/download_flights_data.html</loc>
   </url>
   <url>
     <loc>/reference/generate_all_months.html</loc>
   </url>
   <url>
-    <loc>/reference/get_all_dates_available.html</loc>
+    <loc>/reference/get_aiport_operation_dates_available.html</loc>
   </url>
   <url>
-    <loc>/reference/get_url.html</loc>
+    <loc>/reference/get_airport_operations_url.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_flight_dates_available.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_flights_url.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -53,6 +62,9 @@
   </url>
   <url>
     <loc>/reference/read_aircrafts.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_airport_operations.html</loc>
   </url>
   <url>
     <loc>/reference/read_airports.html</loc>
