@@ -5,7 +5,7 @@
 utils::globalVariables( c('month', 'year') )
 
 .onLoad <- function(lib, pkg) {
-  # Use GForce Optimisations in data.table operations
+  # Use GForce Optimisations in data.table movements
   # details > https://jangorecki.gitlab.io/data.cube/library/data.table/html/datatable-optimize.html
   options(datatable.optimize = Inf) # nocov
 
@@ -246,10 +246,10 @@ latlon_to_numeric <- function(df, colname){
 
 
 
-#' Retrieve all dates available for airport operations data
+#' Retrieve all dates available for airport movements data
 #'
 #' @description
-#' Retrieve from ANAC website all dates available for airport operations data.
+#' Retrieve from ANAC website all dates available for airport movements data.
 #'
 #' @param date Numeric. Either a 6-digit date in the format `yyyymm` or a 4-digit
 #'             date input `yyyy`. Defaults to `NULL`, in which case the function
@@ -259,9 +259,9 @@ latlon_to_numeric <- function(df, colname){
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # check dates
-#' a <- get_aiport_operation_dates_available()
+#' a <- get_aiport_movement_dates_available()
 #'}}
-get_aiport_operation_dates_available <- function(date=NULL) {
+get_aiport_movement_dates_available <- function(date=NULL) {
 
   # read html table
   base_url = 'https://sistemas.anac.gov.br/dadosabertos/Operador%20Aeroportu%C3%A1rio/Dados%20de%20Movimenta%C3%A7%C3%A3o%20Aeroportu%C3%A1rias/'
@@ -335,7 +335,7 @@ get_aiport_operation_dates_available <- function(date=NULL) {
 
 
 
-#' Put together the url of airport operation data files
+#' Put together the url of airport movement data files
 #'
 #' @param year Numeric. Year of the data in `yyyy` format.
 #' @param month Numeric. Month of the data in `mm` format.
@@ -347,7 +347,7 @@ get_aiport_operation_dates_available <- function(date=NULL) {
 #' # Generate url
 #' a <- get_flights_url(type='basica', year=2000, month=11)
 #'}}
-get_airport_operations_url <- function(year, month) {
+get_airport_movements_url <- function(year, month) {
 
   if( nchar(month) ==1 ) { month <- paste0('0', month)}
 
@@ -361,7 +361,7 @@ get_airport_operations_url <- function(year, month) {
 
 
 
-#' Download and read ANAC airport operation data
+#' Download and read ANAC airport movement data
 #'
 #' @param file_url String. A url passed from get_flights_url.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
@@ -371,12 +371,12 @@ get_airport_operations_url <- function(year, month) {
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # Generate url
-#' file_url <- get_airport_operations_url(year=2020, month=11)
+#' file_url <- get_airport_movements_url(year=2020, month=11)
 #'
 #' # download data
-#' a <- download_airport_operation_data(file_url=file_url, showProgress=TRUE)
+#' a <- download_airport_movement_data(file_url=file_url, showProgress=TRUE)
 #'}}
-download_airport_operation_data <- function(file_url, showProgress=showProgress){
+download_airport_movement_data <- function(file_url, showProgress=showProgress){
 
   # create temp local file
   file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )

@@ -11,7 +11,7 @@
 coverage](https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ipeaGIT/flightsbr?branch=main)
 
 
-**flightsbr** is a R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information all airports, aerodromes and aircrafts registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.
+**flightsbr** is a R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information on all aircrafts, aerodromes, airports, and airports movements registered in ANAC, and on every international flight to and from Brazil, as well as domestic flights within the country.
 
 
 ## Installation
@@ -27,9 +27,14 @@ coverage](https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg)](
 
 
 ## Basic usage
-The package currently includes three main functions:
+The package currently includes [four main functions](https://ipeagit.github.io/flightsbr/reference/index.html):
 
-#### `read_flights()` to download national and international flights.
+1. `read_flights()`
+2. `read_airports()`
+3. `read_aircrafts()`
+4. `read_airport_movments()`
+
+#### 1) `read_flights()` to download data on national and international flights.
 ```
 # flights in a given month/year (yyyymm)
 df_201506 <- read_flights(date=201506)
@@ -39,19 +44,23 @@ df_2015 <- read_flights(date=2015)
 
 ```
 
-#### `read_airports()` to download private and public airports.
+#### 2) `read_airports()` to download data on private and public airports.
 ```
 airports_all <- flightsbr::read_airports(type = 'all')
 
 airports_prv <- flightsbr::read_airports(type = 'private')
-
 airports_pbl <- flightsbr::read_airports(type = 'public')
 
 ```
 
-#### `read_aircrafts()` to download aircrafts data.
+#### 3) `read_aircrafts()` to download aircrafts data.
 ```
 aircrafts <- flightsbr::read_aircrafts()
+```
+
+#### 4) `read_airport_movments()` to download data on aiport movements.
+```
+airport_ops <- flightsbr::read_airport_movments(date = 202001)
 ```
 
 

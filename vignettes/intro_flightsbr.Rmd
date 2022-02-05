@@ -14,23 +14,35 @@ knitr::opts_chunk$set(
 )
 ```
 
-**flightsbr** is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes tree main functions:
+**flightsbr** is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes four main functions:
 
-### `read_flights()`:
+1. `read_flights()`
+2. `read_airports()`
+3. `read_aircrafts()`
+4. `read_airport_movments()`
+
+### 1) `read_flights()`:
 Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
 - [Data dictionary for flights](https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis).
 
 
-### `read_airports()`
+### 2) `read_airports()`
 Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It covers detailed information on ICAO code, municipality, geographical coordinates, runway dimensions etc.
 
 - Data dictionary: 
   - [Public airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2).
   - [Private airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2).
 
-### `read_aircrafts()`:
+### 3) `read_aircrafts()`:
 All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC).
 - [Data dictionary for aircrafts data](https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab).
+
+
+### 4) `read_airport_movments()`:
+The data covers all passenger, aircraft, cargo and mail movement from airports regulated by ANAC.
+- [Data dictionary for airport movements data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/operador-aeroportuario-dados-de-movimentacao-aeroportuaria/metadados-do-conjunto-de-dados-dados-de-movimentacao-aeroportuaria).
+
+
 
 ## Basic usage
 
@@ -76,5 +88,15 @@ airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
 aircrafts <- flightsbr::read_aircrafts(showProgress = FALSE)
 
 head(aircrafts)
+```
+
+
+
+#### Download data on airport movements:
+
+```{r, eval=FALSE}
+airport_mov <- flightsbr::read_airport_movments(date=201901)
+
+head(airport_mov)
 ```
 
