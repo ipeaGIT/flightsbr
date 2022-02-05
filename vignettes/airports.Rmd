@@ -39,7 +39,8 @@ airports_prv <- flightsbr::read_airports(type = 'private', showProgress = FALSE)
 airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
 ```
 
-You will notice that the data sets on private and public airports have different columns. This can make row binding these data.frames a bit tricky. For now, the function `read_airports()` can return a data.frame with both types of airports and only a few columns if the user set `type = "all"`.
+You will notice that the data sets on private and public airports have different columns. This can make row binding these data.frames a bit tricky. For now, the function `read_airports()` can return a data.frame with both types of airports and only a few columns if the user set `type = "all"`. The geographical coordinates are provided in `EPSG Projection 4326 - WGS 84`.
+
 ```{r, eval=FALSE, message=FALSE}
 airports_all <- flightsbr::read_airports(type = 'all', showProgress = FALSE)
 
