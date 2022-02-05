@@ -36,7 +36,7 @@ read_flights <- function(date = 202001, type = 'basica', showProgress = TRUE, se
 
 ### check date input
   # get all dates available
-  all_dates <- get_all_dates_available()
+  all_dates <- get_flight_dates_available()
 
   # check if download failed
   if (is.null(all_dates)) { return(invisible(NULL)) }

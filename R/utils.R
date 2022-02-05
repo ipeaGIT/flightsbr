@@ -49,9 +49,9 @@ split_date <- function(date) {
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # check dates
-#' a <- get_all_dates_available()
+#' a <- get_flight_dates_available()
 #'}}
-get_all_dates_available <- function() {
+get_flight_dates_available <- function() {
 
   # read html table
   url = 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
