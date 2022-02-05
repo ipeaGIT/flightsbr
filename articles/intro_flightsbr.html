@@ -101,16 +101,20 @@
 
     
     
-<p><strong>flightsbr</strong> is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes tree main functions:</p>
+<p><strong>flightsbr</strong> is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes four main functions:</p>
+<ol style="list-style-type: decimal">
+<li><code><a href="../reference/read_flights.html">read_flights()</a></code></li>
+<li><code><a href="../reference/read_airports.html">read_airports()</a></code></li>
+<li><code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code></li>
+<li><code>read_airport_movments()</code></li>
+</ol>
 <div class="section level3">
-<h3 id="read_flights">
-<code>read_flights()</code>:<a class="anchor" aria-label="anchor" href="#read_flights"></a>
+<h3 id="read_flights">1) <code>read_flights()</code>:<a class="anchor" aria-label="anchor" href="#read_flights"></a>
 </h3>
 <p>Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft type, payload, and the number of passengers, and several other variables. - <a href="https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis" class="external-link">Data dictionary for flights</a>.</p>
 </div>
 <div class="section level3">
-<h3 id="read_airports">
-<code>read_airports()</code><a class="anchor" aria-label="anchor" href="#read_airports"></a>
+<h3 id="read_airports">2) <code>read_airports()</code><a class="anchor" aria-label="anchor" href="#read_airports"></a>
 </h3>
 <p>Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC). It covers detailed information on ICAO code, municipality, geographical coordinates, runway dimensions etc.</p>
 <ul>
@@ -125,10 +129,14 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="read_aircrafts">
-<code>read_aircrafts()</code>:<a class="anchor" aria-label="anchor" href="#read_aircrafts"></a>
+<h3 id="read_aircrafts">3) <code>read_aircrafts()</code>:<a class="anchor" aria-label="anchor" href="#read_aircrafts"></a>
 </h3>
 <p>All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC). - <a href="https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab" class="external-link">Data dictionary for aircrafts data</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="read_airport_movments">4) <code>read_airport_movments()</code>:<a class="anchor" aria-label="anchor" href="#read_airport_movments"></a>
+</h3>
+<p>The data covers all passenger, aircraft, cargo and mail movement from airports regulated by ANAC. - <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/operador-aeroportuario-dados-de-movimentacao-aeroportuaria/metadados-do-conjunto-de-dados-dados-de-movimentacao-aeroportuaria" class="external-link">Data dictionary for airport movements data</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
@@ -166,6 +174,14 @@
 <code class="sourceCode R"><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span>showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">aircrafts</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="download-data-on-airport-movements">Download data on airport movements:<a class="anchor" aria-label="anchor" href="#download-data-on-airport-movements"></a>
+</h4>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">airport_mov</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu">read_airport_movments</span><span class="op">(</span>date<span class="op">=</span><span class="fl">201901</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airport_mov</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
