@@ -50,7 +50,7 @@ if (nchar(date)==6) {
 
 # prepare address of online data
   split_date(date)
-  file_url <- get_url(type=type, year=year, month=month)
+  file_url <- get_flights_url(type=type, year=year, month=month)
 
 # download and read data
   dt <- download_flights_data(file_url, showProgress = showProgress, select = select)
@@ -68,7 +68,7 @@ if (nchar(date)==6) {
 all_months <- generate_all_months(date)
 
 # ignore dates after max(all_dates)
-if (date==2021) { all_months <- all_months[all_months <= max(all_dates)] }
+all_months <- all_months[all_months <= max(all_dates)]
 
 # set pbapply options
 original_options <- pbapply::pboptions()
@@ -81,7 +81,7 @@ dt_list <- pbapply::pblapply( X=all_months,
 
                       # prepare address of online data
                       split_date(i)
-                      file_url <- get_url(type, year, month)
+                      file_url <- get_flights_url(type, year, month)
 
                       # download and read data
                       temp_dt <- download_flights_data(file_url, showProgress = FALSE, select = select)

@@ -7,7 +7,7 @@
 download_flights_data(file_url, showProgress = showProgress, select = select)
 }
 \arguments{
-\item{file_url}{String. A url passed from get_url.}
+\item{file_url}{String. A url passed from get_flights_url.}
 
 \item{showProgress}{Logical, passed from \code{\link{read_flights}}}
 
@@ -22,7 +22,7 @@ Download and read ANAC flight data
 \examples{
 \dontrun{ if (interactive()) {
 # Generate url
-file_url <- get_url(type='basica', year=2000, month=11)
+file_url <- get_flights_url(type='basica', year=2000, month=11)
 
 # download data
 a <- download_flights_data(file_url=file_url, showProgress=TRUE, select=NULL)
