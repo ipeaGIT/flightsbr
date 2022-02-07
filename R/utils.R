@@ -259,9 +259,9 @@ latlon_to_numeric <- function(df, colname){
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # check dates
-#' a <- get_aiport_movement_dates_available()
+#' a <- get_airport_movement_dates_available()
 #'}}
-get_aiport_movement_dates_available <- function(date=NULL) {
+get_airport_movement_dates_available <- function(date=NULL) {
 
   # read html table
   base_url = 'https://sistemas.anac.gov.br/dadosabertos/Operador%20Aeroportu%C3%A1rio/Dados%20de%20Movimenta%C3%A7%C3%A3o%20Aeroportu%C3%A1rias/'

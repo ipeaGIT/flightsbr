@@ -5,7 +5,7 @@
 #' Download data of all aircrafts registered in the Brazilian Aeronautical
 #' Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian
 #' Civil Aviation Agency (ANAC). A description of all variables included in the
-#' data is available at \url{https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab}.
+#' data is available at \url{https://www.gov.br/anac/pt-br/sistemas/rab}.
 #'
 #' @param showProgress Logical. Defaults to `TRUE` display progress.
 #'

@@ -119,6 +119,14 @@ system("R CMD Rd2pdf --title=Package gtfs2gps --output=./gtfs2gps/manual.pdf")
 # system("R CMD Rd2pdf gtfs2gps")
 
 
+# checks spelling
+library(spelling)
+devtools::spell_check(pkg = ".", vignettes = TRUE, use_wordlist = TRUE)
+
+
+### Check URL's----------------
+
+urlchecker::url_update()
 
 
 ### CMD Check ----------------

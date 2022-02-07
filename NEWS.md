@@ -4,7 +4,7 @@
   * New function `read_aircrafts()` to read data on all aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB) [Closes #14](https://github.com/ipeaGIT/flightsbr/issues/14).
   * New function `read_airports()` to read data on all public and private airports. [Closes #4](https://github.com/ipeaGIT/flightsbr/issues/4) and [Closes #9](https://github.com/ipeaGIT/flightsbr/issues/9).
   * New function `latest_flights_date()` to check the date of the latest flight data available. [Closes #16](https://github.com/ipeaGIT/flightsbr/issues/16).
-  * New function `read_airport_movements()` to download data on aiport movements. [Closes #15](https://github.com/ipeaGIT/flightsbr/issues/15).
+  * New function `read_airport_movements()` to download data on airport movements. [Closes #15](https://github.com/ipeaGIT/flightsbr/issues/15).
   * Function `read_flights()` now takes `date` input in the format `yyyymm` or `yyyy`. When the date input is a 4-digit number, the function now downloads data of all months in that year. [Closes #1](https://github.com/ipeaGIT/flightsbr/issues/1).
   * Function `read_flights()` now automatically detects and checks the latest flights data available. [Closes #13](https://github.com/ipeaGIT/flightsbr/issues/13).
   * new internal support functions:
@@ -16,7 +16,7 @@
     * `get_flight_dates_available()`: Retrieve from ANAC website all dates available for flights data
     * `download_flights_data()`: Download and read ANAC flight data
     * `get_airport_movements_url()`: Put together the url of airport movement data files
-    * `get_aiport_movement_dates_available()`: Retrieve all dates available for airport movements data
+    * `get_airport_movement_dates_available()`: Retrieve all dates available for airport movements data
     * `download_airport_movement_data()`: Download and read ANAC airport movement data
   * Three separate vignettes. A general intro to the package, and more detailed vignettes on `read_flights` and `read_airports()`.
 

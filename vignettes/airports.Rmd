@@ -21,7 +21,7 @@ The airport data in the **flightsbr** package is downloaded from Brazil’s Civi
   - [Private airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2).
 
 
-Before downloading the data, let's firsr load the libraries we'll use in this vignette:
+Before downloading the data, let's first load the libraries we'll use in this vignette:
 ```{r, eval=FALSE, message=FALSE}
 library(flightsbr)
 library(ggplot2)

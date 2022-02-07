@@ -28,7 +28,7 @@ read_airport_movements <- function(date = 202001, showProgress = TRUE){
 
 ### check date input
   # get all dates available
-  all_dates <- get_aiport_movement_dates_available()
+  all_dates <- get_airport_movement_dates_available()
 
   # check if download failed
   if (is.null(all_dates)) { return(invisible(NULL)) }
