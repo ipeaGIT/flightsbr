@@ -12,25 +12,23 @@
 #' @docType package
 #' @name flightsbr
 #' @aliases flightsbr-package
-#' @useDynLib flightsbr, .registration = TRUE
 #'
-#' @importFrom data.table := .I .SD %chin% fread %like%
+#' @importFrom data.table := %like%
 #' @importFrom utils globalVariables
 "_PACKAGE"
 
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 utils::globalVariables( c('month',
-                          'year',
-                          ':=') )
+                          'year') )
 
-.onLoad <- function(lib, pkg) {
-  # Use GForce Optimisations in data.table movements
-  # details > https://jangorecki.gitlab.io/data.cube/library/data.table/html/datatable-optimize.html
-  options(datatable.optimize = Inf) # nocov
-
-  # set number of threads used in data.table to 100%
-  # library(data.table)
-  data.table::setDTthreads(percent = 100) # nocov
-}
+# .onLoad <- function(lib, pkg) {
+#   # Use GForce Optimisations in data.table movements
+#   # details > https://jangorecki.gitlab.io/data.cube/library/data.table/html/datatable-optimize.html
+#   options(datatable.optimize = Inf) # nocov
+#
+#   # set number of threads used in data.table to 100%
+#   # library(data.table)
+#   data.table::setDTthreads(percent = 100) # nocov
+# }
 
