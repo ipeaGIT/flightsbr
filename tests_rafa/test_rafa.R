@@ -111,7 +111,7 @@ library(spelling)
 devtools::spell_check(pkg = ".", vignettes = TRUE, use_wordlist = TRUE)
 
 # Update documentation
-devtools::document(pkg = ".")
+# devtools::document(pkg = ".")
 
 
 # Write package manual.pdf

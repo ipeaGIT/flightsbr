@@ -1,24 +1,6 @@
 # nocov start
 
 
-## quiets concerns of R CMD check re: the .'s that appear in pipelines
-utils::globalVariables( c('month', 'year', ':=') )
-
-.onLoad <- function(lib, pkg) {
-  # Use GForce Optimisations in data.table movements
-  # details > https://jangorecki.gitlab.io/data.cube/library/data.table/html/datatable-optimize.html
-  options(datatable.optimize = Inf) # nocov
-
-  # set number of threads used in data.table to 100%
-  # library(data.table)
-  data.table::setDTthreads(percent = 100) # nocov
-}
-
-#' @importFrom(data.table, :=, %like%, fifelse, fread)
-NULL
-
-
-
 #' Split a date from yyyymmm to year yyyy and month mm
 #'
 #' @description Split a date from yyyymmm to year yyyy and month mm.

@@ -14,6 +14,7 @@
 #'
 #' @param showProgress Logical. Defaults to `TRUE` display progress.
 #' @return A `"data.table" "data.frame"` object.
+#' @importFrom data.table :=
 #' @export
 #' @family download airport data
 #' @examples \dontrun{ if (interactive()) {
