@@ -2,7 +2,7 @@
 
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
-utils::globalVariables( c('month', 'year') )
+utils::globalVariables( c('month', 'year', ':=') )
 
 .onLoad <- function(lib, pkg) {
   # Use GForce Optimisations in data.table movements
@@ -14,7 +14,7 @@ utils::globalVariables( c('month', 'year') )
   data.table::setDTthreads(percent = 100) # nocov
 }
 
-#' @importFrom(data.table, ':=', '%like%', fifelse, fread)
+#' @importFrom(data.table, :=, %like%, fifelse, fread)
 NULL
 
 

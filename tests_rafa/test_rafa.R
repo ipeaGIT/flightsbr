@@ -140,6 +140,9 @@ devtools::check(pkg = ".",  cran = FALSE, env_vars = c(NOT_CRAN = "true"))
 Sys.setenv(NOT_CRAN = "false")
 devtools::check(pkg = ".",  cran = TRUE, env_vars = c(NOT_CRAN = "false"))
 
+# quick no vignettes
+devtools::check(pkg = ".",  cran = TRUE, env_vars = c(NOT_CRAN = "false"),vignettes = F)
+
 devtools::check_win_release(pkg = ".")
 
 # devtools::check_win_oldrelease()
