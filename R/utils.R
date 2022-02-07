@@ -176,8 +176,16 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
         message('Internet connection not working.')
         return(invisible(NULL)) }
 
+  ### set threads for fread
+  orig_threads <- data.table::getDTthreads()
+  data.table::setDTthreads(percent = 100)
+
   # read zipped file stored locally
   dt <- data.table::fread( cmd =  temp_local_file_zip, select=select)
+
+  # return to original threads
+  data.table::setDTthreads(orig_threads)
+
   return(dt)
   }
 
@@ -364,8 +372,15 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
   temp_local_file <- tempfile( file_name )
 
+  ### set threads for fread
+  orig_threads <- data.table::getDTthreads()
+  data.table::setDTthreads(percent = 100)
+
   # download data and read .csv data file
   dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
+
+  # return to original threads
+  data.table::setDTthreads(orig_threads)
 
   # check if file has been downloaded
   if (class(dt)[1]=='try-error') {

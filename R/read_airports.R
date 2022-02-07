@@ -36,14 +36,23 @@ read_airports <- function(type = 'all', showProgress = TRUE){
   url_public <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/aerodromos/cadastro-de-aerodromos/aerodromos-cadastrados/cadastro-de-aerodromos-civis-publicos.csv'
   url_private <- 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Lista%20de%20aer%C3%B3dromos%20privados/Aerodromos%20Privados/AerodromosPrivados.csv'
 
+
 ### download public airports
 if (any(type %in% c('public', 'all'))){
+
+  ### set threads for fread
+  orig_threads <- data.table::getDTthreads()
+  data.table::setDTthreads(percent = 100)
 
   dt_public <- try(silent=T,
                    data.table::fread(url_public,
                                      skip = 2,
                                        encoding = 'UTF-8',
                                      showProgress=showProgress))
+
+  # return to original threads
+  data.table::setDTthreads(orig_threads)
+
   # check if download succeeded
   if (class(dt_public)[1]=="try-error") {
                           message('Internet connection not working.')
@@ -69,11 +78,19 @@ if (any(type %in% c('public', 'all'))){
 ### download private airports
 if (any(type %in% c('private', 'all'))){
 
+  ### set threads for fread
+  orig_threads <- data.table::getDTthreads()
+  data.table::setDTthreads(percent = 100)
+
   dt_private <- try(silent=T,
                     data.table::fread(url_private,
                                       skip = 1,
                                       # encoding = 'Latin-1',
                                       showProgress=showProgress))
+
+  # return to original threads
+  data.table::setDTthreads(orig_threads)
+
   # check if download succeeded
   if (class(dt_private)[1]=="try-error") {
                           message('Internet connection not working.')
@@ -95,6 +112,8 @@ if (any(type %in% c('private', 'all'))){
 
   }
 
+
+### return results
 if (type == 'private') { return(dt_private) }
 if (type == 'public') { return(dt_public) }
 if (type == 'all') {

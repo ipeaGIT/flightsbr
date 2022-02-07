@@ -19,7 +19,7 @@
 #'}}
 read_aircrafts <- function( showProgress = TRUE ){
 
-  # check inputs
+### check inputs
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
 
   # data url
@@ -27,12 +27,19 @@ read_aircrafts <- function( showProgress = TRUE ){
   # https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro
   rab_url <- 'https://www.anac.gov.br/dadosabertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/aeronaves-registradas-no-registro-aeronautico-brasileiro-csv'
 
+  ### set threads for fread
+  orig_threads <- data.table::getDTthreads()
+  data.table::setDTthreads(percent = 100)
+
   # download data
-   rab_dt <- try(silent=T,
-                   data.table::fread(rab_url,
-                                     skip = 1,
-                                     encoding = 'UTF-8',
-                                     showProgress=showProgress))
+  rab_dt <- try(silent=T,
+                data.table::fread(rab_url,
+                                  skip = 1,
+                                  encoding = 'UTF-8',
+                                  showProgress=showProgress))
+
+   # return to original threads
+   data.table::setDTthreads(orig_threads)
 
    # check if download succeeded
    if (class(rab_dt)[1]=="try-error") {

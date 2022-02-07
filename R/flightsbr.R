@@ -22,13 +22,3 @@
 utils::globalVariables( c('month',
                           'year') )
 
-# .onLoad <- function(lib, pkg) {
-#   # Use GForce Optimisations in data.table movements
-#   # details > https://jangorecki.gitlab.io/data.cube/library/data.table/html/datatable-optimize.html
-#   options(datatable.optimize = Inf) # nocov
-#
-#   # set number of threads used in data.table to 100%
-#   # library(data.table)
-#   data.table::setDTthreads(percent = 100) # nocov
-# }
-
