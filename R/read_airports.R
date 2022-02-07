@@ -61,7 +61,8 @@ if (any(type %in% c('public', 'all'))){
   # dt_public[, latitude := parzer::parse_lat(latitude) ]
 
   # add type info
-  data.table::setDT(dt_public)[, type := 'public']
+  # data.table::setDT(dt_public)[, type := 'public']
+  dt_public$type <- 'public'
 
   }
 
@@ -89,7 +90,9 @@ if (any(type %in% c('private', 'all'))){
   # dt_private[, longitude := parzer::parse_lat(longitude) ]
 
   # add type info
-  data.table::setDT(dt_private)[, type := 'private']
+  # data.table::setDT(dt_private)[, type := 'private']
+  dt_private$type <- 'private'
+
   }
 
 if (type == 'private') { return(dt_private) }
