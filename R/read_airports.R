@@ -60,6 +60,9 @@ if (any(type %in% c('public', 'all'))){
   dt_public <- latlon_to_numeric(df = dt_public, colname = 'longitude')
   # dt_public[, latitude := parzer::parse_lat(latitude) ]
 
+  # add type info
+  data.table::setDT(dt_public)[, type := 'public']
+
   }
 
 ### download private airports
@@ -85,6 +88,8 @@ if (any(type %in% c('private', 'all'))){
   # dt_private[, latitude := parzer::parse_lat(latitude) ]
   # dt_private[, longitude := parzer::parse_lat(longitude) ]
 
+  # add type info
+  data.table::setDT(dt_private)[, type := 'private']
   }
 
 if (type == 'private') { return(dt_private) }
