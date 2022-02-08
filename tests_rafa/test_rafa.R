@@ -158,7 +158,11 @@ devtools::check(pkg = ".",  cran = TRUE, env_vars = c(NOT_CRAN = "false"))
 tictoc::toc()
 
 
+# submit to CRAN -----------------
+usethis::use_cran_comments('teste 2222, , asdadsad')
 
+
+devtools::submit_cran()
 
 
 # build binary -----------------
@@ -166,11 +170,4 @@ system("R CMD build . --resave-data") # build tar.gz
 
 
 
-pu <- names(dt_public) |> tolower()
-pr <- names(dt_private)  |> tolower()
-
-dt_public$OPERAÇÃO
-dt_private$`Operação Noturna`
-
-pu[pu %in% pr]
 
