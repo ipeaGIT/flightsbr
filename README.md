@@ -1,4 +1,4 @@
-# flightsbr: Download Flight And Airport Data from Brazil <img align="right" src="man/figures/logo.png?raw=true" alt="logo" width="180">
+# flightsbr: Download Flight and Airport Data from Brazil <img align="right" src="man/figures/logo.png?raw=true" alt="logo" width="180">
 
 [![CRAN
    status](https://www.r-pkg.org/badges/version/flightsbr)](https://CRAN.R-project.org/package=flightsbr)
