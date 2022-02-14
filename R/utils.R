@@ -16,8 +16,8 @@
 split_date <- function(date) {
 
   y <- m <- NULL
-  y <- substring(date, 1,4)
-  m <- substring(date, 5,6)
+  y <- substring(date, 1, 4)
+  m <- substring(date, 5, 6)
 
   newList <- list("year" = y,
                   "month" = m)
@@ -157,7 +157,8 @@ get_flights_url <- function(type, year, month) {
 download_flights_data <- function(file_url, showProgress=showProgress, select=select){
 
   # create temp local file
-  file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
+  # file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
+  file_name <- basename(file_url)
   temp_local_file <- tempfile( file_name )
 
   # download data
@@ -369,7 +370,9 @@ get_airport_movements_url <- function(year, month) {
 download_airport_movement_data <- function(file_url, showProgress=showProgress){
 
   # create temp local file
-  file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
+  # file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
+  file_name <- basename(file_url)
+
   temp_local_file <- tempfile( file_name )
 
   ### set threads for fread
