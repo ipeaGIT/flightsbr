@@ -171,3 +171,120 @@ system("R CMD build . --resave-data") # build tar.gz
 
 
 
+library(geobr)
+library(igraph)
+library(ggforce)
+library(flightsbr)
+library(edgebundle)
+# https://github.com/schochastics/edgebundle
+library(ggplot2)
+library(janitor)
+
+# https://mwallinger-tu.github.io/edge-path-bundling/
+
+options(scipen = 999)
+# download data -----------------
+br <- read_country()
+
+airports <- read_airports(type = 'all')
+flights <- read_flights(date = 201901)
+
+# clean names
+airports <- janitor::clean_names(airports)
+flights <- janitor::clean_names(flights)
+
+
+# filter -----------------
+head(flights$id_aerodromo_origem)
+head(flights$sg_icao_destino)
+head(flights$sg_iata_destino)
+
+flights2 <- subset(flights, sg_icao_origem %in% airports$codigo_oaci)
+flights2 <- subset(flights2, sg_icao_destino %in% airports$codigo_oaci)
+
+
+
+edges <- flights2[, .(sg_icao_origem, sg_icao_destino, 'n_passengers'=nr_passag_pagos)]
+
+# summary flows -----------------
+edges <- flights2[, .(n_flights = .N,
+             n_passengers = sum(nr_passag_pagos)),
+         by = .(sg_icao_origem, sg_icao_destino)]
+
+head(edges)
+# add spatial coordinates -----------------
+edges[ airports, on=c('sg_icao_origem'='codigo_oaci'),
+    c('lat_orig', 'lon_orig') := list(i.latitude , i.longitude)
+    ]
+
+edges[ airports, on=c('sg_icao_destino'='codigo_oaci'),
+    c('lat_dest', 'lon_dest') := list(i.latitude , i.longitude)
+    ]
+
+head(edges)
+edges <- subset(edges, sg_icao_origem != '')
+edges <- subset(edges, sg_icao_destino  != '')
+edges <- na.omit(edges)
+
+### build network -----------------
+vert <- airports[,.(codigo_oaci, longitude, latitude)]
+vert <- subset(vert, codigo_oaci != '')
+vert <- unique(vert)
+
+
+g <- igraph::graph_from_data_frame(d = edges,
+                                   directed = T,
+                                   vertices = vert)
+
+
+
+xy <- cbind(V(g)$longitude, V(g)$latitude)
+
+
+
+# Force Directed Edge Bundling
+fbundle <- edge_bundle_force(g, xy, compatibility_threshold = 0.001, P=10)
+beepr::beep()
+# ! sbundle <- edge_bundle_stub(g, xy)
+# ! hbundle <- edge_bundle_hammer(g, xy, bw = 0.7, decay = 0.5)
+
+#f <-
+  ggplot() +
+  geom_sf(data=br , fill='gray10', color=NA) +
+  geom_path(data = fbundle, aes(x, y, group = group),
+            col = "#9d0191", size = 0.05, alpha=.5) +
+  geom_path(data = fbundle, aes(x, y, group = group),
+            col = "white", size = 0.005, alpha=.5) +
+  theme_classic() +
+  theme(axis.line=element_blank(),
+        axis.text=element_blank(),
+        axis.ticks=element_blank(),
+        axis.title=element_blank())
+
+
+ggsave(f, file='f.png')
+beepr::beep()
+
+
+# Edge-Path Bundling
+pbundle <- edge_bundle_path(g, xy,
+                            max_distortion = 12,
+                            weight_fac = 2, # E(g)$n_passengers,
+                            segments = 50)
+p <-
+  ggplot() +
+        geom_sf(data=br , fill='gray10', color=NA) +
+        geom_path(data = pbundle, aes(x, y, group = group),
+                  col = "#9d0191", size = 0.05, alpha=.1) +
+        geom_path(data = pbundle, aes(x, y, group = group),
+                  col = "white", size = 0.005, alpha=.1) +
+        theme_classic() +
+        theme(axis.line=element_blank(),
+              axis.text=element_blank(),
+              axis.ticks=element_blank(),
+              axis.title=element_blank())
+
+
+
+ggsave(p, file='pall_2_501.png')
+beepr::beep()
