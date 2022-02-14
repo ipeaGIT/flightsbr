@@ -1,4 +1,4 @@
-# flightsbr v0.1.09
+# flightsbr v0.1.09 (dev)
 
 * Bug fixes:
   * functions `read_flights()` and `read_airport_movements()` no longer have side effects on objects named `month` and `year` on the global environment. [Closes #17](https://github.com/ipeaGIT/flightsbr/issues/17).

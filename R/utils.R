@@ -1,30 +1,6 @@
 # nocov start
 
 
-#' Split a date from yyyymmm to year yyyy and month mm
-#'
-#' @description Split a date from yyyymmm to year yyyy and month mm.
-#'
-#' @param date Numeric. Date of the data in `yyyymm` format.
-#'
-#' @return An two string objects, `year` and `month`.
-#' @keywords internal
-#' @examples \dontrun{ if (interactive()) {
-#' # Read flights data
-#' a <- split_date(200011)
-#'}}
-split_date <- function(date) {
-
-  y <- m <- NULL
-  y <- substring(date, 1, 4)
-  m <- substring(date, 5, 6)
-
-  newList <- list("year" = y,
-                  "month" = m)
-  list2env(newList ,.GlobalEnv)
-}
-
-
 #' Retrieve from ANAC website all dates available for flights data
 #'
 #' @return Numeric vector.
