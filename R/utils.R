@@ -52,11 +52,11 @@ get_flight_dates_available <- function() {
 check_date <- function(date, all_dates) {
 
   if (nchar(date)==6) {
-    if (!(date %in% all_dates)) {stop(paste0("Data only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
+    if (!(date %in% all_dates)) {stop(paste0("So far, the data is only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
     }
 
   if (nchar(date)!=6) {
-    if (!(date %in% 2000:2021)) {stop(paste0("Data only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
+    if (!(date %in% 2000:2021)) {stop(paste0("So far, the data is only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
     }
 }
 
