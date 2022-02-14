@@ -49,8 +49,10 @@ if (nchar(date)==6) {
 #### Download one month---------------------------------------------------------
 
 # prepare address of online data
-  split_date(date)
-  file_url <- get_flights_url(type=type, year=year, month=month)
+  # split date into month and year
+  y <- substring(date, 1, 4)
+  m <- substring(date, 5, 6)
+  file_url <- get_flights_url(type=type, year=y, month=m)
 
 # download and read data
   dt <- download_flights_data(file_url, showProgress = showProgress, select = select)
@@ -80,8 +82,11 @@ dt_list <- pbapply::pblapply( X=all_months,
                    FUN= function(i, type.=type, showProgress.=FALSE, select.=select) { # i = all_months[3]
 
                       # prepare address of online data
-                      split_date(i)
-                      file_url <- get_flights_url(type, year, month)
+                      # split date into month and year
+                      y <- substring(i, 1, 4)
+                      m <- substring(i, 5, 6)
+
+                      file_url <- get_flights_url(type=type, year=y, month=m)
 
                       # download and read data
                       temp_dt <- download_flights_data(file_url, showProgress = FALSE, select = select)
