@@ -31,7 +31,7 @@ read_airport_movements <- function(date = 202001, showProgress = TRUE){
   all_dates <- get_airport_movement_dates_available()
 
   # check if download failed
-  if (is.null(all_dates)) { return(invisible(NULL)) }
+  if (is.null(all_dates)) { return(invisible(NULL)) } # nocov
 
  # check dates
   check_date(date=date, all_dates)
@@ -51,7 +51,7 @@ if (nchar(date)==6) {
   dt <- download_airport_movement_data(file_url, showProgress = showProgress)
 
   # check if download failed
-  if (is.null(dt)) { return(invisible(NULL)) }
+  if (is.null(dt)) { return(invisible(NULL)) } # nocov
 
   return(dt)
 

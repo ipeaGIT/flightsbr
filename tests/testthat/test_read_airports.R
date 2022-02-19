@@ -11,10 +11,10 @@ test_that("read_airports", {
 
   # (default), one month, basica, progress
 
+    testthat::expect_true(is(read_airports(), "data.table"))
     testthat::expect_true(is(read_airports(type = 'all'    , showProgress = FALSE), "data.table"))
     testthat::expect_true(is(read_airports(type = 'public' , showProgress = FALSE), "data.table"))
     testthat::expect_true(is(read_airports(type = 'private', showProgress = FALSE), "data.table"))
-    testthat::expect_true(is(read_airports(), "data.table"))
 })
 
 

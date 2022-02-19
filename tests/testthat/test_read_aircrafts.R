@@ -10,8 +10,9 @@ testthat::skip_on_cran()
 test_that("read_aircrafts", {
 
   # (default), one month, basica, progress
-  testthat::expect_true(is(read_aircrafts(showProgress = FALSE), "data.table"))
   testthat::expect_true(is(read_aircrafts(), "data.table"))
+  testthat::expect_true(is(read_aircrafts(showProgress = FALSE), "data.table"))
+  testthat::expect_true(is(read_aircrafts(showProgress = TRUE), "data.table"))
 })
 
 

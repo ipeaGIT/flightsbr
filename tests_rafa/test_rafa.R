@@ -55,7 +55,7 @@ Sys.setenv(NOT_CRAN = "true")
 covr::function_coverage(fun=read_aircrafts, test_file("tests/testthat/test_read_aircrafts.R"))
 covr::function_coverage(fun=read_airports, test_file("tests/testthat/test_read_airports.R"))
 covr::function_coverage(fun=read_flights, test_file("tests/testthat/test_read_flights.R"))
-covr::function_coverage(fun=read_airport_operations, test_file("tests/testthat/test_read_airport_operations.R"))
+covr::function_coverage(fun=read_airport_movements, test_file("tests/testthat/test_read_airport_movements.R"))
 
 # nocov start
 
