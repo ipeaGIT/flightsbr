@@ -177,8 +177,8 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 latlon_to_numeric <- function(df){
 
   # check if df has lat lon colnames
-  if('latitude' %in% names(df)){ stop("Column 'latitude' is missing from original ANAC data.") }
-  if('longitude' %in% names(df)){ stop("Column 'longitude' is missing from original ANAC data.") }
+  if(!'latitude' %in% names(df)){ stop("Column 'latitude' is missing from original ANAC data.") }
+  if(!'longitude' %in% names(df)){ stop("Column 'longitude' is missing from original ANAC data.") }
 
   # ref
   # https://semba-blog.netlify.app/02/25/2020/geographical-coordinates-conversion-made-easy-with-parzer-package-in-r/
