@@ -65,9 +65,7 @@ if (any(type %in% c('public', 'all'))){
   dt_public <- dt_public[-1,]
 
   # fix geographical coordinates
-  dt_public <- latlon_to_numeric(df = dt_public, colname = 'latitude')
-  dt_public <- latlon_to_numeric(df = dt_public, colname = 'longitude')
-  # dt_public[, latitude := parzer::parse_lat(latitude) ]
+  latlon_to_numeric(dt_public)
 
   # add type info
    data.table::setDT(dt_public)[, type := 'public']
@@ -101,10 +99,7 @@ if (any(type %in% c('private', 'all'))){
   data.table::setnames(dt_private, tolower(prv_names))
 
   # fix geographical coordinates
-  dt_private <- latlon_to_numeric(df = dt_private, colname = 'latitude')
-  dt_private <- latlon_to_numeric(df = dt_private, colname = 'longitude')
-  # dt_private[, latitude := parzer::parse_lat(latitude) ]
-  # dt_private[, longitude := parzer::parse_lat(longitude) ]
+  latlon_to_numeric(dt_private)
 
   # add type info
    data.table::setDT(dt_private)[, type := 'private']

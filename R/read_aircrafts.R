@@ -32,19 +32,19 @@ read_aircrafts <- function( showProgress = TRUE ){
   data.table::setDTthreads(percent = 100)
 
   # download data
-  rab_dt <- try(silent=T,
+  rab_dt <- try(silent=T,                                     # nocov
                 data.table::fread(rab_url,
                                   skip = 1,
                                   encoding = 'UTF-8',
-                                  showProgress=showProgress))
+                                  showProgress=showProgress)) # nocov
 
    # return to original threads
    data.table::setDTthreads(orig_threads)
 
    # check if download succeeded
-   if (class(rab_dt)[1]=="try-error") {
-     message('Internet connection not working.')
-     return(invisible(NULL)) }
+   if (class(rab_dt)[1]=="try-error") {            # nocov
+     message('Internet connection not working.')   # nocov
+     return(invisible(NULL)) }                     # nocov
 
    # return output
    return(rab_dt)

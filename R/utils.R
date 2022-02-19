@@ -170,41 +170,33 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 #' Convert latitude and longitude columns to numeric
 #'
 #' @param df A data.frame internal to the `read_airport()` function.
-#' @param colname String. Either `LATITUTE` or `LONGITUDE`.
 #'
 #' @return A `"data.table" "data.frame"` object
 #'
 #' @keywords internal
-latlon_to_numeric <- function(df, colname){
+latlon_to_numeric <- function(df){
 
+  # check if df has lat lon colnames
+  if('latitude' %in% names(df)){ stop("Column 'latitude' is missing from original ANAC data.") }
+  if('longitude' %in% names(df)){ stop("Column 'longitude' is missing from original ANAC data.") }
+
+  # ref
   # https://semba-blog.netlify.app/02/25/2020/geographical-coordinates-conversion-made-easy-with-parzer-package-in-r/
 
-  # # create column identifying whether coordinates in the South or West
-  # df$south_west <- data.table::fifelse( data.table::like(df[[colname]], 'S|W' ), -1, 1)
+  # supress warning
+  defaultW <- getOption("warn")
+  options(warn = -1)
 
-  # get vector
-  vec <- df[[colname]]
+  # fix string
+  df[, latitude := gsub("[\u00c2]", "", latitude) ]
+  df[, longitude := gsub("[\u00c2]", "", longitude) ]
 
-  # # fix string
-  # vec <- gsub("[W|S]", "", vec) # remove text
-  vec <- gsub("[\u00c2]", "", vec) # remove special characters Â
+  # convert to numeric
+  df[, latitude := parzer::parse_lat(latitude) ]
+  df[, longitude := parzer::parse_lon(longitude) ]
 
-  if(colname=='latitude'){
-                  df[[colname]] <- parzer::parse_lat(vec)
-                  }
-
-  if(colname=='longitude'){
-    df[[colname]] <- parzer::parse_lon(vec)
-  }
-
-  # # fix string
-  # vec <- gsub("[.]", "", vec) # replace any decimal markers
-  # vec <- gsub("[\ub0]", ".", vec) # replace the degree symbol ° with a point '.'
-  # vec <- gsub("[^0-9.-]", "", vec) # keep only numeric
-  #
-  # # convert to numeric
-  # df[[colname]] <- as.numeric(vec) * df$south_west
-  # df$south_west <- NULL
+  # restore warnings
+  options(warn = defaultW)
 
   return(df)
 }

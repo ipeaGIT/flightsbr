@@ -4,12 +4,10 @@
 \alias{latlon_to_numeric}
 \title{Convert latitude and longitude columns to numeric}
 \usage{
-latlon_to_numeric(df, colname)
+latlon_to_numeric(df)
 }
 \arguments{
 \item{df}{A data.frame internal to the \code{read_airport()} function.}
-
-\item{colname}{String. Either \code{LATITUTE} or \code{LONGITUDE}.}
 }
 \value{
 A \verb{"data.table" "data.frame"} object

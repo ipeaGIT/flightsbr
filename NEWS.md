@@ -2,6 +2,7 @@
 
 * Bug fixes:
   * functions `read_flights()` and `read_airport_movements()` no longer have side effects on objects named `month` and `year` on the global environment. The `split_date()` support function was removed from the package. [Closes #17](https://github.com/ipeaGIT/flightsbr/issues/17).
+  * Using a simpler / slightly faster version of `latlon_to_numeric()` with suppressed warnings.
 
 
 # flightsbr v0.1.0
