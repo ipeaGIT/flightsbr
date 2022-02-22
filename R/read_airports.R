@@ -46,7 +46,7 @@ if (any(type %in% c('public', 'all'))){
 
   dt_public <- try(silent=T,
                    data.table::fread(url_public,
-                                     skip = 2,
+                                     skip = 1,
                                        encoding = 'UTF-8',
                                      showProgress=showProgress))
 
