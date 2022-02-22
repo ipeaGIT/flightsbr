@@ -9,12 +9,17 @@ testthat::skip_on_cran()
 
 test_that("read_airports", {
 
+    test1 <- read_airports()
   # (default), one month, basica, progress
-
-    testthat::expect_true(is(read_airports(), "data.table"))
+    testthat::expect_true(is(test1, "data.table"))
     testthat::expect_true(is(read_airports(type = 'all'    , showProgress = FALSE), "data.table"))
     testthat::expect_true(is(read_airports(type = 'public' , showProgress = FALSE), "data.table"))
     testthat::expect_true(is(read_airports(type = 'private', showProgress = FALSE), "data.table"))
+
+    # test columns are correct
+    testthat::expect_equal(names(test1)[2], 'ciad')
+
+
 })
 
 

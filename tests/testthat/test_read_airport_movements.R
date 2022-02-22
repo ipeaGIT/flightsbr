@@ -12,6 +12,9 @@ test_that("read_airport_movements", {
   test1 <- read_airport_movements(date=202001)
   testthat::expect_true(is(test1, "data.table"))
 
+  # check conteudo
+  testthat::expect_equal( min(test1$DT_PREVISTO), as.character("2019-11-05") )
+
   # all months in a year
   test2 <- read_airport_movements(date=2020, showProgress = FALSE)
   testthat::expect_true(is(test2, "data.table"))
