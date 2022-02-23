@@ -19,7 +19,7 @@ test_that("read_flights", {
   testthat::expect_true(is(test2, "data.table"))
 
   # check conteudo
-  testthat::expect_equal( min(test2$dt_referencia), as.IDate("2000-01-01") )
+  testthat::expect_equal( as.character(min(test2$dt_referencia)), as.character("2000-01-01") )
 
   # all months in a year
   test3 <- read_flights(date=2000, select=cols, showProgress = FALSE)
