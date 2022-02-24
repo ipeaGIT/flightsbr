@@ -38,6 +38,14 @@ read_aircrafts <- function( showProgress = TRUE ){
                                   encoding = 'UTF-8',
                                   showProgress=showProgress)) # nocov
 
+    # check if download succeeded, try a 2nd time
+    if (class(rab_dt)[1]=="try-error") {
+      rab_dt <- try(silent=T, data.table::fread(rab_url,
+                                      skip = 1,
+                                      encoding = 'UTF-8',
+                                      showProgress=showProgress))
+      }
+
    # return to original threads
    data.table::setDTthreads(orig_threads)
 

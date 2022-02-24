@@ -44,11 +44,21 @@ if (any(type %in% c('public', 'all'))){
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
+  # download and read data
   dt_public <- try(silent=T,
                    data.table::fread(url_public,
                                      skip = 1,
                                        encoding = 'UTF-8',
                                      showProgress=showProgress))
+
+    # check if download succeeded, try a 2nd time
+    if (class(dt_public)[1]=="try-error") {
+      dt_public <- try(silent=T,
+                       data.table::fread(url_public,
+                                         skip = 1,
+                                         encoding = 'UTF-8',
+                                         showProgress=showProgress))
+      }
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
@@ -80,11 +90,22 @@ if (any(type %in% c('private', 'all'))){
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
+  # download and read data
   dt_private <- try(silent=T,
                     data.table::fread(url_private,
                                       skip = 1,
                                       # encoding = 'Latin-1',
                                       showProgress=showProgress))
+
+    # check if download succeeded, try a 2nd time
+    if (class(dt_private)[1]=="try-error") {
+      dt_private <- try(silent=T,
+                        data.table::fread(url_private,
+                                          skip = 1,
+                                          # encoding = 'Latin-1',
+                                          showProgress=showProgress))
+      }
+
 
   # return to original threads
   data.table::setDTthreads(orig_threads)

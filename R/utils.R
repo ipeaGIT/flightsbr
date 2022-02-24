@@ -17,7 +17,7 @@ get_flight_dates_available <- function() {
 
   # check if internet connection worked
   if (class(h)[1]=='try-error') {
-    message("Problem connecting to ANAC data server")
+    message("Problem connecting to ANAC data server. Please try it again.")
     return(invisible(NULL))
   }
 
@@ -147,6 +147,18 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 
   # address of zipped file stored locally
   temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
+
+  # check if file has been downloaded, try a second time
+    if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+
+            # download data: try a second time
+            try(
+              httr::GET(url=file_url,
+                        if(showProgress==T){ httr::progress()},
+                        httr::write_disk(temp_local_file, overwrite = T),
+                        config = httr::config(ssl_verifypeer = FALSE)
+              ), silent = TRUE)
+      }
 
   # check if file has been downloaded
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
@@ -349,6 +361,11 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
 
   # download data and read .csv data file
   dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
+
+    # check if file has been downloaded, try a 2nd time
+    if (class(dt)[1]=='try-error') {
+      dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
+      }
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
