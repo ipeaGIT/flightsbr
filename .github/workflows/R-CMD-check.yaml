@@ -23,9 +23,9 @@ jobs:
       matrix:
         config:
         - {os: windows-latest, r: 'release'}
-        - {os: windows-latest, r: 'oldrel'}
+#        - {os: windows-latest, r: 'oldrel'}
         - {os: macOS-latest, r: 'release'}
-        - {os: macOS-latest, r: 'oldrel'}
+#        - {os: macOS-latest, r: 'oldrel'}
         - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
         - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
         - {os: ubuntu-20.04, r: 'oldrel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
@@ -43,13 +43,6 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-pandoc@v1
-
-      - name: Install sf libraries on macOS
-        if: runner.os == 'macOS'
-        run: | 
-          brew install proj
-          brew install geos
-          brew install gdal
 
       - name: Query dependencies
         run: |
