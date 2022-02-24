@@ -56,6 +56,13 @@ covr::function_coverage(fun=read_aircrafts, test_file("tests/testthat/test_read_
 covr::function_coverage(fun=read_airports, test_file("tests/testthat/test_read_airports.R"))
 covr::function_coverage(fun=read_flights, test_file("tests/testthat/test_read_flights.R"))
 covr::function_coverage(fun=read_airport_movements, test_file("tests/testthat/test_read_airport_movements.R"))
+covr::function_coverage(fun=check_date, test_file("tests/testthat/test_check_date.R"))
+covr::function_coverage(fun=get_flight_dates_available, test_file("tests/testthat/test_get_flight_dates_available.R"))
+covr::function_coverage(fun=get_airport_movement_dates_available, test_file("tests/testthat/test_get_airport_movement_dates_available.R"))
+covr::function_coverage(fun=latest_flights_date, test_file("tests/testthat/test_latest_flights_date.R"))
+
+
+
 
 # nocov start
 
@@ -63,9 +70,10 @@ covr::function_coverage(fun=read_airport_movements, test_file("tests/testthat/te
 
 # the whole package
 Sys.setenv(NOT_CRAN = "true")
-cov <- covr::package_coverage(path = ".", type = "tests")
+cov <- covr::package_coverage(path = ".", type = "tests", clean = FALSE)
 cov
 
+rep <- covr::report()
 
 x <- as.data.frame(cov)
 covr::codecov( coverage = cov, token ='aaaaa' )
