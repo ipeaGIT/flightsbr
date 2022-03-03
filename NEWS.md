@@ -2,6 +2,7 @@
 
 * Bug fixes:
   * functions `read_flights()` and `read_airport_movements()` no longer have side effects on objects named `month` and `year` on the global environment. The `split_date()` support function was removed from the package. [Closes #17](https://github.com/ipeaGIT/flightsbr/issues/17).
+  * `read_` functions now try to download for a 2nd time if the 1st attempt failed. This will help overcome a small issue with the instability of ANAC data links. [Closes #18](https://github.com/ipeaGIT/flightsbr/issues/18).
   * Using a simpler / slightly faster version of `latlon_to_numeric()` with suppressed warnings.
 
 
