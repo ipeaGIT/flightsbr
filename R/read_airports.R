@@ -41,8 +41,8 @@ read_airports <- function(type = 'all', showProgress = TRUE){
 if (any(type %in% c('public', 'all'))){
 
   ### set threads for fread
-  orig_threads <- data.table::getDTthreads()
-  data.table::setDTthreads(percent = 100)
+  orig_threads <- data.table::getDTthreads() # nocov
+  data.table::setDTthreads(percent = 100)  # nocov
 
   # download and read data
   dt_public <- try(silent=T,
@@ -52,20 +52,20 @@ if (any(type %in% c('public', 'all'))){
                                      showProgress=showProgress))
 
     # check if download succeeded, try a 2nd time
-    if (class(dt_public)[1]=="try-error") {
+    if (class(dt_public)[1]=="try-error") { # nocov start
       dt_public <- try(silent=T,
                        data.table::fread(url_public,
                                          skip = 1,
                                          encoding = 'UTF-8',
                                          showProgress=showProgress))
-      }
+      } # nocov end
 
   # return to original threads
-  data.table::setDTthreads(orig_threads)
+  data.table::setDTthreads(orig_threads)  # nocov
 
   # check if download succeeded
   if (class(dt_public)[1]=="try-error") {
-                          message('Internet connection not working.')
+                          message('Internet connection not working.')  # nocov
                           return(invisible(NULL)) }
 
   # fix column names to lower case
@@ -98,13 +98,13 @@ if (any(type %in% c('private', 'all'))){
                                       showProgress=showProgress))
 
     # check if download succeeded, try a 2nd time
-    if (class(dt_private)[1]=="try-error") {
+    if (class(dt_private)[1]=="try-error") {  # nocov start
       dt_private <- try(silent=T,
                         data.table::fread(url_private,
                                           skip = 1,
                                           # encoding = 'Latin-1',
                                           showProgress=showProgress))
-      }
+      }  # nocov end
 
 
   # return to original threads

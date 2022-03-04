@@ -149,8 +149,6 @@ check_date <- function(date, all_dates) {
 
 
 
-# nocov start
-
 #' Generate all months with `yyyymm` format in a year
 #'
 #' @param date Numeric. 4-digit date in the format `yyyy`.
@@ -160,7 +158,7 @@ check_date <- function(date, all_dates) {
 #' # Generate all months in 2000
 #' a <- check_date(2000)
 #'}}
-generate_all_months <- function(date) {
+generate_all_months <- function(date) { # nocov start
 
   # check
   if( nchar(date)!=4 ){ stop(paste0("Argument 'date' must be 4-digit in the format `yyyy`.")) }
@@ -169,7 +167,7 @@ generate_all_months <- function(date) {
   dec <- as.numeric(paste0(date, '12'))
   all_months <- jan:dec
   return(all_months)
-}
+} # nocov end
 
 
 
@@ -188,7 +186,7 @@ generate_all_months <- function(date) {
 #' # Generate url
 #' a <- get_flights_url(type='basica', year=2000, month=11)
 #'}}
-get_flights_url <- function(type, year, month) {
+get_flights_url <- function(type, year, month) { # nocov start
 
   # https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/basica2021-01.zip
 
@@ -198,7 +196,7 @@ get_flights_url <- function(type, year, month) {
   file_name <- paste0(type, year, '-', month, '.zip')
   file_url <- paste0(url_root, file_name)
   return(file_url)
-}
+} # nocov end
 
 
 
@@ -218,7 +216,7 @@ get_flights_url <- function(type, year, month) {
 #' # download data
 #' a <- download_flights_data(file_url=file_url, showProgress=TRUE, select=NULL)
 #'}}
-download_flights_data <- function(file_url, showProgress=showProgress, select=select){
+download_flights_data <- function(file_url, showProgress=showProgress, select=select){ # nocov start
 
   # create temp local file
   # file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
@@ -236,17 +234,17 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   # address of zipped file stored locally
   temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
 
-  # check if file has been downloaded, try a second time
-    if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  # check if file has been downloaded, try a 2nd time
+    if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) { # nocov start
 
-            # download data: try a second time
+            # download data: try a 2nd time
             try(
               httr::GET(url=file_url,
                         if(showProgress==T){ httr::progress()},
                         httr::write_disk(temp_local_file, overwrite = T),
                         config = httr::config(ssl_verifypeer = FALSE)
               ), silent = TRUE)
-      }
+      } # nocov end
 
   # check if file has been downloaded
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
@@ -264,7 +262,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   data.table::setDTthreads(orig_threads)
 
   return(dt)
-  }
+  } # nocov end
 
 
 #' Convert latitude and longitude columns to numeric
@@ -274,7 +272,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 #' @return A `"data.table" "data.frame"` object
 #'
 #' @keywords internal
-latlon_to_numeric <- function(df){
+latlon_to_numeric <- function(df){ # nocov start
 
   # check if df has lat lon colnames
   if(!'latitude' %in% names(df)){ stop("Column 'latitude' is missing from original ANAC data.") }
@@ -299,7 +297,7 @@ latlon_to_numeric <- function(df){
   options(warn = defaultW)
 
   return(df)
-}
+} # nocov start
 
 
 
@@ -317,7 +315,7 @@ latlon_to_numeric <- function(df){
 #' # Generate url
 #' a <- get_flights_url(type='basica', year=2000, month=11)
 #'}}
-get_airport_movements_url <- function(year, month) {
+get_airport_movements_url <- function(year, month) { # nocov start
 
   if( nchar(month) ==1 ) { month <- paste0('0', month)}
 
@@ -326,7 +324,7 @@ get_airport_movements_url <- function(year, month) {
   file_name <- paste0(year, '/', 'Movimentacoes_Aeroportuarias_', year, month, '.csv')
   file_url <- paste0(url_root, file_name)
   return(file_url)
-}
+} # nocov end
 
 
 
@@ -346,7 +344,7 @@ get_airport_movements_url <- function(year, month) {
 #' # download data
 #' a <- download_airport_movement_data(file_url=file_url, showProgress=TRUE)
 #'}}
-download_airport_movement_data <- function(file_url, showProgress=showProgress){
+download_airport_movement_data <- function(file_url, showProgress=showProgress){ # nocov start
 
   # create temp local file
   # file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
@@ -362,9 +360,9 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
 
     # check if file has been downloaded, try a 2nd time
-    if (class(dt)[1]=='try-error') {
+    if (class(dt)[1]=='try-error') { # nocov start
       dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
-      }
+      } # nocov end
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
@@ -376,6 +374,4 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   }
 
   return(dt)
-}
-
-# nocov end
+} # nocov end

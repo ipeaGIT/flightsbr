@@ -52,15 +52,23 @@ Sys.setenv(NOT_CRAN = "true")
 
 
 # each function separately
-covr::function_coverage(fun=read_aircrafts, test_file("tests/testthat/test_read_aircrafts.R"))
-covr::function_coverage(fun=read_airports, test_file("tests/testthat/test_read_airports.R"))
-covr::function_coverage(fun=read_flights, test_file("tests/testthat/test_read_flights.R"))
-covr::function_coverage(fun=read_airport_movements, test_file("tests/testthat/test_read_airport_movements.R"))
-covr::function_coverage(fun=check_date, test_file("tests/testthat/test_check_date.R"))
-covr::function_coverage(fun=get_flight_dates_available, test_file("tests/testthat/test_get_flight_dates_available.R"))
-covr::function_coverage(fun=get_airport_movement_dates_available, test_file("tests/testthat/test_get_airport_movement_dates_available.R"))
-covr::function_coverage(fun=latest_flights_date, test_file("tests/testthat/test_latest_flights_date.R"))
+t1 <- covr::function_coverage(fun=read_aircrafts, test_file("tests/testthat/test_read_aircrafts.R"))
+t2 <- covr::function_coverage(fun=read_airports, test_file("tests/testthat/test_read_airports.R"))
+t3 <- covr::function_coverage(fun=read_flights, test_file("tests/testthat/test_read_flights.R"))
+t4 <- covr::function_coverage(fun=read_airport_movements, test_file("tests/testthat/test_read_airport_movements.R"))
+t5 <- covr::function_coverage(fun=check_date, test_file("tests/testthat/test_check_date.R"))
+t6 <- covr::function_coverage(fun=get_flight_dates_available, test_file("tests/testthat/test_get_flight_dates_available.R"))
+t7 <- covr::function_coverage(fun=get_airport_movement_dates_available, test_file("tests/testthat/test_get_airport_movement_dates_available.R"))
+t8 <- covr::function_coverage(fun=latest_flights_date, test_file("tests/testthat/test_latest_flights_date.R"))
 
+t1
+t2
+t3
+t4
+t5
+t6
+t7
+t8
 
 
 
