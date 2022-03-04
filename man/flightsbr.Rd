@@ -5,17 +5,18 @@
 \alias{flightsbr}
 \alias{_PACKAGE}
 \alias{flightsbr-package}
-\title{flightsbr: Download Flight And Airport Data from Brazil}
+\title{flightsbr: Download Flight and Airport Data from Brazil}
 \description{
 Download flight and airport data from Brazil’s Civil Aviation Agency (ANAC)
 \url{https://www.gov.br/anac}. The data includes detailed information on all
-aircrafts, aerodromes, airports, and airports movements registered in ANAC,
+aircrafts, aerodromes, airports, and airport movements registered in ANAC,
 and on every international flight to and from Brazil, as well as domestic
 flights within the country.
 }
 \section{Usage}{
 
-Please check the vignettes on the \href{https://ipeagit.github.io/flightsbr/}{website}.
+Please check the vignettes and data documentation on the
+\href{https://ipeagit.github.io/flightsbr/}{website}.
 }
 
 \seealso{
