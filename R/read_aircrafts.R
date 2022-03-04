@@ -44,7 +44,7 @@ read_aircrafts <- function( showProgress = TRUE ){
       rab_dt <- try(silent=T, data.table::fread(rab_url,
                                       skip = 1,
                                       encoding = 'UTF-8',
-                                      showProgress=showProgress)) # nocov
+                                      showProgress=showProgress))
       } # nocov end
 
    # return to original threads

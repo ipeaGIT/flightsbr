@@ -235,7 +235,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
 
   # check if file has been downloaded, try a 2nd time
-    if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) { # nocov start
+    if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
             # download data: try a 2nd time
             try(
@@ -244,7 +244,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
                         httr::write_disk(temp_local_file, overwrite = T),
                         config = httr::config(ssl_verifypeer = FALSE)
               ), silent = TRUE)
-      } # nocov end
+      }
 
   # check if file has been downloaded
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
@@ -360,9 +360,9 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
 
     # check if file has been downloaded, try a 2nd time
-    if (class(dt)[1]=='try-error') { # nocov start
+    if (class(dt)[1]=='try-error') {
       dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
-      } # nocov end
+      }
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
