@@ -297,7 +297,7 @@ latlon_to_numeric <- function(df){ # nocov start
   options(warn = defaultW)
 
   return(df)
-} # nocov start
+} # nocov end
 
 
 
