@@ -138,12 +138,14 @@ get_airport_movement_dates_available <- function(date=NULL) {
 #'}}
 check_date <- function(date, all_dates) {
 
+  error_message <-  paste0("The data is currently only available for dates between ", min(all_dates), " and ", max(all_dates), ".")
+
   if (nchar(date)==6) {
-    if (!(date %in% all_dates)) {stop(paste0("So far, the data is only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
+    if (!(date %in% all_dates)) {stop(error_message)}
     }
 
   if (nchar(date)!=6) {
-    if (!(date %in% unique(substr(all_dates, 1, 4)) )) {stop(paste0("So far, the data is only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
+    if (!(date %in% unique(substr(all_dates, 1, 4)) )) {stop(error_message)}
     }
 }
 
