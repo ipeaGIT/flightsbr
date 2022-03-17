@@ -64,6 +64,13 @@ airport_ops <- flightsbr::read_airport_movements(date = 202001)
 ```
 
 
+#### **Related projects**
+
+As of today, there are other repositories/projects with Brazilian aviation data and which include more info related to weather conditions, air traffic management etc. The advantage of **flights** is that it's the easiest and fastest way to download flight and airport Data from Brazil in `R`.
+
+- [AVSTATS-Brasil](http://www.nectar.ita.br/avstats/), by the team at ITA
+- [Integrated Dataset of Brazilian Flights](https://ieee-dataport.org/documents/brazilian-flights-dataset), by the team at CEFET-RJ.
+
 
 ## Acknowledgement <a href="https://www.ipea.gov.br"><img align="right" src="man/figures/ipea_logo.png" alt="IPEA" width="300" /></a>
 
