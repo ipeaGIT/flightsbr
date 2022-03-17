@@ -143,7 +143,7 @@ check_date <- function(date, all_dates) {
     }
 
   if (nchar(date)!=6) {
-    if (!(date %in% 2000:2021)) {stop(paste0("So far, the data is only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
+    if (!(date %in% unique(substr(all_dates, 1, 4)) )) {stop(paste0("So far, the data is only available for dates between ", min(all_dates), " and ", max(all_dates), "."))}
     }
 }
 

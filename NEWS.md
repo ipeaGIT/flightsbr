@@ -1,3 +1,10 @@
+# flightsbr v0.1.2
+
+* Bug fixes:
+  * Fixed bug that stopped flightsbr from downloading 2020 data.
+
+
+
 # flightsbr v0.1.1
 
 * Bug fixes:
