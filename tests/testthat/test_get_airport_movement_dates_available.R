@@ -10,7 +10,7 @@ testthat::skip_on_cran()
 test_that("get_airport_movement_dates_available", {
 
   testthat::expect_true(class(get_airport_movement_dates_available()) == "numeric")
-  testthat::expect_true(class(get_airport_movement_dates_available(date=2020)) == "numeric")
+  testthat::expect_true(class(get_airport_movement_dates_available(date=2022)) == "numeric")
   testthat::expect_true(class(get_airport_movement_dates_available(date=202003)) == "numeric")
   testthat::expect_error( get_airport_movement_dates_available(date=2010))
   testthat::expect_error( get_airport_movement_dates_available(date=9))

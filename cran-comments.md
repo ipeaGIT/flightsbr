@@ -1,12 +1,11 @@
 * Bug fixes
-  - The functions `read_flights()` and `read_airport_movements()` no longer have side effects on objects named month and year on the global environment. The split_date() support function was removed from the package.
-  - Using a simpler / slightly faster version of latlon_to_numeric() with suppressed warnings.
+  - Fixed bug that stopped flightsbr from downloading 2022 data
 
 
 ## R CMD check results
 
--- R CMD check results ---------------------------------------------- flightsbr 0.1.1 ----
-Duration: 3m 21.8s
+-- R CMD check results --------------------------------- flightsbr 0.1.2 ----
+Duration: 2m 4.4s
 
 0 errors √ | 0 warnings √ | 0 notes √
 
