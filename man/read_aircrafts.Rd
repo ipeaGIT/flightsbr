@@ -10,7 +10,8 @@ read_aircrafts(showProgress = TRUE)
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
 }
 \value{
-A \verb{"data.table" "data.frame"} object.
+A \verb{"data.table" "data.frame"} object. All columns are returned with
+\code{class} of type \code{"character"}.
 }
 \description{
 Download data of all aircrafts registered in the Brazilian Aeronautical

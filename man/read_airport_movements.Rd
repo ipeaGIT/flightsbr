@@ -14,7 +14,8 @@ can pass a 4-digit year input \code{yyyy}.}
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
 }
 \value{
-A \verb{"data.table" "data.frame"} object.
+A \verb{"data.table" "data.frame"} object. All columns are returned with
+\code{class} of type \code{"character"}.
 }
 \description{
 Download airport movements data from Brazil’s Civil Aviation Agency (ANAC).

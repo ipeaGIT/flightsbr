@@ -19,7 +19,8 @@
 #'               order that the columns are specified determines the order of the
 #'               columns in the result.
 #'
-#' @return A `"data.table" "data.frame"` object.
+#' @return A `"data.table" "data.frame"` object. All columns are returned with
+#'         `class` of type `"character"`.
 #' @export
 #' @family download flight data
 #' @examples \dontrun{ if (interactive()) {

@@ -48,7 +48,8 @@ if (any(type %in% c('public', 'all'))){
   dt_public <- try(silent=T,
                    data.table::fread(url_public,
                                      skip = 1,
-                                       encoding = 'UTF-8',
+                                     encoding = 'UTF-8',
+                                     colClasses = 'character',
                                      showProgress=showProgress))
 
     # check if download succeeded, try a 2nd time
@@ -57,6 +58,7 @@ if (any(type %in% c('public', 'all'))){
                        data.table::fread(url_public,
                                          skip = 1,
                                          encoding = 'UTF-8',
+                                         colClasses = 'character',
                                          showProgress=showProgress))
       } # nocov end
 
@@ -95,6 +97,7 @@ if (any(type %in% c('private', 'all'))){
                     data.table::fread(url_private,
                                       skip = 1,
                                       # encoding = 'Latin-1',
+                                      colClasses = 'character',
                                       showProgress=showProgress))
 
     # check if download succeeded, try a 2nd time
@@ -103,6 +106,7 @@ if (any(type %in% c('private', 'all'))){
                         data.table::fread(url_private,
                                           skip = 1,
                                           # encoding = 'Latin-1',
+                                          colClasses = 'character',
                                           showProgress=showProgress))
       }  # nocov end
 

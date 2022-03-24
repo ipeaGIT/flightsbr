@@ -9,7 +9,8 @@
 #'
 #' @param showProgress Logical. Defaults to `TRUE` display progress.
 #'
-#' @return A `"data.table" "data.frame"` object.
+#' @return A `"data.table" "data.frame"` object. All columns are returned with
+#'         `class` of type `"character"`.
 #' @export
 #' @family download flight data
 #' @examples \dontrun{ if (interactive()) {
@@ -36,6 +37,7 @@ read_aircrafts <- function( showProgress = TRUE ){
                 data.table::fread(rab_url,
                                   skip = 1,
                                   encoding = 'UTF-8',
+                                  colClasses = 'character',
                                   showProgress=showProgress))
 
     # nocov start
@@ -44,6 +46,7 @@ read_aircrafts <- function( showProgress = TRUE ){
       rab_dt <- try(silent=T, data.table::fread(rab_url,
                                       skip = 1,
                                       encoding = 'UTF-8',
+                                      colClasses = 'character',
                                       showProgress=showProgress))
       } # nocov end
 

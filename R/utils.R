@@ -258,7 +258,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   data.table::setDTthreads(percent = 100)
 
   # read zipped file stored locally
-  dt <- data.table::fread( cmd =  temp_local_file_zip, select=select)
+  dt <- data.table::fread( cmd =  temp_local_file_zip, select=select, colClasses = 'character')
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
@@ -358,12 +358,18 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
+  # # assign column classes
+  # dt_classes <- list(IDate=c('DT_PREVISTO', 'DT_CALCO', 'DT_TOQUE'),
+  #                    ITime =c('HH_PREVISTO', 'HH_CALCO', 'HH_TOQUE'))
+
   # download data and read .csv data file
-  dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
+  dt <- try( data.table::fread(file_url, showProgress = showProgress, colClasses = 'character'), silent = TRUE)
+  # class(dt$DT_CALCO)
+  # class(dt$HH_PREVISTO)
 
     # check if file has been downloaded, try a 2nd time
     if (class(dt)[1]=='try-error') {
-      dt <- try( data.table::fread(file_url, showProgress = showProgress), silent = TRUE)
+      dt <- try( data.table::fread(file_url, showProgress = showProgress, colClasses = 'character'), silent = TRUE)
       }
 
   # return to original threads

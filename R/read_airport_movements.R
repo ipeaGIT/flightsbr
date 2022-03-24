@@ -7,12 +7,14 @@
 #' description of all variables included in the data is available at
 #' \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/operador-aeroportuario-dados-de-movimentacao-aeroportuaria/metadados-do-conjunto-de-dados-dados-de-movimentacao-aeroportuaria}.
 #'
+#'
 #' @param date Numeric. Date of the data in the format `yyyymm`. Defaults to
 #'             `202001`. To download the data for all months in a year, the user
 #'             can pass a 4-digit year input `yyyy`.
 #' @param showProgress Logical. Defaults to `TRUE` display progress.
 #'
-#' @return A `"data.table" "data.frame"` object.
+#' @return A `"data.table" "data.frame"` object. All columns are returned with
+#'         `class` of type `"character"`.
 #' @export
 #' @family download airport movement data
 #' @examples \dontrun{ if (interactive()) {

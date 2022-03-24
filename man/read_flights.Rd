@@ -27,7 +27,8 @@ order that the columns are specified determines the order of the
 columns in the result.}
 }
 \value{
-A \verb{"data.table" "data.frame"} object.
+A \verb{"data.table" "data.frame"} object. All columns are returned with
+\code{class} of type \code{"character"}.
 }
 \description{
 Download flight data from Brazil’s Civil Aviation Agency (ANAC). The data
