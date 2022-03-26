@@ -214,9 +214,9 @@ get_flights_url <- function(type, year, month) { # nocov start
 #' file_url <- get_flights_url(type='basica', year=2000, month=11)
 #'
 #' # download data
-#' download_file(file_url=file_url, showProgress=TRUE)
+#' download_flightsbr_file(file_url=file_url, showProgress=TRUE)
 #'}}
-download_file <- function(file_url, showProgress=showProgress){
+download_flightsbr_file <- function(file_url, showProgress=showProgress){
 
   # create temp local file
   file_name <- basename(file_url)
@@ -276,7 +276,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
   # download data
-    download_file(file_url=file_url, showProgress=showProgress)
+  download_flightsbr_file(file_url=file_url, showProgress=showProgress)
   }
 
   ### set threads for fread
@@ -385,7 +385,7 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
     # download data
-    download_file(file_url=file_url, showProgress=showProgress)
+    download_flightsbr_file(file_url=file_url, showProgress=showProgress)
   }
 
   ### set threads for fread
