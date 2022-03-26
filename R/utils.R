@@ -223,7 +223,11 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   # create temp local file
   # file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
   file_name <- basename(file_url)
-  temp_local_file <- tempfile( file_name )
+  temp_local_file <- paste0(tempdir(),"/",file_name)
+
+
+  # check if file has not been downloaded already. If not, download it
+  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
   # download data
   try(
@@ -232,9 +236,6 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
               httr::write_disk(temp_local_file, overwrite = T),
               config = httr::config(ssl_verifypeer = FALSE)
     ), silent = TRUE)
-
-  # address of zipped file stored locally
-  temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
 
   # check if file has been downloaded, try a 2nd time
     if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
@@ -248,14 +249,18 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
               ), silent = TRUE)
       }
 
-  # check if file has been downloaded
+  # Halt function if download failed
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
         message('Internet connection not working.')
         return(invisible(NULL)) }
+  }
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
+
+  # address of zipped file stored locally
+  temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
 
   # read zipped file stored locally
   dt <- data.table::fread( cmd =  temp_local_file_zip, select=select, colClasses = 'character')
@@ -348,11 +353,9 @@ get_airport_movements_url <- function(year, month) { # nocov start
 #'}}
 download_airport_movement_data <- function(file_url, showProgress=showProgress){ # nocov start
 
-  # create temp local file
-  # file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
-  file_name <- basename(file_url)
-
-  temp_local_file <- tempfile( file_name )
+  # # create temp local file
+  # file_name <- basename(file_url)
+  # temp_local_file <- paste0(tempdir(),"/",file_name)
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()

@@ -1,11 +1,11 @@
 # devtools::install_github("ipeaGIT/r5r", subdir = "r-package", force=T)
 library(flightsbr)
 
-m2020 <- read_airport_movements(date = 2020)
+m2020 <- read_flights(date = 2020)
 m2019 <- read_airport_movements(date = 2019)
 
-m201901 <- read_airport_movements(date = 201901)
-m201911 <- read_airport_movements(date = 201911)
+m201901 <- read_flights(date = 201901)
+m201911 <- read_flights(date = 2019)
 
 m201901$DT_PREVISTO |> class()
 m201911$DT_PREVISTO |> class()

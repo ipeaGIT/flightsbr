@@ -1,6 +1,7 @@
-# flightsbr v0.1.3
+# flightsbr v0.1.29
 
 * Minor changes:
+  * The data downloaded in `read_flights()` is now cached in temp dir. Closed [#20](https://github.com/ipeaGIT/flightsbr/issues/21).
   * All columns are now returned with class `character`. This fixes a bug in the `read_airport_movements()` function. Closed [#20](https://github.com/ipeaGIT/flightsbr/issues/20).
 
 
