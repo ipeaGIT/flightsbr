@@ -20,7 +20,7 @@ Put together the url of airport movement data files
 \examples{
 \dontrun{ if (interactive()) {
 # Generate url
-a <- get_flights_url(type='basica', year=2000, month=11)
+a <- get_airport_movements_url(year=2000, month=11)
 }}
 }
 \keyword{internal}

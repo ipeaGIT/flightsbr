@@ -2,7 +2,8 @@
 library(flightsbr)
 
 m2020 <- read_flights(date = 2020)
-m2019 <- read_airport_movements(date = 2019)
+system.time( m2019 <- read_airport_movements(date = 2019) )
+system.time( m20192223 <- read_airport_movements(date = 2019) )
 
 m201901 <- read_flights(date = 201901)
 m201911 <- read_flights(date = 2019)

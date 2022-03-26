@@ -201,6 +201,54 @@ get_flights_url <- function(type, year, month) { # nocov start
 } # nocov end
 
 
+#' Download file from url
+#'
+#' @param file_url String. A url passed from get_flights_url.
+#' @param showProgress Logical, passed from \code{\link{read_flights}}
+#'
+#' @return Silently saves downloaded file to temp dir.
+#'
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Generate url
+#' file_url <- get_flights_url(type='basica', year=2000, month=11)
+#'
+#' # download data
+#' download_file(file_url=file_url, showProgress=TRUE)
+#'}}
+download_file <- function(file_url, showProgress=showProgress){
+
+  # create temp local file
+  file_name <- basename(file_url)
+  temp_local_file <- paste0(tempdir(),"/",file_name)
+
+  # download data
+  try(
+    httr::GET(url=file_url,
+              if(showProgress==T){ httr::progress()},
+              httr::write_disk(temp_local_file, overwrite = T),
+              config = httr::config(ssl_verifypeer = FALSE)
+    ), silent = TRUE)
+
+  # check if file has NOT been downloaded, try a 2nd time
+  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+
+    # download data: try a 2nd time
+    try(
+      httr::GET(url=file_url,
+                if(showProgress==T){ httr::progress()},
+                httr::write_disk(temp_local_file, overwrite = T),
+                config = httr::config(ssl_verifypeer = FALSE)
+      ), silent = TRUE)
+  }
+
+  # Halt function if download failed
+  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+    message('Internet connection not working.')
+    return(invisible(NULL)) }
+}
+
+
 
 #' Download and read ANAC flight data
 #'
@@ -221,38 +269,14 @@ get_flights_url <- function(type, year, month) { # nocov start
 download_flights_data <- function(file_url, showProgress=showProgress, select=select){ # nocov start
 
   # create temp local file
-  # file_name <- substr(file_url, (nchar(file_url) + 1) -17, nchar(file_url) )
   file_name <- basename(file_url)
   temp_local_file <- paste0(tempdir(),"/",file_name)
-
 
   # check if file has not been downloaded already. If not, download it
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
   # download data
-  try(
-    httr::GET(url=file_url,
-              if(showProgress==T){ httr::progress()},
-              httr::write_disk(temp_local_file, overwrite = T),
-              config = httr::config(ssl_verifypeer = FALSE)
-    ), silent = TRUE)
-
-  # check if file has been downloaded, try a 2nd time
-    if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
-
-            # download data: try a 2nd time
-            try(
-              httr::GET(url=file_url,
-                        if(showProgress==T){ httr::progress()},
-                        httr::write_disk(temp_local_file, overwrite = T),
-                        config = httr::config(ssl_verifypeer = FALSE)
-              ), silent = TRUE)
-      }
-
-  # Halt function if download failed
-  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
-        message('Internet connection not working.')
-        return(invisible(NULL)) }
+    download_file(file_url=file_url, showProgress=showProgress)
   }
 
   ### set threads for fread
@@ -320,7 +344,7 @@ latlon_to_numeric <- function(df){ # nocov start
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # Generate url
-#' a <- get_flights_url(type='basica', year=2000, month=11)
+#' a <- get_airport_movements_url(year=2000, month=11)
 #'}}
 get_airport_movements_url <- function(year, month) { # nocov start
 
@@ -354,8 +378,15 @@ get_airport_movements_url <- function(year, month) { # nocov start
 download_airport_movement_data <- function(file_url, showProgress=showProgress){ # nocov start
 
   # # create temp local file
-  # file_name <- basename(file_url)
-  # temp_local_file <- paste0(tempdir(),"/",file_name)
+  file_name <- basename(file_url)
+  temp_local_file <- paste0(tempdir(),"/",file_name)
+
+  # check if file has not been downloaded already. If not, download it
+  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+
+    # download data
+    download_file(file_url=file_url, showProgress=showProgress)
+  }
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()
@@ -366,23 +397,13 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   #                    ITime =c('HH_PREVISTO', 'HH_CALCO', 'HH_TOQUE'))
 
   # download data and read .csv data file
-  dt <- try( data.table::fread(file_url, showProgress = showProgress, colClasses = 'character'), silent = TRUE)
+  dt <- data.table::fread(temp_local_file, showProgress = showProgress, colClasses = 'character')
   # class(dt$DT_CALCO)
   # class(dt$HH_PREVISTO)
 
-    # check if file has been downloaded, try a 2nd time
-    if (class(dt)[1]=='try-error') {
-      dt <- try( data.table::fread(file_url, showProgress = showProgress, colClasses = 'character'), silent = TRUE)
-      }
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
-
-  # check if file has been downloaded
-  if (class(dt)[1]=='try-error') {
-    message("Problem connecting to ANAC data server. Please try again.")
-    return(invisible(NULL))
-  }
 
   return(dt)
 } # nocov end
