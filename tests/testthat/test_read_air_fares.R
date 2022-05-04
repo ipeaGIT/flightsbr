@@ -15,11 +15,11 @@ test_that("read_air_fares", {
   testthat::expect_true(is(test1, "data.table"))
 
   # one month, combinada, no progress bar
-  test2 <- read_air_fares(date=202201, showProgress = FALSE)
+  test2 <- read_air_fares(date=200401, showProgress = FALSE)
   testthat::expect_true(is(test2, "data.table"))
 
   # check content
-  testthat::expect_equal( as.character(min(test2$`Ano de Referência`)), as.character("2022") )
+  testthat::expect_equal( as.character(min(test2$ANO)), as.character("2004") )
 
   # all months in a year
   test3 <- read_air_fares(date=2022, select=cols, showProgress = FALSE)
