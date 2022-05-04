@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 The flight data in the **flightsbr** package is downloaded from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
 
-- Data dictionary: [a description of all variables included in the data is available here](https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis).
+- Data dictionary: [a description of all variables included in the data is available here](https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/descricao-de-variaveis).
 
 
 Now we can load some libraries we'll use in this vignette:

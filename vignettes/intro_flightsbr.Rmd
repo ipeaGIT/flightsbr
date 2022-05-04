@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 ### 1) `read_flights()`:
 Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
-- [Data dictionary for flights](https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis).
+- [Data dictionary for flights](https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/descricao-de-variaveis).
 
 
 ### 2) `read_airports()`

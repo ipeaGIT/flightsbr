@@ -6,7 +6,7 @@
 #' as well as domestic flights within the country. The data include flight-level
 #' information of airports of origin and destination, flight duration, aircraft
 #' type, payload, and the number of passengers, and several other variables. A
-#' description of all variables included in the data is available at \url{https://www.anac.gov.br/assuntos/setor-regulado/empresas/envio-de-informacoes/descricao-de-variaveis}.
+#' description of all variables included in the data is available at \url{https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/descricao-de-variaveis}.
 #'
 #' @param date Numeric. Date of the data in the format `yyyymm`. Defaults to
 #'             `202001`. To download the data for all months in a year, the user

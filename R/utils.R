@@ -10,7 +10,7 @@
 get_flight_dates_available <- function() {
 
   # read html table
-  url = 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
+  url = 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/microdados/'
   h <- try(rvest::read_html(url), silent = TRUE)
 
   # check if internet connection worked
@@ -259,11 +259,11 @@ generate_all_months <- function(date) { # nocov start
 #'}}
 get_flights_url <- function(type, year, month) { # nocov start
 
-  # https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/basica2021-01.zip
-
+  # old https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/basica2021-01.zip
+  # new https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/microdados/basica2021-01.zip
   if( nchar(month) ==1 ) { month <- paste0('0', month)}
 
-  url_root <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
+  url_root <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/microdados/'
   file_name <- paste0(type, year, '-', month, '.zip')
   file_url <- paste0(url_root, file_name)
   return(file_url)
