@@ -74,6 +74,8 @@ air_fares <- flightsbr::read_air_fares(date = 202001)
 
 #### **Related projects**
 
+- [openSkies: a client interface to the 'OpenSky' API](https://github.com/Rafael-Ayala/openSkies)
+
 As of today, there are two repositories/projects with Brazilian aviation data, which include more info related to weather conditions, air traffic management etc. The advantage of **flightsbt** is that it's the easiest and fastest way to download flight and airport Data from Brazil in `R`.
 
 - [AVSTATS-Brasil](http://www.nectar.ita.br/avstats/), by the team at ITA
