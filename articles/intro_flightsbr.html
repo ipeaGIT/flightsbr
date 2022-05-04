@@ -138,6 +138,15 @@
 </h3>
 <p>The data covers all passenger, aircraft, cargo and mail movement from airports regulated by ANAC. - <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/operador-aeroportuario-dados-de-movimentacao-aeroportuaria/metadados-do-conjunto-de-dados-dados-de-movimentacao-aeroportuaria" class="external-link">Data dictionary for airport movements data</a>.</p>
 </div>
+<div class="section level3">
+<h3 id="read_air_fares">5) <code>read_air_fares()</code>:<a class="anchor" aria-label="anchor" href="#read_air_fares"></a>
+</h3>
+<p>The data covers air fares of all domestic flights.</p>
+<ul>
+<li>
+<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/tarifas-aereas-domesticas/46-tarifas-aereas-domesticas" class="external-link">Data dictionary for air fares data</a>.</li>
+</ul>
+</div>
 <div class="section level2">
 <h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
 </h2>
@@ -183,6 +192,14 @@
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airport_mov</span><span class="op">)</span></code></pre></div>
 </div>
+<div class="section level4">
+<h4 id="download-data-on-data-on-air-fares-of-domestic-flights-in-brazil">Download data on data on air fares of domestic flights in Brazil:<a class="anchor" aria-label="anchor" href="#download-data-on-data-on-air-fares-of-domestic-flights-in-brazil"></a>
+</h4>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">air_fares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_air_fares.html">read_air_fares</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">202003</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">air_fares</span><span class="op">)</span></code></pre></div>
+</div>
 </div>
   </div>
 
@@ -203,7 +220,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>

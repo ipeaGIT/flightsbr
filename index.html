@@ -119,6 +119,7 @@
 <li><code><a href="reference/read_airports.html">read_airports()</a></code></li>
 <li><code><a href="reference/read_aircrafts.html">read_aircrafts()</a></code></li>
 <li><code><a href="reference/read_airport_movements.html">read_airport_movements()</a></code></li>
+<li><code><a href="reference/read_air_fares.html">read_air_fares()</a></code></li>
 </ol>
 <div class="section level4">
 <h4 id="1-read_flights-to-download-data-on-national-and-international-flights">1) <code>read_flights()</code> to download data on national and international flights.<a class="anchor" aria-label="anchor" href="#1-read_flights-to-download-data-on-national-and-international-flights"></a>
@@ -148,12 +149,15 @@
 <pre><code><span class="va">airport_ops</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airport_movements.html">read_airport_movements</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level4">
+<h4 id="5-read_air_fares-to-download-data-on-air-fares-of-domestic-flights-in-brazil">5) <code>read_air_fares()</code> to download data on air fares of domestic flights in Brazil.<a class="anchor" aria-label="anchor" href="#5-read_air_fares-to-download-data-on-air-fares-of-domestic-flights-in-brazil"></a>
+</h4>
+<pre><code><span class="va">air_fares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_air_fares.html">read_air_fares</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span><span class="op">)</span></code></pre>
+</div>
+<div class="section level4">
 <h4 id="related-projects">
 <strong>Related projects</strong><a class="anchor" aria-label="anchor" href="#related-projects"></a>
 </h4>
-<ul>
-<li><a href="https://github.com/Rafael-Ayala/openSkies" class="external-link">openSkies: a client interface to the ‘OpenSky’ API</a></li>
-</ul>
+<ul><li><a href="https://github.com/Rafael-Ayala/openSkies" class="external-link">openSkies: a client interface to the ‘OpenSky’ API</a></li></ul>
 <p>As of today, there are two repositories/projects with Brazilian aviation data, which include more info related to weather conditions, air traffic management etc. The advantage of <strong>flightsbt</strong> is that it’s the easiest and fastest way to download flight and airport Data from Brazil in <code>R</code>.</p>
 <ul>
 <li>
@@ -168,10 +172,8 @@
 <a class="anchor" aria-label="anchor" href="#acknowledgement-"></a>
 </h2>
 <p>Original data is collected by <a href="https://www.gov.br/anac/pt-br" class="external-link">Brazil’s Civil Aviation Agency (ANAC)</a>. The <strong>flightsbr</strong> package is developed by a team at the Institute for Applied Economic Research (Ipea), Brazil. If you want to cite this package, you can cite it as:</p>
-<ul>
-<li>Pereira, R.H.M. (2022). <strong>flightsbr: Download Flight And Airport Data from Brazil</strong>. R package (Version 0.1.0). OSF. <a href="https://doi.org/10.31219/osf.io/jdv7u" class="external-link uri">https://doi.org/10.31219/osf.io/jdv7u</a>
-</li>
-</ul>
+<ul><li>Pereira, R.H.M. (2022). <strong>flightsbr: Download Flight And Airport Data from Brazil</strong>. R package (Version 0.1.0). OSF. <a href="https://doi.org/10.31219/osf.io/jdv7u" class="external-link uri">https://doi.org/10.31219/osf.io/jdv7u</a>
+</li></ul>
 </div>
 </div>
   </div>
@@ -234,7 +236,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
