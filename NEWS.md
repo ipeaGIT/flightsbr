@@ -1,4 +1,7 @@
-# flightsbr v0.1.29
+# flightsbr v0.1.9
+
+* Major changes:
+  * New function `read_air_fares()` to read data on air fares of domestic flights in Brazil [Closed #22](https://github.com/ipeaGIT/flightsbr/issues/22).
 
 * Minor changes:
   * The data downloaded in `read_flights()` and `read_airport_movements()` are now cached in temp dir. Closed [#20](https://github.com/ipeaGIT/flightsbr/issues/21).

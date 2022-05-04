@@ -1,17 +1,9 @@
 # devtools::install_github("ipeaGIT/r5r", subdir = "r-package", force=T)
 library(flightsbr)
 
-m2020 <- read_flights(date = 2020)
-system.time( m2019 <- read_airport_movements(date = 2019) )
-system.time( m20192223 <- read_airport_movements(date = 2019) )
+a <- read_aircrafts()
 
-m201901 <- read_flights(date = 201901)
-m201911 <- read_flights(date = 2019)
-
-m201901$DT_PREVISTO |> class()
-m201911$DT_PREVISTO |> class()
-
-classes <- sapply(dt, class)
+https://www.anac.gov.br/dadosabertos/estatistica/tarifasaereas
 
 dput(classes)
 
@@ -26,6 +18,20 @@ https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasi
 
 operacoes
 https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab
+
+
+
+##### tarifas aereas  ------------------------
+https://www.gov.br/anac/pt-br/pt-br/assuntos/dados-e-estatisticas/mercado-do-transporte-aereo
+
+domesticas
+https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/relatorio-de-tarifas-aereas-domesticas
+
+internacionais
+https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/tarifas-aereas-internacionais-1
+
+microdados
+https://sistemas.anac.gov.br/sas/downloads/
 
 
 
@@ -322,5 +328,9 @@ p <-
 
 ggsave(p, file='pall_2_501.png')
 beepr::beep()
+
+
+
+
 
 

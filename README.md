@@ -33,6 +33,8 @@ The package currently includes [four main functions](https://ipeagit.github.io/f
 2. `read_airports()`
 3. `read_aircrafts()`
 4. `read_airport_movements()`
+5. `read_air_fares()`
+
 
 #### 1) `read_flights()` to download data on national and international flights.
 ```
@@ -61,6 +63,12 @@ aircrafts <- flightsbr::read_aircrafts()
 #### 4) `read_airport_movements()` to download data on aiport movements.
 ```
 airport_ops <- flightsbr::read_airport_movements(date = 202001)
+```
+
+#### 5) `read_air_fares()` to download data on air fares of domestic flights in Brazil.
+```
+air_fares <- flightsbr::read_air_fares(date = 202001)
+
 ```
 
 

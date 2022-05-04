@@ -1,4 +1,4 @@
-#' Retrieve from ANAC website all dates available for flights data
+#' Retrieve all dates available for flights data from ANAC website
 #'
 #' @return Numeric vector.
 #' @export
@@ -120,6 +120,75 @@ get_airport_movement_dates_available <- function(date=NULL) {
 }
 
 
+#' Retrieve all dates available for air fares data from ANAC website
+#'
+#' @return Numeric vector.
+#' @export
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # check dates
+#' a <- get_air_fares_dates_available()
+#'}}
+get_air_fares_dates_available <- function() {
+
+  # read html table
+  base_url = 'https://sistemas.anac.gov.br/sas/tarifadomestica/'
+  h <- try(rvest::read_html(base_url), silent = TRUE)
+
+  # check if internet connection worked
+  if (class(h)[1]=='try-error') {                                           #nocov
+    message("Problem connecting to ANAC data server. Please try it again.") #nocov
+    return(invisible(NULL))                                                 #nocov
+  }
+
+  # filter elements of basica data
+  elements <- rvest::html_elements(h, "a")
+  basica_urls <- elements[ data.table::like(elements, '/tarifadomestica/2') ]
+  basica_urls <- lapply(X=basica_urls, FUN=function(i){rvest::html_attr(i,"href")})
+
+  # get all dates available
+  years <- gsub("[^\\d]+", "", basica_urls, perl=TRUE)
+
+  # get url of subdirectories
+  urls <- paste0(base_url, years)
+
+  # function to search .csv data in subdirectories
+  recursive_search <- function(i){ # i=urls[2]
+
+    # read html table
+    h2 <- try(rvest::read_html(i), silent = TRUE)
+
+    if (class(h2)[1]=='try-error') {
+      message("Problem connecting to ANAC data server. Please try it again.")
+      return(invisible(NULL))}
+
+    # get url of subdirectories
+    elements2 <- rvest::html_elements(h2, "a")
+    href2 <- rvest::html_attr(elements2, "href")
+    # files_all <- grep("../", href2, fixed = TRUE, value = TRUE, invert = TRUE)
+    files_csv <- href2[ data.table::like(href2, '.csv')]
+    # temp_urls <- paste0(i, files_csv)
+    # return(temp_urls)
+    return(files_csv)
+  }
+
+  # get urls of .csv files
+  csv_urls <- lapply(X=urls, FUN=recursive_search)
+  csv_urls <- unlist(csv_urls)
+  # return(csv_urls) # if one wants to return the csv url
+
+  # get all dates available
+  options(warn=-1) # suppress warnings
+  all_dates <- substr(csv_urls , (nchar(csv_urls ) + 1) -10, nchar(csv_urls )-4 )
+  all_dates <- as.numeric(all_dates)
+  all_dates <- all_dates[ ! is.na(all_dates)]
+  options(warn=0) # unsuppress warnings
+
+  return(all_dates)
+}
+
+
+
 #' Check whether date input is acceptable
 #' @param date Numeric. Either a 6-digit date in the format `yyyymm` or a 4-digit
 #'             date input `yyyy` .
@@ -197,6 +266,33 @@ get_flights_url <- function(type, year, month) { # nocov start
   url_root <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/'
   file_name <- paste0(type, year, '-', month, '.zip')
   file_url <- paste0(url_root, file_name)
+  return(file_url)
+} # nocov end
+
+
+
+
+#' Put together the url of air fare data files
+#'
+#' @param year Numeric. Year of the data in `yyyy` format.
+#' @param month Numeric. Month of the data in `mm` format.
+#'
+#' @return A url string.
+#'
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Generate url
+#' a <- get_air_fares_url(year=2002, month=11)
+#'}}
+get_air_fares_url <- function(type, year, month) { # nocov start
+
+  # https://sistemas.anac.gov.br/sas/tarifadomestica/2006/200605.csv
+
+  if( nchar(month) ==1 ) { month <- paste0('0', month)}
+
+  url_root <- 'https://sistemas.anac.gov.br/sas/tarifadomestica/'
+  file_name <- paste0(year, month, '.csv')
+  file_url <- paste0(url_root, year, '/', file_name)
   return(file_url)
 } # nocov end
 
@@ -294,6 +390,52 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 
   return(dt)
   } # nocov end
+
+
+
+
+#' Download and read ANAC air fares data
+#'
+#' @param file_url String. A url passed from get_flights_url.
+#' @param showProgress Logical, passed from \code{\link{read_flights}}
+#' @param select A vector of column names or numbers to keep, passed from \code{\link{read_flights}}
+#'
+#' @return A `"data.table" "data.frame"` object
+#'
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Generate url
+#' file_url <- get_air_fares_url(year=2002, month=11)
+#'
+#' # download data
+#' a <- download_air_fares_data(file_url=file_url, showProgress=TRUE, select=NULL)
+#'}}
+download_air_fares_data <- function(file_url, showProgress=showProgress, select=select){ # nocov start
+
+  # create temp local file
+  file_name <- basename(file_url)
+  temp_local_file <- paste0(tempdir(),"/",file_name)
+
+  # check if file has not been downloaded already. If not, download it
+  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+
+    # download data
+    download_flightsbr_file(file_url=file_url, showProgress=showProgress)
+  }
+
+  ### set threads for fread
+  orig_threads <- data.table::getDTthreads()
+  data.table::setDTthreads(percent = 100)
+
+  # read file stored locally
+  dt <- data.table::fread(input = temp_local_file, select=select, colClasses = 'character') # , dec = ','
+
+  # return to original threads
+  data.table::setDTthreads(orig_threads)
+
+  return(dt)
+} # nocov end
+
 
 
 #' Convert latitude and longitude columns to numeric

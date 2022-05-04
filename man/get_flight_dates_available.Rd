@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_flight_dates_available}
 \alias{get_flight_dates_available}
-\title{Retrieve from ANAC website all dates available for flights data}
+\title{Retrieve all dates available for flights data from ANAC website}
 \usage{
 get_flight_dates_available()
 }
@@ -10,7 +10,7 @@ get_flight_dates_available()
 Numeric vector.
 }
 \description{
-Retrieve from ANAC website all dates available for flights data
+Retrieve all dates available for flights data from ANAC website
 }
 \examples{
 \dontrun{ if (interactive()) {

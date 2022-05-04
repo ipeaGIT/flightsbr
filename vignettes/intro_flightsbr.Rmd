@@ -44,6 +44,13 @@ The data covers all passenger, aircraft, cargo and mail movement from airports r
 
 
 
+### 5) `read_air_fares()`:
+The data covers air fares of all domestic flights.
+
+- [Data dictionary for air fares data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/tarifas-aereas-domesticas/46-tarifas-aereas-domesticas).
+
+
+
 ## Basic usage
 
 Before using **flightsbr** please make sure that you have it installed on your computer. You can download the most stable version from CRAN.
@@ -98,5 +105,15 @@ head(aircrafts)
 airport_mov <- flightsbr::read_airport_movements(date=201901)
 
 head(airport_mov)
+```
+
+
+
+#### Download data on data on air fares of domestic flights in Brazil:
+
+```{r, eval=FALSE}
+air_fares <- flightsbr::read_air_fares(date=202003)
+
+head(air_fares)
 ```
 
