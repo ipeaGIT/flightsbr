@@ -31,7 +31,7 @@
     <loc>/reference/check_date.html</loc>
   </url>
   <url>
-    <loc>/reference/download_air_fares_data.html</loc>
+    <loc>/reference/download_airfares_data.html</loc>
   </url>
   <url>
     <loc>/reference/download_airport_movement_data.html</loc>
@@ -49,10 +49,10 @@
     <loc>/reference/generate_all_months.html</loc>
   </url>
   <url>
-    <loc>/reference/get_air_fares_dates_available.html</loc>
+    <loc>/reference/get_airfares_dates_available.html</loc>
   </url>
   <url>
-    <loc>/reference/get_air_fares_url.html</loc>
+    <loc>/reference/get_airfares_url.html</loc>
   </url>
   <url>
     <loc>/reference/get_airport_movement_dates_available.html</loc>
@@ -76,10 +76,10 @@
     <loc>/reference/latlon_to_numeric.html</loc>
   </url>
   <url>
-    <loc>/reference/read_air_fares.html</loc>
+    <loc>/reference/read_aircrafts.html</loc>
   </url>
   <url>
-    <loc>/reference/read_aircrafts.html</loc>
+    <loc>/reference/read_airfares.html</loc>
   </url>
   <url>
     <loc>/reference/read_airport_movements.html</loc>

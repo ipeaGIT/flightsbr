@@ -113,13 +113,13 @@
 <div class="section level2">
 <h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
 </h2>
-<p>The package currently includes <a href="https://ipeagit.github.io/flightsbr/reference/index.html" class="external-link">four main functions</a>:</p>
+<p>The package currently includes <a href="https://ipeagit.github.io/flightsbr/reference/index.html" class="external-link">five main functions</a>:</p>
 <ol style="list-style-type: decimal">
 <li><code><a href="reference/read_flights.html">read_flights()</a></code></li>
 <li><code><a href="reference/read_airports.html">read_airports()</a></code></li>
 <li><code><a href="reference/read_aircrafts.html">read_aircrafts()</a></code></li>
 <li><code><a href="reference/read_airport_movements.html">read_airport_movements()</a></code></li>
-<li><code><a href="reference/read_air_fares.html">read_air_fares()</a></code></li>
+<li><code><a href="reference/read_airfares.html">read_airfares()</a></code></li>
 </ol>
 <div class="section level4">
 <h4 id="1-read_flights-to-download-data-on-national-and-international-flights">1) <code>read_flights()</code> to download data on national and international flights.<a class="anchor" aria-label="anchor" href="#1-read_flights-to-download-data-on-national-and-international-flights"></a>
@@ -149,9 +149,9 @@
 <pre><code><span class="va">airport_ops</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airport_movements.html">read_airport_movements</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level4">
-<h4 id="5-read_air_fares-to-download-data-on-air-fares-of-domestic-flights-in-brazil">5) <code>read_air_fares()</code> to download data on air fares of domestic flights in Brazil.<a class="anchor" aria-label="anchor" href="#5-read_air_fares-to-download-data-on-air-fares-of-domestic-flights-in-brazil"></a>
+<h4 id="5-read_airfares-to-download-data-on-air-fares-of-domestic-or-internatinoal-flights">5) <code>read_airfares()</code> to download data on air fares of domestic or internatinoal flights.<a class="anchor" aria-label="anchor" href="#5-read_airfares-to-download-data-on-air-fares-of-domestic-or-internatinoal-flights"></a>
 </h4>
-<pre><code><span class="va">air_fares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_air_fares.html">read_air_fares</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span><span class="op">)</span></code></pre>
+<pre><code><span class="va">air_fares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airfares.html">read_airfares</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span>, domestic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="related-projects">
