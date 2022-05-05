@@ -115,8 +115,8 @@ head(airport_mov)
 #### Download data on data on air fares of domestic flights in Brazil:
 
 ```{r, eval=FALSE}
-air_fares <- flightsbr::read_airfares(date=202003)
+airfares <- flightsbr::read_airfares(date=202003, domestic = TRUE)
 
-head(air_fares)
+head(airfares)
 ```
 

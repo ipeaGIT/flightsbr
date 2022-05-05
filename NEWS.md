@@ -1,6 +1,7 @@
-# flightsbr v0.1.9
+# flightsbr v0.2.0
 
 * Major changes:
+  * Update urls to new location where flights data is stored. This makes `read_flights()` work again.
   * New function `read_airfares()` to read data on air fares of domestic and international flights [Closed #22](https://github.com/ipeaGIT/flightsbr/issues/22).
 
 * Minor changes:
