@@ -14,12 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-**flightsbr** is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes four main functions:
+**flightsbr** is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes five main functions:
 
 1. `read_flights()`
 2. `read_airports()`
 3. `read_aircrafts()`
 4. `read_airport_movements()`
+5. `read_airfares()
 
 ### 1) `read_flights()`:
 Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
@@ -44,10 +45,11 @@ The data covers all passenger, aircraft, cargo and mail movement from airports r
 
 
 
-### 5) `read_air_fares()`:
-The data covers air fares of all domestic flights.
+### 5) `read_airfares()`:
+The data covers air fares of domestic and international flights.
 
-- [Data dictionary for air fares data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/tarifas-aereas-domesticas/46-tarifas-aereas-domesticas).
+- [Data dictionary for domestic airfares data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/tarifas-aereas-domesticas/46-tarifas-aereas-domesticas).
+- [Data dictionary for international airfares data](https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/microdados-de-tarifas-aereas-comercializadas).
 
 
 
@@ -112,7 +114,7 @@ head(airport_mov)
 #### Download data on data on air fares of domestic flights in Brazil:
 
 ```{r, eval=FALSE}
-air_fares <- flightsbr::read_air_fares(date=202003)
+air_fares <- flightsbr::read_airfares(date=202003)
 
 head(air_fares)
 ```

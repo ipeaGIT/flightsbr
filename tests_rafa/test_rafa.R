@@ -30,6 +30,9 @@ https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-inform
 internacionais
 https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/tarifas-aereas-internacionais-1
 
+microdads
+https://sistemas.anac.gov.br/sas/tarifainternacional/
+
 microdados
 https://sistemas.anac.gov.br/sas/downloads/
 

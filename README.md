@@ -27,13 +27,13 @@ coverage](https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg)](
 
 
 ## Basic usage
-The package currently includes [four main functions](https://ipeagit.github.io/flightsbr/reference/index.html):
+The package currently includes [five main functions](https://ipeagit.github.io/flightsbr/reference/index.html):
 
 1. `read_flights()`
 2. `read_airports()`
 3. `read_aircrafts()`
 4. `read_airport_movements()`
-5. `read_air_fares()`
+5. `read_airfares()`
 
 
 #### 1) `read_flights()` to download data on national and international flights.
@@ -65,12 +65,11 @@ aircrafts <- flightsbr::read_aircrafts()
 airport_ops <- flightsbr::read_airport_movements(date = 202001)
 ```
 
-#### 5) `read_air_fares()` to download data on air fares of domestic flights in Brazil.
+#### 5) `read_airfares()` to download data on air fares of domestic or internatinoal flights.
 ```
-air_fares <- flightsbr::read_air_fares(date = 202001)
+air_fares <- flightsbr::read_airfares(date = 202001, domestic = TRUE)
 
 ```
-
 
 #### **Related projects**
 
