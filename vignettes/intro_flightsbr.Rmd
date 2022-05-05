@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 2. `read_airports()`
 3. `read_aircrafts()`
 4. `read_airport_movements()`
-5. `read_airfares()
+5. `read_airfares()`
 
 ### 1) `read_flights()`:
 Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
@@ -46,10 +46,11 @@ The data covers all passenger, aircraft, cargo and mail movement from airports r
 
 
 ### 5) `read_airfares()`:
-The data covers air fares of domestic and international flights.
+The data covers airfares of domestic and international flights.
 
-- [Data dictionary for domestic airfares data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/tarifas-aereas-domesticas/46-tarifas-aereas-domesticas).
-- [Data dictionary for international airfares data](https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/microdados-de-tarifas-aereas-comercializadas).
+- Data dictionary: 
+  - [domestic airfares](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/tarifas-aereas-domesticas/46-tarifas-aereas-domesticas).
+  - [international airfares](https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/microdados-de-tarifas-aereas-comercializadas).
 
 
 

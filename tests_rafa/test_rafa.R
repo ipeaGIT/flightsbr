@@ -36,7 +36,18 @@ https://sistemas.anac.gov.br/sas/tarifainternacional/
 microdados
 https://sistemas.anac.gov.br/sas/downloads/
 
+library(flightsbr)
 
+a <- read_airfares(date = 2011, domestic=F)
+head(a)
+
+b <- read_airfares(date = 2020, domestic=F)
+head(b)
+table(b$`Mês de Referência`)
+
+c <- read_airfares(date = 2018, domestic=F)
+head(c)
+table(b$`Mês de Referência`)
 
 ##### ASCII characters  ------------------------
 

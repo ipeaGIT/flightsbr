@@ -65,7 +65,7 @@ aircrafts <- flightsbr::read_aircrafts()
 airport_ops <- flightsbr::read_airport_movements(date = 202001)
 ```
 
-#### 5) `read_airfares()` to download data on air fares of domestic or internatinoal flights.
+#### 5) `read_airfares()` to download data on airfares of domestic or internatinoal flights.
 ```
 air_fares <- flightsbr::read_airfares(date = 202001, domestic = TRUE)
 
