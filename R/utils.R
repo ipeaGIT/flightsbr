@@ -135,6 +135,8 @@ get_airport_movement_dates_available <- function(date=NULL) {
 #'}}
 get_airfares_dates_available <- function(dom) {
 
+  if( ! is.logical(dom) ){ stop(paste0("Argument 'dom' must be either 'TRUE' or 'FALSE.")) }
+
   # read html table
   if( isTRUE(dom) ) { base_url = 'https://sistemas.anac.gov.br/sas/tarifadomestica/' }
   if( isFALSE(dom)) { base_url = 'https://sistemas.anac.gov.br/sas/tarifainternacional/' }

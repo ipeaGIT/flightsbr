@@ -9,11 +9,10 @@ testthat::skip_on_cran()
 
 test_that("get_airfares_dates_available", {
 
-  testthat::expect_true(class(get_airfares_dates_available()) == "numeric")
-  testthat::expect_true(class(get_airfares_dates_available(domestic = TRUE)) == "numeric")
-  testthat::expect_true(class(get_airfares_dates_available(domestic = FALSE)) == "numeric")
-  testthat::expect_true(class(get_airfares_dates_available()) == "numeric")
+  testthat::expect_true(class(get_airfares_dates_available(dom = TRUE)) == "numeric")
+  testthat::expect_true(class(get_airfares_dates_available(dom = FALSE)) == "numeric")
 
-  testthat::expect_error(get_airfares_dates_available(999))
+  testthat::expect_error(get_airfares_dates_available())
+  testthat::expect_error(get_airfares_dates_available(dom = 999))
 })
 
