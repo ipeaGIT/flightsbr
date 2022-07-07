@@ -159,53 +159,53 @@
 </h2>
 <p>Before using <strong>flightsbr</strong> please make sure that you have it installed on your computer. You can download the most stable version from CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"flightsbr"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"flightsbr"</span><span class="op">)</span></span></code></pre></div>
 <p>Now we can load the library and start downloading data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeaGIT/flightsbr" class="external-link">flightsbr</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeaGIT/flightsbr" class="external-link">flightsbr</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="download-flights-data">Download flights data:<a class="anchor" aria-label="anchor" href="#download-flights-data"></a>
 </h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># in a given **month* of a given **year** (yyyymm)</span>
-<span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201506</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co"># in a given year (yyyy)</span>
-<span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">2015</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># in a given **month* of a given **year** (yyyymm)</span></span>
+<span><span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201506</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># in a given year (yyyy)</span></span>
+<span><span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">2015</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="download-airports-data">Download airports data:<a class="anchor" aria-label="anchor" href="#download-airports-data"></a>
 </h4>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="va">airports_prv</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">airports_prv</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="download-data-of-aircrafts">Download data of aircrafts:<a class="anchor" aria-label="anchor" href="#download-data-of-aircrafts"></a>
 </h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span>showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">aircrafts</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span>showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">aircrafts</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="download-data-on-airport-movements">Download data on airport movements:<a class="anchor" aria-label="anchor" href="#download-data-on-airport-movements"></a>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">airport_mov</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airport_movements.html">read_airport_movements</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201901</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airport_mov</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">airport_mov</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airport_movements.html">read_airport_movements</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201901</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airport_mov</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="download-data-on-data-on-air-fares-of-domestic-flights-in-brazil">Download data on data on air fares of domestic flights in Brazil:<a class="anchor" aria-label="anchor" href="#download-data-on-data-on-air-fares-of-domestic-flights-in-brazil"></a>
 </h4>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">airfares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airfares.html">read_airfares</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">202003</span>, domestic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airfares</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">airfares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airfares.html">read_airfares</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">202003</span>, domestic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airfares</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -227,7 +227,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

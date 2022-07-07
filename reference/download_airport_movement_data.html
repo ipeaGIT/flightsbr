@@ -69,30 +69,35 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">download_airport_movement_data</span><span class="op">(</span><span class="va">file_url</span>, showProgress <span class="op">=</span> <span class="va">showProgress</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_airport_movement_data</span><span class="op">(</span><span class="va">file_url</span>, showProgress <span class="op">=</span> <span class="va">showProgress</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>file_url</dt>
 <dd><p>String. A url passed from get_flights_url.</p></dd>
+
+
 <dt>showProgress</dt>
 <dd><p>Logical, passed from <code><a href="read_flights.html">read_flights</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>"data.table" "data.frame"</code> object</p>
+    
+
+<p>A <code>"data.table" "data.frame"</code> object</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># Generate url</span></span>
-<span class="r-in"><span class="va">file_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_airport_movements_url.html">get_airport_movements_url</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2020</span>, month<span class="op">=</span><span class="fl">11</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># download data</span></span>
-<span class="r-in"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">download_airport_movement_data</span><span class="op">(</span>file_url<span class="op">=</span><span class="va">file_url</span>, showProgress<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Generate url</span></span></span>
+<span class="r-in"><span><span class="va">file_url</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_airport_movements_url.html">get_airport_movements_url</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2020</span>, month<span class="op">=</span><span class="fl">11</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># download data</span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">download_airport_movement_data</span><span class="op">(</span>file_url<span class="op">=</span><span class="va">file_url</span>, showProgress<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -107,7 +112,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -75,7 +75,7 @@ The data dictionary for private airports can be found at <a href="https://www.an
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">read_airports</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"all"</span>, showProgress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_airports</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"all"</span>, showProgress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -86,24 +86,29 @@ The data dictionary for private airports can be found at <a href="https://www.an
 columns. Downloading <code>public</code> and <code>private</code> airports separately
 will return the full set of columns available for each of those
 data sets.</p></dd>
+
+
 <dt>showProgress</dt>
 <dd><p>Logical. Defaults to <code>TRUE</code> display progress.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>"data.table" "data.frame"</code> object.</p>
+    
+
+<p>A <code>"data.table" "data.frame"</code> object.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># Read airports data</span></span>
-<span class="r-in"><span class="va">all_airports</span> <span class="op">&lt;-</span> <span class="fu">read_airports</span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">public_airports</span> <span class="op">&lt;-</span> <span class="fu">read_airports</span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">private_airports</span> <span class="op">&lt;-</span> <span class="fu">read_airports</span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Read airports data</span></span></span>
+<span class="r-in"><span><span class="va">all_airports</span> <span class="op">&lt;-</span> <span class="fu">read_airports</span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">public_airports</span> <span class="op">&lt;-</span> <span class="fu">read_airports</span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">private_airports</span> <span class="op">&lt;-</span> <span class="fu">read_airports</span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -118,7 +123,7 @@ data sets.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

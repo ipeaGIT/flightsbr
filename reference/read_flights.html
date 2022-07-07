@@ -79,12 +79,12 @@ description of all variables included in the data is available at <a href="https
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">read_flights</span><span class="op">(</span>
-  date <span class="op">=</span> <span class="fl">202001</span>,
-  type <span class="op">=</span> <span class="st">"basica"</span>,
-  showProgress <span class="op">=</span> <span class="cn">TRUE</span>,
-  select <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_flights</span><span class="op">(</span></span>
+<span>  date <span class="op">=</span> <span class="fl">202001</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"basica"</span>,</span>
+<span>  showProgress <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  select <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -93,20 +93,29 @@ description of all variables included in the data is available at <a href="https
 <dd><p>Numeric. Date of the data in the format <code>yyyymm</code>. Defaults to
 <code>202001</code>. To download the data for all months in a year, the user
 can pass a 4-digit year input <code>yyyy</code>.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>String. Whether the data set should be of the type <code>basica</code>
 (flight stage, the default) or <code>combinada</code> (On flight origin and
 destination - OFOD).</p></dd>
+
+
 <dt>showProgress</dt>
 <dd><p>Logical. Defaults to <code>TRUE</code> display progress.</p></dd>
+
+
 <dt>select</dt>
 <dd><p>A vector of column names or numbers to keep, drop the rest. The
 order that the columns are specified determines the order of the
 columns in the result.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code>"data.table" "data.frame"</code> object. All columns are returned with
+    
+
+<p>A <code>"data.table" "data.frame"</code> object. All columns are returned with
 <code>class</code> of type <code>"character"</code>.</p>
     </div>
     <div id="see-also">
@@ -117,12 +126,12 @@ columns in the result.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># Read flights data</span></span>
-<span class="r-in"><span class="va">f201506</span> <span class="op">&lt;-</span> <span class="fu">read_flights</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">201506</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">f2015</span> <span class="op">&lt;-</span> <span class="fu">read_flights</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">2015</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Read flights data</span></span></span>
+<span class="r-in"><span><span class="va">f201506</span> <span class="op">&lt;-</span> <span class="fu">read_flights</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">201506</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">f2015</span> <span class="op">&lt;-</span> <span class="fu">read_flights</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">2015</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -137,7 +146,7 @@ columns in the result.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
