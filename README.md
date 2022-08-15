@@ -85,4 +85,4 @@ As of today, there are two repositories/projects with Brazilian aviation data, w
 
 Original data is collected by [Brazil’s Civil Aviation Agency (ANAC)](https://www.gov.br/anac/pt-br). The **flightsbr** package is developed by a team at the Institute for Applied Economic Research (Ipea), Brazil. If you want to cite this package, you can cite it as:
 
-* Pereira, R.H.M. (2022). **flightsbr: Download Flight And Airport Data from Brazil**. R package (Version 0.1.0). OSF. https://doi.org/10.31219/osf.io/jdv7u
+* Pereira, R.H.M. (2022). **flightsbr: Download Flight And Airport Data from Brazil**. R package (Version 0.1.0). OSF. https://doi.org/10.31219/osf.io/jdv7u 
