@@ -11,7 +11,7 @@
 coverage](https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ipeaGIT/flightsbr?branch=main)
 [![DOI](https://img.shields.io/badge/DOI-10.31219%2Fosf.io%2Fjdv7u-blue)](https://doi.org/10.31219/osf.io/jdv7u)
 
-**flightsbr** is a R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information on all aircrafts, airports, and airport movements registered in ANAC, on airfares and on every international flight to and from Brazil, as well as domestic flights within the country.
+**flightsbr** is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information on all aircrafts, airports, and airport movements registered in ANAC, on airfares and on every international flight to and from Brazil, as well as domestic flights within the country.
 
 
 ## Installation
@@ -65,7 +65,7 @@ aircrafts <- flightsbr::read_aircrafts()
 airport_ops <- flightsbr::read_airport_movements(date = 202001)
 ```
 
-#### 5) `read_airfares()` to download data on airfares of domestic or internatinoal flights.
+#### 5) `read_airfares()` to download data on airfares of domestic or international flights.
 ```
 airfares <- flightsbr::read_airfares(date = 202001, domestic = TRUE)
 
