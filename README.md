@@ -57,17 +57,17 @@ airports_pbl <- flightsbr::read_airports(type = 'public')
 
 #### 3) `read_aircrafts()` to download aircrafts data.
 ```
-aircrafts <- flightsbr::read_aircrafts()
+aircrafts <- read_aircrafts()
 ```
 
 #### 4) `read_airport_movements()` to download data on aiport movements.
 ```
-airport_ops <- flightsbr::read_airport_movements(date = 202001)
+airport_ops <- read_airport_movements(date = 202001)
 ```
 
 #### 5) `read_airfares()` to download data on airfares of domestic or international flights.
 ```
-airfares <- flightsbr::read_airfares(date = 202001, domestic = TRUE)
+airfares <- read_airfares(date = 202001, domestic = TRUE)
 
 ```
 
