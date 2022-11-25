@@ -500,9 +500,9 @@ latlon_to_numeric <- function(df){ # nocov start
   defaultW <- getOption("warn")
   options(warn = -1)
 
-  # fix string
-  df[, latitude := gsub("[\u00c2]", "", latitude) ]
-  df[, longitude := gsub("[\u00c2]", "", longitude) ]
+  # # fix string
+  # df[, latitude := gsub("[\u00c2]", "", latitude) ]
+  # df[, longitude := gsub("[\u00c2]", "", longitude) ]
 
   # convert to numeric
   df[, latitude := parzer::parse_lat(latitude) ]
