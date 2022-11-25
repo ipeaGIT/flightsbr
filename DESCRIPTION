@@ -1,8 +1,8 @@
 Type: Package
 Package: flightsbr
 Title: Download Flight and Airport Data from Brazil
-Version: 0.2.0
-Date: 2022-04-06
+Version: 0.2.1
+Date: 2022-11-25
 Authors@R: 
     c(person(given="Rafael H. M.", family="Pereira", 
              email="rafa.pereira.br@gmail.com", 
@@ -37,4 +37,4 @@ VignetteBuilder:
 Encoding: UTF-8
 NeedsCompilation: yes
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.2
