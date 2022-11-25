@@ -1,3 +1,10 @@
+# flightsbr v0.2.1
+
+* Bug fixes:
+  * Fixed bug in `read_flights()` due to changes in ANAC data links.
+
+
+
 # flightsbr v0.2.0
 
 * Major changes:
