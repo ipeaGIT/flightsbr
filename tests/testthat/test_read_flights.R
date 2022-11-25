@@ -13,10 +13,12 @@ test_that("read_flights", {
   # (default), one month, basica, progress
   test1 <- read_flights()
   testthat::expect_true(is(test1, "data.table"))
+  testthat::expect_true(nrow(test1) >0 )
 
   # one month, combinada, no progress bar
   test2 <- read_flights(date=202201, type='combinada' ,showProgress = FALSE)
   testthat::expect_true(is(test2, "data.table"))
+  testthat::expect_true(nrow(test2) >0 )
 
   # check content
   testthat::expect_equal( as.character(min(test2$dt_referencia)), as.character("2022-01-01") )
@@ -24,6 +26,8 @@ test_that("read_flights", {
   # all months in a year
   test3 <- read_flights(date=2022, select=cols, showProgress = FALSE)
   testthat::expect_true(is(test3, "data.table"))
+  testthat::expect_true(nrow(test3) >0 )
+
  })
 
 

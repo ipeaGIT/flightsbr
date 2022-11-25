@@ -9,7 +9,10 @@ testthat::skip_on_cran()
 
 test_that("latest_flights_date", {
 
+  dates1 <- latest_flights_date()
+
   testthat::expect_true(class(latest_flights_date()) == "numeric")
+  testthat::expect_true(length(dates1) > 0)
   testthat::expect_error(latest_flights_date(999))
 })
 

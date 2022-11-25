@@ -9,7 +9,10 @@ testthat::skip_on_cran()
 
 test_that("get_flight_dates_available", {
 
-  testthat::expect_true(class(get_flight_dates_available()) == "numeric")
+  dates1 <- get_flight_dates_available()
+
+  testthat::expect_true(class(dates1) == "numeric")
+  testthat::expect_true(length(dates1) > 0)
   testthat::expect_error(get_flight_dates_available(999))
 })
 

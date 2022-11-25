@@ -9,8 +9,12 @@ testthat::skip_on_cran()
 
 test_that("read_aircrafts", {
 
+  test1 <- read_aircrafts(showProgress = FALSE)
+
   # (default), one month, basica, progress
-  testthat::expect_true(is(read_aircrafts(showProgress = FALSE), "data.table"))
+  testthat::expect_true(is(test1, "data.table"))
+  testthat::expect_true(nrow(test1) > 0)
+
   testthat::expect_true(is(read_aircrafts(showProgress = TRUE), "data.table"))
 
   # test columns are correct

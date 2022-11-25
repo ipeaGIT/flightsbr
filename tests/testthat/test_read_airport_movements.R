@@ -11,6 +11,7 @@ test_that("read_airport_movements", {
   # (default), one month, basica, progress
   test1 <- read_airport_movements(date=202201)
   testthat::expect_true(is(test1, "data.table"))
+  testthat::expect_true(nrow(test1) >0 )
 
   # check conteudo
   testthat::expect_equal( as.character(min(test1$DT_PREVISTO)), as.character("2021-12-31") )

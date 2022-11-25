@@ -12,17 +12,21 @@ test_that("read_airfares", {
   # (default), one month, basica, progress
   test1 <- read_airfares()
   testthat::expect_true(is(test1, "data.table"))
+  testthat::expect_true(nrow(test1) >0 )
 
   test2 <- read_airfares(domestic = FALSE)
   testthat::expect_true(is(test2, "data.table"))
+  testthat::expect_true(nrow(test2) >0 )
 
 
   # one month, combinada, no progress bar
   test3 <- read_airfares(date=200401, showProgress = FALSE)
   testthat::expect_true(is(test3, "data.table"))
+  testthat::expect_true(nrow(test3) >0 )
 
   test4 <- read_airfares(date=201202, showProgress = FALSE, domestic = FALSE)
   testthat::expect_true(is(test4, "data.table"))
+  testthat::expect_true(nrow(test4) >0 )
 
   # check content
   testthat::expect_equal( as.character(min(test3$ANO)), as.character("2004") )
