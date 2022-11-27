@@ -1,17 +1,15 @@
 ## R CMD check results
 
--- R CMD check results ----------------------------------------------------------- flightsbr 0.2.0 ----
-Duration: 4m 30.5s
+-- R CMD check results --------------------------- flightsbr 0.2.1 ----
+Duration: 7m 48.8s
 
-0 errors √ | 0 warnings √ | 0 notes √
+0 errors v | 0 warnings v | 0 notes v
 
 
-## flightsbr v0.2.0
+## flightsbr v0.2.1
 
-* Major changes:
-  * Update urls to new location where flights data is stored. This makes `read_flights()` work again.
-  * New function `read_airfares()` to read data on air fares of domestic and international flights [Closed #22](https://github.com/ipeaGIT/flightsbr/issues/22).
+* Bug fixes:
+  * Fixed bug in `read_flights()` due to changes in ANAC data links.
+  * Fixed broken link in `intro_flightsbr` vignette
 
-* Minor changes:
-  * The data downloaded in `read_flights()` and `read_airport_movements()` are now cached in temp dir. Closed [#20](https://github.com/ipeaGIT/flightsbr/issues/21).
-  * All columns are now returned with class `character`. This fixes a bug in the `read_airport_movements()` function. Closed [#20](https://github.com/ipeaGIT/flightsbr/issues/20).
+

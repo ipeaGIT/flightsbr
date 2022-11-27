@@ -36,7 +36,7 @@ Airports data covers all airports and aerodromes registered in Brazil’s Civil 
 
 ### 3) `read_aircrafts()`:
 All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC).
-- [Data dictionary for aircrafts data](https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab).
+- [Data dictionary for aircrafts data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/5-registro-aeronautico-brasileiro).
 
 
 ### 4) `read_airport_movements()`:

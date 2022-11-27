@@ -24,7 +24,6 @@ read_aircrafts <- function( showProgress = TRUE ){
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
 
 ### data url
-  # https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasileiro-rab
   # https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro
   rab_url <- 'https://www.anac.gov.br/dadosabertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/aeronaves-registradas-no-registro-aeronautico-brasileiro-csv' # nocov
 
