@@ -1,3 +1,11 @@
+
+# flightsbr v0.2.1999 (dev)
+
+* Bug fixes:
+  * Fixed broken link for data dictionary for airport movement data
+
+
+
 # flightsbr v0.2.1
 
 * Bug fixes:

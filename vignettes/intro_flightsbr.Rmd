@@ -41,7 +41,7 @@ All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeron√
 
 ### 4) `read_airport_movements()`:
 The data covers all passenger, aircraft, cargo and mail movement from airports regulated by ANAC.
-- [Data dictionary for airport movements data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/operador-aeroportuario-dados-de-movimentacao-aeroportuaria/metadados-do-conjunto-de-dados-dados-de-movimentacao-aeroportuaria).
+- [Data dictionary for airport movements data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/dados-de-movimentacao-aeroportuaria/60-dados-de-movimentacao-aeroportuaria).
 
 
 
