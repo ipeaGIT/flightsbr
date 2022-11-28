@@ -425,7 +425,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
 
   # read zipped file stored locally
-  dt <- data.table::fread( cmd =  temp_local_file_zip, select=select, colClasses = 'character')
+  dt <- data.table::fread( cmd =  temp_local_file_zip, select=select, colClasses = 'character', sep = ';')
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
@@ -470,7 +470,7 @@ download_airfares_data <- function(file_url, showProgress=showProgress, select=s
   data.table::setDTthreads(percent = 100)
 
   # read file stored locally
-  dt <- data.table::fread(input = temp_local_file, select=select, colClasses = 'character') # , dec = ','
+  dt <- data.table::fread(input = temp_local_file, select=select, colClasses = 'character', sep = ';') # , dec = ','
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
@@ -581,7 +581,7 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   #                    ITime =c('HH_PREVISTO', 'HH_CALCO', 'HH_TOQUE'))
 
   # download data and read .csv data file
-  dt <- data.table::fread(temp_local_file, showProgress = showProgress, colClasses = 'character')
+  dt <- data.table::fread(temp_local_file, showProgress = showProgress, colClasses = 'character', sep = ';')
   # class(dt$DT_CALCO)
   # class(dt$HH_PREVISTO)
 

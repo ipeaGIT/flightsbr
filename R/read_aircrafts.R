@@ -37,6 +37,7 @@ read_aircrafts <- function( showProgress = TRUE ){
                                   skip = 1,
                                   encoding = 'UTF-8',
                                   colClasses = 'character',
+                                  sep = ';',
                                   showProgress=showProgress))
 
     # nocov start
@@ -46,8 +47,9 @@ read_aircrafts <- function( showProgress = TRUE ){
                                       skip = 1,
                                       encoding = 'UTF-8',
                                       colClasses = 'character',
+                                      sep = ';',
                                       showProgress=showProgress))
-      } # nocov end
+    } # nocov end
 
    # return to original threads
    data.table::setDTthreads(orig_threads) # nocov

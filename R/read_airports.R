@@ -50,6 +50,7 @@ if (any(type %in% c('public', 'all'))){
                                      skip = 1,
                                      encoding = 'UTF-8',
                                      colClasses = 'character',
+                                     sep = ';',
                                      showProgress=showProgress))
 
     # check if download succeeded, try a 2nd time
@@ -59,8 +60,9 @@ if (any(type %in% c('public', 'all'))){
                                          skip = 1,
                                          encoding = 'UTF-8',
                                          colClasses = 'character',
+                                         sep = ';',
                                          showProgress=showProgress))
-      } # nocov end
+    } # nocov end
 
   # return to original threads
   data.table::setDTthreads(orig_threads)  # nocov
@@ -98,6 +100,7 @@ if (any(type %in% c('private', 'all'))){
                                       skip = 1,
                                       # encoding = 'Latin-1',
                                       colClasses = 'character',
+                                      sep = ';',
                                       showProgress=showProgress))
 
     # check if download succeeded, try a 2nd time
@@ -107,8 +110,9 @@ if (any(type %in% c('private', 'all'))){
                                           skip = 1,
                                           # encoding = 'Latin-1',
                                           colClasses = 'character',
+                                          sep = ';',
                                           showProgress=showProgress))
-      }  # nocov end
+    }  # nocov end
 
 
   # return to original threads
