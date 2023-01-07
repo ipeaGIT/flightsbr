@@ -3,7 +3,8 @@
 
 * Bug fixes:
   * Fixed broken link for data dictionary for airport movement data
-  * fixed code to read a few dates that were not cauth in `get_airfares_dates_available()` because of ".CSV" in ANAC url. Closed #27.
+  * Fixed code to rbindlist air fares from multiple years. Closed #26.
+  * Fixed code to read a few dates that were not caught in `get_airfares_dates_available()` because of ".CSV" in ANAC url. Closed #27.
 
 
 

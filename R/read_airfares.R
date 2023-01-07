@@ -102,7 +102,7 @@ dt_list <- pbapply::pblapply( X=all_months,
 pbapply::pboptions(original_options)
 
 # row bind data tables
-dt <- data.table::rbindlist(dt_list)
+dt <- data.table::rbindlist(dt_list, fill=TRUE)
 return(dt)
 
 }}
