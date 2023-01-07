@@ -3,6 +3,7 @@
 
 * Bug fixes:
   * Fixed broken link for data dictionary for airport movement data
+  * fixed code to read a few dates that were not cauth in `get_airfares_dates_available()` because of ".CSV" in ANAC url. Closed #27.
 
 
 

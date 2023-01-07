@@ -170,7 +170,7 @@ get_airfares_dates_available <- function(dom) {
   urls <- paste0(base_url, years)
 
   # function to search .csv data in subdirectories
-  recursive_search <- function(i){ # i=urls[2]
+  recursive_search <- function(i){ # i=urls[21]
 
     # read html table
     h2 <- try(rvest::read_html(i), silent = TRUE)
@@ -183,7 +183,7 @@ get_airfares_dates_available <- function(dom) {
     elements2 <- rvest::html_elements(h2, "a")
     href2 <- rvest::html_attr(elements2, "href")
     # files_all <- grep("../", href2, fixed = TRUE, value = TRUE, invert = TRUE)
-    files_csv <- href2[ data.table::like(href2, '.csv|.txt')]
+    files_csv <- href2[ data.table::like(href2, '.csv|.CSV|.txt')]
     # temp_urls <- paste0(i, files_csv)
     # return(temp_urls)
     return(files_csv)
