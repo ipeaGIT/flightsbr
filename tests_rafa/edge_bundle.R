@@ -1,11 +1,11 @@
+library(data.table)
 library(flightsbr)
 library(geobr)
 library(igraph)
-library(ggforce)
+# library(ggforce)
 library(edgebundle) # https://github.com/schochastics/edgebundle
 library(ggplot2)
 library(janitor)
-nr_velocidade_media
 # https://mwallinger-tu.github.io/edge-path-bundling/
 
 
@@ -27,26 +27,26 @@ br <- geobr::read_country()
 # Filter data -----------------
 
 # Keep flights to and from airports in Brazil
-flights2 <- subset(flights, sg_icao_origem %in% airports$codigo_oaci)
-flights2 <- subset(flights2, sg_icao_destino %in% airports$codigo_oaci)
+flights2 <- subset(flights, nm_pais_origem   =="BRASIL")
+flights2 <- subset(flights2, nm_pais_destino =="BRASIL")
 
 # year of flight arrival
 flights2[, year := nr_ano_chegada_real ]
-
 
 
 # Summary number of flights and passengers by origin-destination pair -----------------
 
 edges <- flights2[, .(n_flights = .N,
                       weight = .N,
-                      n_passengers = sum(nr_passag_pagos)),
+                      n_passengers = sum(as.numeric(nr_passag_pagos))),
                   by = .(sg_icao_origem, sg_icao_destino, year)]
 
 
 # Add spatial coordinates do edges -----------------
 
 # airport at origins
-edges[ airports, on=c('sg_icao_origem'='codigo_oaci'),
+edges[ airports,
+       on=c('sg_icao_origem'='codigo_oaci'),
        c('lat_orig', 'lon_orig') := list(i.latitude , i.longitude) ]
 
 # airport at destinations
@@ -81,28 +81,30 @@ xy <- cbind(V(g)$longitude, V(g)$latitude)
 
 
 ### Edge Bundling -----------------
-d = 10
-w = 4
-s = 10
+d = 20 # how much bending / max_distortion
+w = 6
+s = 20
 
 # Edge-Path Bundling
-pbundle <- edge_bundle_path(g, xy, max_distortion = d,
-                            weight_fac =  w, # E(g)$weight^2,
+pbundle <- edge_bundle_path(g, xy,
+                            max_distortion = d,
+                            weight_fac = w, #   E(g)$weight,
                             segments = s)
 ### Figure -----------------
 p <-
   ggplot() +
   geom_sf(data=br , fill='gray10', color=NA) +
   geom_path(data = pbundle, aes(x, y, group = group),
-            col = "#9d0191", size = 0.09, alpha=.6) +
+            col = "#9d0191", linewidth = 0.5, alpha=.6) +
   geom_path(data = pbundle, aes(x, y, group = group),
-            col = "white", size = 0.009, alpha=.6) +
+            col = "white", linewidth = 0.05, alpha=.6) +
   # ggraph::theme_graph(background = "gray")
   theme_classic() +
   theme(axis.line=element_blank(),
         axis.text=element_blank(),
         axis.ticks=element_blank(),
         axis.title=element_blank())
+
 ggsave(p, file=paste0('path-d',d,'-w',w,'-s',s ,'jan.png'), dpi=300)
 beepr::beep()
 

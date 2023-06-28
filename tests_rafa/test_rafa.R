@@ -21,6 +21,10 @@ https://dados.gov.br/dataset/aeronaves-registradas-no-registro-aeronautico-brasi
 
 
 
+
+a <- flightsbr::read_airport_movements(date = 2022, showProgress = FALSE)
+
+
 ##### tarifas aereas  ------------------------
 https://www.gov.br/anac/pt-br/pt-br/assuntos/dados-e-estatisticas/mercado-do-transporte-aereo
 
@@ -221,7 +225,6 @@ devtools::submit_cran()
 
 # build binary -----------------
 system("R CMD build . --resave-data") # build tar.gz
-
 
 
 
