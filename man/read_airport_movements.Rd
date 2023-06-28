@@ -22,7 +22,7 @@ Download airport movements data from Brazil’s Civil Aviation Agency (ANAC).
 The data covers all passenger, aircraft, cargo and mail movement data from
 airports regulated by ANAC. Data only available from Jan 2019 onwards. A
 description of all variables included in the data is available at
-\url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/operador-aeroportuario-dados-de-movimentacao-aeroportuaria/metadados-do-conjunto-de-dados-dados-de-movimentacao-aeroportuaria}.
+\url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/dados-de-movimentacao-aeroportuaria/60-dados-de-movimentacao-aeroportuaria}.
 }
 \examples{
 \dontrun{ if (interactive()) {

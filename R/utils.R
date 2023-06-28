@@ -27,6 +27,16 @@ get_flight_dates_available <- function() {
   # get all dates available
   all_dates <- substr(basica_urls, (nchar(basica_urls) + 1) -11, nchar(basica_urls)-4 )
   all_dates <- gsub("[-]", "", all_dates)
+
+  # remove eventual letters
+  all_dates <- sub("a", "", all_dates, fixed = TRUE)
+  ## remove ALL eventual letters
+  # all_dates <- lapply(X = base::letters,
+  #                     FUN = function(x){
+  #                       all_datesf <- sub(x, "", all_dates, fixed = TRUE)
+  #                       return(all_datesf)}
+  #                     )
+  all_dates <- unique(all_dates)
   all_dates <- as.numeric(all_dates)
   return(all_dates)
 }
@@ -112,6 +122,7 @@ get_airport_movement_dates_available <- function(date=NULL) {
   csv_urls <- lapply(X=urls, FUN=recursive_search)
   csv_urls <- unlist(csv_urls)
   # return(csv_urls) # if one wants to return the csv url
+  csv_urls <- gsub('.csv.csv', '.csv', csv_urls, fixed = TRUE)
 
   # get all dates available
   all_dates <- substr(csv_urls , (nchar(csv_urls ) + 1) -10, nchar(csv_urls )-4 )
@@ -233,13 +244,15 @@ check_date <- function(date, all_dates) {
 
   error_message <-  paste0("The data is currently only available for dates between ", min(all_dates), " and ", max(all_dates), ".")
 
-  if (nchar(date)==6) {
-    if (!(date %in% all_dates)) {stop(error_message)}
-    }
+  for(d in date){
+    if (nchar(d)==6) {
+      if (!(d %in% all_dates)) {stop(error_message)}
+      }
 
-  if (nchar(date)!=6) {
-    if (!(date %in% unique(substr(all_dates, 1, 4)) )) {stop(error_message)}
+    if (nchar(d)!=6) {
+      if (!(d %in% unique(substr(all_dates, 1, 4)) )) {stop(error_message)}
     }
+  }
 }
 
 

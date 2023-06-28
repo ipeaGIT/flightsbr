@@ -1,10 +1,14 @@
 
 # flightsbr v0.2.1999 (dev)
 
+* Minor changes:
+  * Function `read_flights()` now accepts a vector of dates. Closed #29.
+  
 * Bug fixes:
   * Fixed broken link for data dictionary for airport movement data
   * Fixed code to rbindlist air fares from multiple years. Closed #26.
   * Fixed code to read a few dates that were not caught in `get_airfares_dates_available()` because of ".CSV" in ANAC url. Closed #27.
+  * Fixed code to use `get_airport_movement_dates_available()`
 
 
 

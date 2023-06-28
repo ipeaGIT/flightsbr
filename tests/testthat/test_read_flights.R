@@ -28,6 +28,13 @@ test_that("read_flights", {
   testthat::expect_true(is(test3, "data.table"))
   testthat::expect_true(nrow(test3) >0 )
 
+  # a vector of dates
+  test4 <- read_flights(date= c(202001, 202002), select=cols, showProgress = FALSE)
+  testthat::expect_true(is(test4, "data.table"))
+  testthat::expect_true(nrow(test4) >0 )
+  months <- unique(test4$nr_mes_referencia)
+  testthat::expect_true( all.equal(months , c('1','2')) )
+
  })
 
 
