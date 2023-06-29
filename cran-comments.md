@@ -1,15 +1,21 @@
 ## R CMD check results
 
--- R CMD check results --------------------------- flightsbr 0.2.1 ----
-Duration: 7m 48.8s
+── R CMD check results ──────────────────────────────────────────────────────────────── flightsbr 0.2.1 ────
+Duration: 3m 21.4s
 
-0 errors v | 0 warnings v | 0 notes v
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 
-## flightsbr v0.2.1
+## flightsbr v0.3.0
+
+* Major changes:
+  * Function read_airfares() is temporarily  unavailable. See issue [#30](https://github.com/ipeaGIT/flightsbr/issues/30) 
+
+* Minor changes:
+  * Function `read_flights()` now accepts a vector of dates. Closed #29.
 
 * Bug fixes:
-  * Fixed bug in `read_flights()` due to changes in ANAC data links.
-  * Fixed broken link in `intro_flightsbr` vignette
-
-
+  * Fixed broken link for data dictionary for airport movement data
+  * Fixed code to rbindlist air fares from multiple years. Closed #26.
+  * Fixed code to read a few dates that were not caught in `get_airfares_dates_available()` because of ".CSV" in ANAC url. Closed #27.
+  * Fixed code to use `get_airport_movement_dates_available()`

@@ -1,9 +1,13 @@
 
-# flightsbr v0.2.1999 (dev)
+# flightsbr v0.3.0
+
+
+* Major changes:
+  * Function read_airfares() is temporarily  unavailable. See issue [#30](https://github.com/ipeaGIT/flightsbr/issues/30) 
 
 * Minor changes:
   * Function `read_flights()` now accepts a vector of dates. Closed #29.
-  
+
 * Bug fixes:
   * Fixed broken link for data dictionary for airport movement data
   * Fixed code to rbindlist air fares from multiple years. Closed #26.
