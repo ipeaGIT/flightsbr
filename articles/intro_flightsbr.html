@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flightsbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
 
       
 
-      </header><script src="intro_flightsbr_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to flightsbr</h1>
@@ -101,7 +101,9 @@
 
     
     
-<p><strong>flightsbr</strong> is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The package currently includes five main functions:</p>
+<p><strong>flightsbr</strong> is an R package to download flight and
+airport data from Brazil’s Civil Aviation Agency (ANAC). The package
+currently includes five main functions:</p>
 <ol style="list-style-type: decimal">
 <li><code><a href="../reference/read_flights.html">read_flights()</a></code></li>
 <li><code><a href="../reference/read_airports.html">read_airports()</a></code></li>
@@ -112,19 +114,29 @@
 <div class="section level3">
 <h3 id="read_flights">1) <code>read_flights()</code>:<a class="anchor" aria-label="anchor" href="#read_flights"></a>
 </h3>
-<p>Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft type, payload, and the number of passengers, and several other variables. - <a href="https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/descricao-de-variaveis" class="external-link">Data dictionary for flights</a>.</p>
+<p>Flights data include detailed information on every international
+flight to and from Brazil, as well as domestic flights within the
+country. The data include flight-level information of airports of origin
+and destination, flight duration, aircraft type, payload, and the number
+of passengers, and several other variables. - <a href="https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/descricao-de-variaveis" class="external-link">Data
+dictionary for flights</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="read_airports">2) <code>read_airports()</code><a class="anchor" aria-label="anchor" href="#read_airports"></a>
 </h3>
-<p>Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC). It covers detailed information on ICAO code, municipality, geographical coordinates, runway dimensions etc.</p>
+<p>Airports data covers all airports and aerodromes registered in
+Brazil’s Civil Aviation Agency (ANAC). It covers detailed information on
+ICAO code, municipality, geographical coordinates, runway dimensions
+etc.</p>
 <ul>
 <li>Data dictionary:
 <ul>
 <li>
-<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2" class="external-link">Public airports</a>.</li>
+<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2" class="external-link">Public
+airports</a>.</li>
 <li>
-<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2" class="external-link">Private airports</a>.</li>
+<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2" class="external-link">Private
+airports</a>.</li>
 </ul>
 </li>
 </ul>
@@ -132,12 +144,17 @@
 <div class="section level3">
 <h3 id="read_aircrafts">3) <code>read_aircrafts()</code>:<a class="anchor" aria-label="anchor" href="#read_aircrafts"></a>
 </h3>
-<p>All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC). - <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/5-registro-aeronautico-brasileiro" class="external-link">Data dictionary for aircrafts data</a>.</p>
+<p>All aircrafts registered in the Brazilian Aeronautical Registry
+(Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian
+Civil Aviation Agency (ANAC). - <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/5-registro-aeronautico-brasileiro" class="external-link">Data
+dictionary for aircrafts data</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="read_airport_movements">4) <code>read_airport_movements()</code>:<a class="anchor" aria-label="anchor" href="#read_airport_movements"></a>
 </h3>
-<p>The data covers all passenger, aircraft, cargo and mail movement from airports regulated by ANAC. - <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/dados-de-movimentacao-aeroportuaria/60-dados-de-movimentacao-aeroportuaria" class="external-link">Data dictionary for airport movements data</a>.</p>
+<p>The data covers all passenger, aircraft, cargo and mail movement from
+airports regulated by ANAC. - <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/dados-de-movimentacao-aeroportuaria/60-dados-de-movimentacao-aeroportuaria" class="external-link">Data
+dictionary for airport movements data</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="read_airfares">5) <code>read_airfares()</code>:<a class="anchor" aria-label="anchor" href="#read_airfares"></a>
@@ -147,9 +164,11 @@
 <li>Data dictionary:
 <ul>
 <li>
-<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/tarifas-aereas-domesticas/46-tarifas-aereas-domesticas" class="external-link">domestic airfares</a>.</li>
+<a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/tarifas-aereas-domesticas/46-tarifas-aereas-domesticas" class="external-link">domestic
+airfares</a>.</li>
 <li>
-<a href="https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/microdados-de-tarifas-aereas-comercializadas" class="external-link">international airfares</a>.</li>
+<a href="https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/microdados-de-tarifas-aereas-comercializadas" class="external-link">international
+airfares</a>.</li>
 </ul>
 </li>
 </ul>
@@ -157,7 +176,9 @@
 <div class="section level2">
 <h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
 </h2>
-<p>Before using <strong>flightsbr</strong> please make sure that you have it installed on your computer. You can download the most stable version from CRAN.</p>
+<p>Before using <strong>flightsbr</strong> please make sure that you
+have it installed on your computer. You can download the most stable
+version from CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"flightsbr"</span><span class="op">)</span></span></code></pre></div>
 <p>Now we can load the library and start downloading data.</p>
@@ -200,7 +221,8 @@
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airport_mov</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="download-data-on-data-on-air-fares-of-domestic-flights-in-brazil">Download data on data on air fares of domestic flights in Brazil:<a class="anchor" aria-label="anchor" href="#download-data-on-data-on-air-fares-of-domestic-flights-in-brazil"></a>
+<h4 id="download-data-on-data-on-air-fares-of-domestic-flights-in-brazil">Download data on data on air fares of domestic flights in
+Brazil:<a class="anchor" aria-label="anchor" href="#download-data-on-data-on-air-fares-of-domestic-flights-in-brazil"></a>
 </h4>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">airfares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airfares.html">read_airfares</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">202003</span>, domestic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>

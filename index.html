@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">flightsbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@
 <li><code><a href="reference/read_airfares.html">read_airfares()</a></code></li>
 </ol>
 <div class="section level4">
-<h4 id="1-read_flights-to-download-data-on-national-and-international-flights">1) <code>read_flights()</code> to download data on national and international flights.<a class="anchor" aria-label="anchor" href="#1-read_flights-to-download-data-on-national-and-international-flights"></a>
+<h4 id="id_1-read_flights-to-download-data-on-national-and-international-flights">1) <code>read_flights()</code> to download data on national and international flights.<a class="anchor" aria-label="anchor" href="#id_1-read_flights-to-download-data-on-national-and-international-flights"></a>
 </h4>
 <pre><code><span><span class="co"># flights in a given month/year (yyyymm)</span></span>
 <span><span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201506</span><span class="op">)</span></span>
@@ -131,7 +131,7 @@
 <span><span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">2015</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level4">
-<h4 id="2-read_airports-to-download-data-on-private-and-public-airports">2) <code>read_airports()</code> to download data on private and public airports.<a class="anchor" aria-label="anchor" href="#2-read_airports-to-download-data-on-private-and-public-airports"></a>
+<h4 id="id_2-read_airports-to-download-data-on-private-and-public-airports">2) <code>read_airports()</code> to download data on private and public airports.<a class="anchor" aria-label="anchor" href="#id_2-read_airports-to-download-data-on-private-and-public-airports"></a>
 </h4>
 <pre><code><span><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span><span class="op">)</span></span>
 <span></span>
@@ -139,17 +139,17 @@
 <span><span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level4">
-<h4 id="3-read_aircrafts-to-download-aircrafts-data">3) <code>read_aircrafts()</code> to download aircrafts data.<a class="anchor" aria-label="anchor" href="#3-read_aircrafts-to-download-aircrafts-data"></a>
+<h4 id="id_3-read_aircrafts-to-download-aircrafts-data">3) <code>read_aircrafts()</code> to download aircrafts data.<a class="anchor" aria-label="anchor" href="#id_3-read_aircrafts-to-download-aircrafts-data"></a>
 </h4>
 <pre><code><span><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level4">
-<h4 id="4-read_airport_movements-to-download-data-on-aiport-movements">4) <code>read_airport_movements()</code> to download data on aiport movements.<a class="anchor" aria-label="anchor" href="#4-read_airport_movements-to-download-data-on-aiport-movements"></a>
+<h4 id="id_4-read_airport_movements-to-download-data-on-aiport-movements">4) <code>read_airport_movements()</code> to download data on aiport movements.<a class="anchor" aria-label="anchor" href="#id_4-read_airport_movements-to-download-data-on-aiport-movements"></a>
 </h4>
 <pre><code><span><span class="va">airport_ops</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_airport_movements.html">read_airport_movements</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level4">
-<h4 id="5-read_airfares-to-download-data-on-airfares-of-domestic-or-international-flights">5) <code>read_airfares()</code> to download data on airfares of domestic or international flights.<a class="anchor" aria-label="anchor" href="#5-read_airfares-to-download-data-on-airfares-of-domestic-or-international-flights"></a>
+<h4 id="id_5-read_airfares-to-download-data-on-airfares-of-domestic-or-international-flights">5) <code>read_airfares()</code> to download data on airfares of domestic or international flights.<a class="anchor" aria-label="anchor" href="#id_5-read_airfares-to-download-data-on-airfares-of-domestic-or-international-flights"></a>
 </h4>
 <pre><code><span><span class="va">airfares</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_airfares.html">read_airfares</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span>, domestic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
@@ -157,7 +157,9 @@
 <h4 id="related-projects">
 <strong>Related projects</strong><a class="anchor" aria-label="anchor" href="#related-projects"></a>
 </h4>
-<ul><li><a href="https://github.com/Rafael-Ayala/openSkies" class="external-link">openSkies: a client interface to the ‘OpenSky’ API</a></li></ul>
+<ul>
+<li><a href="https://github.com/Rafael-Ayala/openSkies" class="external-link">openSkies: a client interface to the ‘OpenSky’ API</a></li>
+</ul>
 <p>As of today, there are two repositories/projects with Brazilian aviation data, which include more info related to weather conditions, air traffic management etc. The advantage of <strong>flightsbt</strong> is that it’s the easiest and fastest way to download flight and airport Data from Brazil in <code>R</code>.</p>
 <ul>
 <li>
@@ -172,8 +174,10 @@
 <a class="anchor" aria-label="anchor" href="#acknowledgement-"></a>
 </h2>
 <p>Original data is collected by <a href="https://www.gov.br/anac/pt-br" class="external-link">Brazil’s Civil Aviation Agency (ANAC)</a>. The <strong>flightsbr</strong> package is developed by a team at the Institute for Applied Economic Research (Ipea), Brazil. If you want to cite this package, you can cite it as:</p>
-<ul><li>Pereira, R.H.M. (2022). <strong>flightsbr: Download Flight And Airport Data from Brazil</strong>. R package (Version 0.1.0). OSF. <a href="https://doi.org/10.31219/osf.io/jdv7u" class="external-link uri">https://doi.org/10.31219/osf.io/jdv7u</a>
-</li></ul>
+<ul>
+<li>Pereira, R.H.M. (2022). <strong>flightsbr: Download Flight And Airport Data from Brazil</strong>. R package (Version 0.1.0). OSF. <a href="https://doi.org/10.31219/osf.io/jdv7u" class="external-link uri">https://doi.org/10.31219/osf.io/jdv7u</a>
+</li>
+</ul>
 </div>
 </div>
   </div>

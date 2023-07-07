@@ -1,9 +1,9 @@
-pandoc: 2.7.3
+pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   airports: airports.html
   flights: flights.html
   intro_flightsbr: intro_flightsbr.html
-last_built: 2023-01-07T14:54Z
+last_built: 2023-07-07T23:15Z
 
