@@ -4,12 +4,18 @@
 \alias{download_flightsbr_file}
 \title{Download file from url}
 \usage{
-download_flightsbr_file(file_url, showProgress = showProgress)
+download_flightsbr_file(
+  file_url,
+  showProgress = showProgress,
+  dest_file = temp_local_file
+)
 }
 \arguments{
 \item{file_url}{String. A url passed from get_flights_url.}
 
 \item{showProgress}{Logical, passed from \code{\link{read_flights}}}
+
+\item{dest_file}{String, passed from \code{\link{read_flights}}}
 }
 \value{
 Silently saves downloaded file to temp dir.
@@ -23,7 +29,10 @@ Download file from url
 file_url <- get_flights_url(type='basica', year=2000, month=11)
 
 # download data
-download_flightsbr_file(file_url=file_url, showProgress=TRUE)
+download_flightsbr_file(file_url=file_url,
+                        showProgress=TRUE,
+                        dest_file = tempfile(fileext = ".zip")
+                       )
 }}
 }
 \keyword{internal}

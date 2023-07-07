@@ -15,7 +15,7 @@
 #' @aliases flightsbr-package
 #'
 #' @importFrom data.table := %like%
-#' @importFrom utils globalVariables
+#' @importFrom utils globalVariables unzip
 "_PACKAGE"
 
 
@@ -23,5 +23,6 @@
 utils::globalVariables( c('month',
                           'year',
                           'latitude',
-                          'longitude') )
+                          'longitude',
+                          'temp_local_file') )
 

@@ -32,7 +32,7 @@ read_aircrafts <- function( showProgress = TRUE ){
   data.table::setDTthreads(percent = 100)
 
   # download data
-  rab_dt <- try(silent=T,
+  rab_dt <- try(silent=TRUE,
                 data.table::fread(rab_url,
                                   skip = 1,
                                   encoding = 'UTF-8',

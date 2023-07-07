@@ -361,6 +361,7 @@ get_airfares_url <- function(dom, year, month) { # nocov start
 #'
 #' @param file_url String. A url passed from get_flights_url.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
+#' @param dest_file String, passed from \code{\link{read_flights}}
 #'
 #' @return Silently saves downloaded file to temp dir.
 #'
@@ -370,36 +371,35 @@ get_airfares_url <- function(dom, year, month) { # nocov start
 #' file_url <- get_flights_url(type='basica', year=2000, month=11)
 #'
 #' # download data
-#' download_flightsbr_file(file_url=file_url, showProgress=TRUE)
+#' download_flightsbr_file(file_url=file_url,
+#'                         showProgress=TRUE,
+#'                         dest_file = tempfile(fileext = ".zip")
+#'                        )
 #'}}
-download_flightsbr_file <- function(file_url, showProgress=showProgress){
-
-  # create temp local file
-  file_name <- basename(file_url)
-  temp_local_file <- paste0(tempdir(),"/",file_name)
+download_flightsbr_file <- function(file_url, showProgress=showProgress, dest_file = temp_local_file){
 
   # download data
   try(
     httr::GET(url=file_url,
               if(showProgress==T){ httr::progress()},
-              httr::write_disk(temp_local_file, overwrite = T),
+              httr::write_disk(dest_file, overwrite = T),
               config = httr::config(ssl_verifypeer = FALSE)
     ), silent = TRUE)
 
   # check if file has NOT been downloaded, try a 2nd time
-  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  if (!file.exists(dest_file) | file.info(dest_file)$size == 0) {
 
     # download data: try a 2nd time
     try(
       httr::GET(url=file_url,
                 if(showProgress==T){ httr::progress()},
-                httr::write_disk(temp_local_file, overwrite = T),
+                httr::write_disk(dest_file, overwrite = T),
                 config = httr::config(ssl_verifypeer = FALSE)
       ), silent = TRUE)
   }
 
   # Halt function if download failed
-  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  if (!file.exists(dest_file) | file.info(dest_file)$size == 0) {
     message('Internet connection not working.')
     return(invisible(NULL)) }
 }
@@ -432,18 +432,31 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
   # download data
-  download_flightsbr_file(file_url=file_url, showProgress=showProgress)
+  download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
   }
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
-  # address of zipped file stored locally
-  temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
+  # # address of zipped file stored locally
+  # temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
+  #
+  # # read zipped file stored locally
+  # dt <- data.table::fread( cmd =  temp_local_file_zip, select=select, colClasses = 'character', sep = ';')
 
-  # read zipped file stored locally
-  dt <- data.table::fread( cmd =  temp_local_file_zip, select=select, colClasses = 'character', sep = ';')
+  # unzip file to tempdir
+  temp_local_dir <- tempdir()
+  utils::unzip(zipfile = temp_local_file, exdir = temp_local_dir)
+
+  # get file name
+  file_name <- utils::unzip(temp_local_file, list = TRUE)$Name
+
+  # read file stored locally
+  dt <- data.table::fread( paste0(temp_local_dir,'/', file_name),
+                           select = select,
+                           colClasses = 'character',
+                           sep = ';')
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
@@ -480,7 +493,7 @@ download_airfares_data <- function(file_url, showProgress=showProgress, select=s
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
     # download data
-    download_flightsbr_file(file_url=file_url, showProgress=showProgress)
+    download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
   }
 
   ### set threads for fread
@@ -587,7 +600,7 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
     # download data
-    download_flightsbr_file(file_url=file_url, showProgress=showProgress)
+    download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
   }
 
   ### set threads for fread

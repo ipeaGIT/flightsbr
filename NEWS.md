@@ -1,6 +1,10 @@
+# flightsbr v0.3.0999 dev
 
+* Bug fixes:
+  * Fixed bug when unzipping files for `read_flights()` function in Unix systems. 
+  Closed #31.
+ 
 # flightsbr v0.3.0
-
 
 * Major changes:
   * Function read_airfares() is temporarily  unavailable. See issue [#30](https://github.com/ipeaGIT/flightsbr/issues/30) 
