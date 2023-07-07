@@ -66,6 +66,9 @@ if (nchar(date)==6) {
   # check if download failed
   if (is.null(dt)) { return(invisible(NULL)) }
 
+  # convert columns to numeric
+  convert_to_numeric(dt)
+
   return(dt)
 
 
@@ -108,6 +111,10 @@ pbapply::pboptions(original_options)
 
 # row bind data tables
 dt <- data.table::rbindlist(dt_list, fill=TRUE)
+
+# convert columns to numeric
+convert_to_numeric(dt)
+
 return(dt)
 
 }}

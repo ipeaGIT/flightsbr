@@ -55,6 +55,9 @@ read_airport_movements <- function(date = 202001, showProgress = TRUE){
     # check if download failed
     if (is.null(dt)) { return(invisible(NULL)) } # nocov
 
+    # convert columns to numeric
+    convert_to_numeric(dt)
+
     return(dt)
 
 
@@ -97,6 +100,10 @@ read_airport_movements <- function(date = 202001, showProgress = TRUE){
 
     # row bind data tables
     dt <- data.table::rbindlist(dt_list)
+
+    # convert columns to numeric
+    convert_to_numeric(dt)
+
     return(dt)
   }
 }

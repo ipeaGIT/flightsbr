@@ -1,5 +1,8 @@
 # flightsbr v0.3.0999 dev
 
+* Minor changes:
+  * All functions now return numeric columns with `numeric` class. Closed #32.
+
 * Bug fixes:
   * Fixed bug when unzipping files for `read_flights()` function in Unix systems. 
   Closed #31.

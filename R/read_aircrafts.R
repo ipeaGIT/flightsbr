@@ -59,6 +59,8 @@ read_aircrafts <- function( showProgress = TRUE ){
      message('Internet connection not working.') # nocov
      return(invisible(NULL)) }
 
+   # convert columns to numeric
+   convert_to_numeric(rab_dt)
 
    # return output
    return(rab_dt)

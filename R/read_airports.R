@@ -83,7 +83,9 @@ if (any(type %in% c('public', 'all'))){
 
   # add type info
    data.table::setDT(dt_public)[, type := 'public']
-  # dt_public$type <- 'public'
+
+   # convert columns to numeric
+   convert_to_numeric(dt_public)
 
   }
 
@@ -132,7 +134,9 @@ if (any(type %in% c('private', 'all'))){
 
   # add type info
    data.table::setDT(dt_private)[, type := 'private']
-  # dt_private$type <- 'private'
+
+   # convert columns to numeric
+   convert_to_numeric(dt_private)
 
   }
 
@@ -152,6 +156,9 @@ if (type == 'all') {
                     dt_private <- dt_private[, cols_to_keep, with=FALSE]
 
                     dt <- data.table::rbindlist(list(dt_public, dt_private), use.names=FALSE)
+
+                    # convert columns to numeric
+                    convert_to_numeric(dt)
 
                     return(dt)
                     }

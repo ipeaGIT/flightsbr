@@ -621,4 +621,22 @@ download_airport_movement_data <- function(file_url, showProgress=showProgress){
   data.table::setDTthreads(orig_threads)
 
   return(dt)
+}
+
+
+#' @keywords internal
+convert_to_numeric <- function(dt) {
+
+  # detect if there are any columns that should be numeric
+  numeric_cols <- names(dt)[names(dt) %like% 'NR_' | names(dt) %like% 'nr_']
+
+  if (length(numeric_cols)==0) { return(invisible(TRUE)) }
+
+  # convert columns to numeric
+  data.table::setDT(dt)
+  suppressWarnings(
+    dt[,(numeric_cols):= lapply(.SD, as.numeric), .SDcols = numeric_cols]
+    )
+
+  return(invisible(TRUE))
 } # nocov end
