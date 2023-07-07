@@ -81,6 +81,9 @@ This also works with non-ASCII characters embedded in longer sentences:
 
 
 ##### Coverage ------------------------
+# usethis::use_coverage()
+# usethis::use_github_action("test-coverage")
+
 library(flightsbr)
 library(testthat)
 library(covr)
