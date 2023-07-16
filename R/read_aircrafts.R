@@ -7,7 +7,7 @@
 #' Civil Aviation Agency (ANAC). A description of all variables included in the
 #' data is available at \url{https://www.gov.br/anac/pt-br/sistemas/rab}.
 #'
-#' @param showProgress Logical. Defaults to `TRUE` display progress.
+#' @template showProgress
 #'
 #' @return A `"data.table" "data.frame"` object. All columns are returned with
 #'         `class` of type `"character"`.

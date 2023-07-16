@@ -11,8 +11,8 @@
 #'             columns. Downloading `public` and `private` airports separately
 #'             will return the full set of columns available for each of those
 #'             data sets.
+#' @template showProgress
 #'
-#' @param showProgress Logical. Defaults to `TRUE` display progress.
 #' @return A `"data.table" "data.frame"` object.
 #' @importFrom data.table :=
 #' @export

@@ -8,16 +8,12 @@
 #' A description of all variables included in the data for international airfares
 #' is available at \url{https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/microdados-de-tarifas-aereas-comercializadas}.
 #'
-#' @param date Numeric. Date of the data in the format `yyyymm`. Defaults to
-#'             `202001`. To download the data for all months in a year, the user
-#'             can pass a 4-digit year input `yyyy`.
+#' @template date
 #' @param domestic Logical. Defaults to `TRUE` download airfares of domestic
 #'                 flights. If `FALSE`, the function downloads airfares of
 #'                 international flights.
-#' @param showProgress Logical. Defaults to `TRUE` display progress.
-#' @param select A vector of column names or numbers to keep, drop the rest. The
-#'               order that the columns are specified determines the order of the
-#'               columns in the result.
+#' @template showProgress
+#' @template select
 #'
 #' @return A `"data.table" "data.frame"` object. All columns are returned with
 #'         `class` of type `"character"`.

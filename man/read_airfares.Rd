@@ -22,9 +22,9 @@ international flights.}
 
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
 
-\item{select}{A vector of column names or numbers to keep, drop the rest. The
-order that the columns are specified determines the order of the
-columns in the result.}
+\item{select}{A vector of column names or positions to keep. The rest of the
+columns are not read. The order that the columns passed determines the
+order of the columns in the result.}
 }
 \value{
 A \verb{"data.table" "data.frame"} object. All columns are returned with

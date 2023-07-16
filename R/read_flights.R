@@ -15,13 +15,9 @@
 #' @param type String. Whether the data set should be of the type `basica`
 #'             (flight stage, the default) or `combinada` (On flight origin and
 #'             destination - OFOD).
-#' @param showProgress Logical. Defaults to `TRUE` display progress.
-#' @param select A vector of column names or numbers to keep, drop the rest. The
-#'               order that the columns are specified determines the order of the
-#'               columns in the result.
-#' @param cache Logical. Whether the function should read cached data downloaded
-#'              previously. Defaults to `TRUE`. If `FALSE`, the function will
-#'              always download the data and overwrite cached data.
+#' @template showProgress
+#' @template cache
+#' @template select
 #'
 #' @return A `"data.table" "data.frame"` object. All columns are returned with
 #'         `class` of type `"character"`.
