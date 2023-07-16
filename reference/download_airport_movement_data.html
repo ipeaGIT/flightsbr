@@ -69,7 +69,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_airport_movement_data</span><span class="op">(</span><span class="va">file_url</span>, showProgress <span class="op">=</span> <span class="va">showProgress</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_airport_movement_data</span><span class="op">(</span></span>
+<span>  file_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">file_url</span>,</span>
+<span>  showProgress <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">showProgress</span>,</span>
+<span>  cache <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">cache</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,6 +83,10 @@
 
 
 <dt>showProgress</dt>
+<dd><p>Logical, passed from <code><a href="read_flights.html">read_flights</a></code></p></dd>
+
+
+<dt>cache</dt>
 <dd><p>Logical, passed from <code><a href="read_flights.html">read_flights</a></code></p></dd>
 
 </dl></div>

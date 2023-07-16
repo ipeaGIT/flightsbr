@@ -77,7 +77,7 @@ description of all variables included in the data is available at
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_airport_movements</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span>, showProgress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_airport_movements</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span>, showProgress <span class="op">=</span> <span class="cn">TRUE</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -90,6 +90,12 @@ can pass a 4-digit year input <code>yyyy</code>.</p></dd>
 
 <dt>showProgress</dt>
 <dd><p>Logical. Defaults to <code>TRUE</code> display progress.</p></dd>
+
+
+<dt>cache</dt>
+<dd><p>Logical. Whether the function should read cached data downloaded
+previously. Defaults to <code>TRUE</code>. If <code>FALSE</code>, the function will
+always download the data and overwrite cached data.</p></dd>
 
 </dl></div>
     <div id="value">
