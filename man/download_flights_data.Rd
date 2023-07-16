@@ -4,14 +4,21 @@
 \alias{download_flights_data}
 \title{Download and read ANAC flight data}
 \usage{
-download_flights_data(file_url, showProgress = showProgress, select = select)
+download_flights_data(
+  file_url,
+  showProgress = parent.frame()$showProgress,
+  select = parent.frame()$select,
+  cache = parent.frame()$cache
+)
 }
 \arguments{
-\item{file_url}{String. A url passed from get_flights_url.}
+\item{file_url}{String. A url passed from \code{\link{get_flights_url}}.}
 
 \item{showProgress}{Logical, passed from \code{\link{read_flights}}}
 
 \item{select}{A vector of column names or numbers to keep, passed from \code{\link{read_flights}}}
+
+\item{cache}{Logical, passed from \code{\link{read_flights}}}
 }
 \value{
 A \verb{"data.table" "data.frame"} object

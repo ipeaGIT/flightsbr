@@ -359,7 +359,7 @@ get_airfares_url <- function(dom, year, month) { # nocov start
 
 #' Download file from url
 #'
-#' @param file_url String. A url passed from get_flights_url.
+#' @param file_url String. A url passed from \code{\link{get_flights_url}}.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
 #' @param dest_file String, passed from \code{\link{read_flights}}
 #'
@@ -408,10 +408,11 @@ download_flightsbr_file <- function(file_url, showProgress=showProgress, dest_fi
 
 #' Download and read ANAC flight data
 #'
-#' @param file_url String. A url passed from get_flights_url.
+#' @param file_url String. A url passed from \code{\link{get_flights_url}}.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
 #' @param select A vector of column names or numbers to keep, passed from \code{\link{read_flights}}
-#'
+#' @param cache Logical, passed from \code{\link{read_flights}}
+
 #' @return A `"data.table" "data.frame"` object
 #'
 #' @keywords internal
@@ -422,14 +423,22 @@ download_flightsbr_file <- function(file_url, showProgress=showProgress, dest_fi
 #' # download data
 #' a <- download_flights_data(file_url=file_url, showProgress=TRUE, select=NULL)
 #'}}
-download_flights_data <- function(file_url, showProgress=showProgress, select=select){ # nocov start
+download_flights_data <- function(file_url,
+                                  showProgress = parent.frame()$showProgress,
+                                  select = parent.frame()$select,
+                                  cache = parent.frame()$cache){ # nocov start
 
   # create temp local file
   file_name <- basename(file_url)
   temp_local_file <- paste0(tempdir(),"/",file_name)
 
-  # check if file has not been downloaded already. If not, download it
-  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  # use cached files or not
+  if (cache==FALSE & file.exists(temp_local_file)) {
+    unlink(temp_local_file, recursive = T)
+    }
+
+  # has the file been downloaded already? If not, download it
+  if (cache==FALSE | !file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
   # download data
   download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
@@ -469,7 +478,7 @@ download_flights_data <- function(file_url, showProgress=showProgress, select=se
 
 #' Download and read ANAC air fares data
 #'
-#' @param file_url String. A url passed from get_flights_url.
+#' @param file_url String. A url passed from \code{\link{get_flights_url}}.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
 #' @param select A vector of column names or numbers to keep, passed from \code{\link{read_flights}}
 #'
@@ -577,7 +586,7 @@ get_airport_movements_url <- function(year, month) { # nocov start
 
 #' Download and read ANAC airport movement data
 #'
-#' @param file_url String. A url passed from get_flights_url.
+#' @param file_url String. A url passed from \code{\link{get_flights_url}}.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
 #'
 #' @return A `"data.table" "data.frame"` object

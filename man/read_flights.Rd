@@ -8,7 +8,8 @@ read_flights(
   date = 202001,
   type = "basica",
   showProgress = TRUE,
-  select = NULL
+  select = NULL,
+  cache = TRUE
 )
 }
 \arguments{
@@ -26,6 +27,10 @@ destination - OFOD).}
 \item{select}{A vector of column names or numbers to keep, drop the rest. The
 order that the columns are specified determines the order of the
 columns in the result.}
+
+\item{cache}{Logical. Whether the function should read cached data downloaded
+previously. Defaults to \code{TRUE}. If \code{FALSE}, the function will
+always download the data and overwrite cached data.}
 }
 \value{
 A \verb{"data.table" "data.frame"} object. All columns are returned with

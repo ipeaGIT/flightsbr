@@ -19,6 +19,9 @@
 #' @param select A vector of column names or numbers to keep, drop the rest. The
 #'               order that the columns are specified determines the order of the
 #'               columns in the result.
+#' @param cache Logical. Whether the function should read cached data downloaded
+#'              previously. Defaults to `TRUE`. If `FALSE`, the function will
+#'              always download the data and overwrite cached data.
 #'
 #' @return A `"data.table" "data.frame"` object. All columns are returned with
 #'         `class` of type `"character"`.
@@ -33,7 +36,8 @@
 read_flights <- function(date = 202001,
                          type = 'basica',
                          showProgress = TRUE,
-                         select = NULL){
+                         select = NULL,
+                         cache = TRUE){
 
 ### check inputs
   if( ! type %in% c('basica', 'combinada') ){ stop(paste0("Argument 'type' must be either 'basica' or 'combinada'")) }
@@ -62,8 +66,9 @@ if (length(date) == 1 & nchar(date[1])==6) {
 
 # download and read data
   dt <- download_flights_data(file_url,
-                              showProgress = showProgress,
-                              select = select)
+                              showProgress,
+                              select,
+                              cache)
 
   # check if download failed
   if (is.null(dt)) { return(invisible(NULL)) }
@@ -106,7 +111,8 @@ dt_list <- pbapply::pblapply( X=all_months,
                       # download and read data
                       temp_dt <- download_flights_data(file_url,
                                                        showProgress = FALSE,
-                                                       select = select)
+                                                       select,
+                                                       cache)
 
                       # check if download failed
                       if (is.null(temp_dt)) { return(invisible(NULL)) }

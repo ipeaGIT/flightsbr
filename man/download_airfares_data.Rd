@@ -7,7 +7,7 @@
 download_airfares_data(file_url, showProgress = showProgress, select = select)
 }
 \arguments{
-\item{file_url}{String. A url passed from get_flights_url.}
+\item{file_url}{String. A url passed from \code{\link{get_flights_url}}.}
 
 \item{showProgress}{Logical, passed from \code{\link{read_flights}}}
 
