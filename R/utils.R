@@ -376,7 +376,9 @@ get_airfares_url <- function(dom, year, month) { # nocov start
 #'                         dest_file = tempfile(fileext = ".zip")
 #'                        )
 #'}}
-download_flightsbr_file <- function(file_url, showProgress=showProgress, dest_file = temp_local_file){
+download_flightsbr_file <- function(file_url = parent.frame()$file_url,
+                                    showProgress = parent.frame()$showProgress,
+                                    dest_file = temp_local_file){
 
   # download data
   try(
@@ -423,7 +425,7 @@ download_flightsbr_file <- function(file_url, showProgress=showProgress, dest_fi
 #' # download data
 #' a <- download_flights_data(file_url=file_url, showProgress=TRUE, select=NULL)
 #'}}
-download_flights_data <- function(file_url,
+download_flights_data <- function(file_url = parent.frame()$file_url,
                                   showProgress = parent.frame()$showProgress,
                                   select = parent.frame()$select,
                                   cache = parent.frame()$cache){ # nocov start
@@ -492,7 +494,9 @@ download_flights_data <- function(file_url,
 #' # download data
 #' a <- download_airfares_data(file_url=file_url, showProgress=TRUE, select=NULL)
 #'}}
-download_airfares_data <- function(file_url, showProgress=showProgress, select=select){ # nocov start
+download_airfares_data <- function(file_url = parent.frame()$file_url,
+                                   showProgress = parent.frame()$showProgress,
+                                   select = parent.frame()$select){ # nocov start
 
   # create temp local file
   file_name <- basename(file_url)
@@ -588,6 +592,7 @@ get_airport_movements_url <- function(year, month) { # nocov start
 #'
 #' @param file_url String. A url passed from \code{\link{get_flights_url}}.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
+#' @param cache Logical, passed from \code{\link{read_flights}}
 #'
 #' @return A `"data.table" "data.frame"` object
 #'
@@ -599,14 +604,21 @@ get_airport_movements_url <- function(year, month) { # nocov start
 #' # download data
 #' a <- download_airport_movement_data(file_url=file_url, showProgress=TRUE)
 #'}}
-download_airport_movement_data <- function(file_url, showProgress=showProgress){ # nocov start
+download_airport_movement_data <- function(file_url = parent.frame()$file_url,
+                                           showProgress = parent.frame()$showProgress,
+                                           cache = parent.frame()$cache){ # nocov start
 
   # # create temp local file
   file_name <- basename(file_url)
   temp_local_file <- paste0(tempdir(),"/",file_name)
 
+  # use cached files or not
+  if (cache==FALSE & file.exists(temp_local_file)) {
+    unlink(temp_local_file, recursive = T)
+  }
+
   # check if file has not been downloaded already. If not, download it
-  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  if (cache==FALSE | !file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
     # download data
     download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)

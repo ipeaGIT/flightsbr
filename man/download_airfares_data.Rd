@@ -4,7 +4,11 @@
 \alias{download_airfares_data}
 \title{Download and read ANAC air fares data}
 \usage{
-download_airfares_data(file_url, showProgress = showProgress, select = select)
+download_airfares_data(
+  file_url = parent.frame()$file_url,
+  showProgress = parent.frame()$showProgress,
+  select = parent.frame()$select
+)
 }
 \arguments{
 \item{file_url}{String. A url passed from \code{\link{get_flights_url}}.}

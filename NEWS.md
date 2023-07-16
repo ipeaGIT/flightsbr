@@ -1,8 +1,10 @@
 # flightsbr v0.3.0999 dev
 
+* Major changes:
+  * The functions `read_flights()` and `read_airport_movements()` now have a new parameter `cache`, which indicates whether the function should read cached data downloaded previously. Defaults to `TRUE`. Closed #31.
+
 * Minor changes:
   * All functions now return numeric columns with `numeric` class. Closed #32.
-  * The function `read_flights()` has a new parameter `cache`, which indicates whether the function should read cached data downloaded previously. Defaults to `TRUE`. Closed #31.
 
 * Bug fixes:
   * Fixed bug when unzipping files for `read_flights()` function in Unix systems. 

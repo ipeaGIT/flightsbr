@@ -4,7 +4,7 @@
 \alias{read_airport_movements}
 \title{Download airport movement data from Brazil}
 \usage{
-read_airport_movements(date = 202001, showProgress = TRUE)
+read_airport_movements(date = 202001, showProgress = TRUE, cache = TRUE)
 }
 \arguments{
 \item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to
@@ -12,6 +12,10 @@ read_airport_movements(date = 202001, showProgress = TRUE)
 can pass a 4-digit year input \code{yyyy}.}
 
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
+
+\item{cache}{Logical. Whether the function should read cached data downloaded
+previously. Defaults to \code{TRUE}. If \code{FALSE}, the function will
+always download the data and overwrite cached data.}
 }
 \value{
 A \verb{"data.table" "data.frame"} object. All columns are returned with

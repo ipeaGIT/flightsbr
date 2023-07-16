@@ -5,7 +5,7 @@
 \title{Download and read ANAC flight data}
 \usage{
 download_flights_data(
-  file_url,
+  file_url = parent.frame()$file_url,
   showProgress = parent.frame()$showProgress,
   select = parent.frame()$select,
   cache = parent.frame()$cache

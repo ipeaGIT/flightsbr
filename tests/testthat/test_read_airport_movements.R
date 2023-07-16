@@ -19,6 +19,19 @@ test_that("read_airport_movements", {
   # all months in a year
   test2 <- read_airport_movements(date=2022, showProgress = FALSE)
   testthat::expect_true(is(test2, "data.table"))
+
+
+  # check whether cache argument is working
+  time_first <- system.time(
+    f201506 <- read_airport_movements(date = 202210))
+
+  time_cache_true <- system.time(
+    f201506 <- read_airport_movements(date = 202210, cache = TRUE))
+
+  time_cache_false <- system.time(
+    f201506 <- read_airport_movements(date = 202210, cache = FALSE))
+
+  testthat::expect_true( time_cache_true[['elapsed']] < time_cache_false[['elapsed']] )
  })
 
 

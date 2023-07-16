@@ -5,8 +5,8 @@
 \title{Download file from url}
 \usage{
 download_flightsbr_file(
-  file_url,
-  showProgress = showProgress,
+  file_url = parent.frame()$file_url,
+  showProgress = parent.frame()$showProgress,
   dest_file = temp_local_file
 )
 }
