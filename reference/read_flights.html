@@ -83,7 +83,8 @@ description of all variables included in the data is available at <a href="https
 <span>  date <span class="op">=</span> <span class="fl">202001</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"basica"</span>,</span>
 <span>  showProgress <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  select <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  select <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cache <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -110,6 +111,12 @@ destination - OFOD).</p></dd>
 <dd><p>A vector of column names or numbers to keep, drop the rest. The
 order that the columns are specified determines the order of the
 columns in the result.</p></dd>
+
+
+<dt>cache</dt>
+<dd><p>Logical. Whether the function should read cached data downloaded
+previously. Defaults to <code>TRUE</code>. If <code>FALSE</code>, the function will
+always download the data and overwrite cached data.</p></dd>
 
 </dl></div>
     <div id="value">

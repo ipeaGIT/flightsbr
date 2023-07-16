@@ -69,13 +69,18 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_flights_data</span><span class="op">(</span><span class="va">file_url</span>, showProgress <span class="op">=</span> <span class="va">showProgress</span>, select <span class="op">=</span> <span class="va">select</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_flights_data</span><span class="op">(</span></span>
+<span>  <span class="va">file_url</span>,</span>
+<span>  showProgress <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">showProgress</span>,</span>
+<span>  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">select</span>,</span>
+<span>  cache <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">cache</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>file_url</dt>
-<dd><p>String. A url passed from get_flights_url.</p></dd>
+<dd><p>String. A url passed from <code><a href="get_flights_url.html">get_flights_url</a></code>.</p></dd>
 
 
 <dt>showProgress</dt>
@@ -84,6 +89,10 @@
 
 <dt>select</dt>
 <dd><p>A vector of column names or numbers to keep, passed from <code><a href="read_flights.html">read_flights</a></code></p></dd>
+
+
+<dt>cache</dt>
+<dd><p>Logical, passed from <code><a href="read_flights.html">read_flights</a></code></p></dd>
 
 </dl></div>
     <div id="value">
