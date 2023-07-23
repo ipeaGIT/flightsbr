@@ -75,12 +75,18 @@ data is available at <a href="https://www.gov.br/anac/pt-br/sistemas/rab" class=
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_aircrafts</span><span class="op">(</span>showProgress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_aircrafts</span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202001</span>, showProgress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>showProgress</dt>
+    <dl><dt>date</dt>
+<dd><p>Numeric. Date of the data in the format <code>yyyymm</code>. Defaults to
+<code>202001</code>. To download the data for all months in a year, the user
+can pass a 4-digit year input <code>yyyy</code>.</p></dd>
+
+
+<dt>showProgress</dt>
 <dd><p>Logical. Defaults to <code>TRUE</code> display progress.</p></dd>
 
 </dl></div>

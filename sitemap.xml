@@ -31,6 +31,9 @@
     <loc>/reference/check_date.html</loc>
   </url>
   <url>
+    <loc>/reference/download_aircrafts_data.html</loc>
+  </url>
+  <url>
     <loc>/reference/download_airfares_data.html</loc>
   </url>
   <url>
@@ -47,6 +50,12 @@
   </url>
   <url>
     <loc>/reference/generate_all_months.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_aircrafts_dates_available.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_aircrafts_url.html</loc>
   </url>
   <url>
     <loc>/reference/get_airfares_dates_available.html</loc>
