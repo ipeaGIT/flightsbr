@@ -1,9 +1,9 @@
-library(data.table)
 library(flightsbr)
 library(geobr)
-library(igraph)
-# library(ggforce)
 library(edgebundle) # https://github.com/schochastics/edgebundle
+library(igraph)
+library(data.table)
+# library(ggforce)
 library(ggplot2)
 library(janitor)
 # https://mwallinger-tu.github.io/edge-path-bundling/
@@ -12,8 +12,8 @@ library(janitor)
 # Download data -----------------
 
 # flight and airport data
-airports <- flightsbr::read_airports(type = 'all')
-flights <- flightsbr::read_flights(date = 201901)
+airports <- flightsbr::read_airports(type = 'public')
+flights <- flightsbr::read_flights(date = 2023)
 
 # clean names
 airports <- janitor::clean_names(airports)
@@ -23,12 +23,17 @@ flights <- janitor::clean_names(flights)
 br <- geobr::read_country()
 
 
-
 # Filter data -----------------
 
 # Keep flights to and from airports in Brazil
 flights2 <- subset(flights, nm_pais_origem   =="BRASIL")
 flights2 <- subset(flights2, nm_pais_destino =="BRASIL")
+
+
+# # flights from and to public airports
+# flights2 <- subset(flights2, sg_icao_origem %in% airports$codigo_oaci |
+#                              sg_icao_destino %in% airports$codigo_oaci)
+
 
 # year of flight arrival
 flights2[, year := nr_ano_chegada_real ]
@@ -39,7 +44,8 @@ flights2[, year := nr_ano_chegada_real ]
 edges <- flights2[, .(n_flights = .N,
                       weight = .N,
                       n_passengers = sum(as.numeric(nr_passag_pagos))),
-                  by = .(sg_icao_origem, sg_icao_destino, year)]
+                  by = .(sg_icao_origem, sg_icao_destino)]
+
 
 
 # Add spatial coordinates do edges -----------------
@@ -55,8 +61,6 @@ edges[ airports, on=c('sg_icao_destino'='codigo_oaci'),
 
 head(edges)
 
-# keep flights with in 2019
-edges <- subset(edges, year %in% 2019)
 
 # drop flights with airport missing info
 edges <- subset(edges, sg_icao_origem != '' | sg_icao_destino  != '')
@@ -80,31 +84,33 @@ xy <- cbind(V(g)$longitude, V(g)$latitude)
 
 
 
-### Edge Bundling -----------------
-d = 20 # how much bending / max_distortion
-w = 6
+### Edge undling -----------------
+d = 16 # how much bending / max_distortion
+w = 4
 s = 20
+# 12 4 20
 
 # Edge-Path Bundling
-pbundle <- edge_bundle_path(g, xy,
-                            max_distortion = d,
-                            weight_fac = w, #   E(g)$weight,
-                            segments = s)
+pbundle <- edgebundle::edge_bundle_path(g, xy,
+                                        max_distortion = d,
+                                        weight_fac = w, #   E(g)$weight,
+                                        segments = s)
+
 ### Figure -----------------
 p <-
   ggplot() +
   geom_sf(data=br , fill='gray10', color=NA) +
   geom_path(data = pbundle, aes(x, y, group = group),
-            col = "#9d0191", linewidth = 0.5, alpha=.6) +
+            col = "#9d0191", linewidth = 0.5, alpha=.1) +
   geom_path(data = pbundle, aes(x, y, group = group),
-            col = "white", linewidth = 0.05, alpha=.6) +
+            col = "white", linewidth = 0.05, alpha=.1) +
   # ggraph::theme_graph(background = "gray")
   theme_classic() +
   theme(axis.line=element_blank(),
         axis.text=element_blank(),
         axis.ticks=element_blank(),
         axis.title=element_blank())
-
+#p
 ggsave(p, file=paste0('path-d',d,'-w',w,'-s',s ,'jan.png'), dpi=300)
 beepr::beep()
 

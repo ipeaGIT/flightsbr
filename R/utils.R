@@ -661,3 +661,56 @@ convert_to_numeric <- function(dt) {
 
   return(invisible(TRUE))
 } # nocov end
+
+
+
+
+
+
+
+
+
+
+#' Retrieve all dates available for aircrafts data from ANAC website
+#'
+#' @return Numeric vector.
+#' @export
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # check dates
+#' a <- get_aircrafts_dates_available()
+#'}}
+get_aircrafts_dates_available <- function() {
+
+  # read html table
+  base_url = 'https://sistemas.anac.gov.br/dadosabertos/Aeronaves/RAB/Historico_RAB/'
+  h <- try(rvest::read_html(base_url), silent = TRUE)
+
+  # check if internet connection worked
+  if (class(h)[1]=='try-error') {                                           #nocov
+    message("Problem connecting to ANAC data server. Please try it again.") #nocov
+    return(invisible(NULL))                                                 #nocov
+  }
+
+  # filter elements of basica data
+  elements <- rvest::html_elements(h, "a")
+  basica_urls <- elements[ data.table::like(elements, '.csv') ]
+  basica_urls <- lapply(X=basica_urls, FUN=function(i){rvest::html_attr(i,"href")})
+
+  # get all dates available
+  all_dates <- substr(basica_urls, 1, nchar(basica_urls)-4 )
+  all_dates <- gsub("[-]", "", all_dates)
+  all_dates <- gsub("[_]", "", all_dates)
+
+  # remove eventual letters
+  all_dates <- sub("a", "", all_dates, fixed = TRUE)
+  ## remove ALL eventual letters
+  # all_dates <- lapply(X = base::letters,
+  #                     FUN = function(x){
+  #                       all_datesf <- sub(x, "", all_dates, fixed = TRUE)
+  #                       return(all_datesf)}
+  #                     )
+  all_dates <- unique(all_dates)
+  all_dates <- as.numeric(all_dates)
+  return(all_dates)
+}
