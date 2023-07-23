@@ -714,3 +714,76 @@ get_aircrafts_dates_available <- function() {
   all_dates <- as.numeric(all_dates)
   return(all_dates)
 }
+
+
+
+#' Put together the url of aircrafts data files
+#'
+#' @param year Numeric. Year of the data in `yyyy` format.
+#' @param month Numeric. Month of the data in `mm` format.
+#'
+#' @return A url string.
+#'
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Generate url
+#' a <- get_flights_url(year=2000, month=11)
+#'}}
+get_aircrafts_url <- function(year, month) { # nocov start
+
+  if( nchar(month) ==1 ) { month <- paste0('0', month)}
+
+  url_root <- 'https://sistemas.anac.gov.br/dadosabertos/Aeronaves/RAB/Historico_RAB/'
+
+  file_name <- paste0(year, '-', month, '.csv')
+  file_url <- paste0(url_root, file_name)
+  return(file_url)
+} # nocov end
+
+
+
+#' Download and read ANAC aircraft data
+#'
+#' @param file_url String. A url passed from \code{\link{get_flights_url}}.
+#' @param showProgress Logical, passed from \code{\link{read_flights}}
+#'
+#' @return A `"data.table" "data.frame"` object
+#'
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#' # Generate url
+#' file_url <- get_airfares_url(dom = TRUE, year=2002, month=11)
+#'
+#' # download data
+#' a <- download_airfares_data(file_url=file_url, showProgress=TRUE, select=NULL)
+#'}}
+download_aircrafts_data <- function(file_url = parent.frame()$file_url,
+                                   showProgress = parent.frame()$showProgress
+                                   ){ # nocov start
+
+  # create temp local file
+  file_name <- basename(file_url)
+  temp_local_file <- paste0(tempdir(),"/",file_name)
+
+  # check if file has not been downloaded already. If not, download it
+  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+
+    # download data
+    download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
+  }
+
+  ### set threads for fread
+  orig_threads <- data.table::getDTthreads()
+  data.table::setDTthreads(percent = 100)
+
+  # read file stored locally
+  dt <- data.table::fread(input = temp_local_file,
+                          encoding = 'UTF-8',
+                          colClasses = 'character',
+                          sep = ';') # , dec = ','
+
+  # return to original threads
+  data.table::setDTthreads(orig_threads)
+
+  return(dt)
+} # nocov end

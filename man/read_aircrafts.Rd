@@ -4,9 +4,13 @@
 \alias{read_aircrafts}
 \title{Download aircrafts data from Brazil}
 \usage{
-read_aircrafts(showProgress = TRUE)
+read_aircrafts(date = 202001, showProgress = TRUE)
 }
 \arguments{
+\item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to
+\code{202001}. To download the data for all months in a year, the user
+can pass a 4-digit year input \code{yyyy}.}
+
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
 }
 \value{

@@ -19,11 +19,24 @@ test_that("read_aircrafts", {
 
   # test columns are correct
   testthat::expect_equal(names(read_aircrafts())[1], 'MARCA')
+
+  # test date all months in a year
+  test2 <- read_aircrafts(date = 2020, showProgress = FALSE)
+  testthat::expect_true(is(read_aircrafts(showProgress = TRUE), "data.table"))
+
 })
 
 
 # ERRORS and messages  -----------------------
 test_that("read_aircrafts", {
+
+  # Wrong date 4 digits
+  testthat::expect_error(read_aircrafts(date=1990))
+  testthat::expect_error(read_aircrafts(date=9999))
+
+  # Wrong date 6 digits
+  testthat::expect_error(read_aircrafts(date=199001))
+  testthat::expect_error(read_aircrafts(date=999901))
 
   testthat::expect_error(read_aircrafts(showProgress='banana'))
   testthat::expect_error(read_aircrafts(showProgress=NULL))

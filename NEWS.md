@@ -2,6 +2,7 @@
 
 * Major changes:
   * The functions `read_flights()` and `read_airport_movements()` now have a new parameter `cache`, which indicates whether the function should read cached data downloaded previously. Defaults to `TRUE`. Closed #31.
+  * The function `read_aircrafts()` now has a `date` parameter, which allows one to download the data on aircrafts registered at ANAC at particular years/monhts.  Closed #33.
 
 * Minor changes:
   * All functions now return numeric columns with `numeric` class. Closed #32.

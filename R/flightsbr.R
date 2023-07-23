@@ -26,5 +26,6 @@ utils::globalVariables( c('month',
                           'longitude',
                           'temp_local_file',
                           'NR_',
-                          'nr_') )
+                          'nr_',
+                          'reference_date') )
 
