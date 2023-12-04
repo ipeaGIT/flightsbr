@@ -99,7 +99,7 @@ if (any(type %in% c('private', 'all'))){
   dt_private <- try(silent=T,
                     data.table::fread(url_private,
                                       skip = 1,
-                                      # encoding = 'Latin-1',
+                                      encoding = 'Latin-1',
                                       colClasses = 'character',
                                       sep = ';',
                                       showProgress=showProgress))
