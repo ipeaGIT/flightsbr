@@ -3,3 +3,8 @@
 .RData
 .Ruserdata
 vignettes/*.html
+*.o
+*.so
+*.swp
+*.dll
+/doc/
