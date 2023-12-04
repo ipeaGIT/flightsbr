@@ -34,8 +34,7 @@ read_airports <- function(type = 'all', showProgress = TRUE){
   # data url
   # https://www.gov.br/anac/pt-br/assuntos/regulados/aerodromos/lista-de-aerodromos-civis-cadastrados
   url_public <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/aerodromos/cadastro-de-aerodromos/aerodromos-cadastrados/cadastro-de-aerodromos-civis-publicos.csv'
-  url_private <- 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Lista%20de%20aer%C3%B3dromos%20privados/Aerodromos%20Privados/AerodromosPrivados.csv'
-
+  url_private <- 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Aer%C3%B3dromos%20Privados/Lista%20de%20aer%C3%B3dromos%20privados/Aerodromos%20Privados/AerodromosPrivados.csv'
 
 ### download public airports
 if (any(type %in% c('public', 'all'))){
