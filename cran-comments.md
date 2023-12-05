@@ -1,21 +1,21 @@
 ## R CMD check results
 
-── R CMD check results ──────────────────────────────────────────────────────────────── flightsbr 0.2.1 ────
-Duration: 3m 21.4s
+── R CMD check results ────────────────────────────────────────────────────────────────────────── flightsbr 0.3.0 ────
+Duration: 4m 14.4s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 
-## flightsbr v0.3.0
+# flightsbr v0.4.0
 
 * Major changes:
-  * Function read_airfares() is temporarily  unavailable. See issue [#30](https://github.com/ipeaGIT/flightsbr/issues/30) 
+  * The functions `read_flights()` and `read_airport_movements()` now have a new parameter `cache`, which indicates whether the function should read cached data downloaded previously. Defaults to `TRUE`. Closed #31.
+  * The function `read_aircrafts()` now has a `date` parameter, which allows one to download the data on aircrafts registered at ANAC at particular years/months.  Closed #33.
 
 * Minor changes:
-  * Function `read_flights()` now accepts a vector of dates. Closed #29.
+  * All functions now return numeric columns with `numeric` class. Closed #32.
 
 * Bug fixes:
-  * Fixed broken link for data dictionary for airport movement data
-  * Fixed code to rbindlist air fares from multiple years. Closed #26.
-  * Fixed code to read a few dates that were not caught in `get_airfares_dates_available()` because of ".CSV" in ANAC url. Closed #27.
-  * Fixed code to use `get_airport_movement_dates_available()`
+  * Fixed bug when unzipping files for `read_flights()` function in Unix systems. 
+  Closed #31.
+   * Updated link to private airports data changed by ANAC. Closed #34.
