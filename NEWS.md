@@ -1,4 +1,4 @@
-# flightsbr v0.3.0999 dev
+# flightsbr v0.4.0
 
 * Major changes:
   * The functions `read_flights()` and `read_airport_movements()` now have a new parameter `cache`, which indicates whether the function should read cached data downloaded previously. Defaults to `TRUE`. Closed #31.
