@@ -1,3 +1,10 @@
+# flightsbr v0.4.1 dev
+
+* Minor changes:
+  * The `read_flights()` function now used `encoding = 'Latin-1'` internally to avoid issues with encoding. Closed #35.
+  * The function `get_airport_movement_dates_available()` does not throw warnings of `NA` values anymore.
+  
+
 # flightsbr v0.4.0
 
 * Major changes:

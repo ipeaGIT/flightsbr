@@ -125,8 +125,10 @@ get_airport_movement_dates_available <- function(date=NULL) {
   csv_urls <- gsub('.csv.csv', '.csv', csv_urls, fixed = TRUE)
 
   # get all dates available
-  all_dates <- substr(csv_urls , (nchar(csv_urls ) + 1) -10, nchar(csv_urls )-4 )
+  all_dates <- regmatches(csv_urls, gregexpr("\\d{6}", csv_urls))
+  all_dates <- unlist(unique(all_dates))
   all_dates <- as.numeric(all_dates)
+
   return(all_dates)
 }
 
@@ -467,7 +469,8 @@ download_flights_data <- function(file_url = parent.frame()$file_url,
   dt <- data.table::fread( paste0(temp_local_dir,'/', file_name),
                            select = select,
                            colClasses = 'character',
-                           sep = ';')
+                           sep = ';',
+                           encoding = 'Latin-1')
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
