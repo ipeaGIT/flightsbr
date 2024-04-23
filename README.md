@@ -6,7 +6,7 @@
 [![Lifecycle:
      experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![CRAN/METACRAN Total
-   downloads](http://cranlogs.r-pkg.org/badges/grand-total/flightsbr?color=yellow)](https://CRAN.R-project.org/package=flightsbr)
+   downloads](https://cranlogs.r-pkg.org/badges/grand-total/flightsbr?color=yellow)](https://CRAN.R-project.org/package=flightsbr)
 [![Codecov test
 coverage](https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ipeaGIT/flightsbr?branch=main)
 [![DOI](https://img.shields.io/badge/DOI-10.31219%2Fosf.io%2Fjdv7u-blue)](https://doi.org/10.31219/osf.io/jdv7u)
@@ -77,7 +77,7 @@ airfares <- read_airfares(date = 202001, domestic = TRUE)
 
 As of today, there are two repositories/projects with Brazilian aviation data, which include more info related to weather conditions, air traffic management etc. The advantage of **flightsbt** is that it's the easiest and fastest way to download flight and airport Data from Brazil in `R`.
 
-- [AVSTATS-Brasil](http://www.nectar.ita.br/avstats/), by the team at ITA
+- [AVSTATS-Brasil](https://www.nectar.ita.br/avstats/), by the team at ITA
 - [Integrated Dataset of Brazilian Flights](https://ieee-dataport.org/documents/brazilian-flights-dataset), by the team at CEFET-RJ.
 
 
