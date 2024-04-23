@@ -783,6 +783,7 @@ download_aircrafts_data <- function(file_url = parent.frame()$file_url,
   dt <- data.table::fread(input = temp_local_file,
                           encoding = 'UTF-8',
                           colClasses = 'character',
+                          skip = 1,
                           sep = ';') # , dec = ','
 
   # return to original threads

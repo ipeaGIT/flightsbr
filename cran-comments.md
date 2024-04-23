@@ -1,21 +1,13 @@
-## R CMD check results
-
-── R CMD check results ────────────────────────────────────────────────────────────────────────── flightsbr 0.3.0 ────
-Duration: 4m 14.4s
+── R CMD check results ────────────────────────────────── flightsbr 0.4.1 ────
+Duration: 7m 21.6s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 
-# flightsbr v0.4.0
-
-* Major changes:
-  * The functions `read_flights()` and `read_airport_movements()` now have a new parameter `cache`, which indicates whether the function should read cached data downloaded previously. Defaults to `TRUE`. Closed #31.
-  * The function `read_aircrafts()` now has a `date` parameter, which allows one to download the data on aircrafts registered at ANAC at particular years/months.  Closed #33.
+# flightsbr v0.4.1
 
 * Minor changes:
-  * All functions now return numeric columns with `numeric` class. Closed #32.
+  * The `read_flights()` function now uses `fread(encoding = 'Latin-1')` internally to avoid issues with encoding. Closed #35.
+  * The function `get_airport_movement_dates_available()` does not throw warnings of `NA` values anymore.
+  * The `read_aircrafts()` function now used `fread(skip = 1)` internally to read column names correctly.
 
-* Bug fixes:
-  * Fixed bug when unzipping files for `read_flights()` function in Unix systems. 
-  Closed #31.
-   * Updated link to private airports data changed by ANAC. Closed #34.

@@ -3,7 +3,6 @@
 \docType{package}
 \name{flightsbr}
 \alias{flightsbr}
-\alias{_PACKAGE}
 \alias{flightsbr-package}
 \title{flightsbr: Download Flight and Airport Data from Brazil}
 \description{
