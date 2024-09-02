@@ -25,7 +25,8 @@
 #'
 #' private_airports <- read_airports(type = 'private')
 #'}}
-read_airports <- function(type = 'all', showProgress = TRUE){
+read_airports <- function(type = 'all',
+                          showProgress = TRUE){
 
 ### check inputs
   if( ! type %in% c('public', 'private', 'all') ){ stop(paste0("Argument 'type' must be either 'all, 'public' or 'private'")) }

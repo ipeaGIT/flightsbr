@@ -21,6 +21,7 @@ Depends:
     R (>= 2.10)
 Imports:
       data.table (>= 1.14.0),
+      fs,
       httr (>= 1.4.1),
       parzer,
       pbapply,

@@ -434,7 +434,7 @@ download_flights_data <- function(file_url = parent.frame()$file_url,
 
   # create temp local file
   file_name <- basename(file_url)
-  temp_local_file <- paste0(tempdir(),"/",file_name)
+  temp_local_file <- fs::path(fs::path_temp(), file_name)
 
   # use cached files or not
   if (cache==FALSE & file.exists(temp_local_file)) {
@@ -503,7 +503,8 @@ download_airfares_data <- function(file_url = parent.frame()$file_url,
 
   # create temp local file
   file_name <- basename(file_url)
-  temp_local_file <- paste0(tempdir(),"/",file_name)
+  temp_local_file <- fs::path(fs::path_temp(), file_name)
+
 
   # check if file has not been downloaded already. If not, download it
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
@@ -613,7 +614,7 @@ download_airport_movement_data <- function(file_url = parent.frame()$file_url,
 
   # # create temp local file
   file_name <- basename(file_url)
-  temp_local_file <- paste0(tempdir(),"/",file_name)
+  temp_local_file <- fs::path(fs::path_temp(), file_name)
 
   # use cached files or not
   if (cache==FALSE & file.exists(temp_local_file)) {
@@ -766,7 +767,7 @@ download_aircrafts_data <- function(file_url = parent.frame()$file_url,
 
   # create temp local file
   file_name <- basename(file_url)
-  temp_local_file <- paste0(tempdir(),"/",file_name)
+  temp_local_file <- fs::path(fs::path_temp(), file_name)
 
   # check if file has not been downloaded already. If not, download it
   if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
