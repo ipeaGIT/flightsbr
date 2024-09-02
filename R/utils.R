@@ -264,24 +264,33 @@ check_date <- function(date, all_dates) {
 
 
 
-#' Generate all months with `yyyymm` format in a year
+#' Generate all months with `yyyymm` format for a given year
 #'
-#' @param date Numeric. 4-digit date in the format `yyyy`.
+#' @param date Numeric. 4-digit date in the format `yyyy`. The function also
+#'        takes multiple years.
 #' @return Vector or strings.
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # Generate all months in 2000
 #' a <- check_date(2000)
+#'
+#' b <- check_date(c(2000, 2005))
 #'}}
 generate_all_months <- function(date) { # nocov start
 
   # check
-  if( nchar(date)!=4 ){ stop(paste0("Argument 'date' must be 4-digit in the format `yyyy`.")) }
+  if (any(nchar(date)!=4)) { stop(paste0("Argument 'date' must be 4-digit in the format `yyyy`.")) }
 
-  jan <- as.numeric(paste0(date, '01'))
-  dec <- as.numeric(paste0(date, '12'))
-  all_months <- jan:dec
+  get_all_months <- function(yyyy){
+    jan <- as.numeric(paste0(yyyy, '01'))
+    dec <- as.numeric(paste0(yyyy, '12'))
+    allmonths <- jan:dec
+    return(allmonths)
+  }
+
+  all_months <- lapply(X=date, FUN = get_all_months) |> unlist()
   return(all_months)
+
 } # nocov end
 
 
@@ -298,17 +307,47 @@ generate_all_months <- function(date) { # nocov start
 #'
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
-#' # Generate url
+#' # Generate urls
 #' a <- get_flights_url(type='basica', year=2000, month=11)
 #'}}
-get_flights_url <- function(type, year, month) { # nocov start
+get_flights_url <- function(type, date) { # nocov start
 
   # old https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/envio-de-informacoes/microdados/basica2021-01.zip
   # old https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/microdados/
   # new https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/microdados/basica2021-01.zip
-  if( nchar(month) ==1 ) { month <- paste0('0', month)}
+
 
   url_root <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/envio-de-informacoes'
+
+  # date with format yyyymm
+  if (all(nchar(date)==6)) {
+    y <- substring(date, 1, 4)
+    m <- substring(date, 5, 6)
+    url_spec <- paste0('/', type,'/', y, '/',type, y, '-', m, '.zip')
+    file_urls <- paste0(url_root, url_spec)
+    file_names <- basename(file_urls)
+  }
+
+  # date with format yyyy
+  if (all(nchar(date)==4)) {
+
+    all_months <- generate_all_months(date)
+
+    y <- substring(date, 1, 4)
+    m <- substring(date, 5, 6)
+    url_spec <- paste0('/', type,'/', y, '/',type, y, '-', m, '.zip')
+    file_urls <- paste0(url_root, url_spec)
+    file_names <- basename(file_urls)
+  }
+
+
+
+  generate_all_months
+
+
+
+
+  # all_months <- generate_all_months(2020)
 
   file_name <- paste0('/', type,'/', year, '/',type, year, '-', month, '.zip')
   file_url <- paste0(url_root, file_name)
@@ -445,7 +484,9 @@ download_flights_data <- function(file_url = parent.frame()$file_url,
   if (cache==FALSE | !file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
 
   # download data
-  download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
+  download_flightsbr_file(file_url=file_url,
+                          showProgress=showProgress,
+                          dest_file = temp_local_file)
   }
 
   ### set threads for fread
