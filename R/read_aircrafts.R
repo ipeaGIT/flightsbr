@@ -19,7 +19,8 @@
 #' aircrafts <- read_aircrafts(showProgress = TRUE)
 #'
 #'}}
-read_aircrafts <- function(date = 202001, showProgress = TRUE ){
+read_aircrafts <- function(date = 202001,
+                           showProgress = TRUE ){
 
 ### check inputs
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }

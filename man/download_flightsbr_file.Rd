@@ -7,7 +7,8 @@
 download_flightsbr_file(
   file_url = parent.frame()$file_url,
   showProgress = parent.frame()$showProgress,
-  dest_file = temp_local_file
+  dest_file = temp_local_file,
+  cache = cache
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ download_flightsbr_file(
 \item{showProgress}{Logical, passed from \code{\link{read_flights}}}
 
 \item{dest_file}{String, passed from \code{\link{read_flights}}}
+
+\item{cache}{Logical, passed from \code{\link{read_flights}}}
 }
 \value{
 Silently saves downloaded file to temp dir.
@@ -26,7 +29,7 @@ Download file from url
 \examples{
 \dontrun{ if (interactive()) {
 # Generate url
-file_url <- get_flights_url(type='basica', year=2000, month=11)
+file_url <- get_flights_url(type='basica', date=200011)
 
 # download data
 download_flightsbr_file(file_url=file_url,

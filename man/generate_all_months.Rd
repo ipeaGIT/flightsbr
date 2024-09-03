@@ -2,23 +2,26 @@
 % Please edit documentation in R/utils.R
 \name{generate_all_months}
 \alias{generate_all_months}
-\title{Generate all months with \code{yyyymm} format in a year}
+\title{Generate all months with \code{yyyymm} format for a given year}
 \usage{
 generate_all_months(date)
 }
 \arguments{
-\item{date}{Numeric. 4-digit date in the format \code{yyyy}.}
+\item{date}{Numeric. 4-digit date in the format \code{yyyy}. The function also
+takes multiple years.}
 }
 \value{
 Vector or strings.
 }
 \description{
-Generate all months with \code{yyyymm} format in a year
+Generate all months with \code{yyyymm} format for a given year
 }
 \examples{
 \dontrun{ if (interactive()) {
 # Generate all months in 2000
 a <- check_date(2000)
+
+b <- check_date(c(2000, 2005))
 }}
 }
 \keyword{internal}

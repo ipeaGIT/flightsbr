@@ -16,7 +16,7 @@ read_flights(
 \item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to
 \code{202001}. To download the data for all months in a year, the user
 can pass a 4-digit year input \code{yyyy}. The parameter also accepts
-a vector of dates such as \code{c(202001, 20206, 202012)}.}
+a vector of dates such as \code{c(202001, 202006, 202012)}.}
 
 \item{type}{String. Whether the data set should be of the type \code{basica}
 (flight stage, the default) or \code{combinada} (On flight origin and

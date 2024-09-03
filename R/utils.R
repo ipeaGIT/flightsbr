@@ -288,8 +288,8 @@ generate_all_months <- function(date) { # nocov start
     return(allmonths)
   }
 
-  all_months <- lapply(X=date, FUN = get_all_months) |> unlist()
-  return(all_months)
+  all_dates <- lapply(X=date, FUN = get_all_months) |> unlist()
+  return(all_dates)
 
 } # nocov end
 
@@ -297,11 +297,13 @@ generate_all_months <- function(date) { # nocov start
 
 #' Put together the url of flight data files
 #'
-#' @param year Numeric. Year of the data in `yyyy` format.
-#' @param month Numeric. Month of the data in `mm` format.
 #' @param type String. Whether the data set should be of the type `basica`
 #'             (flight stage, the default) or `combinada` (On flight origin and
 #'             destination - OFOD).
+#' @param date Numeric. Date of the data in the format `yyyymm`. Defaults to
+#'             `202001`. To download the data for all months in a year, the user
+#'             can pass a 4-digit year input `yyyy`. The parameter also accepts
+#'             a vector of dates such as `c(202001, 202006, 202012)`.
 #'
 #' @return A url string.
 #'
@@ -316,7 +318,7 @@ get_flights_url <- function(type, date) { # nocov start
   # old https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/microdados/
   # new https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/microdados/basica2021-01.zip
 
-
+  # set root url
   url_root <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/envio-de-informacoes'
 
   # date with format yyyymm
@@ -325,33 +327,20 @@ get_flights_url <- function(type, date) { # nocov start
     m <- substring(date, 5, 6)
     url_spec <- paste0('/', type,'/', y, '/',type, y, '-', m, '.zip')
     file_urls <- paste0(url_root, url_spec)
-    file_names <- basename(file_urls)
+  #  file_names <- basename(file_urls)
   }
 
   # date with format yyyy
   if (all(nchar(date)==4)) {
-
-    all_months <- generate_all_months(date)
-
-    y <- substring(date, 1, 4)
-    m <- substring(date, 5, 6)
+    all_dates <- generate_all_months(date)
+    y <- substring(all_dates, 1, 4)
+    m <- substring(all_dates, 5, 6)
     url_spec <- paste0('/', type,'/', y, '/',type, y, '-', m, '.zip')
     file_urls <- paste0(url_root, url_spec)
-    file_names <- basename(file_urls)
+  #  file_names <- basename(file_urls)
   }
 
-
-
-  generate_all_months
-
-
-
-
-  # all_months <- generate_all_months(2020)
-
-  file_name <- paste0('/', type,'/', year, '/',type, year, '-', month, '.zip')
-  file_url <- paste0(url_root, file_name)
-  return(file_url)
+  return(file_urls)
 } # nocov end
 
 
@@ -403,13 +392,14 @@ get_airfares_url <- function(dom, year, month) { # nocov start
 #' @param file_url String. A url passed from \code{\link{get_flights_url}}.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
 #' @param dest_file String, passed from \code{\link{read_flights}}
+#' @param cache Logical, passed from \code{\link{read_flights}}
 #'
 #' @return Silently saves downloaded file to temp dir.
 #'
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # Generate url
-#' file_url <- get_flights_url(type='basica', year=2000, month=11)
+#' file_url <- get_flights_url(type='basica', date=200011)
 #'
 #' # download data
 #' download_flightsbr_file(file_url=file_url,
@@ -419,34 +409,42 @@ get_airfares_url <- function(dom, year, month) { # nocov start
 #'}}
 download_flightsbr_file <- function(file_url = parent.frame()$file_url,
                                     showProgress = parent.frame()$showProgress,
-                                    dest_file = temp_local_file){
+                                    dest_file = temp_local_file,
+                                    cache = cache){
+
+  # address to temp file
+  dest_file <- fs::path(fs::path_temp(), basename(file_url))
 
   # download data
-  try(
-    httr::GET(url=file_url,
-              if(showProgress==T){ httr::progress()},
-              httr::write_disk(dest_file, overwrite = T),
-              config = httr::config(ssl_verifypeer = FALSE)
-    ), silent = TRUE)
+  try(silent = TRUE,
+  downloaded_files <- curl::multi_download(
+    urls = file_url,
+    destfiles = dest_file,
+    resume = cache,
+    progress = showProgress
+    )
+  )
+
 
   # check if file has NOT been downloaded, try a 2nd time
-  if (!file.exists(dest_file) | file.info(dest_file)$size == 0) {
+  if (any(!downloaded_files$success | is.na(downloaded_files$success))) {
 
     # download data: try a 2nd time
-    try(
-      httr::GET(url=file_url,
-                if(showProgress==T){ httr::progress()},
-                httr::write_disk(dest_file, overwrite = T),
-                config = httr::config(ssl_verifypeer = FALSE)
-      ), silent = TRUE)
-  }
+    try(silent = TRUE,
+        downloaded_files <- curl::multi_download(
+          urls = file_url,
+          destfiles = dest_file,
+          resume = TRUE,
+          progress = showProgress
+        ))
 
   # Halt function if download failed
-  if (!file.exists(dest_file) | file.info(dest_file)$size == 0) {
-    message('Internet connection not working.')
-    return(invisible(NULL)) }
+    if (any(!downloaded_files$success | is.na(downloaded_files$success))) {
+      message('Internet connection not working.')
+      return(invisible(NULL))
+      }
+    }
 }
-
 
 
 #' Download and read ANAC flight data
@@ -476,47 +474,65 @@ download_flights_data <- function(file_url = parent.frame()$file_url,
   temp_local_file <- fs::path(fs::path_temp(), file_name)
 
   # use cached files or not
-  if (cache==FALSE & file.exists(temp_local_file)) {
+  if (any(cache==FALSE & file.exists(temp_local_file))) {
     unlink(temp_local_file, recursive = T)
     }
 
   # has the file been downloaded already? If not, download it
-  if (cache==FALSE | !file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  if (any(cache==FALSE |
+          !file.exists(temp_local_file) |
+          file.info(temp_local_file)$size == 0)) {
 
   # download data
   download_flightsbr_file(file_url=file_url,
                           showProgress=showProgress,
-                          dest_file = temp_local_file)
-  }
+                          dest_file = temp_local_file,
+                          cache = cache)
+    }
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
-  # # address of zipped file stored locally
-  # temp_local_file_zip <- paste0('unzip -p ', temp_local_file)
-  #
-  # # read zipped file stored locally
-  # dt <- data.table::fread( cmd =  temp_local_file_zip, select=select, colClasses = 'character', sep = ';')
+  ## unzip and fread
+  unzip_and_fread <- function(temp_local_file,
+                              showProgress = parent.frame()$showProgress,
+                              select = parent.frame()$select){
 
-  # unzip file to tempdir
-  temp_local_dir <- tempdir()
-  utils::unzip(zipfile = temp_local_file, exdir = temp_local_dir)
+      # unzip file to tempdir
+      temp_local_dir <- tempdir()
+      utils::unzip(zipfile = temp_local_file, exdir = temp_local_dir)
 
-  # get file name
-  file_name <- utils::unzip(temp_local_file, list = TRUE)$Name
+      # get file name
+      file_name <- utils::unzip(temp_local_file, list = TRUE)$Name
 
-  # read file stored locally
-  dt <- data.table::fread( paste0(temp_local_dir,'/', file_name),
-                           select = select,
-                           colClasses = 'character',
-                           sep = ';',
-                           encoding = 'Latin-1')
+      # read file stored locally
+      temp_dt <- data.table::fread(fs::path(temp_local_dir, file_name),
+                               select = select,
+                               showProgress = showProgress,
+                               colClasses = 'character',
+                               sep = ';',
+                               encoding = 'Latin-1')
+      return(temp_dt)
+      }
+
+  message('Unziping and reading data to memory.')
+  if(isTRUE(showProgress)){
+  dt <- pbapply::pblapply(X=temp_local_file, FUN=unzip_and_fread,
+                          select = select,
+                          showProgress = showProgress)
+  } else {
+    dt <- lapply(X=temp_local_file, FUN=unzip_and_fread,
+                            select = select,
+                            showProgress = showProgress)
+    }
+
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
 
   return(dt)
+
   } # nocov end
 
 
