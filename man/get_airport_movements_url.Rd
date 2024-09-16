@@ -4,12 +4,13 @@
 \alias{get_airport_movements_url}
 \title{Put together the url of airport movement data files}
 \usage{
-get_airport_movements_url(year, month)
+get_airport_movements_url(date)
 }
 \arguments{
-\item{year}{Numeric. Year of the data in \code{yyyy} format.}
-
-\item{month}{Numeric. Month of the data in \code{mm} format.}
+\item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to
+\code{202001}. To download the data for all months in a year, the user
+can pass a 4-digit year input \code{yyyy}. The parameter also accepts
+a vector of dates such as \code{c(202001, 202006, 202012)}.}
 }
 \value{
 A url string.

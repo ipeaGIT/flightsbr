@@ -1,3 +1,13 @@
+stream_line
+- OK airport movment
+
+- flights dando erro
+
+- ??? aircraft
+- ??? airports
+
+
+
 # devtools::install_github("ipeaGIT/r5r", subdir = "r-package", force=T)
 library(flightsbr)
 

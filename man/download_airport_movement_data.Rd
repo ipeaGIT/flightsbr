@@ -11,11 +11,11 @@ download_airport_movement_data(
 )
 }
 \arguments{
-\item{file_url}{String. A url passed from \code{\link{get_flights_url}}.}
+\item{file_url}{String. A url passed from \code{\link{read_airport_movements}}.}
 
-\item{showProgress}{Logical, passed from \code{\link{read_flights}}}
+\item{showProgress}{Logical, passed from \code{\link{read_airport_movements}}}
 
-\item{cache}{Logical, passed from \code{\link{read_flights}}}
+\item{cache}{Logical, passed from \code{\link{read_airport_movements}}}
 }
 \value{
 A \verb{"data.table" "data.frame"} object

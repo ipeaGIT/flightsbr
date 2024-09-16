@@ -625,8 +625,10 @@ latlon_to_numeric <- function(df){ # nocov start
 
 #' Put together the url of airport movement data files
 #'
-#' @param year Numeric. Year of the data in `yyyy` format.
-#' @param month Numeric. Month of the data in `mm` format.
+#' @param date Numeric. Date of the data in the format `yyyymm`. Defaults to
+#'             `202001`. To download the data for all months in a year, the user
+#'             can pass a 4-digit year input `yyyy`. The parameter also accepts
+#'             a vector of dates such as `c(202001, 202006, 202012)`.
 #'
 #' @return A url string.
 #'
@@ -635,25 +637,38 @@ latlon_to_numeric <- function(df){ # nocov start
 #' # Generate url
 #' a <- get_airport_movements_url(year=2000, month=11)
 #'}}
-get_airport_movements_url <- function(year, month) { # nocov start
-
-  if( nchar(month) ==1 ) { month <- paste0('0', month)}
+get_airport_movements_url <- function(date) { # nocov start
 
   # https://sistemas.anac.gov.br/dadosabertos/Operador%20Aeroportu%C3%A1rio/Dados%20de%20Movimenta%C3%A7%C3%A3o%20Aeroportu%C3%A1rias/2021/Movimentacoes_Aeroportuarias_202112.csv
   url_root <- 'https://sistemas.anac.gov.br/dadosabertos/Operador%20Aeroportu%C3%A1rio/Dados%20de%20Movimenta%C3%A7%C3%A3o%20Aeroportu%C3%A1rias/'
-  file_name <- paste0(year, '/', 'Movimentacoes_Aeroportuarias_', year, month, '.csv')
-  file_url <- paste0(url_root, file_name)
-  return(file_url)
-} # nocov end
 
+
+  # date with format yyyymm
+  if (all(nchar(date)==6)) {
+    year <- substring(date,1,4)
+    file_name <- paste0(year, '/', 'Movimentacoes_Aeroportuarias_', date, '.csv')
+    file_urls <- paste0(url_root, file_name)
+  }
+
+
+  # date with format yyyy
+  if (all(nchar(date)==4)) {
+    all_dates <- generate_all_months(date)
+    year <- substring(all_dates,1,4)
+    file_name <- paste0(year, '/', 'Movimentacoes_Aeroportuarias_', all_dates, '.csv')
+    file_urls <- paste0(url_root, file_name)
+  }
+
+  return(file_urls)
+  } # nocov end
 
 
 
 #' Download and read ANAC airport movement data
 #'
-#' @param file_url String. A url passed from \code{\link{get_flights_url}}.
-#' @param showProgress Logical, passed from \code{\link{read_flights}}
-#' @param cache Logical, passed from \code{\link{read_flights}}
+#' @param file_url String. A url passed from \code{\link{read_airport_movements}}.
+#' @param showProgress Logical, passed from \code{\link{read_airport_movements}}
+#' @param cache Logical, passed from \code{\link{read_airport_movements}}
 #'
 #' @return A `"data.table" "data.frame"` object
 #'
@@ -674,15 +689,20 @@ download_airport_movement_data <- function(file_url = parent.frame()$file_url,
   temp_local_file <- fs::path(fs::path_temp(), file_name)
 
   # use cached files or not
-  if (cache==FALSE & file.exists(temp_local_file)) {
+  if (any(cache==FALSE & file.exists(temp_local_file))) {
     unlink(temp_local_file, recursive = T)
   }
 
-  # check if file has not been downloaded already. If not, download it
-  if (cache==FALSE | !file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  # has the file been downloaded already? If not, download it
+  if (any(cache==FALSE |
+          !file.exists(temp_local_file) |
+          file.info(temp_local_file)$size == 0)) {
 
     # download data
-    download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
+    download_flightsbr_file(file_url=file_url,
+                            showProgress=showProgress,
+                            dest_file = temp_local_file,
+                            cache = cache)
   }
 
   ### set threads for fread
@@ -694,9 +714,13 @@ download_airport_movement_data <- function(file_url = parent.frame()$file_url,
   #                    ITime =c('HH_PREVISTO', 'HH_CALCO', 'HH_TOQUE'))
 
   # download data and read .csv data file
-  dt <- data.table::fread(temp_local_file, showProgress = showProgress, colClasses = 'character', sep = ';')
-  # class(dt$DT_CALCO)
-  # class(dt$HH_PREVISTO)
+  dt <- pbapply::pblapply(X=temp_local_file, FUN= data.table::fread,
+                          showProgress = showProgress,
+                          colClasses = 'character',
+                          sep = ';'
+                          ) |>
+    data.table::rbindlist()
+
 
 
   # return to original threads
