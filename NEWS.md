@@ -1,7 +1,18 @@
 # flightsbr dev
 
 
-* using {fs} to manage files
+
+* Minor changes:
+  * Function `read_airports()` now has a `cache` parameter.
+  * Removed dependency on the {httr} package
+  * Now using curl::multi_download() to download files in parallel. This brings the advantage that the pacakge now automatically detects whether the data/documentation file has been upated and should be downloaded again.
+  * streamlined functions to simplify package maintenance and improve performance
+  * using {fs} to manage file paths
+  * reorganization of internal functions to simplify package maintenance
+  
+
+
+
 
 # flightsbr v0.4.1
 

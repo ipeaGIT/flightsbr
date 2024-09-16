@@ -12,6 +12,7 @@
 #'             will return the full set of columns available for each of those
 #'             data sets.
 #' @template showProgress
+#' @template cache
 #'
 #' @return A `"data.table" "data.frame"` object.
 #' @importFrom data.table :=
@@ -26,51 +27,66 @@
 #' private_airports <- read_airports(type = 'private')
 #'}}
 read_airports <- function(type = 'all',
-                          showProgress = TRUE){
+                          showProgress = TRUE,
+                          cache = TRUE
+                          ){
 
 ### check inputs
   if( ! type %in% c('public', 'private', 'all') ){ stop(paste0("Argument 'type' must be either 'all, 'public' or 'private'")) }
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
+  if( ! is.logical(cache) ){ stop(paste0("Argument 'cache' must be either 'TRUE' or 'FALSE.")) }
 
   # data url
   # https://www.gov.br/anac/pt-br/assuntos/regulados/aerodromos/lista-de-aerodromos-civis-cadastrados
-  url_public <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/aerodromos/cadastro-de-aerodromos/aerodromos-cadastrados/cadastro-de-aerodromos-civis-publicos.csv'
+
+  url_public <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/aeroportos-e-aerodromos/cadastro-de-aerodromos/aerodromos-cadastrados/cadastro-de-aerodromos-civis-publicos.csv'
   url_private <- 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Aer%C3%B3dromos%20Privados/Lista%20de%20aer%C3%B3dromos%20privados/Aerodromos%20Privados/AerodromosPrivados.csv'
 
 ### download public airports
 if (any(type %in% c('public', 'all'))){
+
+  # create temp local file
+  file_name <- basename(url_public)
+  temp_local_file <- fs::path(fs::path_temp(), file_name)
+
+  # use cached files or not
+  if (any(cache==FALSE & file.exists(temp_local_file))) {
+    unlink(temp_local_file, recursive = T)
+  }
+
+  # has the file been downloaded already? If not, download it
+  if (any(cache==FALSE |
+          !file.exists(temp_local_file) |
+          file.info(temp_local_file)$size == 0)) {
+
+    # download data
+    check_download <- download_flightsbr_file(file_url=url_public,
+                                              showProgress=showProgress,
+                                              dest_file = temp_local_file,
+                                              cache = cache)
+  # check if internet connection worked
+  if (is.null(check_download)) { # nocov start
+    message("Problem connecting to ANAC data server. Please try it again.") #nocov
+    return(invisible(NULL))                                                 #nocov
+    }
+  }
+
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads() # nocov
   data.table::setDTthreads(percent = 100)  # nocov
 
   # download and read data
-  dt_public <- try(silent=T,
-                   data.table::fread(url_public,
-                                     skip = 1,
-                                     encoding = 'UTF-8',
-                                     colClasses = 'character',
-                                     sep = ';',
-                                     showProgress=showProgress))
+  dt_public <- data.table::fread(temp_local_file,
+                                 skip = 1,
+                                 encoding = 'UTF-8',
+                                 colClasses = 'character',
+                                 sep = ';',
+                                 showProgress=showProgress)
 
-    # check if download succeeded, try a 2nd time
-    if (class(dt_public)[1]=="try-error") { # nocov start
-      dt_public <- try(silent=T,
-                       data.table::fread(url_public,
-                                         skip = 1,
-                                         encoding = 'UTF-8',
-                                         colClasses = 'character',
-                                         sep = ';',
-                                         showProgress=showProgress))
-    } # nocov end
 
   # return to original threads
   data.table::setDTthreads(orig_threads)  # nocov
-
-  # check if download succeeded
-  if (class(dt_public)[1]=="try-error") {
-                          message('Internet connection not working.')  # nocov
-                          return(invisible(NULL)) }
 
   # fix column names to lower case
   pbl_names <- unlist(c(dt_public[1,]))
@@ -89,43 +105,54 @@ if (any(type %in% c('public', 'all'))){
 
   }
 
+
 ### download private airports
 if (any(type %in% c('private', 'all'))){
+
+  # create temp local file
+  file_name <- basename(url_private)
+  temp_local_file <- fs::path(fs::path_temp(), file_name)
+
+  # use cached files or not
+  if (any(cache==FALSE & file.exists(temp_local_file))) {
+    unlink(temp_local_file, recursive = T)
+  }
+
+  # has the file been downloaded already? If not, download it
+  if (any(cache==FALSE |
+          !file.exists(temp_local_file) |
+          file.info(temp_local_file)$size == 0)) {
+
+    # download data
+    check_download <- download_flightsbr_file(file_url=url_private,
+                                              showProgress=showProgress,
+                                              dest_file = temp_local_file,
+                                              cache = cache)
+  }
+
+  # check if internet connection worked
+  if (is.null(check_download)) { # nocov start
+    message("Problem connecting to ANAC data server. Please try it again.") #nocov
+    return(invisible(NULL))                                                 #nocov
+  }
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
   # download and read data
-  dt_private <- try(silent=T,
-                    data.table::fread(url_private,
-                                      skip = 1,
-                                      encoding = 'Latin-1',
-                                      colClasses = 'character',
-                                      sep = ';',
-                                      showProgress=showProgress))
-
-    # check if download succeeded, try a 2nd time
-    if (class(dt_private)[1]=="try-error") {  # nocov start
-      dt_private <- try(silent=T,
-                        data.table::fread(url_private,
-                                          skip = 1,
-                                          # encoding = 'Latin-1',
-                                          colClasses = 'character',
-                                          sep = ';',
-                                          showProgress=showProgress))
-    }  # nocov end
+  dt_private <- data.table::fread(temp_local_file,
+                                  skip = 1,
+                                  encoding = 'Latin-1',
+                                  colClasses = 'character',
+                                  sep = ';',
+                                  showProgress=showProgress)
 
 
   # return to original threads
   data.table::setDTthreads(orig_threads)
 
-  # check if download succeeded
-  if (class(dt_private)[1]=="try-error") {
-                          message('Internet connection not working.')
-                          return(invisible(NULL)) }
-
-  # fix column names to lower case
+    # fix column names to lower case
   prv_names <- iconv(names(dt_private), from = 'ISO-8859-1', to = 'utf8')
   data.table::setnames(dt_private, tolower(prv_names))
 
