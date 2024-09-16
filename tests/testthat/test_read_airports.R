@@ -38,6 +38,7 @@ test_that("read_airports", {
   testthat::expect_error(read_airports(type=NULL))
   testthat::expect_error(read_airports(type='banana'))
   testthat::expect_error(read_airports(showProgress='banana'))
+  testthat::expect_error(read_airports(cache='banana'))
 
 
 })

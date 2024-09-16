@@ -24,10 +24,12 @@
 #'}}
 read_airport_movements <- function(date = 202001,
                                    showProgress = TRUE,
-                                   cache = TRUE){
+                                   cache = TRUE
+                                   ){
 
   ### check inputs
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
+  if( ! is.logical(cache) ){ stop(paste0("Argument 'cache' must be either 'TRUE' or 'FALSE.")) }
 
   ### check date input
   # get all dates available

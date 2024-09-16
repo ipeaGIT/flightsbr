@@ -4,12 +4,7 @@
 \alias{get_airport_movement_dates_available}
 \title{Retrieve all dates available for airport movements data}
 \usage{
-get_airport_movement_dates_available(date = NULL)
-}
-\arguments{
-\item{date}{Numeric. Either a 6-digit date in the format \code{yyyymm} or a 4-digit
-date input \code{yyyy}. Defaults to \code{NULL}, in which case the function
-retrieves information for all years available.}
+get_airport_movement_dates_available()
 }
 \value{
 Numeric vector.

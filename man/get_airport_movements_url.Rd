@@ -4,7 +4,7 @@
 \alias{get_airport_movements_url}
 \title{Put together the url of airport movement data files}
 \usage{
-get_airport_movements_url(date)
+get_airport_movements_url(date = parent.frame()$date)
 }
 \arguments{
 \item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to

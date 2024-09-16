@@ -4,14 +4,19 @@
 \alias{read_aircrafts}
 \title{Download aircrafts data from Brazil}
 \usage{
-read_aircrafts(date = 202001, showProgress = TRUE)
+read_aircrafts(date = 202001, showProgress = TRUE, cache = TRUE)
 }
 \arguments{
 \item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to
 \code{202001}. To download the data for all months in a year, the user
-can pass a 4-digit year input \code{yyyy}.}
+can pass a 4-digit year input \code{yyyy}. The function also accepts a
+vector of dates, like \code{c(202201, 202301)} or \code{c(2022, 2024)}.}
 
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
+
+\item{cache}{Logical. Whether the function should read cached data downloaded
+previously. Defaults to \code{TRUE}. If \code{FALSE}, the function will
+always download the data and overwrite cached data.}
 }
 \value{
 A \verb{"data.table" "data.frame"} object. All columns are returned with
@@ -26,7 +31,9 @@ data is available at \url{https://www.gov.br/anac/pt-br/sistemas/rab}.
 \examples{
 \dontrun{ if (interactive()) {
 # Read aircrafts data
-aircrafts <- read_aircrafts(showProgress = TRUE)
+aircrafts <- read_aircrafts(date = 202001,
+                            showProgress = TRUE)
+
 
 }}
 }

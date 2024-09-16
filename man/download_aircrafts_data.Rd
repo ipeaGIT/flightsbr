@@ -6,13 +6,16 @@
 \usage{
 download_aircrafts_data(
   file_url = parent.frame()$file_url,
-  showProgress = parent.frame()$showProgress
+  showProgress = parent.frame()$showProgress,
+  cache = parent.frame()$cache
 )
 }
 \arguments{
 \item{file_url}{String. A url passed from \code{\link{get_flights_url}}.}
 
 \item{showProgress}{Logical, passed from \code{\link{read_flights}}}
+
+\item{cache}{Logical, passed from \code{\link{read_flights}}}
 }
 \value{
 A \verb{"data.table" "data.frame"} object

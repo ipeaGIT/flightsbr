@@ -4,12 +4,12 @@
 \alias{get_aircrafts_url}
 \title{Put together the url of aircrafts data files}
 \usage{
-get_aircrafts_url(year, month)
+get_aircrafts_url(date = parent.frame()$date)
 }
 \arguments{
-\item{year}{Numeric. Year of the data in \code{yyyy} format.}
-
-\item{month}{Numeric. Month of the data in \code{mm} format.}
+\item{date}{Numeric. Either a 6-digit date in the format \code{yyyymm} or a 4-digit
+date input \code{yyyy}. Defaults to \code{NULL}, in which case the function
+retrieves information for all years available.}
 }
 \value{
 A url string.

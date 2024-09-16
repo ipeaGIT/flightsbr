@@ -4,7 +4,7 @@
 \alias{read_airports}
 \title{Download airports data from Brazil}
 \usage{
-read_airports(type = "all", showProgress = TRUE)
+read_airports(type = "all", showProgress = TRUE, cache = TRUE)
 }
 \arguments{
 \item{type}{String. Whether the function should download data on \code{all},
@@ -14,6 +14,10 @@ will return the full set of columns available for each of those
 data sets.}
 
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
+
+\item{cache}{Logical. Whether the function should read cached data downloaded
+previously. Defaults to \code{TRUE}. If \code{FALSE}, the function will
+always download the data and overwrite cached data.}
 }
 \value{
 A \verb{"data.table" "data.frame"} object.

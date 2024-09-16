@@ -47,8 +47,9 @@ get_aircrafts_dates_available <- function() {
 
 #' Put together the url of aircrafts data files
 #'
-#' @param year Numeric. Year of the data in `yyyy` format.
-#' @param month Numeric. Month of the data in `mm` format.
+#' @param date Numeric. Either a 6-digit date in the format `yyyymm` or a 4-digit
+#'             date input `yyyy`. Defaults to `NULL`, in which case the function
+#'             retrieves information for all years available.
 #'
 #' @return A url string.
 #'
@@ -57,23 +58,34 @@ get_aircrafts_dates_available <- function() {
 #' # Generate url
 #' a <- get_flights_url(year=2000, month=11)
 #'}}
-get_aircrafts_url <- function(year, month) { # nocov start
-
-  if( nchar(month) ==1 ) { month <- paste0('0', month)}
+get_aircrafts_url <- function(date = parent.frame()$date) { # nocov start
 
   url_root <- 'https://sistemas.anac.gov.br/dadosabertos/Aeronaves/RAB/Historico_RAB/'
 
-  file_name <- paste0(year, '-', month, '.csv')
-  file_url <- paste0(url_root, file_name)
-  return(file_url)
-} # nocov end
+  # date with format yyyymm
+  if (all(nchar(date)==6)) {
+    years <- substring(date,1,4)
+    months <- substring(date,5,6)
+    file_urls <- paste0(url_root, years, '-', months, '.csv')
+  }
 
+  # date with format yyyy
+  if (all(nchar(date)==4)) {
+    all_dates <- generate_all_months(date)
+    years <- substring(all_dates,1,4)
+    months <- substring(all_dates,5,6)
+    file_urls <- paste0(url_root, years, '-', months, '.csv')
+    }
+
+  return(file_urls)
+} # nocov end
 
 
 #' Download and read ANAC aircraft data
 #'
 #' @param file_url String. A url passed from \code{\link{get_flights_url}}.
 #' @param showProgress Logical, passed from \code{\link{read_flights}}
+#' @param cache Logical, passed from \code{\link{read_flights}}
 #'
 #' @return A `"data.table" "data.frame"` object
 #'
@@ -86,30 +98,62 @@ get_aircrafts_url <- function(year, month) { # nocov start
 #' a <- download_airfares_data(file_url=file_url, showProgress=TRUE, select=NULL)
 #'}}
 download_aircrafts_data <- function(file_url = parent.frame()$file_url,
-                                    showProgress = parent.frame()$showProgress
-){ # nocov start
+                                    showProgress = parent.frame()$showProgress,
+                                    cache = parent.frame()$cache
+                                    ){ # nocov start
 
   # create temp local file
   file_name <- basename(file_url)
   temp_local_file <- fs::path(fs::path_temp(), file_name)
 
-  # check if file has not been downloaded already. If not, download it
-  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  # use cached files or not
+  if (any(cache==FALSE & file.exists(temp_local_file))) {
+    unlink(temp_local_file, recursive = T)
+    }
+
+  # has the file been downloaded already? If not, download it
+  if (any(cache==FALSE |
+          !file.exists(temp_local_file) |
+          file.info(temp_local_file)$size == 0)) {
 
     # download data
-    download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
+    check_download <- download_flightsbr_file(file_url=file_url,
+                            showProgress=showProgress,
+                            dest_file = temp_local_file,
+                            cache = cache)
+    # check if internet connection worked
+    if (is.null(check_download)) { # nocov start
+      message("Problem connecting to ANAC data server. Please try it again.") #nocov
+      return(invisible(NULL))                                                 #nocov
+    }
   }
+
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
+  #
+
   # read file stored locally
-  dt <- data.table::fread(input = temp_local_file,
-                          encoding = 'UTF-8',
-                          colClasses = 'character',
-                          skip = 1,
-                          sep = ';') # , dec = ','
+  dt <- pbapply::pblapply(X=temp_local_file,
+                          FUN = function(x){
+
+                            # read
+                            temp_x <- data.table::fread(x,
+                                showProgress = showProgress,
+                                encoding = 'UTF-8',
+                                colClasses = 'character',
+                                skip = 1,
+                                sep = ';')
+
+                            # add date of reference
+                            xdate <- fs::path_ext_remove(basename(x))
+                            xdate <- gsub('-', '', xdate)
+                            temp_x[, reference_date := xdate]
+                            }) |>
+    data.table::rbindlist()
+
 
   # return to original threads
   data.table::setDTthreads(orig_threads)

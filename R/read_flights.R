@@ -33,11 +33,13 @@ read_flights <- function(date = 202001,
                          type = 'basica',
                          showProgress = TRUE,
                          select = NULL,
-                         cache = TRUE){
+                         cache = TRUE
+                         ){
 
 ### check inputs
   if( ! type %in% c('basica', 'combinada') ){ stop(paste0("Argument 'type' must be either 'basica' or 'combinada'")) }
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
+  if( ! is.logical(cache) ){ stop(paste0("Argument 'cache' must be either 'TRUE' or 'FALSE.")) }
 
 ### check date input
   # get all dates available
@@ -48,7 +50,6 @@ read_flights <- function(date = 202001,
 
   # check dates
   check_date(date=date, all_dates)
-
 
 
 #### Download and read data

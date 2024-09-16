@@ -128,13 +128,13 @@ if (any(type %in% c('private', 'all'))){
                                               showProgress=showProgress,
                                               dest_file = temp_local_file,
                                               cache = cache)
+    # check if internet connection worked
+    if (is.null(check_download)) { # nocov start
+      message("Problem connecting to ANAC data server. Please try it again.") #nocov
+      return(invisible(NULL))                                                 #nocov
+    }
   }
 
-  # check if internet connection worked
-  if (is.null(check_download)) { # nocov start
-    message("Problem connecting to ANAC data server. Please try it again.") #nocov
-    return(invisible(NULL))                                                 #nocov
-  }
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()

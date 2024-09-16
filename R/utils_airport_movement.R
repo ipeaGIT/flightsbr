@@ -4,10 +4,6 @@
 #' @description
 #' Retrieve from ANAC website all dates available for airport movements data.
 #'
-#' @param date Numeric. Either a 6-digit date in the format `yyyymm` or a 4-digit
-#'             date input `yyyy`. Defaults to `NULL`, in which case the function
-#'             retrieves information for all years available.
-#'
 #' @return Numeric vector.
 #' @export
 #' @keywords internal
@@ -15,7 +11,7 @@
 #' # check dates
 #' a <- get_airport_movement_dates_available()
 #'}}
-get_airport_movement_dates_available <- function(date=NULL) {
+get_airport_movement_dates_available <- function() {
 
   # read html table
   base_url = 'https://sistemas.anac.gov.br/dadosabertos/Operador%20Aeroportu%C3%A1rio/Dados%20de%20Movimenta%C3%A7%C3%A3o%20Aeroportu%C3%A1rias/'
@@ -32,29 +28,6 @@ get_airport_movement_dates_available <- function(date=NULL) {
   href <- rvest::html_attr(elements, "href")
   years <- grep("../", href, fixed = TRUE, value = TRUE, invert = TRUE)
   urls <- paste0(base_url, years)
-
-  ## check date input
-
-  if (!is.null(date)) {
-
-    # check length
-    if ( ! nchar(date) %in% c(4,6)) {stop("Date has to be either `NULL` or a 4- or 6-digit number `yyyymm`")}
-
-    # get year and month
-    yyyy <- substr(date, 1, 4)
-    if (nchar(date)==6) { mm <- substr(date, 5, 6) }
-
-    # check year
-    if (sum(grepl(yyyy, years)) == 0){stop(paste0("Data only available for following years: ", paste0(years, collapse=" "))) }
-
-    # check month
-    if(exists("mm")){
-      if (!(as.numeric(mm) %in% 1:12)){stop(paste0("In date `yyyymm`, the month `mm` must be between 01 and 12"))}
-    }
-
-    # subset specific year
-    urls <- urls[ data.table::like(urls, yyyy)]
-  }
 
   # function to search .csv data in subdirectories
   recursive_search <- function(i){ # i=urls[2]
@@ -106,7 +79,7 @@ get_airport_movement_dates_available <- function(date=NULL) {
 #' # Generate url
 #' a <- get_airport_movements_url(year=2000, month=11)
 #'}}
-get_airport_movements_url <- function(date) { # nocov start
+get_airport_movements_url <- function(date = parent.frame()$date) { # nocov start
 
   # https://sistemas.anac.gov.br/dadosabertos/Operador%20Aeroportu%C3%A1rio/Dados%20de%20Movimenta%C3%A7%C3%A3o%20Aeroportu%C3%A1rias/2021/Movimentacoes_Aeroportuarias_202112.csv
   url_root <- 'https://sistemas.anac.gov.br/dadosabertos/Operador%20Aeroportu%C3%A1rio/Dados%20de%20Movimenta%C3%A7%C3%A3o%20Aeroportu%C3%A1rias/'
@@ -168,11 +141,22 @@ download_airport_movement_data <- function(file_url = parent.frame()$file_url,
           file.info(temp_local_file)$size == 0)) {
 
     # download data
-    download_flightsbr_file(file_url=file_url,
-                            showProgress=showProgress,
-                            dest_file = temp_local_file,
-                            cache = cache)
+    check_download <- download_flightsbr_file(
+      file_url=file_url,
+      showProgress=showProgress,
+      dest_file = temp_local_file,
+      cache = cache)
+
+    # check if internet connection worked
+    if (is.null(check_download)) { # nocov start
+      message("Problem connecting to ANAC data server. Please try it again.") #nocov
+      return(invisible(NULL))                                                 #nocov
+    }
   }
+
+
+
+
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()

@@ -131,27 +131,39 @@ download_flights_data <- function(file_url = parent.frame()$file_url,
           file.info(temp_local_file)$size == 0)) {
 
     # download data
-    download_flightsbr_file(file_url=file_url,
-                            showProgress=showProgress,
-                            dest_file = temp_local_file,
-                            cache = cache)
+    check_download <- download_flightsbr_file(
+      file_url=file_url,
+      showProgress=showProgress,
+      dest_file = temp_local_file,
+      cache = cache)
+
+  # check if internet connection worked
+  if (is.null(check_download)) { # nocov start
+    message("Problem connecting to ANAC data server. Please try it again.") #nocov
+    return(invisible(NULL))                                              #nocov
+    }
   }
+
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
   ## unzip and fread
-  unzip_and_fread <- function(temp_local_file,
+  unzip_and_fread <- function(single_temp_local_file,
                               showProgress = parent.frame()$showProgress,
                               select = parent.frame()$select){
 
+    # single_temp_local_file = temp_local_file[12]
+
     # unzip file to tempdir
     temp_local_dir <- fs::path_temp()
-    utils::unzip(zipfile = temp_local_file, exdir = temp_local_dir)
+    #  utils::unzip(zipfile = single_temp_local_file, exdir = temp_local_dir)
+    archive::archive_extract(archive = single_temp_local_file, dir = temp_local_dir)
+
 
     # get file name
-    file_name <- utils::unzip(temp_local_file, list = TRUE)$Name
+    file_name <- utils::unzip(single_temp_local_file, list = TRUE)$Name
 
     # read file stored locally
     temp_dt <- data.table::fread(fs::path(temp_local_dir, file_name),

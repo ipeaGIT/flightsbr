@@ -64,5 +64,6 @@ test_that("read_flights", {
   # Wrong type and showProgress
   testthat::expect_error(read_flights(type='banana'))
   testthat::expect_error(read_flights(showProgress='banana'))
+  testthat::expect_error(read_flights(cache='banana'))
   testthat::expect_warning(read_flights(select='banana'))
 })

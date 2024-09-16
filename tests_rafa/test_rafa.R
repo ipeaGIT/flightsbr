@@ -1,10 +1,5 @@
 stream_line
-- OK airport movment
-
-- flights dando erro
-
 - ??? aircraft
-- ??? airports
 
 
 
