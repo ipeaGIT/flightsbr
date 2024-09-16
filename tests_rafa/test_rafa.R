@@ -1,3 +1,8 @@
+stream_line
+- ??? aircraft
+
+
+
 # devtools::install_github("ipeaGIT/r5r", subdir = "r-package", force=T)
 library(flightsbr)
 

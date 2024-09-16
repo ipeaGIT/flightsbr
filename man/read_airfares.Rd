@@ -14,7 +14,8 @@ read_airfares(
 \arguments{
 \item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to
 \code{202001}. To download the data for all months in a year, the user
-can pass a 4-digit year input \code{yyyy}.}
+can pass a 4-digit year input \code{yyyy}. The function also accepts a
+vector of dates, like \code{c(202201, 202301)} or \code{c(2022, 2024)}.}
 
 \item{domestic}{Logical. Defaults to \code{TRUE} download airfares of domestic
 flights. If \code{FALSE}, the function downloads airfares of

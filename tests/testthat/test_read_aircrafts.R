@@ -22,7 +22,11 @@ test_that("read_aircrafts", {
 
   # test date all months in a year
   test2 <- read_aircrafts(date = 2020, showProgress = FALSE)
-  testthat::expect_true(is(read_aircrafts(showProgress = TRUE), "data.table"))
+  testthat::expect_true(is(test2, "data.table"))
+
+  # test vector of dates
+  test3 <- read_aircrafts(date = c(202001, 202005), showProgress = FALSE)
+  testthat::expect_true(is(test3, "data.table"))
 
 })
 
@@ -42,5 +46,9 @@ test_that("read_aircrafts", {
   testthat::expect_error(read_aircrafts(showProgress=NULL))
   testthat::expect_error(read_aircrafts(showProgress=3))
   testthat::expect_error(read_aircrafts(a=NULL))
+
+  testthat::expect_error(read_aircrafts(cache='banana'))
+  testthat::expect_error(read_aircrafts(cache=NULL))
+  testthat::expect_error(read_aircrafts(cache=3))
 
 })

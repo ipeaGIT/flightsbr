@@ -20,8 +20,10 @@ BugReports: https://github.com/ipeaGIT/flightsbr/issues
 Depends: 
     R (>= 2.10)
 Imports:
+      archive,
+      curl (>= 5.0.0),
       data.table (>= 1.14.0),
-      httr (>= 1.4.1),
+      fs,
       parzer,
       pbapply,
       rvest
@@ -36,4 +38,4 @@ VignetteBuilder:
 Encoding: UTF-8
 NeedsCompilation: yes
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
