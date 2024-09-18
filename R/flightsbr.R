@@ -1,7 +1,7 @@
 #' flightsbr: Download Flight and Airport Data from Brazil
 #'
 #' Download flight and airport data from Brazil’s Civil Aviation Agency (ANAC)
-#'  <https://www.gov.br/anac>. The data includes detailed information on all
+#'  <https://www.gov.br/anac/pt-br>. The data includes detailed information on all
 #'  aircrafts, aerodromes, airports, and airport movements registered in ANAC,
 #'   and on every international flight to and from Brazil, as well as domestic
 #'   flights within the country.

@@ -8,3 +8,4 @@
 ^codecov\.yml$
 ^\.github$
 ^doc$
+Thumbs.db

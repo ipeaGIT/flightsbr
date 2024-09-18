@@ -8,3 +8,4 @@ vignettes/*.html
 *.swp
 *.dll
 /doc/
+Thumbs.db
