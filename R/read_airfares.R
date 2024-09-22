@@ -14,7 +14,8 @@
 #'                 international flights.
 #' @template showProgress
 #' @template select
-#'
+#' @template cache
+
 #' @return A `"data.table" "data.frame"` object. All columns are returned with
 #'         `class` of type `"character"`.
 #' @export
@@ -25,18 +26,21 @@
 #'
 #' af_2015 <- read_airfares(date = 2015, domestic = TRUE)
 #'}}
-read_airfares <- function(date = 202001, domestic = TRUE, showProgress = TRUE, select = NULL){
+read_airfares <- function(date = 202001,
+                          domestic = TRUE,
+                          showProgress = TRUE,
+                          select = NULL,
+                          cache = TRUE
+                          ){
 
-  message("Function read_airfares() is temporarily  unavailable. See issue #30 https://github.com/ipeaGIT/flightsbr/issues/30")
-  return(NULL)
 
-  stop()
-
-### check inputs
+  ### check inputs
   if( ! is.logical(domestic) ){ stop(paste0("Argument 'domestic' must be either 'TRUE' or 'FALSE.")) }
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
+  if( ! is.logical(cache) ){ stop(paste0("Argument 'cache' must be either 'TRUE' or 'FALSE.")) }
+  check_input_date_format(date)
 
-### check date input
+  ### check date input
   # get all dates available
   all_dates <- get_airfares_dates_available(dom = domestic)
 
@@ -46,18 +50,13 @@ read_airfares <- function(date = 202001, domestic = TRUE, showProgress = TRUE, s
  # check dates
   check_date(date=date, all_dates)
 
+  # prepare address of online data
+  file_urls <- get_airfares_url(dom = domestic, date)
 
-if (nchar(date)==6) {
-#### Download one month---------------------------------------------------------
-
-# prepare address of online data
-  # split date into month and year
-  y <- substring(date, 1, 4)
-  m <- substring(date, 5, 6)
-  file_url <- get_airfares_url(dom = domestic, year=y, month=m)
-
-# download and read data
-  dt <- download_airfares_data(file_url, showProgress = showProgress, select = select)
+  # download and read data
+  dt <- download_airfares_data(file_urls = file_urls,
+                               showProgress = showProgress,
+                               cache = cache)
 
   # check if download failed
   if (is.null(dt)) { return(invisible(NULL)) }
@@ -66,52 +65,5 @@ if (nchar(date)==6) {
   convert_to_numeric(dt)
 
   return(dt)
-
-
-} else if (nchar(date)==4) {
-#### Download whole year---------------------------------------------------------
-
-# prepare address of online data
-all_months <- generate_all_months(date)
-
-# ignore dates after max(all_dates)
-all_months <- all_months[all_months <= max(all_dates)]
-
-# set pbapply options
-original_options <- pbapply::pboptions()
-if( showProgress==FALSE){ pbapply::pboptions(type='none') }
-if( showProgress==TRUE){ pbapply::pboptions(type='txt' ,char='=') }
-
-# download data
-dt_list <- pbapply::pblapply( X=all_months,
-                   FUN= function(i, dom = domestic, showProgress.=FALSE, select.=select) { # i = all_months[3]
-
-                      # prepare address of online data
-                      # split date into month and year
-                      y <- substring(i, 1, 4)
-                      m <- substring(i, 5, 6)
-
-                      file_url <- get_airfares_url(dom = domestic, year=y, month=m)
-
-                      # download and read data
-                      temp_dt <- download_airfares_data(file_url, showProgress = FALSE, select = select)
-
-                      # check if download failed
-                      if (is.null(temp_dt)) { return(invisible(NULL)) }
-                      return(temp_dt)
-                      }
-                   )
-
-# return to original pbapply options
-pbapply::pboptions(original_options)
-
-# row bind data tables
-dt <- data.table::rbindlist(dt_list, fill=TRUE)
-
-# convert columns to numeric
-convert_to_numeric(dt)
-
-return(dt)
-
-}}
+}
 

@@ -15,16 +15,16 @@
 #'}}
 get_airfares_dates_available <- function(dom) {
 
-  message("Function read_airfares() is temporarily  unavailable. See issue #30 https://github.com/ipeaGIT/flightsbr/issues/30")
-  return(NULL)
-
-  stop()
+  # message("Function read_airfares() is temporarily  unavailable. See issue #30 https://github.com/ipeaGIT/flightsbr/issues/30")
+  # return(NULL)
+  #
+  # stop()
 
   if( ! is.logical(dom) ){ stop(paste0("Argument 'dom' must be either 'TRUE' or 'FALSE.")) }
 
   # read html table
-  if( isTRUE(dom) ) { base_url = 'https://sistemas.anac.gov.br/sas/tarifadomestica/' }
-  if( isFALSE(dom)) { base_url = 'https://sistemas.anac.gov.br/sas/tarifainternacional/' }
+  if( isTRUE(dom) ) { base_url = 'https://sas.anac.gov.br/sas/tarifadomestica/' }
+  if( isFALSE(dom)) { base_url = 'https://sas.anac.gov.br/sas/tarifainternacional/' }
 
   h <- try(rvest::read_html(base_url), silent = TRUE)
 
@@ -103,8 +103,10 @@ get_airfares_dates_available <- function(dom) {
 #' @param dom Logical. Defaults to `TRUE` download airfares of domestic
 #'                 flights. If `FALSE`, the function downloads airfares of
 #'                 international flights.
-#' @param year Numeric. Year of the data in `yyyy` format.
-#' @param month Numeric. Month of the data in `mm` format.
+#' @param date Numeric. Date of the data in the format `yyyymm`. To download the
+#'             data for all months in a year, the user can pass a 4-digit year
+#'             input `yyyy`. The parameter also accepts a vector of dates such as
+#'             `c(202001, 202006, 202012)`.
 #'
 #' @return A url string.
 #'
@@ -113,31 +115,61 @@ get_airfares_dates_available <- function(dom) {
 #' # Generate url
 #' a <- get_airfares_url(year=2002, month=11)
 #'}}
-get_airfares_url <- function(dom, year, month) { # nocov start
+get_airfares_url <- function(dom,
+                             date = parent.frame()$date) { # nocov start
 
-  # https://sistemas.anac.gov.br/sas/tarifadomestica/2006/200605.csv
-  # https://sistemas.anac.gov.br/sas/tarifainternacional/2015/Internacional_2015-04.txt
-
-  if( nchar(month) ==1 ) { month <- paste0('0', month)}
-
-  # put file url together
+  # Domestic flights
   if( isTRUE(dom) ) {
-    url_root = 'https://sistemas.anac.gov.br/sas/tarifadomestica/'
-    file_name <- paste0(year, month, '.csv')
-    file_url <- paste0(url_root, year, '/', file_name)
+    url_root = 'https://sas.anac.gov.br/sas/tarifadomestica/'
+
+    # date with format yyyymm
+    if (all(nchar(date)==6)) {
+      years <- substring(date,1,4)
+      months <- substring(date,5,6)
+      file_urls <- paste0(url_root, years, '/', date, '.csv')
+    }
+
+    # date with format yyyy
+    if (all(nchar(date)==4)) {
+      all_dates <- generate_all_months(date)
+      years <- substring(all_dates,1,4)
+      months <- substring(all_dates,5,6)
+      file_urls <- paste0(url_root, years, '/', all_dates, '.csv')
+    }
   }
 
+
+  # International flights
   if( isFALSE(dom)) {
 
-    url_root = 'https://sistemas.anac.gov.br/sas/tarifainternacional/'
+    url_root = 'https://sas.anac.gov.br/sas/tarifainternacional/'
 
-    if( year > 2016) { file_name <- paste0(year,'-', month, '.csv') } else {
-      file_name <- paste0(year,'-', month, '.txt')}
+    # date with format yyyymm
+    if (all(nchar(date)==6)) {
+      years <- substring(date,1,4)
+      months <- substring(date,5,6)
+      file_urls <- paste0(url_root, years, '/Internacional_', years, '-', months, '.csv')
+    }
 
-    file_url <- paste0(url_root, year, '/Internacional_', file_name)
-  }
+    # date with format yyyy
+    if (all(nchar(date)==4)) {
+      all_dates <- generate_all_months(date)
+      years <- substring(all_dates,1,4)
+      months <- substring(all_dates,5,6)
+      file_urls <- paste0(url_root, years, '/Internacional_', years, '-', months, '.csv')
+    }
 
-  return(file_url)
+    # replace .csv with .txt for dates earlier than 2016
+    fix_file_extension <- function(url){
+      yyyy <- gsub(".*(199[0-9]|20[01][0-9]).*","\\1",url)[1] # detect year of reference
+      if(yyyy < 2017) { url <- gsub('.csv', '.txt', url) }
+      return(url)
+    }
+
+    file_urls <- lapply(X=file_urls, FUN=fix_file_extension) |> unlist()
+    }
+
+  return(file_urls)
 } # nocov end
 
 
@@ -145,42 +177,73 @@ get_airfares_url <- function(dom, year, month) { # nocov start
 
 #' Download and read ANAC air fares data
 #'
-#' @param file_url String. A url passed from \code{\link{get_flights_url}}.
-#' @param showProgress Logical, passed from \code{\link{read_flights}}
-#' @param select A vector of column names or numbers to keep, passed from \code{\link{read_flights}}
+#' @param file_urls String. A url passed from \code{\link{get_flights_url}}.
+#' @template showProgress
+#' @template select
+#' @template cache
 #'
 #' @return A `"data.table" "data.frame"` object
 #'
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # Generate url
-#' file_url <- get_airfares_url(dom = TRUE, year=2002, month=11)
+#' file_url <- get_airfares_url(dom = TRUE, date=200211)
 #'
 #' # download data
-#' a <- download_airfares_data(file_url=file_url, showProgress=TRUE, select=NULL)
+#' a <- download_airfares_data(file_urls=file_url, showProgress=TRUE, select=NULL)
 #'}}
-download_airfares_data <- function(file_url = parent.frame()$file_url,
+download_airfares_data <- function(file_urls = parent.frame()$file_urls,
                                    showProgress = parent.frame()$showProgress,
-                                   select = parent.frame()$select){ # nocov start
+                                   select = parent.frame()$select,
+                                   cache = parent.frame()$cache
+                                   ){ # nocov start
 
   # create temp local file
-  file_name <- basename(file_url)
+  file_name <- basename(file_urls)
   temp_local_file <- fs::path(fs::path_temp(), file_name)
 
 
-  # check if file has not been downloaded already. If not, download it
-  if (!file.exists(temp_local_file) | file.info(temp_local_file)$size == 0) {
+  # use cached files or not
+  if (any(cache==FALSE & file.exists(temp_local_file))) {
+    unlink(temp_local_file, recursive = T)
+  }
+
+  # has the file been downloaded already? If not, download it
+  if (any(cache==FALSE |
+          !file.exists(temp_local_file) |
+          file.info(temp_local_file)$size == 0)) {
 
     # download data
-    download_flightsbr_file(file_url=file_url, showProgress=showProgress, dest_file = temp_local_file)
+    check_download <- download_flightsbr_file(file_url=file_urls,
+                                              showProgress=showProgress,
+                                              dest_file = temp_local_file,
+                                              cache = cache)
+    # check if internet connection worked
+    if (is.null(check_download)) { # nocov start
+      message("Problem connecting to ANAC data server. Please try it again.") #nocov
+      return(invisible(NULL))                                                 #nocov
+    }
   }
+
 
   ### set threads for fread
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
-  # read file stored locally
-  dt <- data.table::fread(input = temp_local_file, select=select, colClasses = 'character', sep = ';') # , dec = ','
+  # read files stored locally
+  dt <- pbapply::pblapply(X=temp_local_file,
+                          FUN = function(x){
+
+                            # read
+                            temp_x <- data.table::fread(x,
+                                                        showProgress = showProgress,
+                                                        encoding = 'Latin-1',
+                                                        colClasses = 'character',
+                                                        sep = ';')
+                            }) |>
+    data.table::rbindlist(fill = TRUE)
+
+
 
   # return to original threads
   data.table::setDTthreads(orig_threads)

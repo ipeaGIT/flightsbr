@@ -1,7 +1,7 @@
 # flightsbr dev v0.5.099999 dev
 
 * Major changes:
-  * Function read_airfares() is working again. Closes [#30](https://github.com/ipeaGIT/flightsbr/issues/30)
+  * Function `read_airfares()` is working again. Closes [#30](https://github.com/ipeaGIT/flightsbr/issues/30)
 
 * Minor changes:
   * Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.
