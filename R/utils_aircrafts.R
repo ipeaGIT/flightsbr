@@ -133,9 +133,8 @@ download_aircrafts_data <- function(file_url = parent.frame()$file_url,
   orig_threads <- data.table::getDTthreads()
   data.table::setDTthreads(percent = 100)
 
-  #
 
-  # read file stored locally
+  # read files stored locally
   dt <- pbapply::pblapply(X=temp_local_file,
                           FUN = function(x){
 

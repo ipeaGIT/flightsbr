@@ -198,5 +198,32 @@ convert_to_numeric <- function(dt) {
 
 
 
+#' Check whether the format of the date input is acceptable
+#' @param date Vector. Either a 6-digit date in the format `yyyymm` or a 4-digit
+#'             date input `yyyy` .
+#'
+#' @return Check messages.
+#' @export
+#' @keywords internal
+#' @examples \dontrun{ if (interactive()) {
+#'
+#' # get all dates available
+#' all_dates <- get_all_dates_available()
+#'
+#' # check dates
+#' a <- check_date(200011, all_dates)
+#'}}
+check_input_date_format <- function(date = parent.frame()$date) {
+
+  # are all dates yyyy
+  yyyy <- (all(nchar(date)==4))
+
+  # are all dates yyyymm
+  yyyymm <- (all(nchar(date)==6))
+
+  if(yyyy + yyyymm == 0){
+  stop("The 'date' input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.")
+  }
+}
 
 

@@ -30,11 +30,11 @@ test_that("read_flights", {
   testthat::expect_true(nrow(test3) >0 )
 
   # a vector of dates
-  test4 <- read_flights(date= c(202001, 202002), select=cols, showProgress = FALSE)
+  test4 <- read_flights(date = c(202001, 202003), select=cols, showProgress = FALSE)
   testthat::expect_true(is(test4, "data.table"))
   testthat::expect_true(nrow(test4) >0 )
   months <- unique(test4$nr_mes_referencia)
-  testthat::expect_true( all.equal(months , c(1,2)) )
+  testthat::expect_true( all.equal(months , c(1,3)) )
 
   # check whether cache argument is working
   time_first <- system.time(
@@ -60,6 +60,9 @@ test_that("read_flights", {
   # Wrong date 6 digits
   testthat::expect_error(read_flights(date=199001))
   testthat::expect_error(read_flights(date=999901))
+
+  # mixed date format
+  testthat::expect_error(read_flights(date=c(2020, 202101)))
 
   # Wrong type and showProgress
   testthat::expect_error(read_flights(type='banana'))

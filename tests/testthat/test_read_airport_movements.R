@@ -46,6 +46,9 @@ test_that("read_airport_movements", {
   testthat::expect_error(read_airport_movements(date=1990))
   testthat::expect_error(read_airport_movements(date=199012))
 
+  # mixed date format
+  testthat::expect_error(read_airport_movements(date=c(2020, 202101)))
+
   # Wrong type and showProgress and cache
   testthat::expect_error(read_airport_movements(showProgress='banana'))
   testthat::expect_error(read_airport_movements(cache='banana'))

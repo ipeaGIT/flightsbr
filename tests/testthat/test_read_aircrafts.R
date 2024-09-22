@@ -42,6 +42,9 @@ test_that("read_aircrafts", {
   testthat::expect_error(read_aircrafts(date=199001))
   testthat::expect_error(read_aircrafts(date=999901))
 
+  # mixed date format
+  testthat::expect_error(read_aircrafts(date=c(2020, 202101)))
+
   testthat::expect_error(read_aircrafts(showProgress='banana'))
   testthat::expect_error(read_aircrafts(showProgress=NULL))
   testthat::expect_error(read_aircrafts(showProgress=3))
