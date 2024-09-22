@@ -6,19 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Download Flight and Airport Data from Brazil • flightsbr</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Download Flight and Airport Data from Brazil">
-<meta property="og:description" content="Download flight and airport data from Brazil’s Civil Aviation Agency (ANAC) &lt;https://www.gov.br/anac&gt;. The data includes detailed information on all aircrafts, aerodromes, airports, and airport movements registered in ANAC, on airfares and on every international flight to and from Brazil, as well as domestic flights within the country.">
+<meta property="og:description" content="Download flight and airport data from Brazil’s Civil Aviation Agency (ANAC) &lt;https://www.gov.br/anac/pt-br&gt;. The data includes detailed information on all aircrafts, aerodromes, airports, and airport movements registered in ANAC, on airfares and on every international flight to and from Brazil, as well as domestic flights within the country.">
 <meta property="og:image" content="/logo.svg">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -27,7 +21,7 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -41,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">flightsbr</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.4.09999</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.5.09999</span>
       </span>
     </div>
 
@@ -53,7 +47,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -76,7 +70,7 @@
 <li>
   <a href="https://github.com/ipeaGIT/flightsbr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -87,14 +81,14 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
 <div class="page-header"><h1 id="flightsbr-download-flight-and-airport-data-from-brazil-">flightsbr: Download Flight and Airport Data from Brazil <img align="right" src="reference/figures/logo.png?raw=true" alt="logo" width="180"><a class="anchor" aria-label="anchor" href="#flightsbr-download-flight-and-airport-data-from-brazil-"></a>
 </h1></div>
-<p><a href="https://CRAN.R-project.org/package=flightsbr" class="external-link"><img src="https://www.r-pkg.org/badges/version/flightsbr" alt="CRAN status"></a> <a href="https://github.com/ipeaGIT/flightsbr/actions" class="external-link"><img src="https://github.com/ipeaGIT/flightsbr/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://CRAN.R-project.org/package=flightsbr" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/flightsbr?color=yellow" alt="CRAN/METACRAN Total downloads"></a> <a href="https://app.codecov.io/gh/ipeaGIT/flightsbr?branch=main" class="external-link"><img src="https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://doi.org/10.31219/osf.io/jdv7u" class="external-link"><img src="https://img.shields.io/badge/DOI-10.31219%2Fosf.io%2Fjdv7u-blue" alt="DOI"></a></p>
+<p><a href="https://CRAN.R-project.org/package=flightsbr" class="external-link"><img src="https://www.r-pkg.org/badges/version/flightsbr" alt="CRAN status"></a> <a href="https://github.com/ipeaGIT/flightsbr/actions" class="external-link"><img src="https://github.com/ipeaGIT/flightsbr/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://CRAN.R-project.org/package=flightsbr" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/flightsbr?color=yellow" alt="CRAN/METACRAN Total downloads"></a> <a href="https://app.codecov.io/gh/ipeaGIT/flightsbr?branch=main" class="external-link"><img src="https://codecov.io/gh/ipeaGIT/flightsbr/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://doi.org/10.31219/osf.io/jdv7u" class="external-link"><img src="https://img.shields.io/badge/DOI-10.31219%2Fosf.io%2Fjdv7u-blue" alt="DOI"></a></p>
 <p><strong>flightsbr</strong> is an R package to download flight and airport data from Brazil’s Civil Aviation Agency (ANAC). The data includes detailed information on all aircrafts, airports, and airport movements registered in ANAC, on airfares and on every international flight to and from Brazil, as well as domestic flights within the country.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -160,7 +154,7 @@
 <p>As of today, there are two repositories/projects with Brazilian aviation data, which include more info related to weather conditions, air traffic management etc. The advantage of <strong>flightsbt</strong> is that it’s the easiest and fastest way to download flight and airport Data from Brazil in <code>R</code>.</p>
 <ul>
 <li>
-<a href="http://www.nectar.ita.br/avstats/" class="external-link">AVSTATS-Brasil</a>, by the team at ITA</li>
+<a href="https://www.nectar.ita.br/avstats/" class="external-link">AVSTATS-Brasil</a>, by the team at ITA</li>
 <li>
 <a href="https://ieee-dataport.org/documents/brazilian-flights-dataset" class="external-link">Integrated Dataset of Brazilian Flights</a>, by the team at CEFET-RJ.</li>
 </ul>
@@ -227,16 +221,16 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>

@@ -1,99 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/articles/airports.html</loc>
-  </url>
-  <url>
-    <loc>/articles/flights.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/intro_flightsbr.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/check_date.html</loc>
-  </url>
-  <url>
-    <loc>/reference/download_aircrafts_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/download_airfares_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/download_airport_movement_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/download_flights_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/download_flightsbr_file.html</loc>
-  </url>
-  <url>
-    <loc>/reference/flightsbr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/generate_all_months.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_aircrafts_dates_available.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_aircrafts_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_airfares_dates_available.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_airfares_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_airport_movement_dates_available.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_airport_movements_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_flight_dates_available.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_flights_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/latest_flights_date.html</loc>
-  </url>
-  <url>
-    <loc>/reference/latlon_to_numeric.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_aircrafts.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_airfares.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_airport_movements.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_airports.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_flights.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/articles/airports.html</loc></url>
+<url><loc>/articles/flights.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/intro_flightsbr.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/check_date.html</loc></url>
+<url><loc>/reference/check_input_date_format.html</loc></url>
+<url><loc>/reference/download_aircrafts_data.html</loc></url>
+<url><loc>/reference/download_airfares_data.html</loc></url>
+<url><loc>/reference/download_airport_movement_data.html</loc></url>
+<url><loc>/reference/download_flights_data.html</loc></url>
+<url><loc>/reference/download_flightsbr_file.html</loc></url>
+<url><loc>/reference/flightsbr.html</loc></url>
+<url><loc>/reference/generate_all_months.html</loc></url>
+<url><loc>/reference/get_aircrafts_dates_available.html</loc></url>
+<url><loc>/reference/get_aircrafts_url.html</loc></url>
+<url><loc>/reference/get_airfares_dates_available.html</loc></url>
+<url><loc>/reference/get_airfares_url.html</loc></url>
+<url><loc>/reference/get_airport_movement_dates_available.html</loc></url>
+<url><loc>/reference/get_airport_movements_url.html</loc></url>
+<url><loc>/reference/get_flight_dates_available.html</loc></url>
+<url><loc>/reference/get_flights_url.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/latest_flights_date.html</loc></url>
+<url><loc>/reference/latlon_to_numeric.html</loc></url>
+<url><loc>/reference/read_aircrafts.html</loc></url>
+<url><loc>/reference/read_airfares.html</loc></url>
+<url><loc>/reference/read_airport_movements.html</loc></url>
+<url><loc>/reference/read_airports.html</loc></url>
+<url><loc>/reference/read_flights.html</loc></url>
 </urlset>
+
