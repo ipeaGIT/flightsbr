@@ -15,13 +15,6 @@
 #'}}
 get_airfares_dates_available <- function(dom) {
 
-  # message("Function read_airfares() is temporarily  unavailable. See issue #30 https://github.com/ipeaGIT/flightsbr/issues/30")
-  # return(NULL)
-  #
-  # stop()
-
-  if( ! is.logical(dom) ){ stop(paste0("Argument 'dom' must be either 'TRUE' or 'FALSE.")) }
-
   # read html table
   if( isTRUE(dom) ) { base_url = 'https://sas.anac.gov.br/sas/tarifadomestica/' }
   if( isFALSE(dom)) { base_url = 'https://sas.anac.gov.br/sas/tarifainternacional/' }
