@@ -5,6 +5,7 @@
 
 * Minor changes:
   * Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.
+  * New support function `latest_airfares_date()`
 
 
 # flightsbr dev v0.5.0
