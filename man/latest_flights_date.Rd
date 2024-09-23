@@ -19,4 +19,8 @@ latest_date <- latest_flights_date()
 
 }}
 }
+\seealso{
+Other support function: 
+\code{\link{latest_airfares_date}()}
+}
 \concept{support function}

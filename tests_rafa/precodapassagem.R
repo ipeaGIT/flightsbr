@@ -198,16 +198,11 @@ df_output <- df100 |>
 
 quak::quak(df_output)
 
-# proximos passos
-- logo no começo, identificar pares de ida e volta
-- gerar valor total de ida + volta
-- gerar grafico da distribuiçao do valor
-
-library(data.table)
-
-dt <- data.table::CJ(letters[1:4], letters[1:4])
-setnames(dt, c('origin', 'destination'))
-
+# # proximos passos
+# - logo no começo, identificar pares de ida e volta
+# - gerar valor total de ida + volta
+# - gerar grafico da distribuiçao do valor
+#
 
 
 
