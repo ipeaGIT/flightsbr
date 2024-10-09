@@ -26,6 +26,7 @@ Imports:
       fs,
       parzer,
       pbapply,
+      janitor,
       rvest
 Suggests: 
     dplyr,

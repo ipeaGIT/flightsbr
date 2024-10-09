@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Download data of all airports and aerodromes registered in Brazil’s Civil
-#' Aviation Agency (ANAC). Data source: \url{https://www.gov.br/anac/pt-br/assuntos/regulados/aerodromos/lista-de-aerodromos-civis-cadastrados}.
+#' Aviation Agency (ANAC). Data source: \url{https://www.gov.br/anac/pt-br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos}.
 #' The data dictionary for public airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2}.
 #' The data dictionary for private airports can be found at \url{https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2}.
 #'
@@ -39,7 +39,7 @@ read_airports <- function(type = 'all',
   # data url
   # https://www.gov.br/anac/pt-br/assuntos/regulados/aerodromos/lista-de-aerodromos-civis-cadastrados
 
-  url_public <- 'https://www.gov.br/anac/pt-br/assuntos/regulados/aeroportos-e-aerodromos/cadastro-de-aerodromos/aerodromos-cadastrados/cadastro-de-aerodromos-civis-publicos.csv'
+  url_public <- 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Aer%C3%B3dromos%20P%C3%BAblicos/Lista%20de%20aer%C3%B3dromos%20p%C3%BAblicos/AerodromosPublicos.csv'
   url_private <- 'https://sistemas.anac.gov.br/dadosabertos/Aerodromos/Aer%C3%B3dromos%20Privados/Lista%20de%20aer%C3%B3dromos%20privados/Aerodromos%20Privados/AerodromosPrivados.csv'
 
 ### download public airports
@@ -79,7 +79,7 @@ if (any(type %in% c('public', 'all'))){
   # download and read data
   dt_public <- data.table::fread(temp_local_file,
                                  skip = 1,
-                                 encoding = 'UTF-8',
+                                 encoding = 'Latin-1',
                                  colClasses = 'character',
                                  sep = ';',
                                  showProgress=showProgress)
@@ -88,11 +88,13 @@ if (any(type %in% c('public', 'all'))){
   # return to original threads
   data.table::setDTthreads(orig_threads)  # nocov
 
-  # fix column names to lower case
-  pbl_names <- unlist(c(dt_public[1,]))
-  pbl_names <- iconv(pbl_names, from = 'utf8', to = 'utf8')
-  data.table::setnames(dt_public, tolower(pbl_names) )
-  dt_public <- dt_public[-1,]
+  # clean names
+  nnn <- names(dt_public)
+  data.table::setnames(
+    x = dt_public,
+    old = nnn,
+    new = janitor::make_clean_names(nnn)
+  )
 
   # fix geographical coordinates
   latlon_to_numeric(dt_public)
@@ -152,19 +154,22 @@ if (any(type %in% c('private', 'all'))){
   # return to original threads
   data.table::setDTthreads(orig_threads)
 
-    # fix column names to lower case
-  prv_names <- iconv(names(dt_private), from = 'ISO-8859-1', to = 'utf8')
-  data.table::setnames(dt_private, tolower(prv_names))
+  # clean names
+  nnn <- names(dt_private)
+  data.table::setnames(
+    x = dt_private,
+    old = nnn,
+    new = janitor::make_clean_names(nnn)
+  )
 
   # fix geographical coordinates
   latlon_to_numeric(dt_private)
 
   # add type info
-   data.table::setDT(dt_private)[, type := 'private']
+   dt_private[, type := 'private']
 
    # convert columns to numeric
    convert_to_numeric(dt_private)
-
   }
 
 
@@ -173,7 +178,7 @@ if (type == 'private') { return(dt_private) }
 if (type == 'public') { return(dt_public) }
 if (type == 'all') {
                     ## find columns in common
-                    # cols_to_keep <- c("código oaci", "ciad", "nome", "uf", "longitude", "latitude", "altitude")
+                    # cols_to_keep <- c("codigo_oaci", "ciad", "nome", "uf", "longitude", "latitude", "altitude")
                     a <- names(dt_private)
                     b <- names(dt_public)
                     cols_to_keep <- a[a %in% b]
@@ -183,9 +188,6 @@ if (type == 'all') {
                     dt_private <- dt_private[, cols_to_keep, with=FALSE]
 
                     dt <- data.table::rbindlist(list(dt_public, dt_private), use.names=FALSE)
-
-                    # convert columns to numeric
-                    convert_to_numeric(dt)
 
                     return(dt)
                     }
