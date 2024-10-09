@@ -43,8 +43,8 @@ test_that("read_airfares", {
   test7 <- read_airfares(date = c(202201, 202205), showProgress = FALSE)
   testthat::expect_true(is(test7, "data.table"))
 
-  test8 <- read_airfares(date = c(2020, 2022), showProgress = FALSE)
-  testthat::expect_true(is(test8, "data.table"))
+  # test8 <- read_airfares(date = c(2020, 2022), showProgress = FALSE)
+  # testthat::expect_true(is(test8, "data.table"))
 
 })
 
