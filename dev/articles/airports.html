@@ -120,10 +120,16 @@ in this vignette:</p>
 this:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># private airports</span></span>
-<span><span class="va">airports_prv</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'private'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">airports_prv</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">'private'</span>, </span>
+<span>  showProgress <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># public airports</span></span>
-<span><span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">'public'</span>, </span>
+<span>  showProgress <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p>You will notice that the data sets on private and public airports
 have different columns. This can make row binding these data.frames a
 bit tricky. For now, the function <code><a href="../reference/read_airports.html">read_airports()</a></code> can
@@ -131,7 +137,10 @@ return a data.frame with both types of airports and only a few columns
 if the user set <code>type = "all"</code>. The geographical coordinates
 are provided in <code>EPSG Projection 4326 - WGS 84</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'all'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">airports_all</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">'all'</span>, </span>
+<span>  showProgress <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># plot</span></span>
 <span><span class="co"># brazil &lt;- geobr::read_country()</span></span>
