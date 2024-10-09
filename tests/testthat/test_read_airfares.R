@@ -29,14 +29,14 @@ test_that("read_airfares", {
   testthat::expect_true(nrow(test4) >0 )
 
   # check content
-  testthat::expect_equal( as.character(min(test3$ANO)), as.character("2004") )
-  testthat::expect_equal( as.character(min(test4$ANO)), as.character("2012") )
+  testthat::expect_equal( as.character(min(test3$ano)), as.character("2004") )
+  testthat::expect_equal( as.character(min(test4$ano)), as.character("2012") )
 
   # all months in a year
-  test5 <- read_airfares(date=2022, select='Tarifa-N', showProgress = FALSE)
+  test5 <- read_airfares(date=2022, select='tarifa-n', showProgress = FALSE)
   testthat::expect_true(is(test5, "data.table"))
 
-  test6 <- read_airfares(date=2022, domestic = FALSE, showProgress = FALSE, select='VALOR_TARIFA')
+  test6 <- read_airfares(date=2022, domestic = FALSE, showProgress = FALSE, select='valor_tarifa')
   testthat::expect_true(is(test6, "data.table"))
 
   # test vector of dates

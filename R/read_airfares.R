@@ -64,6 +64,14 @@ read_airfares <- function(date = 202001,
   # convert columns to numeric
   convert_to_numeric(dt)
 
+  # clean names
+  nnn <- names(dt)
+  data.table::setnames(
+    x = dt,
+    old = nnn,
+    new = janitor::make_clean_names(nnn)
+  )
+
   return(dt)
 }
 

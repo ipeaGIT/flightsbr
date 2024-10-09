@@ -1,15 +1,17 @@
 # flightsbr dev v0.5.099999 dev
 
+
+* Breaking changes:
+  * The names of all columns in the data outputs are now cleanned with {janitor}
+  * Function `read_airports()` now downloads v2 version of public airports data. Closes [#41](https://github.com/ipeaGIT/flightsbr/issues/41)
+
 * Major changes:
   * Function `read_airfares()` is working again. Closes [#30](https://github.com/ipeaGIT/flightsbr/issues/30)
-  * Function `read_airports()` now downloads v2 version of public airports data. Closes [#41](https://github.com/ipeaGIT/flightsbr/issues/41)
   
 * Minor changes:
   * Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.
   * New support function `latest_airfares_date()`
-
-
-Fix error that stopped reading aircraft data `read_aircrafts()` for multiple months when the number of collums differed across months. Fixed using `data.table::rbindlist(fill = TRUE)`
+  Fix error that stopped reading aircraft data `read_aircrafts()` for multiple months when the number of collums differed across months. Fixed using `data.table::rbindlist(fill = TRUE)`
 
 
 

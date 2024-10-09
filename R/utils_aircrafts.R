@@ -151,7 +151,7 @@ download_aircrafts_data <- function(file_url = parent.frame()$file_url,
                             xdate <- gsub('-', '', xdate)
                             temp_x[, reference_date := xdate]
                             }) |>
-    data.table::rbindlist()
+    data.table::rbindlist(fill = TRUE)
 
 
   # return to original threads

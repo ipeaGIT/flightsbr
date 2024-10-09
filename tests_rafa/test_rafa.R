@@ -97,6 +97,7 @@ Sys.setenv(NOT_CRAN = "true")
 
 # each function separately
 t1 <- covr::function_coverage(fun=read_aircrafts, test_file("tests/testthat/test_read_aircrafts.R"))
+t1 <- covr::function_coverage(fun=read_airfares, test_file("tests/testthat/test_read_airfares.R"))
 t2 <- covr::function_coverage(fun=read_airports, test_file("tests/testthat/test_read_airports.R"))
 t3 <- covr::function_coverage(fun=read_flights, test_file("tests/testthat/test_read_flights.R"))
 t4 <- covr::function_coverage(fun=read_airport_movements, test_file("tests/testthat/test_read_airport_movements.R"))
@@ -122,7 +123,7 @@ t8
 
 # the whole package
 Sys.setenv(NOT_CRAN = "true")
-cov <- covr::package_coverage(path = ".", type = "tests", clean = FALSE)
+cov <- covr::package_coverage(path = ".", type = "tests", pre_clean = FALSE)
 cov
 
 rep <- covr::report()

@@ -172,7 +172,7 @@ download_airport_movement_data <- function(file_url = parent.frame()$file_url,
                           colClasses = 'character',
                           sep = ';'
   ) |>
-    data.table::rbindlist()
+    data.table::rbindlist(fill = TRUE)
 
 
 

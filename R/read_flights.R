@@ -70,10 +70,18 @@ read_flights <- function(date = 202001,
 #### prep data
 
   # row bind data tables
-  dt <- data.table::rbindlist(dt_list)
+  dt <- data.table::rbindlist(dt_list, fill = TRUE)
 
   # convert columns to numeric
   convert_to_numeric(dt)
+
+  # clean names
+  nnn <- names(dt)
+  data.table::setnames(
+    x = dt,
+    old = nnn,
+    new = janitor::make_clean_names(nnn)
+  )
 
   return(dt)
 }
