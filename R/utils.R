@@ -177,12 +177,14 @@ latlon_to_numeric <- function(df){ # nocov start
 convert_to_numeric <- function(dt) {
 
   # detect if there are any columns that should be numeric
-  numeric_cols <- names(dt)[names(dt) %like% 'NR_' | names(dt) %like% 'nr_']
+  numeric_cols <- names(dt)[names(dt) %like% 'NR_|nr_']
+  numeric_cols <- numeric_cols[numeric_cols != 'nr_singular']
 
   if (length(numeric_cols)==0) { return(invisible(TRUE)) }
 
-  # convert columns to numeric
-  data.table::setDT(dt)
+  # replace , with . for numbers
+  dt[,(numeric_cols):= lapply(.SD, FUN = function(x){gsub(',','.',x)}), .SDcols = numeric_cols]
+  # to numeric
   suppressWarnings(
     dt[,(numeric_cols):= lapply(.SD, as.numeric), .SDcols = numeric_cols]
     )

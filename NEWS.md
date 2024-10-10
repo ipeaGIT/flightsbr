@@ -7,6 +7,7 @@
 
 * Major changes:
   * Function `read_airfares()` is working again. Closes [#30](https://github.com/ipeaGIT/flightsbr/issues/30)
+  * Function `read_flights()` with fixed decimal values in numeric columns. Closes [#43](https://github.com/ipeaGIT/flightsbr/issues/43)
   
 * Minor changes:
   * Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.

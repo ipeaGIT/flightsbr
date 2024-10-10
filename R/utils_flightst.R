@@ -154,12 +154,16 @@ download_flights_data <- function(file_url = parent.frame()$file_url,
                               showProgress = parent.frame()$showProgress,
                               select = parent.frame()$select){
 
-    # single_temp_local_file = temp_local_file[12]
+    # single_temp_local_file = temp_local_file[1]
 
     # unzip file to tempdir
     temp_local_dir <- fs::path_temp()
+
     #  utils::unzip(zipfile = single_temp_local_file, exdir = temp_local_dir)
-    archive::archive_extract(archive = single_temp_local_file, dir = temp_local_dir)
+    archive::archive_extract(
+      archive = single_temp_local_file,
+      dir = temp_local_dir
+      )
 
 
     # get file name
