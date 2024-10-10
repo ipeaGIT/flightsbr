@@ -98,6 +98,7 @@ if (any(type %in% c('public', 'all'))){
 
   # fix geographical coordinates
   latlon_to_numeric(dt_public)
+  altitude_to_numeric(dt_public)
 
   # add type info
    data.table::setDT(dt_public)[, type := 'public']
@@ -164,6 +165,7 @@ if (any(type %in% c('private', 'all'))){
 
   # fix geographical coordinates
   latlon_to_numeric(dt_private)
+  altitude_to_numeric(dt_private)
 
   # add type info
    dt_private[, type := 'private']

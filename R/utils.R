@@ -169,6 +169,34 @@ latlon_to_numeric <- function(df){ # nocov start
 } # nocov end
 
 
+#' Convert altitude column to numeric
+#'
+#' @param df A data.frame internal to the `read_airport()` function.
+#'
+#' @return A `"data.table" "data.frame"` object
+#'
+#' @keywords internal
+altitude_to_numeric <- function(df){ # nocov start
+
+  # check if df has lat lon colnames
+  if(!'altitude' %in% names(df)){ stop("Column 'altitude' is missing from original ANAC data.") }
+
+  # supress warning
+  defaultW <- getOption("warn")
+  options(warn = -1)
+
+  # fix string
+  df[, altitude := gsub(" m", "", altitude) ]
+  df[, altitude := gsub(",", ".", altitude) ]
+
+  # convert to numeric
+  df[, altitude := as.numeric(altitude) ]
+
+  # restore warnings
+  options(warn = defaultW)
+
+  return(df)
+} # nocov end
 
 
 
