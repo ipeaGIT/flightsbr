@@ -202,16 +202,18 @@ altitude_to_numeric <- function(df){ # nocov start
 
 
 #' @keywords internal
-convert_to_numeric <- function(dt, type=NULL) {
+convert_to_numeric <- function(dt, type='standard') {
 
   # detect if there are any columns that should be numeric
   numeric_cols <- names(dt)[names(dt) %like% 'NR_|nr_']
   numeric_cols <- numeric_cols[numeric_cols != 'nr_singular']
 
-  if (type=='airfare') {
-    arifa_col <- c('tarifa_n', 'tarifa')[c('tarifa_n', 'tarifa') %in% names(dt)]
-    numeric_cols <- c(numeric_cols, arifa_col)
+  if (type =='airfare') {
+    airfare_num_cols <- c('ano', 'mes', 'tarifa_n', 'tarifa', 'assentos')
+    airfare_num_cols <- airfare_num_cols[airfare_num_cols %in% names(dt)]
+    numeric_cols <- c(numeric_cols, airfare_num_cols)
     }
+
 
   if (length(numeric_cols)==0) { return(invisible(TRUE)) }
 

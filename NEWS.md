@@ -6,9 +6,9 @@
   * Function `read_airports()` now downloads v2 version of public airports data. Closes [#41](https://github.com/ipeaGIT/flightsbr/issues/41)
 
 * Major changes:
-  * Function `read_airfares()` is working again. Closes [#30](https://github.com/ipeaGIT/flightsbr/issues/30)
+  * Function `read_airfares()` is working again. Closes [#30](https://github.com/ipeaGIT/flightsbr/issues/30). The prices of air tickets are now returned as numeric.
   * Function `read_flights()` with fixed decimal values in numeric columns. Closes [#43](https://github.com/ipeaGIT/flightsbr/issues/43)
-  * Function `read_airports()` with fixed values for `"altitude"` column. Closes [#42](https://github.com/ipeaGIT/flightsbr/issues/42)
+  * Function `read_airports()` with fixed numeric values for `"altitude"` column. Closes [#42](https://github.com/ipeaGIT/flightsbr/issues/42)
     
 * Minor changes:
   * Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.
