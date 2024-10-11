@@ -205,7 +205,7 @@ altitude_to_numeric <- function(df){ # nocov start
 convert_to_numeric <- function(dt, type='standard') {
 
   # detect if there are any columns that should be numeric
-  numeric_cols <- names(dt)[names(dt) %like% 'NR_|nr_']
+  numeric_cols <- names(dt)[names(dt) %like% 'NR_|nr_|qt_|comprimento_|largura_']
   numeric_cols <- numeric_cols[numeric_cols != 'nr_singular']
 
   if (type =='airfare') {
