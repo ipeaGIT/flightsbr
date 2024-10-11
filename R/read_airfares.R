@@ -61,9 +61,6 @@ read_airfares <- function(date = 202001,
   # check if download failed
   if (is.null(dt)) { return(invisible(NULL)) }
 
-  # convert columns to numeric
-  convert_to_numeric(dt)
-
   # clean names
   nnn <- names(dt)
   data.table::setnames(
@@ -71,6 +68,9 @@ read_airfares <- function(date = 202001,
     old = nnn,
     new = janitor::make_clean_names(nnn)
   )
+
+  # convert columns to numeric
+  convert_to_numeric(dt, type='airfare')
 
   return(dt)
 }
