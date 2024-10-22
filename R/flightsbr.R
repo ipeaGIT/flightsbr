@@ -20,12 +20,13 @@
 
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
-utils::globalVariables( c('month',
+utils::globalVariables( c('month', # nocov start
                           'year',
                           'latitude',
                           'longitude',
                           'temp_local_file',
                           'NR_',
                           'nr_',
-                          'reference_date') )
+                          'reference_date',
+                          'altitude') )  # nocov end
 

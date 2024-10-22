@@ -23,29 +23,34 @@ knitr::opts_chunk$set(
 5. `read_airfares()`
 
 ### 1) `read_flights()`:
-Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, and several other variables. 
+
+Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, as well as several other variables. 
 - [Data dictionary for flights](https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/descricao-de-variaveis).
 
 
-### 2) `read_airports()`
-Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It covers detailed information on ICAO code, municipality, geographical coordinates, runway dimensions etc.
+### 2) `read_airports()`:
+
+Airports data covers all airports and aerodromes registered in Brazil’s Civil Aviation Agency (ANAC).  It includes detailed information on ICAO code, municipality, geographical coordinates, runway dimensions etc.
 
 - Data dictionary: 
   - [Public airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2).
   - [Private airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2).
 
 ### 3) `read_aircrafts()`:
+
 All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC).
 - [Data dictionary for aircrafts data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/5-registro-aeronautico-brasileiro).
 
 
 ### 4) `read_airport_movements()`:
+
 The data covers all passenger, aircraft, cargo and mail movement from airports regulated by ANAC.
 - [Data dictionary for airport movements data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/dados-de-movimentacao-aeroportuaria/60-dados-de-movimentacao-aeroportuaria).
 
 
 
 ### 5) `read_airfares()`:
+
 The data covers airfares of domestic and international flights.
 
 - Data dictionary: 
@@ -72,10 +77,10 @@ library(flightsbr)
 
 ```{r, eval=FALSE}
 # in a given **month* of a given **year** (yyyymm)
-df_201506 <- read_flights(date=201506, showProgress = FALSE)
+df_201506 <- read_flights(date = 201506, showProgress = FALSE)
 
 # in a given year (yyyy)
-df_2015 <- read_flights(date=2015, showProgress = FALSE)
+df_2015 <- read_flights(date = 2015, showProgress = FALSE)
 
 ```
 
@@ -95,7 +100,7 @@ airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
 #### Download data of aircrafts:
 
 ```{r, eval=FALSE}
-aircrafts <- flightsbr::read_aircrafts(showProgress = FALSE)
+aircrafts <- flightsbr::read_aircrafts(date = 2024, showProgress = FALSE)
 
 head(aircrafts)
 ```
@@ -105,7 +110,7 @@ head(aircrafts)
 #### Download data on airport movements:
 
 ```{r, eval=FALSE}
-airport_mov <- flightsbr::read_airport_movements(date=201901)
+airport_mov <- flightsbr::read_airport_movements(date = 201901)
 
 head(airport_mov)
 ```
@@ -115,7 +120,7 @@ head(airport_mov)
 #### Download data on data on air fares of domestic flights in Brazil:
 
 ```{r, eval=FALSE}
-airfares <- flightsbr::read_airfares(date=202003, domestic = TRUE)
+airfares <- flightsbr::read_airfares(date = 202003, domestic = TRUE)
 
 head(airfares)
 ```

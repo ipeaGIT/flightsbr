@@ -14,7 +14,7 @@
 #' # check dates
 #' a <- check_date(200011, all_dates)
 #'}}
-check_date <- function(date, all_dates) {
+check_date <- function(date, all_dates) { # nocov start
 
   error_message <-  paste0("The data is currently only available for dates between ", min(all_dates), " and ", max(all_dates), ".")
 
@@ -27,7 +27,7 @@ check_date <- function(date, all_dates) {
       if (!(d %in% unique(substr(all_dates, 1, 4)) )) {stop(error_message)}
     }
   }
-}
+}  # nocov end
 
 
 
@@ -86,7 +86,7 @@ generate_all_months <- function(date) { # nocov start
 download_flightsbr_file <- function(file_url = parent.frame()$file_url,
                                     showProgress = parent.frame()$showProgress,
                                     dest_file = temp_local_file,
-                                    cache = cache){
+                                    cache = cache){ # nocov start
 
   # address to temp file
   dest_file <- fs::path(fs::path_temp(), basename(file_url))
@@ -128,7 +128,7 @@ download_flightsbr_file <- function(file_url = parent.frame()$file_url,
       }
   }
 
-}
+}  # nocov end
 
 
 
@@ -202,7 +202,7 @@ altitude_to_numeric <- function(df){ # nocov start
 
 
 #' @keywords internal
-convert_to_numeric <- function(dt, type='standard') {
+convert_to_numeric <- function(dt, type='standard') { # nocov start
 
   # detect if there are any columns that should be numeric
   numeric_cols <- names(dt)[names(dt) %like% 'NR_|nr_|qt_|comprimento_|largura_']
@@ -250,7 +250,7 @@ convert_to_numeric <- function(dt, type='standard') {
 #' # check dates
 #' a <- check_date(200011, all_dates)
 #'}}
-check_input_date_format <- function(date = parent.frame()$date) {
+check_input_date_format <- function(date = parent.frame()$date) { # nocov start
 
   # are all dates yyyy
   yyyy <- (all(nchar(date)==4))
@@ -261,6 +261,6 @@ check_input_date_format <- function(date = parent.frame()$date) {
   if(yyyy + yyyymm == 0){
   stop("The 'date' input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.")
   }
-}
+} # nocov end
 
 

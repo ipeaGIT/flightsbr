@@ -1,15 +1,14 @@
-── R CMD check results ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── flightsbr 0.5.0 ────
-Duration: 1m 28.6s
+── R CMD check results ────────────────────────────── flightsbr 1.0.0 ────
+Duration: 8m 26.7s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 
 
-* Thumbs.db file removed
-* All urls are working on the browser
-* url moved to langua-specifc url to avoid 301 warning
 
-# flightsbr dev v0.5.0
+* All urls are working on the browser
+
+# flightsbr dev v1.0.0
 
 * Major changes:
   * Fixed ANAC's broken link of public airports

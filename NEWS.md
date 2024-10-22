@@ -1,4 +1,4 @@
-# flightsbr dev v0.5.099999 dev
+# flightsbr dev v1.0.0 dev
 
 
 * Breaking changes:
@@ -13,7 +13,7 @@
 * Minor changes:
   * Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.
   * New support function `latest_airfares_date()`
-  Fix error that stopped reading aircraft data `read_aircrafts()` for multiple months when the number of collums differed across months. Fixed using `data.table::rbindlist(fill = TRUE)`
+  * Fix error that stopped reading aircraft data `read_aircrafts()` for multiple months when the number of collums differed across months. Fixed using `data.table::rbindlist(fill = TRUE)`
 
 
 
