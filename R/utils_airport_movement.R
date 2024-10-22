@@ -11,7 +11,7 @@
 #' # check dates
 #' a <- get_airport_movement_dates_available()
 #'}}
-get_airport_movement_dates_available <- function() {
+get_airport_movement_dates_available <- function() { # nocov start
 
   # read html table
   base_url = 'https://sistemas.anac.gov.br/dadosabertos/Operador%20Aeroportu%C3%A1rio/Dados%20de%20Movimenta%C3%A7%C3%A3o%20Aeroportu%C3%A1rias/'
@@ -60,7 +60,7 @@ get_airport_movement_dates_available <- function() {
   all_dates <- as.numeric(all_dates)
 
   return(all_dates)
-}
+} # nocov end
 
 
 
@@ -148,9 +148,9 @@ download_airport_movement_data <- function(file_url = parent.frame()$file_url,
       cache = cache)
 
     # check if internet connection worked
-    if (is.null(check_download)) { # nocov start
-      message("Problem connecting to ANAC data server. Please try it again.") #nocov
-      return(invisible(NULL))                                                 #nocov
+    if (is.null(check_download)) {
+      message("Problem connecting to ANAC data server. Please try it again.")
+      return(invisible(NULL))
     }
   }
 

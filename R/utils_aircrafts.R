@@ -1,4 +1,3 @@
-
 #' Retrieve all dates available for aircrafts data from ANAC website
 #'
 #' @return Numeric vector.
@@ -8,16 +7,16 @@
 #' # check dates
 #' a <- get_aircrafts_dates_available()
 #'}}
-get_aircrafts_dates_available <- function() {
+get_aircrafts_dates_available <- function() { # nocov start
 
   # read html table
   base_url = 'https://sistemas.anac.gov.br/dadosabertos/Aeronaves/RAB/Historico_RAB/'
   h <- try(rvest::read_html(base_url), silent = TRUE)
 
   # check if internet connection worked
-  if (class(h)[1]=='try-error') {                                           #nocov
-    message("Problem connecting to ANAC data server. Please try it again.") #nocov
-    return(invisible(NULL))                                                 #nocov
+  if (class(h)[1]=='try-error') {
+    message("Problem connecting to ANAC data server. Please try it again.")
+    return(invisible(NULL))
   }
 
   # filter elements of basica data
@@ -41,7 +40,7 @@ get_aircrafts_dates_available <- function() {
   all_dates <- unique(all_dates)
   all_dates <- as.numeric(all_dates)
   return(all_dates)
-}
+} # nocov end
 
 
 
@@ -123,8 +122,8 @@ download_aircrafts_data <- function(file_url = parent.frame()$file_url,
                             cache = cache)
     # check if internet connection worked
     if (is.null(check_download)) {
-      message("Problem connecting to ANAC data server. Please try it again.") #nocov
-      return(invisible(NULL))                                                 #nocov
+      message("Problem connecting to ANAC data server. Please try it again.")
+      return(invisible(NULL))
     }
   }
 

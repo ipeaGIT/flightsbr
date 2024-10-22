@@ -1,5 +1,3 @@
-
-
 #' Retrieve all dates available for airfares data from ANAC website
 #'
 #' @param dom Logical. Defaults to `TRUE` download airfares of domestic
@@ -13,7 +11,7 @@
 #' # check dates
 #' a <- get_airfares_dates_available(domestic = TRUE)
 #'}}
-get_airfares_dates_available <- function(dom) {
+get_airfares_dates_available <- function(dom) { # nocov start
 
   # read html table
   if( isTRUE(dom) ) { base_url = 'https://sas.anac.gov.br/sas/tarifadomestica/' }
@@ -22,9 +20,9 @@ get_airfares_dates_available <- function(dom) {
   h <- try(rvest::read_html(base_url), silent = TRUE)
 
   # check if internet connection worked
-  if (class(h)[1]=='try-error') {                                           #nocov
-    message("Problem connecting to ANAC data server. Please try it again.") #nocov
-    return(invisible(NULL))                                                 #nocov
+  if (class(h)[1]=='try-error') {
+    message("Problem connecting to ANAC data server. Please try it again.")
+    return(invisible(NULL))
   }
 
   # filter elements of basica data
@@ -87,7 +85,7 @@ get_airfares_dates_available <- function(dom) {
   options(warn=0) # unsuppress warnings
 
   return(all_dates)
-}
+} # nocov end
 
 
 
@@ -108,8 +106,8 @@ get_airfares_dates_available <- function(dom) {
 #' # Generate url
 #' a <- get_airfares_url(year=2002, month=11)
 #'}}
-get_airfares_url <- function(dom, # nocov start
-                             date = parent.frame()$date) { # nocov end
+get_airfares_url <- function(dom,
+                             date = parent.frame()$date) { # nocov start
 
   # Domestic flights
   if( isTRUE(dom) ) {
@@ -212,9 +210,9 @@ download_airfares_data <- function(file_urls = parent.frame()$file_urls,
                                               dest_file = temp_local_file,
                                               cache = cache)
     # check if internet connection worked
-    if (is.null(check_download)) { # nocov start
-      message("Problem connecting to ANAC data server. Please try it again.") # nocov
-      return(invisible(NULL))                                                 # nocov
+    if (is.null(check_download)) {
+      message("Problem connecting to ANAC data server. Please try it again.")
+      return(invisible(NULL))
     }
   }
 
