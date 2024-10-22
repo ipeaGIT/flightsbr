@@ -21,6 +21,14 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Cache R packages
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ steps.r-version.outputs.r-version }}-${{ hashFiles('**/*.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-r-${{ steps.r-version.outputs.r-version }}-
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::covr
