@@ -65,16 +65,16 @@ if (any(type %in% c('public', 'all'))){
                                               dest_file = temp_local_file,
                                               cache = cache)
   # check if internet connection worked
-  if (is.null(check_download)) { # nocov start
-    message("Problem connecting to ANAC data server. Please try it again.") #nocov
-    return(invisible(NULL))                                                 #nocov
+  if (is.null(check_download)) {
+    message("Problem connecting to ANAC data server. Please try it again.")
+    return(invisible(NULL))
     }
   }
 
 
   ### set threads for fread
-  orig_threads <- data.table::getDTthreads() # nocov
-  data.table::setDTthreads(percent = 100)  # nocov
+  orig_threads <- data.table::getDTthreads()
+  data.table::setDTthreads(percent = 100)
 
   # download and read data
   dt_public <- data.table::fread(temp_local_file,
@@ -86,7 +86,7 @@ if (any(type %in% c('public', 'all'))){
 
 
   # return to original threads
-  data.table::setDTthreads(orig_threads)  # nocov
+  data.table::setDTthreads(orig_threads)
 
   # clean names
   nnn <- names(dt_public)
@@ -132,9 +132,9 @@ if (any(type %in% c('private', 'all'))){
                                               dest_file = temp_local_file,
                                               cache = cache)
     # check if internet connection worked
-    if (is.null(check_download)) { # nocov start
-      message("Problem connecting to ANAC data server. Please try it again.") #nocov
-      return(invisible(NULL))                                                 #nocov
+    if (is.null(check_download)) {
+      message("Problem connecting to ANAC data server. Please try it again.")
+      return(invisible(NULL))
     }
   }
 

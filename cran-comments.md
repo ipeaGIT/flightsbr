@@ -4,8 +4,6 @@ Duration: 8m 26.7s
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 
-
-
 * All urls are working on the browser
 
 # flightsbr dev v1.0.0
