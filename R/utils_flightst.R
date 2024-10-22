@@ -141,7 +141,7 @@ download_flights_data <- function(file_url = parent.frame()$file_url,
   if (is.null(check_download)) { # nocov start
     message("Problem connecting to ANAC data server. Please try it again.") #nocov
     return(invisible(NULL))                                              #nocov
-    }
+    } # nocov end
   }
 
 

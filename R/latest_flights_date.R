@@ -8,7 +8,7 @@
 #' latest_date <- latest_flights_date()
 #'
 #'}}
-latest_flights_date <- function(){
+latest_flights_date <- function(){ # nocov start
 
   # get all dates available
   all_dates <- get_flight_dates_available()
@@ -16,7 +16,7 @@ latest_flights_date <- function(){
   # find latest date
   latest_date <- max(all_dates)
   return(latest_date)
-}
+} # nocov end
 
 
 
@@ -34,7 +34,7 @@ latest_flights_date <- function(){
 #' latest_date <- latest_airfares_date()
 #'
 #'}}
-latest_airfares_date <- function(dom=TRUE){
+latest_airfares_date <- function(dom=TRUE){ # nocov start
 
   # get all dates available
   all_dates <- get_airfares_dates_available(dom)
@@ -42,4 +42,4 @@ latest_airfares_date <- function(dom=TRUE){
   # find latest date
   latest_date <- max(all_dates)
   return(latest_date)
-}
+} # nocov end

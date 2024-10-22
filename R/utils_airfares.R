@@ -108,8 +108,8 @@ get_airfares_dates_available <- function(dom) {
 #' # Generate url
 #' a <- get_airfares_url(year=2002, month=11)
 #'}}
-get_airfares_url <- function(dom,
-                             date = parent.frame()$date) { # nocov start
+get_airfares_url <- function(dom, # nocov start
+                             date = parent.frame()$date) { # nocov end
 
   # Domestic flights
   if( isTRUE(dom) ) {
@@ -213,8 +213,8 @@ download_airfares_data <- function(file_urls = parent.frame()$file_urls,
                                               cache = cache)
     # check if internet connection worked
     if (is.null(check_download)) { # nocov start
-      message("Problem connecting to ANAC data server. Please try it again.") #nocov
-      return(invisible(NULL))                                                 #nocov
+      message("Problem connecting to ANAC data server. Please try it again.") # nocov
+      return(invisible(NULL))                                                 # nocov
     }
   }
 

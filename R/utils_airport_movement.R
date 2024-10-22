@@ -180,6 +180,6 @@ download_airport_movement_data <- function(file_url = parent.frame()$file_url,
   data.table::setDTthreads(orig_threads)
 
   return(dt)
-}
+} # nocov end
 
 
