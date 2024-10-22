@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flightsbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0999</span>
       </span>
     </div>
 
@@ -113,52 +113,59 @@ here</a>.</li>
 <p>Download data of all flights:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># in a given **month* of a given **year** (yyyymm)</span></span>
-<span><span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201506</span><span class="op">)</span></span>
+<span><span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">201506</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># from specific months</span></span>
-<span><span class="va">df_various_months</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">202001</span>, <span class="fl">202101</span>, <span class="fl">202210</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df_various_months</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">202001</span>, <span class="fl">202101</span>, <span class="fl">202210</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># in a given year (yyyy)</span></span>
-<span><span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">2015</span><span class="op">)</span></span>
+<span><span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">2015</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># from specific years</span></span>
-<span><span class="va">df_various_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2018</span>, <span class="fl">2019</span>, <span class="fl">2021</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">df_various_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="fl">2021</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>If you know already what data columns you need, you can pass a vector
-with their names to <code>select</code> parameter and
+with their names to the <code>select</code> argument and
 <code><a href="../reference/read_flights.html">read_flights()</a></code> will only load those columns. This will make
 the function a bit faster.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201506</span>, </span>
-<span>                          showProgress <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                          select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'id_empresa'</span>, <span class="st">'nr_voo'</span>, <span class="st">'dt_partida_real'</span>,</span>
-<span>                                     <span class="st">'sg_iata_origem'</span> , <span class="st">'sg_iata_destino'</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span></span>
+<span>  date <span class="op">=</span> <span class="fl">201506</span>,</span>
+<span>  showProgress <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'id_empresa'</span>, <span class="st">'nr_voo'</span>, <span class="st">'dt_partida_real'</span>,</span>
+<span>             <span class="st">'sg_iata_origem'</span> , <span class="st">'sg_iata_destino'</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_201506</span><span class="op">)</span></span></code></pre></div>
 <p>The package makes it easy to compare daily number of passengers
 across different years. In the example below we compare daily number of
 air passengers in Brazil in 2019 and 2020. This gives us a glimpse in
-the impact of COVID-19 on Brazilian aviation, similarly to study of <a href="https://osf.io/cwa9m/" class="external-link">Bazzo, Braga and Pereira (2021)</a>.</p>
+the impact of COVID-19 on Brazilian aviation, similarly to study of <a href="https://doi.org/10.1016/j.enpol.2022.112906" class="external-link">Bazzo, Braga and
+Pereira (2022)</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># download flights data</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">2019</span><span class="op">:</span><span class="fl">2022</span>, </span>
-<span>                   select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'nr_passag_pagos'</span>, <span class="st">'dt_partida_real'</span><span class="op">)</span>,</span>
-<span>                   showProgress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span></span>
+<span>  date <span class="op">=</span> <span class="fl">2019</span><span class="op">:</span><span class="fl">2022</span>,</span>
+<span>  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'nr_passag_pagos'</span>, <span class="st">'dt_partida_real'</span><span class="op">)</span>,</span>
+<span>  showProgress <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># count daily passengers</span></span>
-<span><span class="va">count_df</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>total_pass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">nr_passag_pagos</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> , by <span class="op">=</span> <span class="va">dt_partida_real</span><span class="op">]</span></span>
+<span><span class="va">count_df</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>total_pass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">nr_passag_pagos</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>               by <span class="op">=</span> <span class="va">dt_partida_real</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># reformat date</span></span>
 <span><span class="va">count_df</span> <span class="op">&lt;-</span> <span class="va">count_df</span><span class="op">[</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">dt_partida_real</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2019-01-01'</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2022-12-31'</span><span class="op">)</span><span class="op">)</span> <span class="op">]</span></span>
+<span></span>
 <span><span class="va">count_df</span><span class="op">[</span>, <span class="va">date</span> <span class="op">:=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html" class="external-link">as.IDate</a></span><span class="op">(</span><span class="va">dt_partida_real</span>, format<span class="op">=</span><span class="st">"%Y-%m-%d"</span><span class="op">)</span> <span class="op">]</span></span>
 <span><span class="va">count_df</span><span class="op">[</span>, <span class="va">year</span> <span class="op">:=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html" class="external-link">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">]</span></span>
 <span><span class="va">count_df</span><span class="op">[</span>, <span class="va">date_plot</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"2030-"</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">date</span>, <span class="st">"%m-%d"</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">count_df</span><span class="op">[</span>, <span class="va">date_plot</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">date_plot</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># plot</span></span>
-<span><span class="va">fig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data<span class="op">=</span> <span class="va">count_df</span><span class="op">)</span> <span class="op">+</span> </span>
+<span><span class="va">fig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">count_df</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">date_plot</span>, y<span class="op">=</span><span class="va">total_pass</span>, color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span>, alpha<span class="op">=</span><span class="fl">.4</span>, size<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_log10</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"Number of Passengers"</span>, </span>
 <span>                        labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/unit_format.html" class="external-link">unit_format</a></span><span class="op">(</span>unit <span class="op">=</span> <span class="st">""</span><span class="op">)</span>, limit<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="cn">NA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>

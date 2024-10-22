@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flightsbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0999</span>
       </span>
     </div>
 
@@ -110,15 +110,15 @@ currently includes five main functions:</p>
 flight to and from Brazil, as well as domestic flights within the
 country. The data include flight-level information of airports of origin
 and destination, flight duration, aircraft type, payload, and the number
-of passengers, and several other variables. - <a href="https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/descricao-de-variaveis" class="external-link">Data
+of passengers, as well as several other variables. - <a href="https://www.gov.br/anac/pt-br/assuntos/regulados/empresas-aereas/Instrucoes-para-a-elaboracao-e-apresentacao-das-demonstracoes-contabeis/descricao-de-variaveis" class="external-link">Data
 dictionary for flights</a>.</p>
 </div>
 <div class="section level3">
-<h3 id="read_airports">2) <code>read_airports()</code><a class="anchor" aria-label="anchor" href="#read_airports"></a>
+<h3 id="read_airports">2) <code>read_airports()</code>:<a class="anchor" aria-label="anchor" href="#read_airports"></a>
 </h3>
 <p>Airports data covers all airports and aerodromes registered in
-Brazil’s Civil Aviation Agency (ANAC). It covers detailed information on
-ICAO code, municipality, geographical coordinates, runway dimensions
+Brazil’s Civil Aviation Agency (ANAC). It includes detailed information
+on ICAO code, municipality, geographical coordinates, runway dimensions
 etc.</p>
 <ul>
 <li>Data dictionary:
@@ -181,10 +181,10 @@ version from CRAN.</p>
 </h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># in a given **month* of a given **year** (yyyymm)</span></span>
-<span><span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201506</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">df_201506</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">201506</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># in a given year (yyyy)</span></span>
-<span><span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">2015</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">df_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_flights.html">read_flights</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">2015</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="download-airports-data">Download airports data:<a class="anchor" aria-label="anchor" href="#download-airports-data"></a>
@@ -200,7 +200,7 @@ version from CRAN.</p>
 <h4 id="download-data-of-aircrafts">Download data of aircrafts:<a class="anchor" aria-label="anchor" href="#download-data-of-aircrafts"></a>
 </h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span>showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">2024</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">aircrafts</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -208,7 +208,7 @@ version from CRAN.</p>
 <h4 id="download-data-on-airport-movements">Download data on airport movements:<a class="anchor" aria-label="anchor" href="#download-data-on-airport-movements"></a>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">airport_mov</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airport_movements.html">read_airport_movements</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">201901</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">airport_mov</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airport_movements.html">read_airport_movements</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">201901</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airport_mov</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -217,7 +217,7 @@ version from CRAN.</p>
 Brazil:<a class="anchor" aria-label="anchor" href="#download-data-on-data-on-air-fares-of-domestic-flights-in-brazil"></a>
 </h4>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">airfares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airfares.html">read_airfares</a></span><span class="op">(</span>date<span class="op">=</span><span class="fl">202003</span>, domestic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">airfares</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airfares.html">read_airfares</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">202003</span>, domestic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">airfares</span><span class="op">)</span></span></code></pre></div>
 </div>

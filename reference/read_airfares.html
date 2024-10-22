@@ -22,7 +22,7 @@ is available at https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/micr
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flightsbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0999</span>
       </span>
     </div>
 
@@ -83,7 +83,8 @@ is available at <a href="https://www.gov.br/anac/pt-br/assuntos/dados-e-estatist
 <span>  date <span class="op">=</span> <span class="fl">202001</span>,</span>
 <span>  domestic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  showProgress <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  select <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  select <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cache <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -112,6 +113,12 @@ international flights.</p></dd>
 <dd><p>A vector of column names or positions to keep. The rest of the
 columns are not read. The order that the columns passed determines the
 order of the columns in the result.</p></dd>
+
+
+<dt id="arg-cache">cache<a class="anchor" aria-label="anchor" href="#arg-cache"></a></dt>
+<dd><p>Logical. Whether the function should read cached data downloaded
+previously. Defaults to <code>TRUE</code>. If <code>FALSE</code>, the function will
+always download the data and overwrite cached data.</p></dd>
 
 </dl></div>
     <div id="value">

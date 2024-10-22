@@ -8,7 +8,9 @@
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/news/index.html</loc></url>
+<url><loc>/reference/altitude_to_numeric.html</loc></url>
 <url><loc>/reference/check_date.html</loc></url>
+<url><loc>/reference/check_input_date_format.html</loc></url>
 <url><loc>/reference/download_aircrafts_data.html</loc></url>
 <url><loc>/reference/download_airfares_data.html</loc></url>
 <url><loc>/reference/download_airport_movement_data.html</loc></url>
@@ -25,6 +27,7 @@
 <url><loc>/reference/get_flight_dates_available.html</loc></url>
 <url><loc>/reference/get_flights_url.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/latest_airfares_date.html</loc></url>
 <url><loc>/reference/latest_flights_date.html</loc></url>
 <url><loc>/reference/latlon_to_numeric.html</loc></url>
 <url><loc>/reference/read_aircrafts.html</loc></url>

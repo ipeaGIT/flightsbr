@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flightsbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0999</span>
       </span>
     </div>
 
@@ -69,7 +69,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_airfares_url</span><span class="op">(</span><span class="va">dom</span>, <span class="va">year</span>, <span class="va">month</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_airfares_url</span><span class="op">(</span><span class="va">dom</span>, date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sys.parent.html" class="external-link">parent.frame</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -82,12 +82,11 @@ flights. If <code>FALSE</code>, the function downloads airfares of
 international flights.</p></dd>
 
 
-<dt id="arg-year">year<a class="anchor" aria-label="anchor" href="#arg-year"></a></dt>
-<dd><p>Numeric. Year of the data in <code>yyyy</code> format.</p></dd>
-
-
-<dt id="arg-month">month<a class="anchor" aria-label="anchor" href="#arg-month"></a></dt>
-<dd><p>Numeric. Month of the data in <code>mm</code> format.</p></dd>
+<dt id="arg-date">date<a class="anchor" aria-label="anchor" href="#arg-date"></a></dt>
+<dd><p>Numeric. Date of the data in the format <code>yyyymm</code>. To download the
+data for all months in a year, the user can pass a 4-digit year
+input <code>yyyy</code>. The parameter also accepts a vector of dates such as
+<code>c(202001, 202006, 202012)</code>.</p></dd>
 
 </dl></div>
     <div id="value">
