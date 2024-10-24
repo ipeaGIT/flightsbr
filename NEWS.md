@@ -1,5 +1,4 @@
-# flightsbr dev v1.0.0 dev
-
+# flightsbr dev v1.0.0
 
 * Breaking changes:
   * The names of all columns in the data outputs are now cleanned with {janitor}
