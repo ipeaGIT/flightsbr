@@ -11,15 +11,15 @@
 <url><loc>https://ipeagit.github.io/flightsbr/reference/altitude_to_numeric.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/check_date.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/check_input_date_format.html</loc></url>
-<url><loc>https://ipeagit.github.io/flightsbr/reference/download_aircrafts_data.html</loc></url>
+<url><loc>https://ipeagit.github.io/flightsbr/reference/download_aircraft_data.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/download_airfares_data.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/download_airport_movement_data.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/download_flights_data.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/download_flightsbr_file.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/flightsbr.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/generate_all_months.html</loc></url>
-<url><loc>https://ipeagit.github.io/flightsbr/reference/get_aircrafts_dates_available.html</loc></url>
-<url><loc>https://ipeagit.github.io/flightsbr/reference/get_aircrafts_url.html</loc></url>
+<url><loc>https://ipeagit.github.io/flightsbr/reference/get_aircraft_dates_available.html</loc></url>
+<url><loc>https://ipeagit.github.io/flightsbr/reference/get_aircraft_url.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/get_airfares_dates_available.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/get_airfares_url.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/get_airport_movement_dates_available.html</loc></url>
@@ -30,6 +30,7 @@
 <url><loc>https://ipeagit.github.io/flightsbr/reference/latest_airfares_date.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/latest_flights_date.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/latlon_to_numeric.html</loc></url>
+<url><loc>https://ipeagit.github.io/flightsbr/reference/read_aircraft.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/read_aircrafts.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/read_airfares.html</loc></url>
 <url><loc>https://ipeagit.github.io/flightsbr/reference/read_airport_movements.html</loc></url>

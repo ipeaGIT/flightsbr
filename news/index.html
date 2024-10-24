@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">flightsbr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0999</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,11 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.1" id="flightsbr-v101-dev">flightsbr v1.0.1 dev<a class="anchor" aria-label="anchor" href="#flightsbr-v101-dev"></a></h2>
+<ul><li>The function <code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code> is now deprecated in favor of <code><a href="../reference/read_aircraft.html">read_aircraft()</a></code> simply to fix a typo in the function name. The behavior and outputs are identical. Closes <a href="https://github.com/ipeaGIT/flightsbr/issues/45" class="external-link">#45</a>
+</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="flightsbr-v100">flightsbr v1.0.0<a class="anchor" aria-label="anchor" href="#flightsbr-v100"></a></h2><p class="text-muted">CRAN release: 2024-10-22</p>
 <ul><li>Breaking changes:
 <ul><li>The names of all columns in the data outputs are now cleanned with {janitor}</li>
@@ -61,8 +66,24 @@
 <ul><li>Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format <code>yyyymm</code> OR a 4-digit format <code>yyyy</code>.</li>
 <li>New support function <code><a href="../reference/latest_airfares_date.html">latest_airfares_date()</a></code>
 </li>
-<li>Fix error that stopped reading aircraft data <code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code> for multiple months when the number of collums differed across months. Fixed using <code>data.table::rbindlist(fill = TRUE)</code>
+<li>Fix error that stopped reading aircraft data <code><a href="../reference/read_aircraft.html">read_aircraft()</a></code> for multiple months when the number of collums differed across months. Fixed using <code>data.table::rbindlist(fill = TRUE)</code>
 </li>
+</ul></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.0" id="flightsbr-v050">flightsbr v0.5.0<a class="anchor" aria-label="anchor" href="#flightsbr-v050"></a></h2><p class="text-muted">CRAN release: 2024-09-18</p>
+<ul><li>Major changes:
+<ul><li>Fixed ANAC’s broken link of public airports</li>
+<li>Functions <code><a href="../reference/read_flights.html">read_flights()</a></code>, <code><a href="../reference/read_airport_movements.html">read_airport_movements()</a></code>, and <code><a href="../reference/read_aircraft.html">read_aircraft()</a></code> now accept vectors of dates like <code>c(202201, 202301)</code> or <code>c(2022, 2024)</code>
+</li>
+<li>Functions <code><a href="../reference/read_airports.html">read_airports()</a></code> and <code><a href="../reference/read_aircraft.html">read_aircraft()</a></code> now has a <code>cache</code> parameter.</li>
+<li>The package is now significantly faster because it is using <code><a href="https://rdrr.io/pkg/curl/man/multi_download.html" class="external-link">curl::multi_download()</a></code> to download files in parallel. This brings the advantage that the package now automatically detects whether the data file has been updated and should be downloaded again.</li>
+</ul></li>
+<li>Minor changes:
+<ul><li>Removed dependency on the {httr} package</li>
+<li>Streamlined functions to simplify package maintenance and improve performance</li>
+<li>Using {fs} to manage file paths and {archive} to unzip files</li>
+<li>Reorganization of internal functions to simplify package maintenance</li>
 </ul></li>
 </ul></div>
     <div class="section level2">
@@ -70,14 +91,14 @@
 <ul><li>Minor changes:
 <ul><li>The <code><a href="../reference/read_flights.html">read_flights()</a></code> function now uses <code>fread(encoding = 'Latin-1')</code> internally to avoid issues with encoding. Closed #35.</li>
 <li>The function <code><a href="../reference/get_airport_movement_dates_available.html">get_airport_movement_dates_available()</a></code> does not throw warnings of <code>NA</code> values anymore.</li>
-<li>The <code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code> function now used <code>fread(skip = 1)</code> internally to read column names correctly.</li>
+<li>The <code><a href="../reference/read_aircraft.html">read_aircraft()</a></code> function now used <code>fread(skip = 1)</code> internally to read column names correctly.</li>
 </ul></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.0" id="flightsbr-v040">flightsbr v0.4.0<a class="anchor" aria-label="anchor" href="#flightsbr-v040"></a></h2><p class="text-muted">CRAN release: 2023-12-04</p>
 <ul><li>Major changes:
 <ul><li>The functions <code><a href="../reference/read_flights.html">read_flights()</a></code> and <code><a href="../reference/read_airport_movements.html">read_airport_movements()</a></code> now have a new parameter <code>cache</code>, which indicates whether the function should read cached data downloaded previously. Defaults to <code>TRUE</code>. Closed #31.</li>
-<li>The function <code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code> now has a <code>date</code> parameter, which allows one to download the data on aircrafts registered at ANAC at particular years/months. Closed #33.</li>
+<li>The function <code><a href="../reference/read_aircraft.html">read_aircraft()</a></code> now has a <code>date</code> parameter, which allows one to download the data on aircraft registered at ANAC at particular years/months. Closed #33.</li>
 </ul></li>
 <li>Minor changes:
 <ul><li>All functions now return numeric columns with <code>numeric</code> class. Closed #32.</li>
@@ -141,7 +162,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="flightsbr-v010">flightsbr v0.1.0<a class="anchor" aria-label="anchor" href="#flightsbr-v010"></a></h2><p class="text-muted">CRAN release: 2022-02-08</p>
 <ul><li>Major changes:
-<ul><li>New function <code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code> to read data on all aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB) <a href="https://github.com/ipeaGIT/flightsbr/issues/14" class="external-link">Closed #14</a>.</li>
+<ul><li>New function <code><a href="../reference/read_aircraft.html">read_aircraft()</a></code> to read data on all aircraft registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB) <a href="https://github.com/ipeaGIT/flightsbr/issues/14" class="external-link">Closed #14</a>.</li>
 <li>New function <code><a href="../reference/read_airports.html">read_airports()</a></code> to read data on all public and private airports. <a href="https://github.com/ipeaGIT/flightsbr/issues/4" class="external-link">Closed #4</a> and <a href="https://github.com/ipeaGIT/flightsbr/issues/9" class="external-link">Closed #9</a>.</li>
 <li>New function <code><a href="../reference/latest_flights_date.html">latest_flights_date()</a></code> to check the date of the latest flight data available. <a href="https://github.com/ipeaGIT/flightsbr/issues/16" class="external-link">Closed #16</a>.</li>
 <li>New function <code><a href="../reference/read_airport_movements.html">read_airport_movements()</a></code> to download data on airport movements. <a href="https://github.com/ipeaGIT/flightsbr/issues/15" class="external-link">Closed #15</a>.</li>
