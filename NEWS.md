@@ -1,4 +1,4 @@
-# flightsbr dev v1.0.0
+# flightsbr v1.0.0
 
 * Breaking changes:
   * The names of all columns in the data outputs are now cleanned with {janitor}
@@ -14,8 +14,6 @@
   * New support function `latest_airfares_date()`
   * Fix error that stopped reading aircraft data `read_aircrafts()` for multiple months when the number of collums differed across months. Fixed using `data.table::rbindlist(fill = TRUE)`
 
-
-
 # flightsbr dev v0.5.0
 
 * Major changes:
@@ -29,10 +27,6 @@
   * Streamlined functions to simplify package maintenance and improve performance
   * Using {fs} to manage file paths and {archive} to unzip files
   * Reorganization of internal functions to simplify package maintenance
-  
-
-
-
 
 # flightsbr v0.4.1
 
