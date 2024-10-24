@@ -44,6 +44,28 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.0" id="flightsbr-v100">flightsbr v1.0.0<a class="anchor" aria-label="anchor" href="#flightsbr-v100"></a></h2><p class="text-muted">CRAN release: 2024-10-22</p>
+<ul><li>Breaking changes:
+<ul><li>The names of all columns in the data outputs are now cleanned with {janitor}</li>
+<li>Function <code><a href="../reference/read_airports.html">read_airports()</a></code> now downloads v2 version of public airports data. Closes <a href="https://github.com/ipeaGIT/flightsbr/issues/41" class="external-link">#41</a>
+</li>
+</ul></li>
+<li>Major changes:
+<ul><li>Function <code><a href="../reference/read_airfares.html">read_airfares()</a></code> is working again. Closes <a href="https://github.com/ipeaGIT/flightsbr/issues/30" class="external-link">#30</a>. The prices of air tickets are now returned as numeric.</li>
+<li>Function <code><a href="../reference/read_flights.html">read_flights()</a></code> with fixed decimal values in numeric columns. Closes <a href="https://github.com/ipeaGIT/flightsbr/issues/43" class="external-link">#43</a>
+</li>
+<li>Function <code><a href="../reference/read_airports.html">read_airports()</a></code> with fixed numeric values for <code>"altitude"</code> column. Closes <a href="https://github.com/ipeaGIT/flightsbr/issues/42" class="external-link">#42</a>
+</li>
+</ul></li>
+<li>Minor changes:
+<ul><li>Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format <code>yyyymm</code> OR a 4-digit format <code>yyyy</code>.</li>
+<li>New support function <code><a href="../reference/latest_airfares_date.html">latest_airfares_date()</a></code>
+</li>
+<li>Fix error that stopped reading aircraft data <code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code> for multiple months when the number of collums differed across months. Fixed using <code>data.table::rbindlist(fill = TRUE)</code>
+</li>
+</ul></li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.1" id="flightsbr-v041">flightsbr v0.4.1<a class="anchor" aria-label="anchor" href="#flightsbr-v041"></a></h2><p class="text-muted">CRAN release: 2024-04-23</p>
 <ul><li>Minor changes:
 <ul><li>The <code><a href="../reference/read_flights.html">read_flights()</a></code> function now uses <code>fread(encoding = 'Latin-1')</code> internally to avoid issues with encoding. Closed #35.</li>
