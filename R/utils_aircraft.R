@@ -1,13 +1,13 @@
-#' Retrieve all dates available for aircrafts data from ANAC website
+#' Retrieve all dates available for aircraft data from ANAC website
 #'
 #' @return Numeric vector.
 #' @export
 #' @keywords internal
 #' @examples \dontrun{ if (interactive()) {
 #' # check dates
-#' a <- get_aircrafts_dates_available()
+#' a <- get_aircraft_dates_available()
 #'}}
-get_aircrafts_dates_available <- function() { # nocov start
+get_aircraft_dates_available <- function() { # nocov start
 
   # read html table
   base_url = 'https://sistemas.anac.gov.br/dadosabertos/Aeronaves/RAB/Historico_RAB/'
@@ -44,7 +44,7 @@ get_aircrafts_dates_available <- function() { # nocov start
 
 
 
-#' Put together the url of aircrafts data files
+#' Put together the url of aircraft data files
 #'
 #' @param date Numeric. Either a 6-digit date in the format `yyyymm` or a 4-digit
 #'             date input `yyyy`. Defaults to `NULL`, in which case the function
@@ -57,7 +57,7 @@ get_aircrafts_dates_available <- function() { # nocov start
 #' # Generate url
 #' a <- get_flights_url(year=2000, month=11)
 #'}}
-get_aircrafts_url <- function(date = parent.frame()$date) { # nocov start
+get_aircraft_url <- function(date = parent.frame()$date) { # nocov start
 
   url_root <- 'https://sistemas.anac.gov.br/dadosabertos/Aeronaves/RAB/Historico_RAB/'
 
@@ -96,7 +96,7 @@ get_aircrafts_url <- function(date = parent.frame()$date) { # nocov start
 #' # download data
 #' a <- download_airfares_data(file_url=file_url, showProgress=TRUE, select=NULL)
 #'}}
-download_aircrafts_data <- function(file_url = parent.frame()$file_url,
+download_aircraft_data <- function(file_url = parent.frame()$file_url,
                                     showProgress = parent.frame()$showProgress,
                                     cache = parent.frame()$cache
                                     ){ # nocov start

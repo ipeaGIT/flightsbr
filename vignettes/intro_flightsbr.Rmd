@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 1. `read_flights()`
 2. `read_airports()`
-3. `read_aircrafts()`
+3. `read_aircraft()`
 4. `read_airport_movements()`
 5. `read_airfares()`
 
@@ -36,10 +36,10 @@ Airports data covers all airports and aerodromes registered in Brazil’s Civil 
   - [Public airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-publicos-v2/70-lista-de-aerodromos-publicos-v2).
   - [Private airports](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aerodromos/lista-de-aerodromos-privados-v2).
 
-### 3) `read_aircrafts()`:
+### 3) `read_aircraft()`:
 
-All aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC).
-- [Data dictionary for aircrafts data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/5-registro-aeronautico-brasileiro).
+All aircraft registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian Civil Aviation Agency (ANAC).
+- [Data dictionary for aircraft data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/5-registro-aeronautico-brasileiro).
 
 
 ### 4) `read_airport_movements()`:
@@ -97,12 +97,12 @@ airports_pbl <- flightsbr::read_airports(type = 'public', showProgress = FALSE)
 ```
 
 
-#### Download data of aircrafts:
+#### Download data of aircraft:
 
 ```{r, eval=FALSE}
-aircrafts <- flightsbr::read_aircrafts(date = 2024, showProgress = FALSE)
+aircraft <- flightsbr::read_aircraft(date = 2024, showProgress = FALSE)
 
-head(aircrafts)
+head(aircraft)
 ```
 
 

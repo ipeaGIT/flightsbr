@@ -1,11 +1,10 @@
 #' Download aircrafts data from Brazil
 #'
 #' @description
+#'`r lifecycle::badge("deprecated")`
 #'
-#' Download data of all aircrafts registered in the Brazilian Aeronautical
-#' Registry (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian
-#' Civil Aviation Agency (ANAC). A description of all variables included in the
-#' data is available at \url{https://www.gov.br/anac/pt-br/sistemas/rab}.
+#' This function was deprecated in favor of `read_aircraft()` simply to
+#' fix a typo in the function name.
 #'
 #' @template date
 #' @template showProgress
@@ -14,12 +13,12 @@
 #' @return A `"data.table" "data.frame"` object. All columns are returned with
 #'         `class` of type `"character"`.
 #' @export
+#' @keywords internal
 #' @family download flight data
 #' @examples \dontrun{ if (interactive()) {
-#' # Read aircrafts data
-#' aircrafts <- read_aircrafts(date = 202001,
-#'                             showProgress = TRUE)
-#'
+#' # Read aircraft data
+#' aircraft <- read_aircraft(date = 202001,
+#'                           showProgress = TRUE)
 #'
 #'}}
 read_aircrafts <- function(date = 202001,
@@ -27,42 +26,13 @@ read_aircrafts <- function(date = 202001,
                            cache = TRUE
                            ){
 
-### check inputs
-  if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
-  if( ! is.logical(cache) ){ stop(paste0("Argument 'cache' must be either 'TRUE' or 'FALSE.")) }
-  check_input_date_format(date)
 
-  ### check date input
-  # get all dates available
-  all_dates <- get_aircrafts_dates_available()
+  lifecycle::deprecate_warn("1.0.1", "read_aircrafts()", "read_aircraft()")
 
-  # check if download failed
-  if (is.null(all_dates)) { return(invisible(NULL)) }
 
-  # check dates
-  check_date(date=date, all_dates)
+  temp <- read_aircraft(date = date,
+                showProgress = FALSE,
+                cache = cache)
 
-  # get url of files
-  file_urls <- get_aircrafts_url(date)
-
-  # download and read data
-  dt <- download_aircrafts_data(file_url = file_urls,
-                                showProgress = showProgress,
-                                cache = cache)
-
-  # check if download failed
-  if (is.null(dt)) { return(invisible(NULL)) }
-
-  # clean names
-  nnn <- names(dt)
-  data.table::setnames(
-    x = dt,
-    old = nnn,
-    new = janitor::make_clean_names(nnn)
-    )
-
-  # convert columns to numeric
-  convert_to_numeric(dt)
-
-  return(dt)
+  return(temp)
 }

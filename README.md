@@ -30,7 +30,7 @@ The package currently includes [five main functions](https://ipeagit.github.io/f
 
 1. `read_flights()`
 2. `read_airports()`
-3. `read_aircrafts()`
+3. `read_aircraft()`
 4. `read_airport_movements()`
 5. `read_airfares()`
 
@@ -58,9 +58,9 @@ airports_prv <- flightsbr::read_airports(type = 'private')
 
 ```
 
-#### 3) `read_aircrafts()` to download aircrafts data.
+#### 3) `read_aircraft()` to download aircraft data.
 ```
-aircrafts <- read_aircrafts(date = 2024)
+aircraft <- read_aircraft(date = 2024)
 ```
 
 #### 4) `read_airport_movements()` to download data on aiport movements.

@@ -1,7 +1,7 @@
 Type: Package
 Package: flightsbr
 Title: Download Flight and Airport Data from Brazil
-Version: 1.0.0
+Version: 1.0.0999
 Authors@R: 
     c(person(given="Rafael H. M.", family="Pereira", 
              email="rafa.pereira.br@gmail.com", 
@@ -24,6 +24,7 @@ Imports:
       curl (>= 5.0.0),
       data.table (>= 1.14.0),
       fs,
+      lifecycle,
       parzer,
       pbapply,
       janitor,

@@ -1,3 +1,7 @@
+# flightsbr v1.0.1 dev
+
+* The function `read_aircrafts()` is now deprecated in favor of `read_aircraft()` simply to fix a typo in the function name. The behavior and outputs are identical. Closes [#45](https://github.com/ipeaGIT/flightsbr/issues/45)
+
 # flightsbr v1.0.0
 
 * Breaking changes:
@@ -12,14 +16,14 @@
 * Minor changes:
   * Internally check of the consistency of date inputs. The date input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.
   * New support function `latest_airfares_date()`
-  * Fix error that stopped reading aircraft data `read_aircrafts()` for multiple months when the number of collums differed across months. Fixed using `data.table::rbindlist(fill = TRUE)`
+  * Fix error that stopped reading aircraft data `read_aircraft()` for multiple months when the number of collums differed across months. Fixed using `data.table::rbindlist(fill = TRUE)`
 
-# flightsbr dev v0.5.0
+# flightsbr v0.5.0
 
 * Major changes:
   * Fixed ANAC's broken link of public airports
-  * Functions `read_flights()`, `read_airport_movements()`, and `read_aircrafts()` now accept vectors of dates like `c(202201, 202301)` or `c(2022, 2024)`
-  * Functions `read_airports()` and `read_aircrafts()` now has a `cache` parameter.
+  * Functions `read_flights()`, `read_airport_movements()`, and `read_aircraft()` now accept vectors of dates like `c(202201, 202301)` or `c(2022, 2024)`
+  * Functions `read_airports()` and `read_aircraft()` now has a `cache` parameter.
   * The package is now significantly faster because it is using `curl::multi_download()` to download files in parallel. This brings the advantage that the package now automatically detects whether the data file has been updated and should be downloaded again.
 
 * Minor changes:
@@ -33,14 +37,14 @@
 * Minor changes:
   * The `read_flights()` function now uses `fread(encoding = 'Latin-1')` internally to avoid issues with encoding. Closed #35.
   * The function `get_airport_movement_dates_available()` does not throw warnings of `NA` values anymore.
-  * The `read_aircrafts()` function now used `fread(skip = 1)` internally to read column names correctly.
+  * The `read_aircraft()` function now used `fread(skip = 1)` internally to read column names correctly.
 
 
 # flightsbr v0.4.0
 
 * Major changes:
   * The functions `read_flights()` and `read_airport_movements()` now have a new parameter `cache`, which indicates whether the function should read cached data downloaded previously. Defaults to `TRUE`. Closed #31.
-  * The function `read_aircrafts()` now has a `date` parameter, which allows one to download the data on aircrafts registered at ANAC at particular years/months.  Closed #33.
+  * The function `read_aircraft()` now has a `date` parameter, which allows one to download the data on aircraft registered at ANAC at particular years/months.  Closed #33.
 
 * Minor changes:
   * All functions now return numeric columns with `numeric` class. Closed #32.
@@ -104,7 +108,7 @@
 # flightsbr v0.1.0
 
 * Major changes:
-  * New function `read_aircrafts()` to read data on all aircrafts registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB) [Closed #14](https://github.com/ipeaGIT/flightsbr/issues/14).
+  * New function `read_aircraft()` to read data on all aircraft registered in the Brazilian Aeronautical Registry (Registro Aeronáutico Brasileiro - RAB) [Closed #14](https://github.com/ipeaGIT/flightsbr/issues/14).
   * New function `read_airports()` to read data on all public and private airports. [Closed #4](https://github.com/ipeaGIT/flightsbr/issues/4) and [Closed #9](https://github.com/ipeaGIT/flightsbr/issues/9).
   * New function `latest_flights_date()` to check the date of the latest flight data available. [Closed #16](https://github.com/ipeaGIT/flightsbr/issues/16).
   * New function `read_airport_movements()` to download data on airport movements. [Closed #15](https://github.com/ipeaGIT/flightsbr/issues/15).

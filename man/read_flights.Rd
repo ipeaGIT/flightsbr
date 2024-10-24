@@ -54,6 +54,7 @@ f2015 <- read_flights(date = 2015)
 }
 \seealso{
 Other download flight data: 
+\code{\link{read_aircraft}()},
 \code{\link{read_aircrafts}()}
 }
 \concept{download flight data}
