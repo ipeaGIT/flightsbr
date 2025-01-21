@@ -6,6 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Introduction to flightsbr • flightsbr</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -20,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">flightsbr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0999</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +35,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="active nav-item dropdown">
+<li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/airports.html">Airport data</a></li>
@@ -68,7 +73,7 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Introduction to flightsbr</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ipeaGIT/flightsbr/tree/main/vignettes/intro_flightsbr.Rmd" class="external-link"><code>vignettes/intro_flightsbr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ipeaGIT/flightsbr/blob/HEAD/vignettes/intro_flightsbr.Rmd" class="external-link"><code>vignettes/intro_flightsbr.Rmd</code></a></small>
       <div class="d-none name"><code>intro_flightsbr.Rmd</code></div>
     </div>
 
@@ -80,7 +85,7 @@ currently includes five main functions:</p>
 <ol style="list-style-type: decimal">
 <li><code><a href="../reference/read_flights.html">read_flights()</a></code></li>
 <li><code><a href="../reference/read_airports.html">read_airports()</a></code></li>
-<li><code><a href="../reference/read_aircraft.html">read_aircraft()</a></code></li>
+<li><code><a href="../reference/read_aircrafts.html">read_aircrafts()</a></code></li>
 <li><code><a href="../reference/read_airport_movements.html">read_airport_movements()</a></code></li>
 <li><code><a href="../reference/read_airfares.html">read_airfares()</a></code></li>
 </ol>
@@ -115,12 +120,12 @@ airports</a>.</li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="read_aircraft">3) <code>read_aircraft()</code>:<a class="anchor" aria-label="anchor" href="#read_aircraft"></a>
+<h3 id="read_aircrafts">3) <code>read_aircrafts()</code>:<a class="anchor" aria-label="anchor" href="#read_aircrafts"></a>
 </h3>
-<p>All aircraft registered in the Brazilian Aeronautical Registry
+<p>All aircrafts registered in the Brazilian Aeronautical Registry
 (Registro Aeronáutico Brasileiro - RAB), organized by the Brazilian
 Civil Aviation Agency (ANAC). - <a href="https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/registro-aeronautico-brasileiro/5-registro-aeronautico-brasileiro" class="external-link">Data
-dictionary for aircraft data</a>.</p>
+dictionary for aircrafts data</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="read_airport_movements">4) <code>read_airport_movements()</code>:<a class="anchor" aria-label="anchor" href="#read_airport_movements"></a>
@@ -178,12 +183,12 @@ version from CRAN.</p>
 <span><span class="va">airports_pbl</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_airports.html">read_airports</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'public'</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="download-data-of-aircraft">Download data of aircraft:<a class="anchor" aria-label="anchor" href="#download-data-of-aircraft"></a>
+<h4 id="download-data-of-aircrafts">Download data of aircrafts:<a class="anchor" aria-label="anchor" href="#download-data-of-aircrafts"></a>
 </h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">aircraft</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_aircraft.html">read_aircraft</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">2024</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">aircrafts</span> <span class="op">&lt;-</span> <span class="fu">flightsbr</span><span class="fu">::</span><span class="fu"><a href="../reference/read_aircrafts.html">read_aircrafts</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fl">2024</span>, showProgress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">aircraft</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">aircrafts</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="download-data-on-airport-movements">Download data on airport movements:<a class="anchor" aria-label="anchor" href="#download-data-on-airport-movements"></a>
@@ -214,7 +219,7 @@ Brazil:<a class="anchor" aria-label="anchor" href="#download-data-on-data-on-air
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
 </div>
 
     </footer>
