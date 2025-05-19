@@ -22,10 +22,10 @@
 #'
 #'
 #'}}
-read_aircraft <- function(date = 202001,
-                           showProgress = TRUE,
-                           cache = TRUE
-                           ){
+read_aircraft <- function(date = NULL,
+                          showProgress = TRUE,
+                          cache = TRUE
+                          ){
 
 ### check inputs
   if( ! is.logical(showProgress) ){ stop(paste0("Argument 'showProgress' must be either 'TRUE' or 'FALSE.")) }
@@ -40,6 +40,7 @@ read_aircraft <- function(date = 202001,
   if (is.null(all_dates)) { return(invisible(NULL)) }
 
   # check dates
+  if (is.null(date)) { date <- max(all_dates) }
   check_date(date=date, all_dates)
 
   # get url of files

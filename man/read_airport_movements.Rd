@@ -4,13 +4,14 @@
 \alias{read_airport_movements}
 \title{Download airport movement data from Brazil}
 \usage{
-read_airport_movements(date = 202001, showProgress = TRUE, cache = TRUE)
+read_airport_movements(date = NULL, showProgress = TRUE, cache = TRUE)
 }
 \arguments{
 \item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to
-\code{202001}. To download the data for all months in a year, the user
-can pass a 4-digit year input \code{yyyy}. The function also accepts a
-vector of dates, like \code{c(202201, 202301)} or \code{c(2022, 2024)}.}
+the latest date available. To download the data for all months in
+a year, the user can pass a 4-digit year input \code{yyyy}. The
+function also accepts a vector of dates, like \code{c(202201, 202301)}
+or \code{c(2022, 2024)}.}
 
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
 

@@ -4,13 +4,14 @@
 \alias{read_aircraft}
 \title{Download aircraft data from Brazil}
 \usage{
-read_aircraft(date = 202001, showProgress = TRUE, cache = TRUE)
+read_aircraft(date = NULL, showProgress = TRUE, cache = TRUE)
 }
 \arguments{
 \item{date}{Numeric. Date of the data in the format \code{yyyymm}. Defaults to
-\code{202001}. To download the data for all months in a year, the user
-can pass a 4-digit year input \code{yyyy}. The function also accepts a
-vector of dates, like \code{c(202201, 202301)} or \code{c(2022, 2024)}.}
+the latest date available. To download the data for all months in
+a year, the user can pass a 4-digit year input \code{yyyy}. The
+function also accepts a vector of dates, like \code{c(202201, 202301)}
+or \code{c(2022, 2024)}.}
 
 \item{showProgress}{Logical. Defaults to \code{TRUE} display progress.}
 
@@ -39,7 +40,6 @@ aircraft <- read_aircraft(date = 202001,
 }
 \seealso{
 Other download flight data: 
-\code{\link{read_aircrafts}()},
 \code{\link{read_flights}()}
 }
 \concept{download flight data}

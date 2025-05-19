@@ -26,7 +26,7 @@
 #'
 #' af_2015 <- read_airfares(date = 2015, domestic = TRUE)
 #'}}
-read_airfares <- function(date = 202001,
+read_airfares <- function(date = NULL,
                           domestic = TRUE,
                           showProgress = TRUE,
                           select = NULL,
@@ -44,10 +44,12 @@ read_airfares <- function(date = 202001,
   # get all dates available
   all_dates <- get_airfares_dates_available(dom = domestic)
 
+
   # check if download failed
   if (is.null(all_dates)) { return(invisible(NULL)) }
 
- # check dates
+  # check dates
+  if (is.null(date)) { date <- max(all_dates) }
   check_date(date=date, all_dates)
 
   # prepare address of online data

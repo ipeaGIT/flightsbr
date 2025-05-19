@@ -29,7 +29,7 @@
 #'
 #' f2015 <- read_flights(date = 2015)
 #'}}
-read_flights <- function(date = 202001,
+read_flights <- function(date = NULL,
                          type = 'basica',
                          showProgress = TRUE,
                          select = NULL,
@@ -50,6 +50,7 @@ read_flights <- function(date = 202001,
   if (is.null(all_dates)) { return(invisible(NULL)) }
 
   # check dates
+  if (is.null(date)) { date <- max(all_dates) }
   check_date(date=date, all_dates)
 
 

@@ -5,7 +5,7 @@
 \title{Download flight data from Brazil}
 \usage{
 read_flights(
-  date = 202001,
+  date = NULL,
   type = "basica",
   showProgress = TRUE,
   select = NULL,
@@ -54,7 +54,6 @@ f2015 <- read_flights(date = 2015)
 }
 \seealso{
 Other download flight data: 
-\code{\link{read_aircraft}()},
-\code{\link{read_aircrafts}()}
+\code{\link{read_aircraft}()}
 }
 \concept{download flight data}
