@@ -1,6 +1,11 @@
-# flightsbr v1.0.1 dev
+# flightsbr v1.1.0 dev
 
-* The function `read_aircrafts()` is now deprecated in favor of `read_aircraft()` simply to fix a typo in the function name. The behavior and outputs are identical. Closes [#45](https://github.com/ipeaGIT/flightsbr/issues/45)
+* Major changes:
+  * The default of all `read_` functions now is to download data from the latest date available.
+  * The function `read_aircrafts()` is now deprecated in favor of `read_aircraft()` simply to fix a typo in the function name. The behavior and outputs are identical. Closes [#45](https://github.com/ipeaGIT/flightsbr/issues/45)
+
+* CRAN policy:
+  * updaed DESCRIPTION file removing 'NeedsCompilation'
 
 # flightsbr v1.0.0
 
