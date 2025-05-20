@@ -40,6 +40,7 @@ aircraft <- read_aircraft(date = 202001,
 }
 \seealso{
 Other download flight data: 
+\code{\link{read_aircrafts}()},
 \code{\link{read_flights}()}
 }
 \concept{download flight data}

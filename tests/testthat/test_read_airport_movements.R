@@ -9,12 +9,9 @@ testthat::skip_on_cran()
 test_that("read_airport_movements", {
 
   # (default), one month, basica, progress
-  test1 <- read_airport_movements(date=202201)
+  test1 <- read_airport_movements()
   testthat::expect_true(is(test1, "data.table"))
   testthat::expect_true(nrow(test1) >0 )
-
-  # check conteudo
-  testthat::expect_equal( as.character(min(test1$dt_previsto)), as.character("2021-12-31") )
 
   # all months in a year
   test2 <- read_airport_movements(date=2022, showProgress = FALSE)

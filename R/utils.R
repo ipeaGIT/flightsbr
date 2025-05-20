@@ -55,7 +55,8 @@ generate_all_months <- function(date) { # nocov start
     return(allmonths)
   }
 
-  all_dates <- lapply(X=date, FUN = get_all_months) |> unlist()
+  all_dates <- lapply(X=date, FUN = get_all_months)
+  all_dates <- unlist(all_dates)
   return(all_dates)
 
 } # nocov end

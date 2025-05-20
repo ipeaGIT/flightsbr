@@ -157,7 +157,8 @@ get_airfares_url <- function(dom,
       return(url)
     }
 
-    file_urls <- lapply(X=file_urls, FUN=fix_file_extension) |> unlist()
+    file_urls <- lapply(X=file_urls, FUN=fix_file_extension)
+    file_urls <- unlist(file_urls)
     }
 
   return(file_urls)
@@ -231,10 +232,9 @@ download_airfares_data <- function(file_urls = parent.frame()$file_urls,
                                                         encoding = 'Latin-1',
                                                         colClasses = 'character',
                                                         sep = ';')
-                            }) |>
-    data.table::rbindlist(fill = TRUE)
+                            })
 
-
+  dt <- data.table::rbindlist(dt, fill = TRUE)
 
   # return to original threads
   data.table::setDTthreads(orig_threads)

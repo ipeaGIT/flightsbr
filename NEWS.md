@@ -1,4 +1,4 @@
-# flightsbr v1.1.0 dev
+# flightsbr v1.1.0
 
 * Major changes:
   * The default of all `read_` functions now is to download data from the latest date available.

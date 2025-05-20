@@ -149,9 +149,9 @@ download_aircraft_data <- function(file_url = parent.frame()$file_url,
                             xdate <- fs::path_ext_remove(basename(x))
                             xdate <- gsub('-', '', xdate)
                             temp_x[, reference_date := xdate]
-                            }) |>
-    data.table::rbindlist(fill = TRUE)
+                            })
 
+  dt <- data.table::rbindlist(dt, fill = TRUE)
 
   # return to original threads
   data.table::setDTthreads(orig_threads)

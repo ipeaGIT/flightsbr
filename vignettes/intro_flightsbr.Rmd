@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
 4. `read_airport_movements()`
 5. `read_airfares()`
 
+
 ### 1) `read_flights()`:
 
 Flights data include detailed information on every international flight to and from Brazil, as well as domestic flights within the country. The data include flight-level information of airports of origin and destination, flight duration, aircraft  type, payload, and the number of passengers, as well as several other variables. 
@@ -46,7 +47,6 @@ All aircraft registered in the Brazilian Aeronautical Registry (Registro Aeroná
 
 The data covers all passenger, aircraft, cargo and mail movement from airports regulated by ANAC.
 - [Data dictionary for airport movements data](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/operador-aeroportuario/dados-de-movimentacao-aeroportuaria/60-dados-de-movimentacao-aeroportuaria).
-
 
 
 ### 5) `read_airfares()`:
