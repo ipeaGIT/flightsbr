@@ -77,6 +77,7 @@ airfares <- read_airfares(date = 202001, domestic = TRUE)
 #### **Related projects**
 
 Similar packages for other countries/continents
+
 - World: [openSkies: a client interface to the 'OpenSky' API](https://github.com/Rafael-Ayala/openSkies)
 - USA: [anyflights](https://simonpcouch.github.io/anyflights/)
 
