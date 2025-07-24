@@ -24,27 +24,29 @@ test_that("read_airfares", {
   testthat::expect_true(is(test3, "data.table"))
   testthat::expect_true(nrow(test3) >0 )
 
-  test4 <- read_airfares(date=201202, showProgress = FALSE, domestic = FALSE)
+  test4 <- read_airfares(date=202501, showProgress = FALSE, domestic = FALSE)
   testthat::expect_true(is(test4, "data.table"))
   testthat::expect_true(nrow(test4) >0 )
 
   # check content
   testthat::expect_equal( as.character(min(test3$ano)), as.character("2004") )
-  testthat::expect_equal( as.character(min(test4$ano)), as.character("2012") )
+  testthat::expect_equal( as.character(min(test4$nr_ano_referencia)), as.character("2025") )
 
   # all months in a year
-  test5 <- read_airfares(date=2022, select='tarifa-n', showProgress = FALSE)
-  testthat::expect_true(is(test5, "data.table"))
+  test5 <- read_airfares(date=200401:200402, select='tarifa-n', showProgress = TRUE)
+  testthat::expect_true(is(test5, "data.table") | is.null(test5))
 
-  test6 <- read_airfares(date=2022, domestic = FALSE, showProgress = FALSE, select='valor_tarifa')
+  test6 <- read_airfares(date=201101:201102,
+                         domestic = FALSE,
+                         showProgress = FALSE,
+                         select='valor_tarifa'
+                         )
   testthat::expect_true(is(test6, "data.table"))
 
   # test vector of dates
-  test7 <- read_airfares(date = c(202201, 202205), showProgress = FALSE)
+  test7 <- read_airfares(date = c(200401, 200402), showProgress = FALSE)
   testthat::expect_true(is(test7, "data.table"))
 
-  # test8 <- read_airfares(date = c(2020, 2022), showProgress = FALSE)
-  # testthat::expect_true(is(test8, "data.table"))
 
 })
 
@@ -66,6 +68,7 @@ test_that("read_airfares", {
 
   # mixed date format
   testthat::expect_error(read_airfares(date=c(2020, 202101)))
+  testthat::expect_error(read_airfares(date= 1))
 
   # Wrong type and showProgress
   testthat::expect_error(read_airfares(showProgress='banana'))

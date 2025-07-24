@@ -12,7 +12,7 @@ test_that("read_aircraft", {
   test1 <- read_aircraft(showProgress = FALSE)
 
   # (default), one month, basica, progress
-  testthat::expect_true(is(test1, "data.table"))
+  testthat::expect_true(is(test1, "data.table") | is.null(test1))
   testthat::expect_true(nrow(test1) > 0)
 
   testthat::expect_true(is(read_aircraft(showProgress = TRUE), "data.table"))

@@ -17,34 +17,36 @@ test_that("read_flights", {
   testthat::expect_equal( class(test1$nr_voo), 'numeric')
 
   # one month, combinada, no progress bar
-  test2 <- read_flights(date=202201, type='combinada', showProgress = FALSE)
+  test2 <- read_flights(date=202401, type='combinada', showProgress = FALSE)
   testthat::expect_true(is(test2, "data.table"))
   testthat::expect_true(nrow(test2) >0 )
 
   # check content
-  testthat::expect_equal( as.character(min(test2$dt_referencia)), as.character("2022-01-01") )
+  testthat::expect_equal(
+    as.character(min(test2$dt_referencia)), as.character("2024-01-01")
+    )
 
   # all months in a year
-  test3 <- read_flights(date=2022, select=cols, showProgress = FALSE, cache = TRUE)
+  test3 <- read_flights(date=202401:202402, select=cols, showProgress = FALSE, cache = TRUE)
   testthat::expect_true(is(test3, "data.table"))
   testthat::expect_true(nrow(test3) >0 )
 
   # a vector of dates
-  test4 <- read_flights(date = c(202001, 202003), select=cols, showProgress = FALSE)
+  test4 <- read_flights(date = c(202401, 202402), select=cols, showProgress = FALSE)
   testthat::expect_true(is(test4, "data.table"))
   testthat::expect_true(nrow(test4) >0 )
   months <- unique(test4$nr_mes_referencia)
-  testthat::expect_true( all.equal(months , c(1,3)) )
+  testthat::expect_true( all.equal(months , c(1,2)) )
 
   # check whether cache argument is working
   time_first <- system.time(
-    f201506 <- read_flights(date = 201506))
+    f201506 <- read_flights(date = 202401))
 
   time_cache_true <- system.time(
-    f201506 <- read_flights(date = 201506, cache = TRUE))
+    f201506 <- read_flights(date = 202401, cache = TRUE))
 
   time_cache_false <- system.time(
-    f201506 <- read_flights(date = 201506, cache = FALSE))
+    f201506 <- read_flights(date = 202401, cache = FALSE))
 
   testthat::expect_true( time_cache_true[['elapsed']] < time_cache_false[['elapsed']] )
  })

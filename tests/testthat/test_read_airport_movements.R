@@ -14,23 +14,23 @@ test_that("read_airport_movements", {
   testthat::expect_true(nrow(test1) >0 )
 
   # all months in a year
-  test2 <- read_airport_movements(date=2022, showProgress = FALSE)
+  test2 <- read_airport_movements(date=202401, showProgress = FALSE)
   testthat::expect_true(is(test2, "data.table"))
 
   # test vector of dates
-  test3 <- read_airport_movements(date = c(202201, 202205), showProgress = FALSE)
+  test3 <- read_airport_movements(date = c(202401, 202405), showProgress = FALSE)
   testthat::expect_true(is(test3, "data.table"))
 
 
   # check whether cache argument is working
   time_first <- system.time(
-    f201506 <- read_airport_movements(date = 202210))
+    f1 <- read_airport_movements(date = 202401))
 
   time_cache_true <- system.time(
-    f201506 <- read_airport_movements(date = 202210, cache = TRUE))
+    f2 <- read_airport_movements(date = 202401, cache = TRUE))
 
   time_cache_false <- system.time(
-    f201506 <- read_airport_movements(date = 202210, cache = FALSE))
+    f3 <- read_airport_movements(date = 202401, cache = FALSE))
 
   testthat::expect_true( time_cache_true[['elapsed']] < time_cache_false[['elapsed']] )
  })
@@ -42,6 +42,7 @@ test_that("read_airport_movements", {
   # Wrong date 4 digits
   testthat::expect_error(read_airport_movements(date=1990))
   testthat::expect_error(read_airport_movements(date=199012))
+  testthat::expect_error(read_airport_movements(date=123456))
 
   # mixed date format
   testthat::expect_error(read_airport_movements(date=c(2020, 202101)))

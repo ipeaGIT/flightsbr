@@ -14,7 +14,7 @@
 #' # check dates
 #' a <- check_date(200011, all_dates)
 #'}}
-check_date <- function(date, all_dates) { # nocov start
+check_date <- function(date, all_dates) {
 
   error_message <-  paste0("The data is currently only available for dates between ", min(all_dates), " and ", max(all_dates), ".")
 
@@ -27,7 +27,7 @@ check_date <- function(date, all_dates) { # nocov start
       if (!(d %in% unique(substr(all_dates, 1, 4)) )) {stop(error_message)}
     }
   }
-}  # nocov end
+}
 
 
 
@@ -43,7 +43,7 @@ check_date <- function(date, all_dates) { # nocov start
 #'
 #' b <- check_date(c(2000, 2005))
 #'}}
-generate_all_months <- function(date) { # nocov start
+generate_all_months <- function(date) {
 
   # check
   if (any(nchar(date)!=4)) { stop(paste0("Argument 'date' must be 4-digit in the format `yyyy`.")) }
@@ -59,7 +59,7 @@ generate_all_months <- function(date) { # nocov start
   all_dates <- unlist(all_dates)
   return(all_dates)
 
-} # nocov end
+}
 
 
 
@@ -251,7 +251,7 @@ convert_to_numeric <- function(dt, type='standard') { # nocov start
 #' # check dates
 #' a <- check_date(200011, all_dates)
 #'}}
-check_input_date_format <- function(date = parent.frame()$date) { # nocov start
+check_input_date_format <- function(date = parent.frame()$date) {
 
   # are all dates yyyy
   yyyy <- (all(nchar(date)==4))
@@ -262,6 +262,6 @@ check_input_date_format <- function(date = parent.frame()$date) { # nocov start
   if(yyyy + yyyymm == 0){
   stop("The 'date' input must be consistent in either a 6-digit format `yyyymm` OR a 4-digit format `yyyy`.")
   }
-} # nocov end
+}
 
 

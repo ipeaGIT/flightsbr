@@ -196,6 +196,7 @@ urlchecker::url_update()
 # LOCAL
 Sys.setenv(NOT_CRAN = "true")
 devtools::check(pkg = ".",  cran = FALSE, env_vars = c(NOT_CRAN = "true"))
+beepr::beep()
 
 # CRAN
 Sys.setenv(NOT_CRAN = "false")
