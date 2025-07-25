@@ -69,3 +69,13 @@ test_that("read_aircraft", {
 #
 # })
 
+# mock test
+test_that("internet problem: throws informative message", {
+
+  testthat::local_mocked_bindings(
+    download_flightsbr_file = function(...) NULL
+  )
+
+  expect_message( read_aircraft() )
+  expect_null( read_aircraft() )
+})

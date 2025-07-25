@@ -41,3 +41,14 @@ test_that("read_airports", {
   testthat::expect_error(read_airports(cache='banana'))
 
 })
+
+# mock test
+test_that("internet problem: throws informative message", {
+
+  testthat::local_mocked_bindings(
+    download_flightsbr_file = function(...) NULL
+  )
+
+  expect_message( read_airports() )
+  expect_null( read_airports() )
+})

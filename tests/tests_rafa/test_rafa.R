@@ -129,7 +129,7 @@ cov
 rep <- covr::report()
 
 x <- as.data.frame(cov)
-covr::codecov( coverage = cov, token ='aaaaa' )
+# covr::codecov( coverage = cov, token ='aaaaa' )
 
 
 #####  ftp dirs and files ------------------------

@@ -1,15 +1,7 @@
-── R CMD check results ─────────────────────────────────────────────────────────────────────────────────────────────── flightsbr 1.1.0 ────
-Duration: 4m 11.6s
+── R CMD check results ────────────────────────────────────────────────── flightsbr 1.1.1 ────
+Duration: 7m 30.1s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 
-* CRAN policy:
-  * updated DESCRIPTION file removing 'NeedsCompilation'
-  * removed |> pipe to avoid depending on R >= 4.1.0
-  * reduced package file size to aprox 1.7MB
-
-* Major changes:
-  * The default of all `read_` functions now is to download data from the latest date available.
-  * The function `read_aircrafts()` is now deprecated in favor of `read_aircraft()` simply to fix a typo in the function name. The behavior and outputs are identical. Closes [#45](https://github.com/ipeaGIT/flightsbr/issues/45)
-
+* The previous version of {flightsbr} was temporarily taken down from CRAN because one of its dependencies (the {parzer} package) was removed from CRAN on July 1st 2025. This update of flightsbr v1.1.1 is simply intended to put the package back on CRAN.
