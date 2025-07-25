@@ -109,10 +109,16 @@ download_flightsbr_file <- function(file_url = parent.frame()$file_url,
   # check if file has NOT been downloaded, try a 2nd time
   if (any(!downloaded_files$success | is.na(downloaded_files$success))) {
 
+    # update table to download only the files that failed in the 1st attempt
+    downloaded_files <- subset(
+      downloaded_files,
+      success == FALSE | is.na(success)
+      )
+
     # download data: try a 2nd time
     downloaded_files <- curl::multi_download(
-      urls = file_url,
-      destfiles = dest_file,
+      urls = downloaded_files$url,
+      destfiles = downloaded_files$destfile,
       resume = TRUE,
       progress = showProgress
       )
