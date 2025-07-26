@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">flightsbr</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.0.0.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.1.10999</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,10 +139,10 @@ Pereira (2022)</a>.</p>
 <span>               by <span class="op">=</span> <span class="va">dt_partida_real</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># reformat date</span></span>
-<span><span class="va">count_df</span> <span class="op">&lt;-</span> <span class="va">count_df</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">dt_partida_real</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2019-01-01'</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2022-12-31'</span><span class="op">)</span><span class="op">)</span> <span class="op">]</span></span>
+<span><span class="va">count_df</span> <span class="op">&lt;-</span> <span class="va">count_df</span><span class="op">[</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/between.html" class="external-link">between</a></span><span class="op">(</span><span class="va">dt_partida_real</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2019-01-01'</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">'2022-12-31'</span><span class="op">)</span><span class="op">)</span> <span class="op">]</span></span>
 <span></span>
-<span><span class="va">count_df</span><span class="op">[</span>, <span class="va">date</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/IDateTime.html" class="external-link">as.IDate</a></span><span class="op">(</span><span class="va">dt_partida_real</span>, format<span class="op">=</span><span class="st">"%Y-%m-%d"</span><span class="op">)</span> <span class="op">]</span></span>
-<span><span class="va">count_df</span><span class="op">[</span>, <span class="va">year</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/IDateTime.html" class="external-link">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">]</span></span>
+<span><span class="va">count_df</span><span class="op">[</span>, <span class="va">date</span> <span class="op">:=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html" class="external-link">as.IDate</a></span><span class="op">(</span><span class="va">dt_partida_real</span>, format<span class="op">=</span><span class="st">"%Y-%m-%d"</span><span class="op">)</span> <span class="op">]</span></span>
+<span><span class="va">count_df</span><span class="op">[</span>, <span class="va">year</span> <span class="op">:=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/IDateTime.html" class="external-link">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">]</span></span>
 <span><span class="va">count_df</span><span class="op">[</span>, <span class="va">date_plot</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"2030-"</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">date</span>, <span class="st">"%m-%d"</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">count_df</span><span class="op">[</span>, <span class="va">date_plot</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">date_plot</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
@@ -172,7 +172,7 @@ Pereira (2022)</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
