@@ -28,5 +28,6 @@ utils::globalVariables( c('month', # nocov start
                           'NR_',
                           'nr_',
                           'reference_date',
-                          'altitude') )  # nocov end
+                          'altitude',
+                          'success') )  # nocov end
 
