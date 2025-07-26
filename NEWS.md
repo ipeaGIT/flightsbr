@@ -1,3 +1,11 @@
+# flightsbr v1.2.0 DEV
+
+* Minor changes:
+  * When the package tries to download multiples but fails with a few ones, the package now only try to download again the files that failed in the first attempt.
+  
+
+
+
 # flightsbr v1.1.1
 
 * The previous version of {flightsbr} was temporarily taken down from CRAN because one of its dependencies (the {parzer} package) was removed from CRAN on July 1st 2025. This update of flightsbr v1.1.1 is simply intended to put the package back on CRAN.

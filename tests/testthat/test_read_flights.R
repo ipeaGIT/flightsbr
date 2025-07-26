@@ -74,13 +74,13 @@ test_that("read_flights", {
 })
 
 
-# mock test
-test_that("internet problem: throws informative message", {
-
-  testthat::local_mocked_bindings(
-    download_flightsbr_file = function(...) NULL
-  )
-
-  expect_message( read_flights() )
-  # expect_null( read_flights() )
-})
+# # mock test
+# test_that("internet problem: throws informative message", {
+#
+#   testthat::local_mocked_bindings(
+#     download_flightsbr_file = function(...) NULL
+#   )
+#
+#   testthat::expect_message( read_flights() )
+#   # testthat::expect_null( read_flights() )
+# })

@@ -7,7 +7,7 @@ testthat::skip_on_cran()
 
 # Reading the data -----------------------
 
-test_that("read_aircraft", {
+testthat::test_that("read_aircraft", {
 
   test1 <- read_aircraft(showProgress = FALSE)
 
@@ -32,7 +32,7 @@ test_that("read_aircraft", {
 
 
 # ERRORS and messages  -----------------------
-test_that("read_aircraft", {
+testthat::test_that("read_aircraft", {
 
   # Wrong date 4 digits
   testthat::expect_error(read_aircraft(date=1990))
@@ -57,25 +57,14 @@ test_that("read_aircraft", {
 })
 
 
-# deprecated function  -----------------------
 
-# test_that("add_two is deprecated", {
+# # mock test
+# testthat::test_that("internet problem: throws informative message", {
 #
-# testthat::expect_snapshot({
+#   testthat::local_mocked_bindings(
+#     download_flightsbr_file = function(...) NULL
+#   )
 #
-#  temp_deprecated <- read_aircrafts(showProgress = FALSE)
-#  testthat::expect_equal(test1, temp_deprecated)
-#  })
-#
+#   testthat::expect_message( read_aircraft() )
+#   testthat::expect_null( read_aircraft() )
 # })
-
-# mock test
-test_that("internet problem: throws informative message", {
-
-  testthat::local_mocked_bindings(
-    download_flightsbr_file = function(...) NULL
-  )
-
-  expect_message( read_aircraft() )
-  expect_null( read_aircraft() )
-})

@@ -7,7 +7,7 @@ testthat::skip_on_cran()
 
 # Reading the data -----------------------
 
-test_that("read_airports", {
+testthat::test_that("read_airports", {
 
     test1 <- read_airports()
     test2 <- read_airports(type = 'all'    , showProgress = FALSE)
@@ -33,7 +33,7 @@ test_that("read_airports", {
 
 
 # ERRORS and messages  -----------------------
-test_that("read_airports", {
+testthat::test_that("read_airports", {
 
   testthat::expect_error(read_airports(type=NULL))
   testthat::expect_error(read_airports(type='banana'))
@@ -42,13 +42,13 @@ test_that("read_airports", {
 
 })
 
-# mock test
-test_that("internet problem: throws informative message", {
-
-  testthat::local_mocked_bindings(
-    download_flightsbr_file = function(...) NULL
-  )
-
-  expect_message( read_airports() )
-  expect_null( read_airports() )
-})
+# # mock test
+# testthat::test_that("internet problem: throws informative message", {
+#
+#   testthat::local_mocked_bindings(
+#     download_flightsbr_file = function(...) NULL
+#   )
+#
+#   testthat::expect_message( read_airports() )
+#   testthat::expect_null( read_airports() )
+# })

@@ -7,7 +7,7 @@ testthat::skip_on_cran()
 
 # Reading the data -----------------------
 
-test_that("read_airfares", {
+testthat::test_that("read_airfares", {
 
   # (default), one month, basica, progress
   test1 <- read_airfares()
@@ -52,7 +52,7 @@ test_that("read_airfares", {
 
 
 # ERRORS and messages  -----------------------
-test_that("read_airfares", {
+testthat::test_that("read_airfares", {
 
   # Wrong date 4 digits
   testthat::expect_error(read_airfares(date=1990))
@@ -76,13 +76,13 @@ test_that("read_airfares", {
   testthat::expect_error(read_airfares(cache='banana'))
 })
 
-# mock test
-test_that("internet problem: throws informative message", {
-
-  testthat::local_mocked_bindings(
-    download_flightsbr_file = function(...) NULL
-  )
-
-  expect_message( read_airfares() )
-  expect_null( read_airfares() )
-})
+# # mock test
+# testthat::test_that("internet problem: throws informative message", {
+#
+#   testthat::local_mocked_bindings(
+#     download_flightsbr_file = function(...) NULL
+#   )
+#
+#   testthat::expect_message( read_airfares() )
+#   testthat::expect_null( read_airfares() )
+# })

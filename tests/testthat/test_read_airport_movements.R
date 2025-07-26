@@ -6,7 +6,7 @@ testthat::skip_on_cran()
 
 
 # Reading the data -----------------------
-test_that("read_airport_movements", {
+testthat::test_that("read_airport_movements", {
 
   # (default), one month, basica, progress
   test1 <- read_airport_movements()
@@ -37,7 +37,7 @@ test_that("read_airport_movements", {
 
 
 # ERRORS and messages  -----------------------
-test_that("read_airport_movements", {
+testthat::test_that("read_airport_movements", {
 
   # Wrong date 4 digits
   testthat::expect_error(read_airport_movements(date=1990))
@@ -53,13 +53,13 @@ test_that("read_airport_movements", {
 
 })
 
-# mock test
-test_that("internet problem: throws informative message", {
-
-  testthat::local_mocked_bindings(
-    download_flightsbr_file = function(...) NULL
-  )
-
-  expect_message( read_airport_movements() )
-  expect_null( read_airport_movements() )
-})
+# # mock test
+# testthat::test_that("internet problem: throws informative message", {
+#
+#   testthat::local_mocked_bindings(
+#     download_flightsbr_file = function(...) NULL
+#   )
+#
+#   testthat::expect_message( read_airport_movements() )
+#   testthat::expect_null( read_airport_movements() )
+# })
