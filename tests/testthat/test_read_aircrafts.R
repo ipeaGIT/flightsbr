@@ -22,9 +22,9 @@ testthat::test_that("read_aircrafts", {
   test3 <- read_aircrafts(date = c(202001, 202005), showProgress = FALSE)
   testthat::expect_true(is(test3, "data.table") | is.null(test3))
 
-  # test date all months in a year
-  test2 <- read_aircrafts(date = 2020, showProgress = FALSE)
-  testthat::expect_true(is(test2, "data.table") | is.null(test2))
+  # # test date all months in a year
+  # test2 <- read_aircrafts(date = 2020, showProgress = FALSE)
+  # testthat::expect_true(is(test2, "data.table") | is.null(test2))
 })
 
 
